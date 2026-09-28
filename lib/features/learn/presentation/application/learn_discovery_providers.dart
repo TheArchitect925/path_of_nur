@@ -601,7 +601,23 @@ LearnDiscoveryDifficulty _difficultyForKnowledgeItem(
   return LearnDiscoveryDifficulty.growing;
 }
 
+// Copy is not a switch. These flags were inferred from words in the copy
+// ("basics", "gentle", "start"); the voice rewrite (2026-09-27) took out the
+// words, not the facts, so the entries that held a flag keep it by id, and
+// rewording a subtitle never moves an entry in or out of Start here.
+const Set<String> _startHereEntryIds = <String>{'subcategory:arabic-learning'};
+const Set<String> _beginnerEntryIds = <String>{
+  'subcategory:arabic-learning',
+  'subcategory:islamic-trivia',
+  'subcategory:search-tools',
+  'hadith_reflection:home',
+  'history:archive',
+};
+
 bool _isStartHereKnowledgeItem(LearnHubKnowledgeItem item) {
+  if (_startHereEntryIds.contains(item.id)) {
+    return true;
+  }
   final text = _normalizeSearchText(
     <String>[
       item.title,
@@ -619,6 +635,9 @@ bool _isStartHereKnowledgeItem(LearnHubKnowledgeItem item) {
 }
 
 bool _isBeginnerKnowledgeItem(LearnHubKnowledgeItem item) {
+  if (_beginnerEntryIds.contains(item.id)) {
+    return true;
+  }
   if (item.categoryId == LearnHubCategoryId.foundations ||
       item.categoryId == LearnHubCategoryId.kidsLearning) {
     return true;

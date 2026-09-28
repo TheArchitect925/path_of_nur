@@ -196,7 +196,12 @@ runs on, the occasions it dresses up for). And placeholder names (`{xp}`,
 argument holds. A search hint lists what can be searched (*Search by surah,
 number, or phrase*), so `…SearchHint` keys may list too. A surah lesson whose
 key ends in the surah's name (`quranSurahInsightLessonAlBaqarah…`) is lesson
-prose, not chrome (`CONTENT_KEYS`).
+prose, not chrome (`CONTENT_KEYS`). So is lesson material inside Learn: a
+practice step, a family prompt, a daily-wisdom entry, a lesson’s section
+heading. A tone word used literally is a name, not self-praise: a mood you
+can pick (*Calm*), a pace (*Steady*), a softer adhan recording, recitation
+that is silent by fiqh (*recite it quietly*). Those keys are listed in
+`MODE_NAME_KEYS`.
 
 A line that is right as it is opts out of one rule with a trailing comment,
 so the exception is visible where it lives:
@@ -241,7 +246,9 @@ Then `flutter gen-l10n`, then `python3 tools/localization_gate.py
 | V1 · Mechanics | scripted, reviewed diff: apostrophes, terms, casing, honorifics, UK→US, typos, dashes, label periods, duplicate labels, kids dialogue quotes |
 | V2a · First run (done 2026-09-27) | notifications, onboarding, home, navigation, settings, profile and page descriptions rewritten; one name for each number app-wide; de/fr/ar/ur translated by hand, and 320 translation errors in those screens fixed |
 | V2b-1 · Qur’an (done 2026-09-27) | the Qur’an tab, reader, pathways, first-phrases and short-surah steps, Qur’anic Arabic lessons; *Ayah Insights* renamed *Ayah Lessons*; playback errors say what to do |
-| V2 · Chrome by exposure | (b-2) Learn hubs and journeys · (b-3) Growth, Worship, Dhikr, Salah, Wudu · (c) Kids · (d) games, circles, baby names, history, world, accounts |
+| V2b-2 · Learn (done 2026-09-27) | the Learn landing, hubs, learning journeys and areas, the games area, the Seerah companion; *Learning Hub* is *Learn*, *islands* are *learning areas*, *Salah Hub* / *Dua Hub* / *Hadith Hub* take their plain names |
+| V2b-3 · Growth and worship (done 2026-09-27) | hadith, du’a, salah, qibla, fasting, wudu, dhikr and khushu, Growth and spiritual growth, garden and ocean, prophets, Arabic learning, guided paths; *gentle return days* are *grace days*; encouragement says the fact, or alhamdulillah |
+| V2 · Chrome by exposure | (c) Kids · (d) games, circles, baby names, history, world, accounts |
 | V3 · Prose | the content keys and the Dart content files: (a) mechanics, (b) studio vocabulary and roadmap and (c) tails, done 2026-09-27 · (d) lists in cards and summaries |
 | V4 · Native | Apple TV, Watch, complications, widgets |
 | V5 · Lock | baselines to zero, lint blocks CI on its own step |

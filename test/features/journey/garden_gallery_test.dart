@@ -91,7 +91,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Next milestone'), findsOneWidget);
-    expect(find.text('Quiet Fountain'), findsOneWidget);
+    expect(find.text('Fountain'), findsOneWidget);
     expect(find.text('Unlocks at 100 drops'), findsOneWidget);
     expect(find.text('25 drops remaining'), findsOneWidget);
   });

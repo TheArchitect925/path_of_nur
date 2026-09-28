@@ -120,7 +120,15 @@ def is_sacred(key: str) -> bool:
 # V2b-1: surah lessons are prose; search hints index (2026-09-27). A surah lesson's key ends in the
 # surah's name (quranSurahInsightDescriptionAlBaqarah), so the suffix test
 # misses it; it is lesson prose all the same.
-CONTENT_KEYS = re.compile(r"^quranSurahInsight(Description|Lesson|Prompt|WhyItMatters|Theme)")
+# V2b-2: lesson material inside Learn is prose too: a practice step ("try it
+# today" means today), a family prompt, a daily-wisdom entry, a section heading
+# inside a lesson, the "why this matters" note.
+CONTENT_KEYS = re.compile(
+    r"^quranSurahInsight(Description|Lesson|Prompt|WhyItMatters|Theme)"
+    r"|^learnDailyWisdomEntry|^learnTogether(Prompt|Guidance|FamilyPrompt)"
+    r"|^learning\w*(ActionStep|WhyThisMatters|Themes|Suggestion)$"
+    r"|^learningJourney\w*Section\d+Title$"
+)
 
 
 def is_content(key: str) -> bool:
@@ -161,7 +169,13 @@ def rx(pattern: str, flags: int = 0) -> Callable[[str, str], bool]:
 # V2a: names and index lists (2026-09-27). A mode called Gentle mode is named, not
 # described; a settings category subtitle is an index of what is inside (the
 # way a phone's own settings list reads); and two lists are the content itself.
-MODE_NAME_KEYS = r"^(profileGentleModeTitle|settingsCareModeGentleTitle)$"
+# V2b-3: literal uses are names, not self-praise: a mood you can pick (Calm),
+# a pace (Steady), a softer adhan recording, and recitation that is silent by
+# fiqh ("recite it quietly") in the salah trainer's madhhab notes.
+MODE_NAME_KEYS = (
+    r"^(profileGentleModeTitle|settingsCareModeGentleTitle|growthMoodCalm|salahTrainerPace\w+|"
+    r"adhanOption\w*Soft\w*|salahTrainerNote\w+|salahTrainerPrayer\w+RecitationStyle)$"
+)
 INDEX_LIST_KEYS = re.compile(
     r"^(settingsCategory\w*Subtitle|\w*SearchHint|onboardingOpeningPlatformFooter|settingsOccasionThemesSubtitle)$"
 )

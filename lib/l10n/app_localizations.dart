@@ -1270,7 +1270,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithArabicMatnUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Arabic matn is not available in the current verified dataset for this hadith yet.'**
+  /// **'The Arabic text isn’t available for this hadith.'**
   String get hadithArabicMatnUnavailable;
 
   /// No description provided for @hadithTransliterationLabel.
@@ -1282,7 +1282,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithTransliterationUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Transliteration is not available in the current verified dataset for this hadith yet.'**
+  /// **'A transliteration isn’t available for this hadith.'**
   String get hadithTransliterationUnavailable;
 
   /// No description provided for @hadithTranslationLabel.
@@ -1558,7 +1558,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithSubtitleCollections.
   ///
   /// In en, this message translates to:
-  /// **'Curated hadith sets for focused reading and future phased expansion.'**
+  /// **'Hadith sets to read by theme.'**
   String get hadithSubtitleCollections;
 
   /// No description provided for @hadithTitleSaved.
@@ -1672,7 +1672,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithEmptyDaily.
   ///
   /// In en, this message translates to:
-  /// **'No daily hadith is available right now.'**
+  /// **'No daily hadith to show.'**
   String get hadithEmptyDaily;
 
   /// No description provided for @hadithGradeLabel.
@@ -1738,7 +1738,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithLessonsDueReview.
   ///
   /// In en, this message translates to:
-  /// **'{count} lessons are due for review today.'**
+  /// **'{count, plural, =1 {1 lesson to review} other {{count} lessons to review}}'**
   String hadithLessonsDueReview(int count);
 
   /// No description provided for @hadithTitleLearningPaths.
@@ -1750,7 +1750,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithSubtitleLearningPaths.
   ///
   /// In en, this message translates to:
-  /// **'Follow curated paths to study hadith in a structured sequence with steady progress.'**
+  /// **'Study hadith step by step.'**
   String get hadithSubtitleLearningPaths;
 
   /// No description provided for @hadithPathStreakLabel.
@@ -1900,7 +1900,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithBrowseNoMatchesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Try a broader source, grade, or subcategory to reopen the list.'**
+  /// **'Try a broader filter.'**
   String get hadithBrowseNoMatchesSubtitle;
 
   /// No description provided for @hadithLessonNotFoundBody.
@@ -1924,7 +1924,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReaderDisplaySettingsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose which hadith text layers stay visible while you read.'**
+  /// **'Choose what shows while you read.'**
   String get hadithReaderDisplaySettingsSubtitle;
 
   /// No description provided for @hadithGradeInfoTitle.
@@ -2248,7 +2248,7 @@ abstract class AppLocalizations {
   /// No description provided for @searchHadithHint.
   ///
   /// In en, this message translates to:
-  /// **'Search hadith themes, lessons, or anchors...'**
+  /// **'Search hadith by theme or lesson'**
   String get searchHadithHint;
 
   /// No description provided for @duaHubAllCategories.
@@ -2260,7 +2260,7 @@ abstract class AppLocalizations {
   /// No description provided for @duaHubFeelingLabel.
   ///
   /// In en, this message translates to:
-  /// **'How are you feeling right now?'**
+  /// **'How are you feeling?'**
   String get duaHubFeelingLabel;
 
   /// No description provided for @duaSituationForgiveness.
@@ -2356,7 +2356,7 @@ abstract class AppLocalizations {
   /// No description provided for @duaHubEmptyDaily.
   ///
   /// In en, this message translates to:
-  /// **'No daily dua available right now.'**
+  /// **'No daily du’a to show.'**
   String get duaHubEmptyDaily;
 
   /// No description provided for @duaHubLoadError.
@@ -2626,13 +2626,13 @@ abstract class AppLocalizations {
   /// No description provided for @worshipPrayerHubTitle.
   ///
   /// In en, this message translates to:
-  /// **'Salah Hub'**
+  /// **'Salah'**
   String get worshipPrayerHubTitle;
 
   /// No description provided for @worshipPrayerHubSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Salah times, tracking, consistency, rakats, and practical guidance in one focused flow.'**
+  /// **'Your prayer times, and how to pray.'**
   String get worshipPrayerHubSubtitle;
 
   /// No description provided for @worshipPrayerTabTimes.
@@ -2680,7 +2680,7 @@ abstract class AppLocalizations {
   /// No description provided for @worshipPrayerAutoAdjustRemindersSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Pauses salah and fasting reminders and keeps gentle alternatives.'**
+  /// **'Pauses salah and fasting reminders, and suggests other worship.'**
   String get worshipPrayerAutoAdjustRemindersSubtitle;
 
   /// No description provided for @worshipPrayerPurityCheckReminderTitle.
@@ -2692,7 +2692,7 @@ abstract class AppLocalizations {
   /// No description provided for @worshipPrayerPurityCheckReminderSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Send a gentle check-in near your expected end day.'**
+  /// **'A reminder near your expected end day.'**
   String get worshipPrayerPurityCheckReminderSubtitle;
 
   /// No description provided for @worshipPrayerOptionalPrivateNotesHint.
@@ -2956,31 +2956,31 @@ abstract class AppLocalizations {
   /// No description provided for @worshipPrayerCadenceValue.
   ///
   /// In en, this message translates to:
-  /// **'Cadence: {value}'**
+  /// **'Pace: {value}'**
   String worshipPrayerCadenceValue(String value);
 
   /// No description provided for @worshipPrayerCadenceQueueClear.
   ///
   /// In en, this message translates to:
-  /// **'Queue clear. Maintain on-time salah.'**
+  /// **'Nothing to make up. Keep praying on time.'**
   String get worshipPrayerCadenceQueueClear;
 
   /// No description provided for @worshipPrayerCadenceLight.
   ///
   /// In en, this message translates to:
-  /// **'Light cadence: 1 extra qada after Fajr or Isha.'**
+  /// **'Light · one extra qada a day, after Fajr or Isha'**
   String get worshipPrayerCadenceLight;
 
   /// No description provided for @worshipPrayerCadenceSteady.
   ///
   /// In en, this message translates to:
-  /// **'Steady cadence: 2 qada daily (one after Fajr, one after Isha).'**
+  /// **'Regular · two qada a day, after Fajr and Isha'**
   String get worshipPrayerCadenceSteady;
 
   /// No description provided for @worshipPrayerCadenceFocused.
   ///
   /// In en, this message translates to:
-  /// **'Focused cadence: 3 qada daily in small blocks with consistency.'**
+  /// **'Focused · three qada a day, in small sets'**
   String get worshipPrayerCadenceFocused;
 
   /// No description provided for @worshipPrayerEstimatedDaysToClear.
@@ -3028,7 +3028,7 @@ abstract class AppLocalizations {
   /// No description provided for @worshipPrayerHeatmapSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Each row is one salah. Green offered, yellow missed, soft gray pending.'**
+  /// **'Each row is one salah: green prayed, yellow missed, gray not yet due.'**
   String get worshipPrayerHeatmapSubtitle;
 
   /// No description provided for @worshipPrayerGregorianCalendarTitle.
@@ -3124,7 +3124,7 @@ abstract class AppLocalizations {
   /// No description provided for @worshipPrayerLocationSearchUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Unable to find locations right now.'**
+  /// **'Couldn’t search for places. Check your connection and try again.'**
   String get worshipPrayerLocationSearchUnavailable;
 
   /// No description provided for @homeLearnSummaryTitle.
@@ -3214,7 +3214,7 @@ abstract class AppLocalizations {
   /// No description provided for @worshipQiblaFinderSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Find the direction of the Kaaba with calm, clear guidance.'**
+  /// **'The direction of the Kaaba.'**
   String get worshipQiblaFinderSubtitle;
 
   /// No description provided for @worshipQiblaCompassDirectionTitle.
@@ -3232,7 +3232,7 @@ abstract class AppLocalizations {
   /// No description provided for @worshipQiblaUnableToDetermineLocation.
   ///
   /// In en, this message translates to:
-  /// **'Unable to determine your location right now.'**
+  /// **'Couldn’t find your location.'**
   String get worshipQiblaUnableToDetermineLocation;
 
   /// No description provided for @worshipQiblaArOptionTitle.
@@ -3274,7 +3274,7 @@ abstract class AppLocalizations {
   /// No description provided for @worshipQiblaArLiveSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Hold your phone up. Keep the Qibla marker above the horizon and align the prayer mat toward the floor.'**
+  /// **'Hold your phone up and follow the Qibla marker.'**
   String get worshipQiblaArLiveSubtitle;
 
   /// No description provided for @worshipQiblaArPrayerMatHint.
@@ -3346,13 +3346,13 @@ abstract class AppLocalizations {
   /// No description provided for @worshipQiblaUnableToReadLocation.
   ///
   /// In en, this message translates to:
-  /// **'Unable to read your location right now.'**
+  /// **'Couldn’t read your location.'**
   String get worshipQiblaUnableToReadLocation;
 
   /// No description provided for @worshipQiblaCompassUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Compass data is unavailable on this device right now.'**
+  /// **'This device’s compass isn’t available.'**
   String get worshipQiblaCompassUnavailable;
 
   /// No description provided for @worshipQiblaCardinalNorth.
@@ -3394,7 +3394,7 @@ abstract class AppLocalizations {
   /// No description provided for @worshipQiblaCalibrationHint.
   ///
   /// In en, this message translates to:
-  /// **'Move your phone gently in a figure-eight if the compass feels stuck.'**
+  /// **'If the compass seems stuck, move your phone in a figure-eight.'**
   String get worshipQiblaCalibrationHint;
 
   /// No description provided for @worshipQiblaCurrentHeadingLabel.
@@ -3880,13 +3880,13 @@ abstract class AppLocalizations {
   /// No description provided for @fastingSuggestionMondayToday.
   ///
   /// In en, this message translates to:
-  /// **'It’s Monday. A sunnah fast today?'**
+  /// **'It’s Monday, a sunnah day to fast.'**
   String get fastingSuggestionMondayToday;
 
   /// No description provided for @fastingSuggestionThursdayToday.
   ///
   /// In en, this message translates to:
-  /// **'It’s Thursday. A sunnah fast today?'**
+  /// **'It’s Thursday, a sunnah day to fast.'**
   String get fastingSuggestionThursdayToday;
 
   /// No description provided for @fastingSuggestionMondayTomorrow.
@@ -4318,7 +4318,7 @@ abstract class AppLocalizations {
   /// No description provided for @languageOptionsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose your app language. Persian options include Farsi, Dari, and Tajik.'**
+  /// **'Choose your language. Persian is listed as Farsi, Dari and Tajik.'**
   String get languageOptionsSubtitle;
 
   /// No description provided for @languageEnglish.
@@ -4534,7 +4534,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnNotesSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Browse study notes, Qur’an reflections, and personal journal entries in one place.'**
+  /// **'Your study notes and journal.'**
   String get learnNotesSectionSubtitle;
 
   /// No description provided for @learnNotesSavedTitle.
@@ -4666,7 +4666,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSalahHubSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Learn the structure of salah, practice with guidance, and memorize surahs calmly.'**
+  /// **'Learn and practice salah.'**
   String get learnSalahHubSubtitle;
 
   /// No description provided for @learnSalahHubGuidanceNoticeTitle.
@@ -4726,7 +4726,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubTitle.
   ///
   /// In en, this message translates to:
-  /// **'Learning Hub'**
+  /// **'Learn'**
   String get learnHubTitle;
 
   /// No description provided for @learnShortcutOpen.
@@ -4774,7 +4774,7 @@ abstract class AppLocalizations {
   /// No description provided for @worshipSectionLandingFastingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Review your fasting status, intention, and key moments.'**
+  /// **'Your fast, with suhoor and iftar times.'**
   String get worshipSectionLandingFastingSubtitle;
 
   /// No description provided for @settingsLandingTitle.
@@ -5218,7 +5218,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnLandingChoosePathSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Answer a few questions and follow calm, step-by-step lessons.'**
+  /// **'Answer a few questions, then learn step by step.'**
   String get learnLandingChoosePathSubtitle;
 
   /// No description provided for @learnLandingPhaseOfLabel.
@@ -5356,13 +5356,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubContinueJourneySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Pick up the last lesson, story, or practice that still feels alive.'**
+  /// **'Pick up where you left off.'**
   String get learnHubContinueJourneySubtitle;
 
   /// No description provided for @learnHubDailyLearningLandingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle next step for today.'**
+  /// **'One step for today.'**
   String get learnHubDailyLearningLandingSubtitle;
 
   /// No description provided for @learnHubStartJourneyTitle.
@@ -5380,7 +5380,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubLandingBrowseJourneysSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Browse the full journeys home when you want a more guided route.'**
+  /// **'All the guided journeys.'**
   String get learnHubLandingBrowseJourneysSubtitle;
 
   /// No description provided for @learnHubLandingExploreAllTitle.
@@ -5392,7 +5392,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubLandingExploreAllSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Browse tools, notes, and more without crowding the main paths.'**
+  /// **'Tools, notes and more.'**
   String get learnHubLandingExploreAllSubtitle;
 
   /// No description provided for @learnHubJourneyIslandTitle.
@@ -5410,7 +5410,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnDiscoveryExploreSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Guided paths, focused lessons and calm starting points, without losing your way.'**
+  /// **'Guided paths and places to start.'**
   String get learnDiscoveryExploreSubtitle;
 
   /// No description provided for @learnHubSubcategoriesSectionTitle.
@@ -5434,7 +5434,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubKnowledgeSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open a lesson, story, note, or tool from this category.'**
+  /// **'Everything in this category.'**
   String get learnHubKnowledgeSectionSubtitle;
 
   /// No description provided for @learnHubCategoryEmptyState.
@@ -5488,7 +5488,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubExploreEmptySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This library will fill in as more learning metadata is connected to the shared index.'**
+  /// **'Nothing here yet.'**
   String get learnHubExploreEmptySubtitle;
 
   /// No description provided for @learnHubSearchEmptyTitle.
@@ -5500,7 +5500,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSearchEmptySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Try a broader term, another category, or remove some filters.'**
+  /// **'Try a broader word, or remove a filter.'**
   String get learnHubSearchEmptySubtitle;
 
   /// No description provided for @learnHubJourneysBrowseAction.
@@ -5662,7 +5662,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubCategoryFoundationsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Who is Allah, core knowledge, and understanding Islam belong together here.'**
+  /// **'Who Allah is, and the basics of Islam.'**
   String get learnHubCategoryFoundationsSubtitle;
 
   /// No description provided for @learnHubCategoryQuranHadithTitle.
@@ -5674,7 +5674,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubCategoryQuranHadithSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Qur’an learning, hadith, Divine Life Lessons, creation signs, and shared reflection tools.'**
+  /// **'Learn from the Qur’an and hadith.'**
   String get learnHubCategoryQuranHadithSubtitle;
 
   /// No description provided for @learnHubCategoryProphetsStoriesTitle.
@@ -5698,7 +5698,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubCategoryWorshipPracticeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Practical ibadah, salah learning, duas, guidance, and challenge-first review live here.'**
+  /// **'Learn to worship, step by step.'**
   String get learnHubCategoryWorshipPracticeSubtitle;
 
   /// No description provided for @learnHubCategoryCharacterAdabTitle.
@@ -5710,7 +5710,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubCategoryCharacterAdabSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Mercy, manners, sincerity, and everyday conduct have one clear owner.'**
+  /// **'Manners and character in daily life.'**
   String get learnHubCategoryCharacterAdabSubtitle;
 
   /// No description provided for @learnHubMainIslandStoriesTitle.
@@ -5728,7 +5728,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubMainIslandLearningPathSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'All journey and guided path content in one place.'**
+  /// **'Every journey and guided path.'**
   String get learnHubMainIslandLearningPathSubtitle;
 
   /// No description provided for @learnHubCategoryArabicLanguageTitle.
@@ -5752,13 +5752,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubCategoryKidsLearningSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Kid-friendly duas, Arabic pathways, stories, practice, and salah learning stay together.'**
+  /// **'Learning made for children.'**
   String get learnHubCategoryKidsLearningSubtitle;
 
   /// No description provided for @learnHubCategoryQuizzesChallengesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Review what you have learned through quizzes, challenge modes, and practice checks.'**
+  /// **'Review what you’ve learned.'**
   String get learnHubCategoryQuizzesChallengesSubtitle;
 
   /// No description provided for @learnHubCategoryFaqTitle.
@@ -5794,7 +5794,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubCategoryToolsExploreSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Search utilities, discovery helpers, and journey tools stay together here.'**
+  /// **'Search and other tools.'**
   String get learnHubCategoryToolsExploreSubtitle;
 
   /// No description provided for @learnHubSubcategoryWhoIsAllahTitle.
@@ -5818,7 +5818,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSubcategoryCoreKnowledgeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Structured foundations and first-principles journeys for steady learning.'**
+  /// **'The foundations, step by step.'**
   String get learnHubSubcategoryCoreKnowledgeSubtitle;
 
   /// No description provided for @learnHubSubcategoryUnderstandingIslamTitle.
@@ -5830,43 +5830,43 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSubcategoryUnderstandingIslamSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Identity, worldview, and larger understanding journeys stay grouped here.'**
+  /// **'The bigger picture of Islam.'**
   String get learnHubSubcategoryUnderstandingIslamSubtitle;
 
   /// No description provided for @learnHubSubcategoryQuranLearningSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open recitation, understanding, themes, and Qur’anic study tools.'**
+  /// **'Recite and understand the Qur’an.'**
   String get learnHubSubcategoryQuranLearningSubtitle;
 
   /// No description provided for @learnHubSubcategoryHadithSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Study narrations, collections, themes, and daily hadith learning together.'**
+  /// **'Hadith by theme and collection.'**
   String get learnHubSubcategoryHadithSubtitle;
 
   /// No description provided for @learnHubSubcategoryDivineLifeLessonsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Apply Qur’anic wisdom to family, character, hardship, work, and everyday life.'**
+  /// **'Qur’anic wisdom for daily life.'**
   String get learnHubSubcategoryDivineLifeLessonsSubtitle;
 
   /// No description provided for @learnHubSubcategoryWorldCreationSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Creation signs, world learning, and reflection on the world through revelation.'**
+  /// **'The world as the Qur’an describes it.'**
   String get learnHubSubcategoryWorldCreationSubtitle;
 
   /// No description provided for @learnHubSubcategoryKnowledgeConstellationSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Trace how verses, hadith, prophets, and themes connect across the app.'**
+  /// **'See how everything you learn connects.'**
   String get learnHubSubcategoryKnowledgeConstellationSubtitle;
 
   /// No description provided for @learnHubSubcategoryProphetsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the Prophets hub with stories, quizzes, and guided pathways.'**
+  /// **'The stories of the prophets.'**
   String get learnHubSubcategoryProphetsSubtitle;
 
   /// No description provided for @learnHubSubcategoryDiscoverySubtitle.
@@ -5878,19 +5878,19 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSubcategoryWorshipLearningSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Learn salah, wudu, salah structure, and practical ibadah guidance.'**
+  /// **'Learn salah and wudu.'**
   String get learnHubSubcategoryWorshipLearningSubtitle;
 
   /// No description provided for @learnHubSubcategoryPracticeWorshipSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Guided journeys for ibadah routines, wudu, duas, and practical repetition.'**
+  /// **'Guided journeys for daily worship.'**
   String get learnHubSubcategoryPracticeWorshipSubtitle;
 
   /// No description provided for @learnHubSubcategorySalahTrainerSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Review prayers, surahs, guided prayer, and wudu training from one hub.'**
+  /// **'Learn and practice salah and wudu.'**
   String get learnHubSubcategorySalahTrainerSubtitle;
 
   /// No description provided for @learnHubSubcategoryDuaSubtitle.
@@ -5908,7 +5908,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSubcategoryIslamicTriviaSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Challenge-first review, knowledge paths, and reflective trivia sessions.'**
+  /// **'Quizzes and knowledge paths.'**
   String get learnHubSubcategoryIslamicTriviaSubtitle;
 
   /// No description provided for @learnHubSubcategoryCharacterAdabTitle.
@@ -5920,7 +5920,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSubcategoryCharacterAdabSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Readiness for character refinement, mercy, sincerity, and everyday manners.'**
+  /// **'Mercy and manners in daily life.'**
   String get learnHubSubcategoryCharacterAdabSubtitle;
 
   /// No description provided for @learnHubSubcategoryArabicLearningTitle.
@@ -5932,7 +5932,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSubcategoryArabicLearningSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Letters, reading basics, and language-focused pathways belong here.'**
+  /// **'From the letters to reading.'**
   String get learnHubSubcategoryArabicLearningSubtitle;
 
   /// No description provided for @learnHubSubcategoryKidsStoriesTitle.
@@ -5944,7 +5944,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSubcategoryQuizzesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the quiz hub and practice by topic, path, or review mode.'**
+  /// **'Practice with quizzes.'**
   String get learnHubSubcategoryQuizzesSubtitle;
 
   /// No description provided for @learnHubSubcategoryChallengesTitle.
@@ -5956,7 +5956,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSubcategoryChallengesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Challenge-style review flows to help reinforce what you have learned.'**
+  /// **'Review what you’ve learned, as a challenge.'**
   String get learnHubSubcategoryChallengesSubtitle;
 
   /// No description provided for @learnHubSubcategoryFaqSubtitle.
@@ -5974,13 +5974,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSubcategorySearchToolsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Search Utilities'**
+  /// **'Search'**
   String get learnHubSubcategorySearchToolsTitle;
 
   /// No description provided for @learnHubSubcategorySearchToolsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use the shared Explore page when you want search-first discovery.'**
+  /// **'Search everything in Learn.'**
   String get learnHubSubcategorySearchToolsSubtitle;
 
   /// No description provided for @learnHubSubcategoryJourneyToolsTitle.
@@ -5992,7 +5992,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSubcategoryJourneyToolsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open journey management, browsing, and guided path switching.'**
+  /// **'Manage and switch your journeys.'**
   String get learnHubSubcategoryJourneyToolsSubtitle;
 
   /// No description provided for @learnHubKidsPracticeTitle.
@@ -6004,7 +6004,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubKidsPracticeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open kid-friendly practice sessions and repetition flows.'**
+  /// **'Practice made for children.'**
   String get learnHubKidsPracticeSubtitle;
 
   /// No description provided for @learnHubKidsRewardsTitle.
@@ -6016,7 +6016,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubKidsRewardsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Review progress, rewards, and motivation surfaces for child learning.'**
+  /// **'Your child’s progress and stickers.'**
   String get learnHubKidsRewardsSubtitle;
 
   /// No description provided for @learnHubKidsColoringTitle.
@@ -8693,7 +8693,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuizzesHubSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Practice what you have learned across every learning section in one place.'**
+  /// **'Practice what you’ve learned.'**
   String get learnQuizzesHubSubtitle;
 
   /// No description provided for @searchQuizzesHint.
@@ -8723,7 +8723,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuizzesProphetsSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Mode-based quizzes from the Prophets module.'**
+  /// **'Quizzes on the prophets.'**
   String get learnQuizzesProphetsSectionSubtitle;
 
   /// No description provided for @learnQuizzesHadithSectionTitle.
@@ -8735,7 +8735,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuizzesHadithSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Path and chapter quizzes from the hadith module.'**
+  /// **'Quizzes on the hadith you’ve studied.'**
   String get learnQuizzesHadithSectionSubtitle;
 
   /// No description provided for @learnQuizzesReviewSectionTitle.
@@ -8771,7 +8771,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuizzesLearningModulesLive.
   ///
   /// In en, this message translates to:
-  /// **'{count} learning modules live'**
+  /// **'Learning areas: {count}'**
   String learnQuizzesLearningModulesLive(Object count);
 
   /// No description provided for @learnQuizzesStartsAtEasy.
@@ -8855,7 +8855,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuizzesProphetModeIdentificationSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Recognize prophets through names, roles, and core traits.'**
+  /// **'Recognize each prophet by his story.'**
   String get learnQuizzesProphetModeIdentificationSubtitle;
 
   /// No description provided for @learnQuizzesProphetModeTimelineSubtitle.
@@ -8867,7 +8867,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuizzesProphetModeStoryMatchingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Match prophets to events, tests, and story details.'**
+  /// **'Match each prophet to his story.'**
   String get learnQuizzesProphetModeStoryMatchingSubtitle;
 
   /// No description provided for @learnQuizzesProphetModeQuranReferenceSubtitle.
@@ -9299,25 +9299,25 @@ abstract class AppLocalizations {
   /// No description provided for @journeyUnlockWallpaper.
   ///
   /// In en, this message translates to:
-  /// **'Wallpaper unlock preview'**
+  /// **'A new wallpaper'**
   String get journeyUnlockWallpaper;
 
   /// No description provided for @journeyUnlockReflection.
   ///
   /// In en, this message translates to:
-  /// **'Reflection unlock preview'**
+  /// **'A new reflection'**
   String get journeyUnlockReflection;
 
   /// No description provided for @journeyUnlockTheme.
   ///
   /// In en, this message translates to:
-  /// **'Theme reward preview'**
+  /// **'A new theme accent'**
   String get journeyUnlockTheme;
 
   /// No description provided for @journeyUnlockFuture.
   ///
   /// In en, this message translates to:
-  /// **'Future reward placeholder'**
+  /// **'Something new'**
   String get journeyUnlockFuture;
 
   /// No description provided for @quranExplorerTitle.
@@ -12106,7 +12106,7 @@ abstract class AppLocalizations {
   /// No description provided for @routerNotFoundTitle.
   ///
   /// In en, this message translates to:
-  /// **'Route not found'**
+  /// **'Page not found'**
   String get routerNotFoundTitle;
 
   /// No description provided for @learningJourneyLessonSectionIntroduction.
@@ -12208,7 +12208,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyToolQuranStudySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use the study hub for connected practice.'**
+  /// **'Study the Qur’an more deeply.'**
   String get learningJourneyToolQuranStudySubtitle;
 
   /// No description provided for @learningJourneyToolQuranArabicTitle.
@@ -12226,7 +12226,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyToolSalahHubTitle.
   ///
   /// In en, this message translates to:
-  /// **'Salah Hub'**
+  /// **'Salah'**
   String get learningJourneyToolSalahHubTitle;
 
   /// No description provided for @learningJourneyToolSalahHubSubtitle.
@@ -12604,7 +12604,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyStageReadingBasicsOpenSection2Title.
   ///
   /// In en, this message translates to:
-  /// **'A gentle way to practice'**
+  /// **'A way to practice'**
   String get learningJourneyStageReadingBasicsOpenSection2Title;
 
   /// No description provided for @learningJourneyStageReadingBasicsOpenSection2Body.
@@ -12802,7 +12802,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyHomeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calmer learning home: journeys, today’s guidance and clear learning islands.'**
+  /// **'Where your learning begins.'**
   String get learningJourneyHomeSubtitle;
 
   /// No description provided for @learningJourneyHomeContinueBadge.
@@ -12904,25 +12904,25 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyHomeRecommendedReasonFallback.
   ///
   /// In en, this message translates to:
-  /// **'Try one of these paths to keep your learning rhythm steady.'**
+  /// **'One of these paths is a good next step.'**
   String get learningJourneyHomeRecommendedReasonFallback;
 
   /// No description provided for @learningJourneyHomeIslandsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Learning Islands'**
+  /// **'Learning Areas'**
   String get learningJourneyHomeIslandsTitle;
 
   /// No description provided for @learningJourneyHomeIslandsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start from the island that fits what you want to learn now. Each island leads into real journeys and staged content.'**
+  /// **'Start from the area that fits what you want to learn.'**
   String get learningJourneyHomeIslandsSubtitle;
 
   /// No description provided for @learningJourneyHomeLegacyTitle.
   ///
   /// In en, this message translates to:
-  /// **'Legacy Learning Material'**
+  /// **'Older Lessons'**
   String get learningJourneyHomeLegacyTitle;
 
   /// No description provided for @learningJourneyTodayLightOpenAction.
@@ -13048,7 +13048,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandCoreKnowledgeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Qur’an, Prophets, Seerah, and hadith.'**
+  /// **'The core of what Muslims know.'**
   String get learningJourneyIslandCoreKnowledgeSubtitle;
 
   /// No description provided for @learningJourneyIslandCoreKnowledgeDescription.
@@ -13072,7 +13072,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandPracticeWorshipSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Salah, dhikr, and duas for daily life.'**
+  /// **'Worship for every day.'**
   String get learningJourneyIslandPracticeWorshipSubtitle;
 
   /// No description provided for @learningJourneyIslandPracticeWorshipDescription.
@@ -13090,7 +13090,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandUnderstandingIslamSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Faith, fiqh, and the larger historical frame.'**
+  /// **'The bigger picture of Islam.'**
   String get learningJourneyIslandUnderstandingIslamSubtitle;
 
   /// No description provided for @learningJourneyIslandUnderstandingIslamDescription.
@@ -13108,7 +13108,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandArabicLearningSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Alphabet, reading, words, and tajweed basics.'**
+  /// **'From the alphabet to tajweed basics.'**
   String get learningJourneyIslandArabicLearningSubtitle;
 
   /// No description provided for @learningJourneyIslandArabicLearningDescription.
@@ -13126,7 +13126,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandDiscoverySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Trivia, daily wisdom, stories, and reflective exploration.'**
+  /// **'Lighter ways to learn.'**
   String get learningJourneyIslandDiscoverySubtitle;
 
   /// No description provided for @learningJourneyIslandDiscoveryDescription.
@@ -13144,7 +13144,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandKidsLearningSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Stories, habits, memorization, and guided learning for children.'**
+  /// **'Stories and guided learning for children.'**
   String get learningJourneyIslandKidsLearningSubtitle;
 
   /// No description provided for @learningJourneyIslandKidsLearningDescription.
@@ -13162,7 +13162,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandBrowseAllSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'See the wider map of journeys, tools, collections, and exploration.'**
+  /// **'The whole map of Learn.'**
   String get learningJourneyIslandBrowseAllSubtitle;
 
   /// No description provided for @learningJourneyIslandBrowseAllDescription.
@@ -13192,7 +13192,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandLegacyLearningTitle.
   ///
   /// In en, this message translates to:
-  /// **'Legacy Learning'**
+  /// **'Older Lessons'**
   String get learningJourneyIslandLegacyLearningTitle;
 
   /// No description provided for @learningJourneyIslandLegacyLearningSubtitle.
@@ -13210,7 +13210,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyFeedbackFirstStageOpened.
   ///
   /// In en, this message translates to:
-  /// **'Learning started. Stay present and take just one meaningful step.'**
+  /// **'Bismillah. Take the first step.'**
   String get learningJourneyFeedbackFirstStageOpened;
 
   /// No description provided for @learningJourneyFeedbackStageCompleted.
@@ -13300,13 +13300,13 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandNotFoundTitle.
   ///
   /// In en, this message translates to:
-  /// **'Island not found'**
+  /// **'Area not found'**
   String get learningJourneyIslandNotFoundTitle;
 
   /// No description provided for @learningJourneyIslandNotFoundSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This learning island could not be located.'**
+  /// **'This learning area couldn’t be found.'**
   String get learningJourneyIslandNotFoundSubtitle;
 
   /// No description provided for @learningJourneyIslandNotFoundBody.
@@ -13324,7 +13324,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandJourneysSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Structured paths come first here. Related tools stay available below when you need them.'**
+  /// **'Guided paths first, with tools below.'**
   String get learningJourneyIslandJourneysSubtitle;
 
   /// No description provided for @learningJourneyIslandRelatedToolsTitle.
@@ -13336,7 +13336,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandRelatedToolsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use these as supporting paths when you want to explore outside the main staged journeys.'**
+  /// **'Extra paths beyond the main journeys.'**
   String get learningJourneyIslandRelatedToolsSubtitle;
 
   /// No description provided for @learningJourneyIslandWhyCoreKnowledge.
@@ -13354,43 +13354,43 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandWhyUnderstandingIslam.
   ///
   /// In en, this message translates to:
-  /// **'This island gives users a steadier frame for belief, law, and the bigger picture behind practice.'**
+  /// **'Knowing why we believe and practice gives worship firmer ground.'**
   String get learningJourneyIslandWhyUnderstandingIslam;
 
   /// No description provided for @learningJourneyIslandWhyArabicLearning.
   ///
   /// In en, this message translates to:
-  /// **'Arabic learning becomes sustainable when it is broken into calmer stages with clear next steps.'**
+  /// **'Arabic comes easier in small stages, each with a clear next step.'**
   String get learningJourneyIslandWhyArabicLearning;
 
   /// No description provided for @learningJourneyIslandWhyDiscovery.
   ///
   /// In en, this message translates to:
-  /// **'Discovery keeps the system welcoming and reflective while still guiding users toward deeper journeys.'**
+  /// **'Not every day calls for a full lesson. These lighter ways in still lead somewhere real.'**
   String get learningJourneyIslandWhyDiscovery;
 
   /// No description provided for @learningJourneyIslandWhyKidsLearning.
   ///
   /// In en, this message translates to:
-  /// **'Kids learning needs its own home so child-focused journeys, stories, and habits can grow without being scattered across the wider learning system.'**
+  /// **'Children learn best with their own stories and journeys, kept together.'**
   String get learningJourneyIslandWhyKidsLearning;
 
   /// No description provided for @learningJourneyIslandWhyBrowseAll.
   ///
   /// In en, this message translates to:
-  /// **'Some users still need a clear full-library view, so Browse All should exist as an explicit island instead of a secondary buried action.'**
+  /// **'Sometimes you want to see everything at once. This is the full list.'**
   String get learningJourneyIslandWhyBrowseAll;
 
   /// No description provided for @learningJourneyIslandWhyToolsOther.
   ///
   /// In en, this message translates to:
-  /// **'Support tools like Baby Names still belong in the learning ecosystem, but they should live in a clear utility island instead of cluttering the main journey islands.'**
+  /// **'Tools like Baby Names help with learning and family life, so they live here.'**
   String get learningJourneyIslandWhyToolsOther;
 
   /// No description provided for @learningJourneyIslandWhyLegacyLearning.
   ///
   /// In en, this message translates to:
-  /// **'Legacy learning still contains real material, but it should be boxed into its own island so the newer journey system can stay clear and intentional.'**
+  /// **'These lessons come from earlier versions of the app. They still teach, so they stay.'**
   String get learningJourneyIslandWhyLegacyLearning;
 
   /// No description provided for @kidsArabicHomeTitle.
@@ -14590,7 +14590,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyDetailRelatedToolsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'These stay secondary to the stages, but they are useful when you want to branch out.'**
+  /// **'For going further.'**
   String get learningJourneyDetailRelatedToolsSubtitle;
 
   /// No description provided for @learningJourneyDetailCurrentMappingTitle.
@@ -14608,7 +14608,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyDetailStagesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move one stage at a time. Current and completed stages are highlighted gently.'**
+  /// **'One stage at a time. Your current and finished stages are marked.'**
   String get learningJourneyDetailStagesSubtitle;
 
   /// No description provided for @learningJourneyDetailActionStart.
@@ -14674,13 +14674,13 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyBrowseIslandsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Journey Islands'**
+  /// **'Learning Areas'**
   String get learningJourneyBrowseIslandsTitle;
 
   /// No description provided for @learningJourneyBrowseIslandsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'The learning islands remain the primary browse model. Everything else here is secondary exploration.'**
+  /// **'Every learning area.'**
   String get learningJourneyBrowseIslandsSubtitle;
 
   /// No description provided for @learningJourneyBrowseToolsTitle.
@@ -14692,7 +14692,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyBrowseToolsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Secondary tools and utility surfaces live here without replacing the journey-first structure.'**
+  /// **'Tools and search.'**
   String get learningJourneyBrowseToolsSubtitle;
 
   /// No description provided for @learningJourneyBrowseQuranTitle.
@@ -14704,7 +14704,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyBrowseQuranSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the primary Qur’an home for journeys, modes, and related tools.'**
+  /// **'Open the Qur’an tab.'**
   String get learningJourneyBrowseQuranSubtitle;
 
   /// No description provided for @learningJourneyBrowseQuranStudyTitle.
@@ -14716,7 +14716,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyBrowseQuranStudySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the study-focused layer for understanding, reflection, and memorization support.'**
+  /// **'Study the Qur’an more deeply.'**
   String get learningJourneyBrowseQuranStudySubtitle;
 
   /// No description provided for @learningJourneyBrowseQuranArabicTitle.
@@ -14740,7 +14740,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyBrowseQuranUniverseSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Explore connected themes, concepts, and verse-linked relationships.'**
+  /// **'How ayahs and themes connect.'**
   String get learningJourneyBrowseQuranUniverseSubtitle;
 
   /// No description provided for @learningJourneyBrowseBabyNamesTitle.
@@ -14752,7 +14752,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyBrowseBabyNamesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Browse names, meanings, favorites, and comparison tools from the current system.'**
+  /// **'Names and their meanings.'**
   String get learningJourneyBrowseBabyNamesSubtitle;
 
   /// No description provided for @learningJourneyBrowseNotesTitle.
@@ -14854,7 +14854,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyToolDuaHubTitle.
   ///
   /// In en, this message translates to:
-  /// **'Dua Hub'**
+  /// **'Duas'**
   String get learningJourneyToolDuaHubTitle;
 
   /// No description provided for @learningJourneyToolNamesOfAllahTitle.
@@ -14908,7 +14908,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyToolHadithHubTitle.
   ///
   /// In en, this message translates to:
-  /// **'Hadith Hub'**
+  /// **'Hadith'**
   String get learningJourneyToolHadithHubTitle;
 
   /// No description provided for @learningJourneyToolEssentialHadithTitle.
@@ -15832,7 +15832,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyDhikrAfterSalahSection2Title.
   ///
   /// In en, this message translates to:
-  /// **'How to keep it steady'**
+  /// **'How to keep it up'**
   String get learningJourneyDhikrAfterSalahSection2Title;
 
   /// No description provided for @learningJourneyDhikrAfterSalahSection2Body.
@@ -16102,7 +16102,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyDhikrSalawatSection2Title.
   ///
   /// In en, this message translates to:
-  /// **'How to make it steady'**
+  /// **'How to make it a habit'**
   String get learningJourneyDhikrSalawatSection2Title;
 
   /// No description provided for @learningJourneyDhikrSalawatSection2Body.
@@ -16468,7 +16468,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyWordsReviewSection2Title.
   ///
   /// In en, this message translates to:
-  /// **'A calm memory loop'**
+  /// **'A short memory loop'**
   String get learningJourneyWordsReviewSection2Title;
 
   /// No description provided for @learningJourneyWordsReviewSection2Body.
@@ -16630,7 +16630,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyDetailCompletionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You have reached the end of this journey. Revisit the final stage, review what stayed with you, and choose one next step to carry into daily life.'**
+  /// **'You reached the end of this journey. Carry one thing into your day.'**
   String get learningJourneyDetailCompletionSubtitle;
 
   /// No description provided for @learningJourneyDetailActionReviewJourney.
@@ -17770,7 +17770,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneySalahFoundationsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Build confidence in the structure and flow of prayer.'**
+  /// **'Learn how salah is prayed, step by step.'**
   String get learningJourneySalahFoundationsSubtitle;
 
   /// No description provided for @learningJourneySalahFoundationsDescription.
@@ -17896,7 +17896,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyArabicAlphabetSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with letters, sounds, and recognition.'**
+  /// **'Start with the letters and their sounds.'**
   String get learningJourneyArabicAlphabetSubtitle;
 
   /// No description provided for @learningJourneyArabicAlphabetDescription.
@@ -17938,7 +17938,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyReadingBasicsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move from letters toward recitation and reading flow.'**
+  /// **'From letters to reading.'**
   String get learningJourneyReadingBasicsSubtitle;
 
   /// No description provided for @learningJourneyReadingBasicsDescription.
@@ -18088,7 +18088,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyStageSalahWordsMeaningTitle.
   ///
   /// In en, this message translates to:
-  /// **'Words, meaning, and focus'**
+  /// **'What the words mean'**
   String get learningJourneyStageSalahWordsMeaningTitle;
 
   /// No description provided for @learningJourneyStageSalahWordsMeaningSummary.
@@ -18448,7 +18448,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyToolHadithHubSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open themes, collections, and paths.'**
+  /// **'Hadith by theme and collection.'**
   String get learningJourneyToolHadithHubSubtitle;
 
   /// No description provided for @learningJourneyToolHadithReviewSubtitle.
@@ -18706,7 +18706,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyHadithReviewActionStep.
   ///
   /// In en, this message translates to:
-  /// **'Choose one reviewed hadith and write one action it should change today.'**
+  /// **'Choose one hadith you reviewed and write down one thing it should change.'**
   String get learningJourneyHadithReviewActionStep;
 
   /// No description provided for @learningJourneySalahWhyLessonIntro.
@@ -18862,7 +18862,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneySalahMovementsSection1Title.
   ///
   /// In en, this message translates to:
-  /// **'Follow the sequence calmly'**
+  /// **'Follow the sequence'**
   String get learningJourneySalahMovementsSection1Title;
 
   /// No description provided for @learningJourneySalahMovementsSection1Body.
@@ -19018,7 +19018,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneySalahConsistencySection2Title.
   ///
   /// In en, this message translates to:
-  /// **'Build calm focus over time'**
+  /// **'Build focus over time'**
   String get learningJourneySalahConsistencySection2Title;
 
   /// No description provided for @learningJourneySalahConsistencySection2Body.
@@ -19174,7 +19174,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyWuduWhySection2Title.
   ///
   /// In en, this message translates to:
-  /// **'A calm beginner frame'**
+  /// **'A frame for beginners'**
   String get learningJourneyWuduWhySection2Title;
 
   /// No description provided for @learningJourneyWuduWhySection2Body.
@@ -19234,7 +19234,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyWuduPracticeSection1Title.
   ///
   /// In en, this message translates to:
-  /// **'Learn the order gently'**
+  /// **'Learn the order'**
   String get learningJourneyWuduPracticeSection1Title;
 
   /// No description provided for @learningJourneyWuduPracticeSection1Body.
@@ -20770,7 +20770,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyQuranJourneySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the Book, navigate it, and build a first relationship.'**
+  /// **'Open the Qur’an and begin to know it.'**
   String get learningJourneyQuranJourneySubtitle;
 
   /// No description provided for @learningJourneyQuranJourneyDescription.
@@ -20914,7 +20914,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyStageQuranThemesTitle.
   ///
   /// In en, this message translates to:
-  /// **'Themes, notes, and reflection'**
+  /// **'Themes and reflection'**
   String get learningJourneyStageQuranThemesTitle;
 
   /// No description provided for @learningJourneyStageQuranThemesSummary.
@@ -20950,7 +20950,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyStageFatihahRecitationTitle.
   ///
   /// In en, this message translates to:
-  /// **'Verses 3-5: Mercy, judgment, and worship'**
+  /// **'Verses 3–5: mercy, judgment and worship'**
   String get learningJourneyStageFatihahRecitationTitle;
 
   /// No description provided for @learningJourneyStageFatihahRecitationSummary.
@@ -21094,7 +21094,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyQuranToolSearchSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use search when you need help finding a passage or theme.'**
+  /// **'Find a passage or theme.'**
   String get learningJourneyQuranToolSearchSubtitle;
 
   /// No description provided for @learningJourneyQuranBookmarksSupportSubtitle.
@@ -22264,7 +22264,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyFaithFoundationsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm beginner path through the core beliefs of Islam.'**
+  /// **'A beginner’s path through the core beliefs of Islam.'**
   String get learningJourneyFaithFoundationsSubtitle;
 
   /// No description provided for @learningJourneyFaithFoundationsDescription.
@@ -22390,7 +22390,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyDailyWisdomSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'One focused reminder each day from Qur’an, hadith, reflection, or dhikr.'**
+  /// **'One reminder a day.'**
   String get learningJourneyDailyWisdomSubtitle;
 
   /// No description provided for @learningJourneyDailyWisdomDescription.
@@ -23968,7 +23968,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyToolNamesOfAllahSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Learn names that deepen awe, hope, and trust.'**
+  /// **'Know Allah through His names.'**
   String get learningJourneyToolNamesOfAllahSubtitle;
 
   /// No description provided for @learningPathBeginnerTitle.
@@ -24016,7 +24016,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningPathAdvancedDescription.
   ///
   /// In en, this message translates to:
-  /// **'A quieter route focused on refinement, reflection, and action.'**
+  /// **'For refining what you know, and living it.'**
   String get learningPathAdvancedDescription;
 
   /// No description provided for @learningPathPhaseBeginnerFoundationsTitle.
@@ -24244,7 +24244,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningPathHomeNextSubtitleDepth.
   ///
   /// In en, this message translates to:
-  /// **'You are moving steadily, so these recommendations add a little more depth without changing your path.'**
+  /// **'These go a little deeper, on the same path.'**
   String get learningPathHomeNextSubtitleDepth;
 
   /// No description provided for @learningPathAdaptiveEaseLoad.
@@ -24262,7 +24262,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningPathAdaptiveSteady.
   ///
   /// In en, this message translates to:
-  /// **'Your path is staying steady and focused on the next step.'**
+  /// **'Your path continues with the next step.'**
   String get learningPathAdaptiveSteady;
 
   /// No description provided for @learningPathNoSelectionTitle.
@@ -24274,25 +24274,25 @@ abstract class AppLocalizations {
   /// No description provided for @learningPathNoSelectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Pick a path so Learning can guide you step by step instead of showing everything equally.'**
+  /// **'Pick a path, and Learn will guide you step by step.'**
   String get learningPathNoSelectionSubtitle;
 
   /// No description provided for @learningAgeGroupHintKids.
   ///
   /// In en, this message translates to:
-  /// **'Age mode: simpler lessons, story-first guidance, and lighter next steps.'**
+  /// **'For children: simpler lessons, told through stories.'**
   String get learningAgeGroupHintKids;
 
   /// No description provided for @learningAgeGroupHintTeens.
   ///
   /// In en, this message translates to:
-  /// **'Age mode: practical examples, identity-focused guidance, and relatable next steps.'**
+  /// **'For teens: practical examples from real life.'**
   String get learningAgeGroupHintTeens;
 
   /// No description provided for @learningAgeGroupHintAdults.
   ///
   /// In en, this message translates to:
-  /// **'Age mode: full explanations, deeper connections, and the full learning map.'**
+  /// **'For adults: full explanations and the whole map.'**
   String get learningAgeGroupHintAdults;
 
   /// No description provided for @learningAgeKidsLessonIntro.
@@ -24310,13 +24310,13 @@ abstract class AppLocalizations {
   /// No description provided for @learningAgeKidsActionStep.
   ///
   /// In en, this message translates to:
-  /// **'Try one small step with family or a trusted adult today.'**
+  /// **'Try one small step with your family or a grown-up you trust.'**
   String get learningAgeKidsActionStep;
 
   /// No description provided for @learningAgeTeensActionStep.
   ///
   /// In en, this message translates to:
-  /// **'Think about one place in real life where you can use this today.'**
+  /// **'Think of one place in your life where you can use this.'**
   String get learningAgeTeensActionStep;
 
   /// No description provided for @learningAgeKidsReviewSuggestion.
@@ -24364,7 +24364,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningPathFallbackSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Your main recommendation pool is currently light, so a reinforcement journey is being surfaced instead.'**
+  /// **'Here’s a journey to review what you’ve learned.'**
   String get learningPathFallbackSubtitle;
 
   /// No description provided for @learningPathChangeAction.
@@ -24478,7 +24478,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslamFoundationsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm first path through Islam, belief, and the pillars.'**
+  /// **'A first path through belief and the pillars.'**
   String get learningJourneyIslamFoundationsSubtitle;
 
   /// No description provided for @learningJourneyIslamFoundationsDescription.
@@ -24520,7 +24520,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyDailyRoutinesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle rhythm for prayer, Qur’an, dhikr, and steadiness.'**
+  /// **'Build your day around salah.'**
   String get learningJourneyDailyRoutinesSubtitle;
 
   /// No description provided for @learningJourneyDailyRoutinesDescription.
@@ -25708,7 +25708,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnTogetherPromptStory2.
   ///
   /// In en, this message translates to:
-  /// **'How can we live this lesson today?'**
+  /// **'How can we live by this lesson?'**
   String get learnTogetherPromptStory2;
 
   /// No description provided for @learnTogetherPromptStoryKids1.
@@ -25732,13 +25732,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnTogetherPromptCharacter2.
   ///
   /// In en, this message translates to:
-  /// **'What is one small way we can practice this today?'**
+  /// **'What is one small way we can practice this?'**
   String get learnTogetherPromptCharacter2;
 
   /// No description provided for @learnTogetherPromptDua1.
   ///
   /// In en, this message translates to:
-  /// **'When can we say this dua together today?'**
+  /// **'When can we say this du’a together?'**
   String get learnTogetherPromptDua1;
 
   /// No description provided for @learnTogetherPromptDua2.
@@ -25768,13 +25768,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnTogetherPromptSigns2.
   ///
   /// In en, this message translates to:
-  /// **'What does this make us want to notice more carefully today?'**
+  /// **'What does this make us want to notice more carefully?'**
   String get learnTogetherPromptSigns2;
 
   /// No description provided for @learnTogetherGuidancePatience.
   ///
   /// In en, this message translates to:
-  /// **'Keep the explanation short, then ask your child to retell the lesson in their own words. If the story teaches patience or trust, invite one real-life example from today.'**
+  /// **'Keep the explanation short, then ask your child to retell the lesson in their own words. If the story teaches patience or trust, ask for one example from their own day.'**
   String get learnTogetherGuidancePatience;
 
   /// No description provided for @learnTogetherGuidanceCharacter.
@@ -25870,7 +25870,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningCommunityFeedbackTodayLightAdult.
   ///
   /// In en, this message translates to:
-  /// **'Today’s learning added a quiet drop to the Ocean.'**
+  /// **'Today’s learning added a drop to the Ocean.'**
   String get learningCommunityFeedbackTodayLightAdult;
 
   /// No description provided for @learningCommunityFeedbackTodayLightKids.
@@ -29357,7 +29357,7 @@ abstract class AppLocalizations {
   /// No description provided for @dhikrSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep a simple count, finish sessions, and review your recent remembrance.'**
+  /// **'A counter, and your recent dhikr.'**
   String get dhikrSectionSubtitle;
 
   /// No description provided for @dhikrTapToCountSemantics.
@@ -29471,7 +29471,7 @@ abstract class AppLocalizations {
   /// No description provided for @dhikrDailyGoalSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle daily dhikr target to help you keep a steady rhythm.'**
+  /// **'How much dhikr to aim for each day.'**
   String get dhikrDailyGoalSubtitle;
 
   /// No description provided for @dhikrSessionVsDailyTitle.
@@ -29501,7 +29501,7 @@ abstract class AppLocalizations {
   /// No description provided for @dhikrSessionsCompletedTodayValue.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =0 {0 sessions completed today} =1 {1 session completed today} other {{count} sessions completed today}}'**
+  /// **'{count, plural, =0 {Today: none yet} =1 {Today: 1 session} other {Today: {count} sessions}}'**
   String dhikrSessionsCompletedTodayValue(int count);
 
   /// No description provided for @dhikrFavoritePhraseValue.
@@ -29615,13 +29615,13 @@ abstract class AppLocalizations {
   /// No description provided for @growthHomeHeaderSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A steady space for habits, paths, reflection, and quiet progress.'**
+  /// **'Where your habits and reflections grow.'**
   String get growthHomeHeaderSubtitle;
 
   /// No description provided for @growthHomeTodaySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'See today’s rhythm, seasonal moments, and what is gently moving forward.'**
+  /// **'Today’s habits and seasonal moments.'**
   String get growthHomeTodaySubtitle;
 
   /// No description provided for @growthHomePathsSubtitle.
@@ -29633,19 +29633,19 @@ abstract class AppLocalizations {
   /// No description provided for @growthHomeHabitsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Track the habits that quietly shape your day.'**
+  /// **'The habits that shape your day.'**
   String get growthHomeHabitsSubtitle;
 
   /// No description provided for @growthHomeJourneySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Review your level, unlocks, and steady progress.'**
+  /// **'How far you’ve come.'**
   String get growthHomeJourneySubtitle;
 
   /// No description provided for @growthHomeReflectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Pause for gratitude, tawbah, and honest review.'**
+  /// **'Pause for gratitude and tawbah.'**
   String get growthHomeReflectionSubtitle;
 
   /// No description provided for @growthHomeBrowseAllTitle.
@@ -29693,19 +29693,19 @@ abstract class AppLocalizations {
   /// No description provided for @growthTodayQuietProgressNote.
   ///
   /// In en, this message translates to:
-  /// **'Some progress is entrusted and tracked quietly.'**
+  /// **'Some deeds are entrusted to Allah and not shown.'**
   String get growthTodayQuietProgressNote;
 
   /// No description provided for @growthTodaySteadyDaysSummary.
   ///
   /// In en, this message translates to:
-  /// **'Steady days: {current} (best {best})'**
+  /// **'Days in a row: {current} (most: {best})'**
   String growthTodaySteadyDaysSummary(String current, String best);
 
   /// No description provided for @growthTodayGentleReturnSupport.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =1 {Gentle return support used this week: 1} other {Gentle return support used this week: {count}}}'**
+  /// **'{count, plural, =1 {1 grace day used this week} other {{count} grace days used this week}}'**
   String growthTodayGentleReturnSupport(int count);
 
   /// No description provided for @growthTodaySeasonalJourneyTitle.
@@ -29735,7 +29735,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthTodayRamadanModeOverrideSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Enable manually when you want Ramadan journeys active.'**
+  /// **'Switch Ramadan journeys on yourself.'**
   String get growthTodayRamadanModeOverrideSubtitle;
 
   /// No description provided for @growthTodayRamadanSnapshotTitle.
@@ -29765,7 +29765,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthTodayHabitTrackerSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'All habit tracking now lives in its own dedicated page, with day selection, fast tracking, progress, and end-of-day review.'**
+  /// **'Track your habits, day by day.'**
   String get growthTodayHabitTrackerSubtitle;
 
   /// No description provided for @growthTodayOpenHabitTracker.
@@ -29836,7 +29836,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthDifficultySteady.
   ///
   /// In en, this message translates to:
-  /// **'Steady'**
+  /// **'Moderate'**
   String get growthDifficultySteady;
 
   /// No description provided for @growthDifficultyFoundation.
@@ -29974,7 +29974,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthReflectionRecentChangesEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Reflection nourishes quiet growth over time.'**
+  /// **'No reflections yet.'**
   String get growthReflectionRecentChangesEmpty;
 
   /// No description provided for @growthReflectionRecentUnlockNote.
@@ -30004,7 +30004,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthReflectionPrivateModeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Private mode (quiet growth visuals)'**
+  /// **'Private mode (no celebrations)'**
   String get growthReflectionPrivateModeTitle;
 
   /// No description provided for @growthReflectionPromptSuggestionsTitle.
@@ -30028,7 +30028,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthReflectionDailyPromptHint.
   ///
   /// In en, this message translates to:
-  /// **'What shaped your heart today?'**
+  /// **'What shaped your day?'**
   String get growthReflectionDailyPromptHint;
 
   /// No description provided for @growthReflectionMoodTitle.
@@ -30058,7 +30058,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthReflectionGratitudeHint.
   ///
   /// In en, this message translates to:
-  /// **'Name one blessing from today'**
+  /// **'One blessing from your day'**
   String get growthReflectionGratitudeHint;
 
   /// No description provided for @growthReflectionTawbahTitle.
@@ -30094,7 +30094,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthReflectionEntrustToAllahSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'When enabled, this entry is tracked quietly without celebratory emphasis.'**
+  /// **'Saved without any celebration.'**
   String get growthReflectionEntrustToAllahSubtitle;
 
   /// No description provided for @growthReflectionSaveAction.
@@ -30148,7 +30148,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthReflectionEntrustedQuietly.
   ///
   /// In en, this message translates to:
-  /// **'Entrusted quietly to Allah'**
+  /// **'Entrusted to Allah'**
   String get growthReflectionEntrustedQuietly;
 
   /// No description provided for @growthReflectionGratitudeHistoryTitle.
@@ -30178,7 +30178,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthJourneyQuietProgressTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quiet Progress'**
+  /// **'Your progress'**
   String get growthJourneyQuietProgressTitle;
 
   /// No description provided for @growthJourneyOverviewTitle.
@@ -30208,7 +30208,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthJourneyUnlocksAppear.
   ///
   /// In en, this message translates to:
-  /// **'Unlocks appear as your path grows.'**
+  /// **'Nothing here yet.'**
   String get growthJourneyUnlocksAppear;
 
   /// No description provided for @growthJourneyUnlockTypeValue.
@@ -30238,13 +30238,13 @@ abstract class AppLocalizations {
   /// No description provided for @growthJourneyWallpapersAppear.
   ///
   /// In en, this message translates to:
-  /// **'Wallpapers appear quietly as your progress grows.'**
+  /// **'No wallpapers yet.'**
   String get growthJourneyWallpapersAppear;
 
   /// No description provided for @growthJourneyPreviewPlaceholderReady.
   ///
   /// In en, this message translates to:
-  /// **'{subtitle} • preview placeholder ready'**
+  /// **'{subtitle} · preview'**
   String growthJourneyPreviewPlaceholderReady(String subtitle);
 
   /// No description provided for @growthJourneyVisualThemesTitle.
@@ -30256,7 +30256,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthJourneyThemesAppear.
   ///
   /// In en, this message translates to:
-  /// **'Theme accents appear through steady consistency.'**
+  /// **'No theme accents yet.'**
   String get growthJourneyThemesAppear;
 
   /// No description provided for @growthJourneySeasonalJourneysTitle.
@@ -30268,7 +30268,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthJourneyNoSeasonalJourney.
   ///
   /// In en, this message translates to:
-  /// **'No seasonal journey is active. Keep walking your steady path.'**
+  /// **'No seasonal journey is running.'**
   String get growthJourneyNoSeasonalJourney;
 
   /// No description provided for @growthJourneyHijriDateValue.
@@ -30302,25 +30302,25 @@ abstract class AppLocalizations {
   /// No description provided for @growthJourneySteadyDaysPill.
   ///
   /// In en, this message translates to:
-  /// **'Steady days {value}'**
+  /// **'Days in a row: {value}'**
   String growthJourneySteadyDaysPill(String value);
 
   /// No description provided for @growthJourneyBestSteadyRunPill.
   ///
   /// In en, this message translates to:
-  /// **'Best steady run {value}'**
+  /// **'Most days in a row: {value}'**
   String growthJourneyBestSteadyRunPill(String value);
 
   /// No description provided for @growthJourneyActsTendedPill.
   ///
   /// In en, this message translates to:
-  /// **'{value} acts tended'**
+  /// **'Deeds done: {value}'**
   String growthJourneyActsTendedPill(String value);
 
   /// No description provided for @growthJourneyGentleReturnDayPill.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =0 {0 gentle return days} =1 {1 gentle return day} other {{count} gentle return days}}'**
+  /// **'{count, plural, =0 {No grace days used} =1 {1 grace day used} other {{count} grace days used}}'**
   String growthJourneyGentleReturnDayPill(int count);
 
   /// No description provided for @growthJourneyWeeklySummaryTitle.
@@ -30386,7 +30386,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthJourneyEntrustedQuietly.
   ///
   /// In en, this message translates to:
-  /// **'{subtitle} • entrusted quietly'**
+  /// **'{subtitle} · entrusted to Allah'**
   String growthJourneyEntrustedQuietly(String subtitle);
 
   /// No description provided for @growthUnlockTypeWallpaper.
@@ -30434,7 +30434,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthEncouragementCompletion2.
   ///
   /// In en, this message translates to:
-  /// **'Steady, sincere steps matter more than intensity.'**
+  /// **'Small deeds, done often, are beloved to Allah.'**
   String get growthEncouragementCompletion2;
 
   /// No description provided for @growthEncouragementCompletion3.
@@ -30446,31 +30446,31 @@ abstract class AppLocalizations {
   /// No description provided for @growthEncouragementReturning1.
   ///
   /// In en, this message translates to:
-  /// **'Begin again gently. A quiet return still counts.'**
+  /// **'Begin again. Every return counts.'**
   String get growthEncouragementReturning1;
 
   /// No description provided for @growthEncouragementReturning2.
   ///
   /// In en, this message translates to:
-  /// **'Return with one small step today.'**
+  /// **'One small step is enough to return.'**
   String get growthEncouragementReturning2;
 
   /// No description provided for @growthEncouragementReturning3.
   ///
   /// In en, this message translates to:
-  /// **'Gentle consistency is better than force.'**
+  /// **'A little, often, is better than a lot, once.'**
   String get growthEncouragementReturning3;
 
   /// No description provided for @growthEncouragementStreak1.
   ///
   /// In en, this message translates to:
-  /// **'Steadiness is forming quietly.'**
+  /// **'A habit is forming.'**
   String get growthEncouragementStreak1;
 
   /// No description provided for @growthEncouragementStreak2.
   ///
   /// In en, this message translates to:
-  /// **'A gentle rhythm is taking root.'**
+  /// **'Day by day, it’s taking root.'**
   String get growthEncouragementStreak2;
 
   /// No description provided for @growthEncouragementStreak3.
@@ -30482,25 +30482,25 @@ abstract class AppLocalizations {
   /// No description provided for @growthEncouragementDayEnd1.
   ///
   /// In en, this message translates to:
-  /// **'Today held sincere effort. Keep walking gently.'**
+  /// **'You made a sincere effort today, alhamdulillah.'**
   String get growthEncouragementDayEnd1;
 
   /// No description provided for @growthEncouragementDayEnd2.
   ///
   /// In en, this message translates to:
-  /// **'Some good took root today. Continue with calm steadiness.'**
+  /// **'Today, some good took root.'**
   String get growthEncouragementDayEnd2;
 
   /// No description provided for @growthEncouragementDayEnd3.
   ///
   /// In en, this message translates to:
-  /// **'A quiet review can renew tomorrow.'**
+  /// **'A short review tonight renews tomorrow.'**
   String get growthEncouragementDayEnd3;
 
   /// No description provided for @growthEncouragementPath1.
   ///
   /// In en, this message translates to:
-  /// **'This path is strengthening through steady steps.'**
+  /// **'Step by step, this path grows stronger.'**
   String get growthEncouragementPath1;
 
   /// No description provided for @growthEncouragementPath2.
@@ -30518,7 +30518,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthEncouragementReminder1.
   ///
   /// In en, this message translates to:
-  /// **'Return gently when you are ready.'**
+  /// **'Come back whenever you’re ready.'**
   String get growthEncouragementReminder1;
 
   /// No description provided for @growthEncouragementReminder2.
@@ -30530,13 +30530,13 @@ abstract class AppLocalizations {
   /// No description provided for @growthEncouragementReminder3.
   ///
   /// In en, this message translates to:
-  /// **'Quiet progress still matters.'**
+  /// **'Small progress still counts.'**
   String get growthEncouragementReminder3;
 
   /// No description provided for @growthPathRecommendedNextStepDefault.
   ///
   /// In en, this message translates to:
-  /// **'Keep this path active with one small step today.'**
+  /// **'One small step keeps this path going.'**
   String get growthPathRecommendedNextStepDefault;
 
   /// No description provided for @growthPathRecommendedNextStepCompleteToday.
@@ -30560,19 +30560,19 @@ abstract class AppLocalizations {
   /// No description provided for @growthReflectionPromptCompleted.
   ///
   /// In en, this message translates to:
-  /// **'How did \"{title}\" shape your heart today?'**
+  /// **'How did “{title}” touch your heart?'**
   String growthReflectionPromptCompleted(String title);
 
   /// No description provided for @growthReflectionPromptRevisit.
   ///
   /// In en, this message translates to:
-  /// **'How can you return gently to \"{title}\" and take one small step?'**
+  /// **'What small step would bring you back to “{title}”?'**
   String growthReflectionPromptRevisit(String title);
 
   /// No description provided for @growthReflectionPromptSincereMoment.
   ///
   /// In en, this message translates to:
-  /// **'What was your most sincere moment today?'**
+  /// **'What was your most sincere moment of the day?'**
   String get growthReflectionPromptSincereMoment;
 
   /// No description provided for @growthRecentActivityReflectionRecorded.
@@ -30590,25 +30590,25 @@ abstract class AppLocalizations {
   /// No description provided for @growthWeeklySummaryStrong.
   ///
   /// In en, this message translates to:
-  /// **'A steady, nourishing rhythm is forming.'**
+  /// **'A strong week, alhamdulillah.'**
   String get growthWeeklySummaryStrong;
 
   /// No description provided for @growthWeeklySummaryBalanced.
   ///
   /// In en, this message translates to:
-  /// **'A balanced week with gentle momentum.'**
+  /// **'A balanced week.'**
   String get growthWeeklySummaryBalanced;
 
   /// No description provided for @growthWeeklySummaryRestart.
   ///
   /// In en, this message translates to:
-  /// **'Begin again today. Reflection can softly renew your rhythm.'**
+  /// **'Every week is a chance to begin again.'**
   String get growthWeeklySummaryRestart;
 
   /// No description provided for @growthMonthlySummaryStrong.
   ///
   /// In en, this message translates to:
-  /// **'This month reflects steady patience and gentle continuity.'**
+  /// **'A month of patience and consistency, alhamdulillah.'**
   String get growthMonthlySummaryStrong;
 
   /// No description provided for @growthMonthlySummaryGentle.
@@ -30620,7 +30620,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthStatusCompleted.
   ///
   /// In en, this message translates to:
-  /// **'Done with care'**
+  /// **'Done'**
   String get growthStatusCompleted;
 
   /// No description provided for @growthStatusPartial.
@@ -30662,13 +30662,13 @@ abstract class AppLocalizations {
   /// No description provided for @oceanHeroGreeting.
   ///
   /// In en, this message translates to:
-  /// **'Peaceful contribution, {name}'**
+  /// **'Assalamu alaikum, {name}'**
   String oceanHeroGreeting(String name);
 
   /// No description provided for @oceanHeroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Your drops travel a personal water path while also joining something far larger than any one person can finish alone.'**
+  /// **'Your drops join an ocean far larger than any one person.'**
   String get oceanHeroSubtitle;
 
   /// No description provided for @oceanMetricCommunityStage.
@@ -30954,7 +30954,7 @@ abstract class AppLocalizations {
   /// No description provided for @oceanSourceEchoEmpty.
   ///
   /// In en, this message translates to:
-  /// **'As you pray, learn, reflect, and remember, each area will begin to leave a trace here.'**
+  /// **'No traces yet. Each act of worship leaves one here.'**
   String get oceanSourceEchoEmpty;
 
   /// No description provided for @oceanDropsAdded.
@@ -31032,7 +31032,7 @@ abstract class AppLocalizations {
   /// No description provided for @oceanReflectionLine3.
   ///
   /// In en, this message translates to:
-  /// **'Vast creation, meaningful contribution.'**
+  /// **'A vast creation, and your small part in it.'**
   String get oceanReflectionLine3;
 
   /// No description provided for @oceanReflectionLine4.
@@ -31212,7 +31212,7 @@ abstract class AppLocalizations {
   /// No description provided for @oceanPersonalStageQuietLakeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quiet Lake'**
+  /// **'Lake'**
   String get oceanPersonalStageQuietLakeTitle;
 
   /// No description provided for @oceanPersonalStageQuietLakeDescription.
@@ -31242,7 +31242,7 @@ abstract class AppLocalizations {
   /// No description provided for @gardenGallerySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Drops quietly unlock the first garden milestones for Journey and Ocean.'**
+  /// **'Your drops open the first garden milestones.'**
   String get gardenGallerySubtitle;
 
   /// No description provided for @gardenGalleryUnlocked.
@@ -31278,7 +31278,7 @@ abstract class AppLocalizations {
   /// No description provided for @gardenPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A quiet gallery of growth shaped by your drops over time.'**
+  /// **'What your drops have grown.'**
   String get gardenPageSubtitle;
 
   /// No description provided for @gardenPageHeroTitle.
@@ -31290,7 +31290,7 @@ abstract class AppLocalizations {
   /// No description provided for @gardenPageHeroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Each unlocked image reflects steady worship, learning, and return without turning the journey into a game.'**
+  /// **'Each image marks a stretch of worship and learning.'**
   String get gardenPageHeroSubtitle;
 
   /// No description provided for @gardenPageTotalDrops.
@@ -31392,7 +31392,7 @@ abstract class AppLocalizations {
   /// No description provided for @gardenPageEntryHomeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open your unlocked images, meaning, and next milestone in one calm view.'**
+  /// **'Your garden and its next milestone.'**
   String get gardenPageEntryHomeSubtitle;
 
   /// No description provided for @gardenPageLearnerSectionTitle.
@@ -31446,7 +31446,7 @@ abstract class AppLocalizations {
   /// No description provided for @gardenPageNextGrowthSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Steady worship, learning, remembrance, and good routines all continue shaping the next growth.'**
+  /// **'Every act of worship helps it grow.'**
   String get gardenPageNextGrowthSubtitle;
 
   /// No description provided for @gardenPageBreakdownTitle.
@@ -31470,7 +31470,7 @@ abstract class AppLocalizations {
   /// No description provided for @gardenPageRecentGrowthEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Recent garden growth will appear after the next meaningful learning step.'**
+  /// **'No new growth yet.'**
   String get gardenPageRecentGrowthEmpty;
 
   /// No description provided for @gardenPageMilestonesTitle.
@@ -31500,13 +31500,13 @@ abstract class AppLocalizations {
   /// No description provided for @gardenAmbientQuietDawn.
   ///
   /// In en, this message translates to:
-  /// **'Quiet dawn'**
+  /// **'Dawn'**
   String get gardenAmbientQuietDawn;
 
   /// No description provided for @gardenAmbientGentleMorning.
   ///
   /// In en, this message translates to:
-  /// **'Gentle morning'**
+  /// **'Morning'**
   String get gardenAmbientGentleMorning;
 
   /// No description provided for @gardenAmbientWarmLight.
@@ -31656,13 +31656,13 @@ abstract class AppLocalizations {
   /// No description provided for @gardenInsightPrayer.
   ///
   /// In en, this message translates to:
-  /// **'Your recent steady rhythm is strengthening the roots and giving the garden a firmer foundation.'**
+  /// **'Your prayers are strengthening the roots.'**
   String get gardenInsightPrayer;
 
   /// No description provided for @gardenInsightLearning.
   ///
   /// In en, this message translates to:
-  /// **'Stories, Seerah, and learning moments are helping the branches grow wider.'**
+  /// **'What you learn is helping the branches spread.'**
   String get gardenInsightLearning;
 
   /// No description provided for @gardenInsightLight.
@@ -31674,7 +31674,7 @@ abstract class AppLocalizations {
   /// No description provided for @gardenInsightWater.
   ///
   /// In en, this message translates to:
-  /// **'Ocean Drops are bringing water, greenery, and new life into the garden.'**
+  /// **'Your drops are bringing water and new life to the garden.'**
   String get gardenInsightWater;
 
   /// No description provided for @gardenInsightFruit.
@@ -32034,19 +32034,19 @@ abstract class AppLocalizations {
   /// No description provided for @gardenMilestoneDescription1.
   ///
   /// In en, this message translates to:
-  /// **'Your first drop plants the earliest sign of steady return.'**
+  /// **'Your first drop plants the first seed.'**
   String get gardenMilestoneDescription1;
 
   /// No description provided for @gardenMilestoneTitle2.
   ///
   /// In en, this message translates to:
-  /// **'Gentle Rain'**
+  /// **'First Rain'**
   String get gardenMilestoneTitle2;
 
   /// No description provided for @gardenMilestoneDescription2.
   ///
   /// In en, this message translates to:
-  /// **'Ten drops bring the first soft rain over the garden.'**
+  /// **'Ten drops bring the first rain to the garden.'**
   String get gardenMilestoneDescription2;
 
   /// No description provided for @gardenMilestoneTitle3.
@@ -32076,13 +32076,13 @@ abstract class AppLocalizations {
   /// No description provided for @gardenMilestoneTitle5.
   ///
   /// In en, this message translates to:
-  /// **'Quiet Fountain'**
+  /// **'Fountain'**
   String get gardenMilestoneTitle5;
 
   /// No description provided for @gardenMilestoneDescription5.
   ///
   /// In en, this message translates to:
-  /// **'One hundred drops uncover a calm fountain of remembrance.'**
+  /// **'One hundred drops uncover a fountain of remembrance.'**
   String get gardenMilestoneDescription5;
 
   /// No description provided for @gardenMilestoneTitle6.
@@ -32106,7 +32106,7 @@ abstract class AppLocalizations {
   /// No description provided for @gardenMilestoneDescription7.
   ///
   /// In en, this message translates to:
-  /// **'Three hundred and fifty drops light a gentle walkway for continued worship.'**
+  /// **'Three hundred and fifty drops light a path for your worship.'**
   String get gardenMilestoneDescription7;
 
   /// No description provided for @gardenMilestoneTitle8.
@@ -32148,7 +32148,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnMetadataDomainQuranSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Verses, surahs, and guided reflection from the Qur’an.'**
+  /// **'Ayahs and surahs to reflect on.'**
   String get learnMetadataDomainQuranSubtitle;
 
   /// No description provided for @learnMetadataDomainHadithSubtitle.
@@ -32160,7 +32160,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnMetadataDomainProphetsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Stories, patterns, and lessons from the prophets.'**
+  /// **'Stories and lessons of the prophets.'**
   String get learnMetadataDomainProphetsSubtitle;
 
   /// No description provided for @learnMetadataDomainLifeLessonsSubtitle.
@@ -32184,7 +32184,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnMetadataDomainBabyNamesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Meaningful names with origins and gentle guidance.'**
+  /// **'Names, their meanings and origins.'**
   String get learnMetadataDomainBabyNamesSubtitle;
 
   /// No description provided for @learnMetadataDomainQuizzesSubtitle.
@@ -32397,7 +32397,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyProphetsJourneySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Travel through the stories, lessons, and patterns of the prophets.'**
+  /// **'The stories of the prophets, and what they teach.'**
   String get learningJourneyProphetsJourneySubtitle;
 
   /// No description provided for @learningJourneyProphetsJourneyDescription.
@@ -32415,7 +32415,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneySeerahJourneySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Learn the life, mercy, and mission of the Messenger ﷺ.'**
+  /// **'The life and mission of the Messenger ﷺ.'**
   String get learningJourneySeerahJourneySubtitle;
 
   /// No description provided for @learningJourneySeerahJourneyDescription.
@@ -32451,7 +32451,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyDailyDhikrSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Remember Allah through steady daily dhikr.'**
+  /// **'Remember Allah through daily dhikr.'**
   String get learningJourneyDailyDhikrSubtitle;
 
   /// No description provided for @learningJourneyDailyDhikrDescription.
@@ -32469,7 +32469,7 @@ abstract class AppLocalizations {
   /// No description provided for @prophetsPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Explore the prophets through stories, timeline, map, family tree, and guided journey.'**
+  /// **'The prophets’ stories, in time and place.'**
   String get prophetsPageSubtitle;
 
   /// No description provided for @prophetsContinueLastOpenedTitle.
@@ -32505,7 +32505,7 @@ abstract class AppLocalizations {
   /// No description provided for @searchDivineLessonsHint.
   ///
   /// In en, this message translates to:
-  /// **'Search lessons, themes, and situations...'**
+  /// **'Search lessons and themes'**
   String get searchDivineLessonsHint;
 
   /// No description provided for @prophetsFilterAll.
@@ -32565,7 +32565,7 @@ abstract class AppLocalizations {
   /// No description provided for @prophetsJourneyTabSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow revelation across eras, peoples, and shared calls to truth.'**
+  /// **'One message, across the ages.'**
   String get prophetsJourneyTabSubtitle;
 
   /// No description provided for @prophetsAnyEra.
@@ -32667,7 +32667,7 @@ abstract class AppLocalizations {
   /// No description provided for @prophetsMapLocationGuidanceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Map locations are presented with respectful care and may be symbolic, approximate, or traditionally identified.'**
+  /// **'Some places are approximate, or known only by tradition.'**
   String get prophetsMapLocationGuidanceSubtitle;
 
   /// No description provided for @prophetsMapUnmappedTitle.
@@ -32691,7 +32691,7 @@ abstract class AppLocalizations {
   /// No description provided for @prophetsFamilyTreeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow family lines, close relations, and linked prophetic households.'**
+  /// **'How the prophets are related.'**
   String get prophetsFamilyTreeSubtitle;
 
   /// No description provided for @prophetsFamilyTreeAllLines.
@@ -32733,7 +32733,7 @@ abstract class AppLocalizations {
   /// No description provided for @prophetsEraEarlyHumanitySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'The beginning of humanity, repentance, and the first call to worship Allah alone.'**
+  /// **'The first people, and the first call to worship Allah alone.'**
   String get prophetsEraEarlyHumanitySubtitle;
 
   /// No description provided for @prophetsEraEarlyCivilizationsTitle.
@@ -32745,7 +32745,7 @@ abstract class AppLocalizations {
   /// No description provided for @prophetsEraEarlyCivilizationsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Communities formed, guidance arrived, and truth was met with both faith and resistance.'**
+  /// **'Communities met the truth with faith, or turned from it.'**
   String get prophetsEraEarlyCivilizationsSubtitle;
 
   /// No description provided for @prophetsEraPostFloodPeoplesTitle.
@@ -32769,7 +32769,7 @@ abstract class AppLocalizations {
   /// No description provided for @prophetsEraAgeOfIbrahimSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Tawhid, sacrifice, trust, and a blessed family line shaped this era.'**
+  /// **'An age of tawhid and sacrifice.'**
   String get prophetsEraAgeOfIbrahimSubtitle;
 
   /// No description provided for @prophetsEraChildrenOfIsraelTitle.
@@ -32781,7 +32781,7 @@ abstract class AppLocalizations {
   /// No description provided for @prophetsEraChildrenOfIsraelSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Deliverance, law, worship, and repeated reminders defined this stage of guidance.'**
+  /// **'Freedom from Pharaoh, and the Torah given to Musa.'**
   String get prophetsEraChildrenOfIsraelSubtitle;
 
   /// No description provided for @prophetsEraLaterIsraeliteProphetsTitle.
@@ -32793,7 +32793,7 @@ abstract class AppLocalizations {
   /// No description provided for @prophetsEraLaterIsraeliteProphetsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Kingship, wisdom, exile, and repeated calls back to obedience marked these generations.'**
+  /// **'An age of prophet-kings and exile.'**
   String get prophetsEraLaterIsraeliteProphetsSubtitle;
 
   /// No description provided for @prophetsEraFinalMessengerTitle.
@@ -32865,7 +32865,7 @@ abstract class AppLocalizations {
   /// No description provided for @prophetsJourneySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Walk the prophetic message across eras, regions, and recurring calls to truth.'**
+  /// **'The prophets’ message, age by age.'**
   String get prophetsJourneySubtitle;
 
   /// No description provided for @prophetsJourneyProgressSummary.
@@ -33008,7 +33008,7 @@ abstract class AppLocalizations {
   /// No description provided for @prophetsJourneyPracticeThisEraSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Bring today’s learning into gentle action through small consistent habits.'**
+  /// **'Put what you learned into practice.'**
   String get prophetsJourneyPracticeThisEraSubtitle;
 
   /// No description provided for @prophetsRegionChip.
@@ -36067,7 +36067,7 @@ abstract class AppLocalizations {
   /// No description provided for @fastingSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Simple manual tracking for your intention and flow.'**
+  /// **'Keep track of your fasts.'**
   String get fastingSectionSubtitle;
 
   /// No description provided for @fastingTodayTitle.
@@ -36109,7 +36109,7 @@ abstract class AppLocalizations {
   /// No description provided for @fastingTodayStatusSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Mark your fast with clarity and ease.'**
+  /// **'Mark today’s fast.'**
   String get fastingTodayStatusSubtitle;
 
   /// No description provided for @fastingRecentHistoryTitle.
@@ -36133,7 +36133,7 @@ abstract class AppLocalizations {
   /// No description provided for @fastingGentleReminderTitle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle reminder'**
+  /// **'Reminder'**
   String get fastingGentleReminderTitle;
 
   /// No description provided for @fastingGentleReminderBody.
@@ -36259,25 +36259,25 @@ abstract class AppLocalizations {
   /// No description provided for @prayerCadenceQueueClear.
   ///
   /// In en, this message translates to:
-  /// **'Queue clear. Maintain on-time prayers.'**
+  /// **'Nothing to make up. Keep praying on time.'**
   String get prayerCadenceQueueClear;
 
   /// No description provided for @prayerCadenceLight.
   ///
   /// In en, this message translates to:
-  /// **'Light cadence: 1 extra qada after Fajr or Isha.'**
+  /// **'Light · one extra qada a day, after Fajr or Isha'**
   String get prayerCadenceLight;
 
   /// No description provided for @prayerCadenceSteady.
   ///
   /// In en, this message translates to:
-  /// **'Steady cadence: 2 qada daily (one after Fajr, one after Isha).'**
+  /// **'Regular · two qada a day, after Fajr and Isha'**
   String get prayerCadenceSteady;
 
   /// No description provided for @prayerCadenceFocused.
   ///
   /// In en, this message translates to:
-  /// **'Focused cadence: 3 qada daily in small blocks with consistency.'**
+  /// **'Focused · three qada a day, in small sets'**
   String get prayerCadenceFocused;
 
   /// No description provided for @adhanOptionMakkahDefaultTitle.
@@ -36289,7 +36289,7 @@ abstract class AppLocalizations {
   /// No description provided for @adhanOptionMakkahDefaultSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Clear, balanced, and suitable for the daily prayers.'**
+  /// **'A clear adhan for the daily prayers.'**
   String get adhanOptionMakkahDefaultSubtitle;
 
   /// No description provided for @adhanOptionMadinahSoftTitle.
@@ -36301,7 +36301,7 @@ abstract class AppLocalizations {
   /// No description provided for @adhanOptionMadinahSoftSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A softer bundled option for a calmer reminder tone.'**
+  /// **'A softer adhan.'**
   String get adhanOptionMadinahSoftSubtitle;
 
   /// No description provided for @adhanOptionClearMasjidTitle.
@@ -38365,7 +38365,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthTrackingOverviewSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'One place for your core worship, learning, reading, and consistency metrics.'**
+  /// **'Your worship and learning, in numbers.'**
   String get growthTrackingOverviewSubtitle;
 
   /// No description provided for @growthTrackingPrayerDashboardSubtitle.
@@ -38428,7 +38428,7 @@ abstract class AppLocalizations {
   /// No description provided for @journeyStatsTimeReflectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A quiet view of the time this app can honestly track in your journey.'**
+  /// **'Only the time Path of Nur can measure.'**
   String get journeyStatsTimeReflectionSubtitle;
 
   /// No description provided for @journeyStatsTimeSinceInstallTitle.
@@ -38452,7 +38452,7 @@ abstract class AppLocalizations {
   /// No description provided for @journeyStatsWorshipGrowthTimeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Trustworthy time tracked in reading, listening, and dhikr'**
+  /// **'Time spent reading, listening and in dhikr'**
   String get journeyStatsWorshipGrowthTimeSubtitle;
 
   /// No description provided for @journeyStatsTrackedShareTitle.
@@ -38602,7 +38602,7 @@ abstract class AppLocalizations {
   /// No description provided for @journeyStatsCurrentStreakSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Your current steady rhythm'**
+  /// **'Your current run'**
   String get journeyStatsCurrentStreakSubtitle;
 
   /// No description provided for @journeyStatsBestStreakTitle.
@@ -38638,7 +38638,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthTrackingCalendarSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Review completed, missed, and due habits over time.'**
+  /// **'Your habits on a calendar.'**
   String get growthTrackingCalendarSubtitle;
 
   /// No description provided for @growthTrackingCalendarNoHabits.
@@ -38662,7 +38662,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthOceanDashboardSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'One place for your drops, Garden progress, and shared water impact.'**
+  /// **'Your drops, and where they go.'**
   String get growthOceanDashboardSubtitle;
 
   /// No description provided for @growthOceanDashboardSummary.
@@ -38704,7 +38704,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthHabitDashboardSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Review your enabled habits, custom setup, and today’s rhythm in one place.'**
+  /// **'The habits you track.'**
   String get growthHabitDashboardSubtitle;
 
   /// No description provided for @growthHabitDashboardSummaryTitle.
@@ -38806,7 +38806,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthHabitSettingsTrackWhenEnabled.
   ///
   /// In en, this message translates to:
-  /// **'Track this habit in normal flows'**
+  /// **'Track this habit'**
   String get growthHabitSettingsTrackWhenEnabled;
 
   /// No description provided for @growthHabitSettingsCategoryNameLabel.
@@ -39574,7 +39574,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyBrowseFeaturedSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with the guided paths most suited for steady progress.'**
+  /// **'The best places to start.'**
   String get learningJourneyBrowseFeaturedSubtitle;
 
   /// No description provided for @learningJourneyBrowseAllJourneysTitle.
@@ -39820,7 +39820,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuizzesCrosswordSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Knowledge games that reuse the app’s learning content in a calm puzzle format.'**
+  /// **'Crosswords made from what you’ve learned.'**
   String get learnQuizzesCrosswordSectionSubtitle;
 
   /// No description provided for @learnQuizzesOpenCrossword.
@@ -40958,7 +40958,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuizzesWordSearchSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Find meaningful Islamic words in themed grids.'**
+  /// **'Find Islamic words in themed grids.'**
   String get learnQuizzesWordSearchSectionSubtitle;
 
   /// No description provided for @learnQuizzesOpenWordSearch.
@@ -41528,7 +41528,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuizzesMatchingSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Match words, meanings, and lessons in calm study sets.'**
+  /// **'Match words to their meanings.'**
   String get learnQuizzesMatchingSectionSubtitle;
 
   /// No description provided for @learnQuizzesOpenMatching.
@@ -42116,7 +42116,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionHomeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Reflect on authentic hadith teachings through gentle real-life decisions.'**
+  /// **'Hadith teachings, applied to everyday choices.'**
   String get hadithReflectionHomeSubtitle;
 
   /// No description provided for @hadithReflectionLoadErrorTitle.
@@ -42164,7 +42164,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionDailyModeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'One grounded hadith scenario each day, with a calm reflection flow.'**
+  /// **'One hadith scenario each day.'**
   String get hadithReflectionDailyModeSubtitle;
 
   /// No description provided for @hadithReflectionDailyThemeLabel.
@@ -42188,7 +42188,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionKidsModeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Shorter scenarios about kindness, honesty, patience, and respect.'**
+  /// **'Short scenarios for children.'**
   String get hadithReflectionKidsModeSubtitle;
 
   /// No description provided for @hadithReflectionAdultModeTitle.
@@ -42200,7 +42200,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionAdultModeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'More nuanced scenarios about intention, speech, accountability, and service.'**
+  /// **'Longer scenarios for adults.'**
   String get hadithReflectionAdultModeSubtitle;
 
   /// No description provided for @hadithReflectionPuzzleCountLabel.
@@ -42272,7 +42272,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionFeaturedPacksSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Curated reflection sets for character, adab, and daily life.'**
+  /// **'Reflection sets on character and adab.'**
   String get hadithReflectionFeaturedPacksSubtitle;
 
   /// No description provided for @hadithReflectionThemesTitle.
@@ -42476,13 +42476,13 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionDifficultyGentle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle'**
+  /// **'Simple'**
   String get hadithReflectionDifficultyGentle;
 
   /// No description provided for @hadithReflectionDifficultySteady.
   ///
   /// In en, this message translates to:
-  /// **'Steady'**
+  /// **'Moderate'**
   String get hadithReflectionDifficultySteady;
 
   /// No description provided for @hadithReflectionDifficultyReflective.
@@ -42608,7 +42608,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionPackKidsKindnessSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Simple reflection scenarios for kindness, sharing, and warm adab.'**
+  /// **'Kindness and sharing, for children.'**
   String get hadithReflectionPackKidsKindnessSubtitle;
 
   /// No description provided for @hadithReflectionPackHonestyTitle.
@@ -42620,7 +42620,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionPackHonestySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Scenarios about truthfulness, amanah, and integrity in daily choices.'**
+  /// **'Truthfulness and amanah in daily choices.'**
   String get hadithReflectionPackHonestySubtitle;
 
   /// No description provided for @hadithReflectionPackPatienceTitle.
@@ -42632,7 +42632,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionPackPatienceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Reflect on sabr, self-control, and staying steady when tested.'**
+  /// **'Sabr and self-control when you’re tested.'**
   String get hadithReflectionPackPatienceSubtitle;
 
   /// No description provided for @hadithReflectionPackAngerTitle.
@@ -42644,7 +42644,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionPackAngerSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Practice calmer decisions when frustration and sharp speech appear.'**
+  /// **'Choosing well when you’re angry.'**
   String get hadithReflectionPackAngerSubtitle;
 
   /// No description provided for @hadithReflectionPackFamilyTitle.
@@ -42656,7 +42656,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionPackFamilySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Serving family, honoring trust, and carrying home responsibilities well.'**
+  /// **'Serving your family and keeping their trust.'**
   String get hadithReflectionPackFamilySubtitle;
 
   /// No description provided for @hadithReflectionPackCommunityTitle.
@@ -42668,7 +42668,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionPackCommunitySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Advice, service, and helping others with sincerity and benefit.'**
+  /// **'Sincere advice and service to others.'**
   String get hadithReflectionPackCommunitySubtitle;
 
   /// No description provided for @hadithReflectionPackRepentanceTitle.
@@ -42680,7 +42680,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionPackRepentanceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Scenarios that keep the heart open to tawbah, mercy, and return.'**
+  /// **'Tawbah, and returning to Allah.'**
   String get hadithReflectionPackRepentanceSubtitle;
 
   /// No description provided for @hadithReflectionPackSpeechTitle.
@@ -42692,7 +42692,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithReflectionPackSpeechSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose words with restraint, gentleness, and beneficial intention.'**
+  /// **'Speaking with restraint and kindness.'**
   String get hadithReflectionPackSpeechSubtitle;
 
   /// No description provided for @hadithReflectionPackDailyTitle.
@@ -42932,13 +42932,13 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm layer for turning knowledge into intention, action, and gentle reflection.'**
+  /// **'Turn what you learn into action.'**
   String get spiritualGrowthSubtitle;
 
   /// No description provided for @spiritualGrowthShortcutSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Set one intention, notice meaningful actions, and reflect without noise.'**
+  /// **'One intention, and a look back at your day.'**
   String get spiritualGrowthShortcutSubtitle;
 
   /// No description provided for @spiritualGrowthChooseIntentionAction.
@@ -42950,13 +42950,13 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthChooseIntentionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Pick a small focus for today.'**
+  /// **'One small focus for the day.'**
   String get spiritualGrowthChooseIntentionSubtitle;
 
   /// No description provided for @spiritualGrowthChooseIntentionPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Accept today’s suggestion or choose a different gentle focus.'**
+  /// **'Take today’s suggestion, or choose another.'**
   String get spiritualGrowthChooseIntentionPageSubtitle;
 
   /// No description provided for @spiritualGrowthReflectionAction.
@@ -42974,7 +42974,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthReflectionCompletedSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Today’s reflection has been saved gently.'**
+  /// **'Today’s reflection is saved.'**
   String get spiritualGrowthReflectionCompletedSubtitle;
 
   /// No description provided for @spiritualGrowthTodayIntentionTitle.
@@ -43010,13 +43010,13 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthDailyActionsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Meaningful actions'**
+  /// **'Good deeds'**
   String get spiritualGrowthDailyActionsTitle;
 
   /// No description provided for @spiritualGrowthDailyActionsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'These come from your existing worship, learning, and daily challenge activity.'**
+  /// **'Counted from your worship and learning.'**
   String get spiritualGrowthDailyActionsSubtitle;
 
   /// No description provided for @spiritualGrowthRealLifeActionsTitle.
@@ -43052,7 +43052,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthMoodTitle.
   ///
   /// In en, this message translates to:
-  /// **'How did your heart feel today?'**
+  /// **'How did your heart feel?'**
   String get spiritualGrowthMoodTitle;
 
   /// No description provided for @spiritualGrowthCompletedActionsTitle.
@@ -43094,7 +43094,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthThemeSummarySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle view of the themes you have been acting on lately.'**
+  /// **'The themes you’ve acted on lately.'**
   String get spiritualGrowthThemeSummarySubtitle;
 
   /// No description provided for @spiritualGrowthThemeSummaryEmpty.
@@ -43118,7 +43118,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthThemePageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm summary of the themes your recent actions have touched most.'**
+  /// **'The themes your recent deeds touched most.'**
   String get spiritualGrowthThemePageSubtitle;
 
   /// No description provided for @spiritualGrowthThemeInsightTitle.
@@ -43136,7 +43136,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthRecommendedThemeLabel.
   ///
   /// In en, this message translates to:
-  /// **'Gentle area to revisit: {theme}'**
+  /// **'Worth revisiting: {theme}'**
   String spiritualGrowthRecommendedThemeLabel(Object theme);
 
   /// No description provided for @spiritualGrowthTodaySummaryTitle.
@@ -43244,25 +43244,25 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthIntentionPresencePrayerTitle.
   ///
   /// In en, this message translates to:
-  /// **'Pray with more presence today'**
+  /// **'Pray with more presence'**
   String get spiritualGrowthIntentionPresencePrayerTitle;
 
   /// No description provided for @spiritualGrowthIntentionPresencePrayerSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Slow down a little before one prayer and return your heart gently to it.'**
+  /// **'Slow down before one prayer and bring your heart back to it.'**
   String get spiritualGrowthIntentionPresencePrayerSubtitle;
 
   /// No description provided for @spiritualGrowthIntentionGentleSpeechTitle.
   ///
   /// In en, this message translates to:
-  /// **'Speak more gently today'**
+  /// **'Speak more kindly'**
   String get spiritualGrowthIntentionGentleSpeechTitle;
 
   /// No description provided for @spiritualGrowthIntentionGentleSpeechSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Let one difficult conversation be softer than usual.'**
+  /// **'Let one hard conversation be kinder than usual.'**
   String get spiritualGrowthIntentionGentleSpeechSubtitle;
 
   /// No description provided for @spiritualGrowthIntentionPatientMomentTitle.
@@ -43280,7 +43280,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthIntentionQuietHelpTitle.
   ///
   /// In en, this message translates to:
-  /// **'Help someone quietly'**
+  /// **'Help someone in secret'**
   String get spiritualGrowthIntentionQuietHelpTitle;
 
   /// No description provided for @spiritualGrowthIntentionQuietHelpSubtitle.
@@ -43298,7 +43298,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthIntentionPostPrayerDhikrSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Stay for a little remembrance after one or more prayers today.'**
+  /// **'Stay for a little dhikr after a prayer.'**
   String get spiritualGrowthIntentionPostPrayerDhikrSubtitle;
 
   /// No description provided for @spiritualGrowthIntentionTruthfulWordsTitle.
@@ -43322,7 +43322,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthIntentionFamilyRespectSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Let your tone and actions carry more adab with family today.'**
+  /// **'Bring more adab to how you speak with family.'**
   String get spiritualGrowthIntentionFamilyRespectSubtitle;
 
   /// No description provided for @spiritualGrowthIntentionSincereDuaTitle.
@@ -43340,7 +43340,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthIntentionControlAngerTitle.
   ///
   /// In en, this message translates to:
-  /// **'Control anger more gently'**
+  /// **'Hold back anger'**
   String get spiritualGrowthIntentionControlAngerTitle;
 
   /// No description provided for @spiritualGrowthIntentionControlAngerSubtitle.
@@ -43406,7 +43406,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthActionLearningSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Lessons and games completed today count as steady growth work.'**
+  /// **'Lessons and games you finish count too.'**
   String get spiritualGrowthActionLearningSubtitle;
 
   /// No description provided for @spiritualGrowthActionDailyBundleTitle.
@@ -43448,7 +43448,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthManualActionAngerTitle.
   ///
   /// In en, this message translates to:
-  /// **'I controlled my anger today'**
+  /// **'I held back my anger'**
   String get spiritualGrowthManualActionAngerTitle;
 
   /// No description provided for @spiritualGrowthManualActionAngerSubtitle.
@@ -43466,13 +43466,13 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthManualActionGossipSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A quiet choice to guard the tongue.'**
+  /// **'Guarding the tongue.'**
   String get spiritualGrowthManualActionGossipSubtitle;
 
   /// No description provided for @spiritualGrowthManualActionDuaTitle.
   ///
   /// In en, this message translates to:
-  /// **'I made sincere du’a today'**
+  /// **'I made sincere du’a'**
   String get spiritualGrowthManualActionDuaTitle;
 
   /// No description provided for @spiritualGrowthManualActionDuaSubtitle.
@@ -43484,7 +43484,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthManualActionGratitudeTitle.
   ///
   /// In en, this message translates to:
-  /// **'I noticed a blessing today'**
+  /// **'I noticed a blessing'**
   String get spiritualGrowthManualActionGratitudeTitle;
 
   /// No description provided for @spiritualGrowthManualActionGratitudeSubtitle.
@@ -43496,7 +43496,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthReflectionPromptStrongestTitle.
   ///
   /// In en, this message translates to:
-  /// **'What spiritual action felt strongest today?'**
+  /// **'Which deed felt strongest?'**
   String get spiritualGrowthReflectionPromptStrongestTitle;
 
   /// No description provided for @spiritualGrowthReflectionPromptStrongestSubtitle.
@@ -43508,19 +43508,19 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthReflectionPromptIntentionTitle.
   ///
   /// In en, this message translates to:
-  /// **'Did you live your intention today?'**
+  /// **'Did you keep your intention?'**
   String get spiritualGrowthReflectionPromptIntentionTitle;
 
   /// No description provided for @spiritualGrowthReflectionPromptIntentionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Be honest and gentle with yourself.'**
+  /// **'Be honest, and kind to yourself.'**
   String get spiritualGrowthReflectionPromptIntentionSubtitle;
 
   /// No description provided for @spiritualGrowthReflectionPromptGratitudeTitle.
   ///
   /// In en, this message translates to:
-  /// **'What are you grateful for tonight?'**
+  /// **'What are you grateful for?'**
   String get spiritualGrowthReflectionPromptGratitudeTitle;
 
   /// No description provided for @spiritualGrowthReflectionPromptGratitudeSubtitle.
@@ -43532,7 +43532,7 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthReflectionPromptPatienceTitle.
   ///
   /// In en, this message translates to:
-  /// **'What tested your patience today?'**
+  /// **'What tested your patience?'**
   String get spiritualGrowthReflectionPromptPatienceTitle;
 
   /// No description provided for @spiritualGrowthReflectionPromptPatienceSubtitle.
@@ -43544,13 +43544,13 @@ abstract class AppLocalizations {
   /// No description provided for @spiritualGrowthReflectionPromptGentleTitle.
   ///
   /// In en, this message translates to:
-  /// **'Where can you be gentler tomorrow?'**
+  /// **'Where can you be kinder tomorrow?'**
   String get spiritualGrowthReflectionPromptGentleTitle;
 
   /// No description provided for @spiritualGrowthReflectionPromptGentleSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Pick one small place to improve calmly.'**
+  /// **'Pick one small thing to improve.'**
   String get spiritualGrowthReflectionPromptGentleSubtitle;
 
   /// No description provided for @spiritualGrowthReflectionResponseStrongestPrayer.
@@ -43652,7 +43652,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuizzesDailyKnowledgeSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A single daily hub that ties together all five knowledge game experiences.'**
+  /// **'All five games, once a day.'**
   String get learnQuizzesDailyKnowledgeSectionSubtitle;
 
   /// No description provided for @learnQuizzesOpenDailyKnowledge.
@@ -43676,7 +43676,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSubcategoryKidsArabicLearningSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Letters, review, and early Arabic learning stay grouped here for children.'**
+  /// **'Arabic letters for children.'**
   String get learnHubSubcategoryKidsArabicLearningSubtitle;
 
   /// No description provided for @learnHubSubcategoryKidsFunLearningTitle.
@@ -43700,7 +43700,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesIslandSectionDailySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Today’s bundle, current progress, and a stable daily route stay together here.'**
+  /// **'Today’s games, and how far you’ve come.'**
   String get learnGamesIslandSectionDailySubtitle;
 
   /// No description provided for @learnGamesIslandSectionKnowledgeTitle.
@@ -43712,7 +43712,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesIslandSectionKnowledgeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Crossword, Word Search, and Matching remain the core discovery layer for general knowledge play.'**
+  /// **'Crosswords, word searches and matching.'**
   String get learnGamesIslandSectionKnowledgeSubtitle;
 
   /// No description provided for @learnGamesIslandSectionQuranTitle.
@@ -43748,7 +43748,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesIslandSectionModesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Supported daily, review, and challenge-style variations are surfaced here without inventing new engines.'**
+  /// **'Daily, review and challenge games.'**
   String get learnGamesIslandSectionModesSubtitle;
 
   /// No description provided for @learnGamesIslandSectionGrowthTitle.
@@ -43760,7 +43760,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesIslandSectionGrowthSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Game-linked spiritual intentions, reflections, and growth summaries stay calm and separate from puzzle lists.'**
+  /// **'Intentions and reflections from your games.'**
   String get learnGamesIslandSectionGrowthSubtitle;
 
   /// No description provided for @learnGamesIslandSectionPacksTitle.
@@ -43772,7 +43772,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesIslandSectionPacksSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open themed pack routes that already exist across the current knowledge games catalog.'**
+  /// **'Games by theme.'**
   String get learnGamesIslandSectionPacksSubtitle;
 
   /// No description provided for @learnGamesIslandModeDailyRunSubtitle.
@@ -43784,13 +43784,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesIslandModeReviewSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Return to review-style quiz flows without digging through the broader quiz hub.'**
+  /// **'Quizzes on what you’ve missed before.'**
   String get learnGamesIslandModeReviewSubtitle;
 
   /// No description provided for @learnGamesIslandModeTriviaSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open challenge-first trivia routes already supported by the current quiz system.'**
+  /// **'Quick quizzes, as a challenge.'**
   String get learnGamesIslandModeTriviaSubtitle;
 
   /// No description provided for @learnGamesIslandKidsEntryTitle.
@@ -43802,7 +43802,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesIslandKidsEntrySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Kids-only discovery remains inside Kids Learning instead of mixing into the main games island.'**
+  /// **'Games for children are in Kids Learning.'**
   String get learnGamesIslandKidsEntrySubtitle;
 
   /// No description provided for @learnGamesIslandKidsEntryAction.
@@ -43832,7 +43832,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesIslandDailyHeroCompletedSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Today’s bundle is complete. You can revisit the hub or keep exploring other game sections.'**
+  /// **'Today’s games are done. Play more whenever you like.'**
   String get learnGamesIslandDailyHeroCompletedSubtitle;
 
   /// No description provided for @learnGamesIslandDailyHeroInProgressSubtitle.
@@ -43889,7 +43889,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesIslandDailyFallbackSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the daily hub directly if the bundle preview is unavailable right now.'**
+  /// **'The preview didn’t load. Open today’s games directly.'**
   String get learnGamesIslandDailyFallbackSubtitle;
 
   /// No description provided for @learnGamesIslandKidsRedirectTitle.
@@ -43901,7 +43901,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesIslandKidsRedirectSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Child-friendly game discovery stays under Kids Learning → Games, Arabic Learning, and Fun Learning.'**
+  /// **'Games for children are in Kids Learning → Games.'**
   String get learnGamesIslandKidsRedirectSubtitle;
 
   /// No description provided for @gameVariationStandard.
@@ -43979,13 +43979,13 @@ abstract class AppLocalizations {
   /// No description provided for @gameVariationNoClueActiveSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'No Clue mode hides the clue list, so this board relies on crossings and category knowledge.'**
+  /// **'No clues: solve from the crossings and the category.'**
   String get gameVariationNoClueActiveSubtitle;
 
   /// No description provided for @gameVariationFogActiveSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Fog mode softens the word list so you lean more on the grid and your memory.'**
+  /// **'Fog: the word list fades, so rely on the grid and your memory.'**
   String get gameVariationFogActiveSubtitle;
 
   /// No description provided for @gameVariationMemoryActiveSubtitle.
@@ -47051,7 +47051,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnNotesBrowseAllSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Search and scan your Qur’an notes, journal reflections, and saved learning thoughts in one place.'**
+  /// **'All your notes and reflections.'**
   String get learnNotesBrowseAllSubtitle;
 
   /// No description provided for @learnNotesCategoriesTitle.
@@ -47063,13 +47063,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnNotesCategoriesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Notes are grouped automatically from their source so the library stays tidy without extra setup.'**
+  /// **'Notes are grouped by where you wrote them.'**
   String get learnNotesCategoriesSubtitle;
 
   /// No description provided for @learnNotesBrowseEmpty.
   ///
   /// In en, this message translates to:
-  /// **'No notes match this view yet. Try a different search or save a Qur’an note, reflection, or journal entry to build your library.'**
+  /// **'No notes match. Try another search, or save a note from the Qur’an or your journal.'**
   String get learnNotesBrowseEmpty;
 
   /// No description provided for @learnNotesBrowseEmptyTitle.
@@ -47177,7 +47177,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthStatisticsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Review your recent worship, learning, and reward progress.'**
+  /// **'Your recent worship and learning.'**
   String get growthStatisticsSubtitle;
 
   /// No description provided for @wuduTrainerPageTitle.
@@ -47189,7 +47189,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduTrainerPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A guided step-by-step wudu trainer with calm progress and review.'**
+  /// **'Learn wudu, step by step.'**
   String get wuduTrainerPageSubtitle;
 
   /// No description provided for @wuduGuideStartTrainerAction.
@@ -47207,7 +47207,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduTrainerIntroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move through the sequence calmly, review any step, and finish with a complete wudu practice flow.'**
+  /// **'Go through each step in order, and look back at any of them.'**
   String get wuduTrainerIntroSubtitle;
 
   /// No description provided for @wuduTrainerLearningNote.
@@ -47267,7 +47267,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduTrainerReviewModeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Turn this on if you want to move back and forth without marking each step right away.'**
+  /// **'Move back and forth without marking each step.'**
   String get wuduTrainerReviewModeSubtitle;
 
   /// No description provided for @wuduTrainerChecklistTitle.
@@ -47279,7 +47279,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduTrainerChecklistSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Mark each step as you review it. Wudu is learned best in a steady order from beginning to end.'**
+  /// **'Mark each step as you go. Wudu is learned best in order.'**
   String get wuduTrainerChecklistSubtitle;
 
   /// No description provided for @wuduTrainerStepMattersTitle.
@@ -47297,7 +47297,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduTrainerStepCalmBadge.
   ///
   /// In en, this message translates to:
-  /// **'Stay calm and steady'**
+  /// **'Take your time'**
   String get wuduTrainerStepCalmBadge;
 
   /// No description provided for @wuduTrainerCompletionTitle.
@@ -47405,7 +47405,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduPracticeCardSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the guided wudu sequence with saved progress, review mode, and one-time completion tracking.'**
+  /// **'Practice wudu step by step. Your place is saved.'**
   String get wuduPracticeCardSubtitle;
 
   /// No description provided for @wuduTrainerQuranReferenceLabel.
@@ -47465,7 +47465,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduTrainerStep2Subtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use clean water and get ready calmly before you begin washing.'**
+  /// **'Use clean water, and get ready before you begin.'**
   String get wuduTrainerStep2Subtitle;
 
   /// No description provided for @wuduTrainerStep3Title.
@@ -47501,7 +47501,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduTrainerStep5Subtitle.
   ///
   /// In en, this message translates to:
-  /// **'Take water into your mouth gently and rinse it well.'**
+  /// **'Take water into your mouth and rinse it well.'**
   String get wuduTrainerStep5Subtitle;
 
   /// No description provided for @wuduTrainerStep6Title.
@@ -47525,7 +47525,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduTrainerStep7Subtitle.
   ///
   /// In en, this message translates to:
-  /// **'Gently expel the water from the nose.'**
+  /// **'Blow the water out of your nose.'**
   String get wuduTrainerStep7Subtitle;
 
   /// No description provided for @wuduTrainerStep8Title.
@@ -47537,7 +47537,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduTrainerStep8Subtitle.
   ///
   /// In en, this message translates to:
-  /// **'Wash the full face from the forehead to the chin and from side to side.'**
+  /// **'Wash your whole face, from forehead to chin and ear to ear.'**
   String get wuduTrainerStep8Subtitle;
 
   /// No description provided for @wuduTrainerStep9Title.
@@ -47573,7 +47573,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduTrainerStep11Subtitle.
   ///
   /// In en, this message translates to:
-  /// **'Wash both feet up to the ankles and between the toes, starting with the right.'**
+  /// **'Wash both feet, right first, up to the ankles and between the toes.'**
   String get wuduTrainerStep11Subtitle;
 
   /// No description provided for @wuduTrainerStep12Title.
@@ -47651,7 +47651,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduQuizPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A short calm quiz to help the wudu sequence stay familiar.'**
+  /// **'A short quiz on the steps of wudu.'**
   String get wuduQuizPageSubtitle;
 
   /// No description provided for @wuduQuizIntroTitle.
@@ -47663,7 +47663,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduQuizIntroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Answer a few simple questions about order, key steps, and good adab after wudu.'**
+  /// **'A few simple questions about wudu.'**
   String get wuduQuizIntroSubtitle;
 
   /// No description provided for @wuduQuizSummaryTitle.
@@ -47675,7 +47675,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduQuizSummarySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You finished the wudu quiz. Review your score, then revisit the trainer whenever you want another calm practice round.'**
+  /// **'You finished the wudu quiz. Practice again in the trainer anytime.'**
   String get wuduQuizSummarySubtitle;
 
   /// No description provided for @wuduQuizStartAction.
@@ -48583,7 +48583,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesBrowseAllSubtitleText.
   ///
   /// In en, this message translates to:
-  /// **'Open a complete explorer of every quiz, game, pack, and challenge mode.'**
+  /// **'Every quiz and game.'**
   String get learnGamesBrowseAllSubtitleText;
 
   /// No description provided for @learnGamesBrowseAllPageTitleText.
@@ -49501,7 +49501,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthPathUnavailableMessage.
   ///
   /// In en, this message translates to:
-  /// **'This growth path is not available right now.'**
+  /// **'This path isn’t available.'**
   String get growthPathUnavailableMessage;
 
   /// No description provided for @growthPathDifficultyValue.
@@ -49531,7 +49531,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthPathWhyItMattersFallback.
   ///
   /// In en, this message translates to:
-  /// **'This path is designed to support steady, practical growth.'**
+  /// **'Small, practical steps, taken often.'**
   String get growthPathWhyItMattersFallback;
 
   /// No description provided for @growthPathAcknowledgeCompletionAction.
@@ -49573,7 +49573,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthHabitUnavailableMessage.
   ///
   /// In en, this message translates to:
-  /// **'This growth habit is not available right now.'**
+  /// **'This habit isn’t available.'**
   String get growthHabitUnavailableMessage;
 
   /// No description provided for @growthHabitLightRewardValue.
@@ -49717,7 +49717,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthHabitSettingEntrustQuietTracking.
   ///
   /// In en, this message translates to:
-  /// **'Entrust quiet tracking'**
+  /// **'Entrust to Allah'**
   String get growthHabitSettingEntrustQuietTracking;
 
   /// No description provided for @growthHabitSettingPrivateTracking.
@@ -50368,19 +50368,19 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionMakkahSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Trace the early Makkan years when tawhid, patience, and the first believers were formed under pressure.'**
+  /// **'The early years in Makkah, when faith was tested.'**
   String get learnSeerahCompanionMakkahSubtitle;
 
   /// No description provided for @learnSeerahCompanionHijrahSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow the move to Madinah with trust, planning, and reliance on Allah.'**
+  /// **'The Hijrah to Madinah, and trust in Allah.'**
   String get learnSeerahCompanionHijrahSubtitle;
 
   /// No description provided for @learnSeerahCompanionMadinahSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'See how worship, brotherhood, and justice shaped the Madinan community.'**
+  /// **'How the community in Madinah was built.'**
   String get learnSeerahCompanionMadinahSubtitle;
 
   /// No description provided for @learnSeerahCompanionFinalSermonSubtitle.
@@ -50398,7 +50398,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionPeriodsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with the main Seerah periods when you want a clear guided entry into the life of the Prophet ﷺ.'**
+  /// **'The main periods of the Prophet’s ﷺ life.'**
   String get learnSeerahCompanionPeriodsSubtitle;
 
   /// No description provided for @learnSeerahCompanionMomentsTitle.
@@ -50410,7 +50410,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionMomentsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Stay with the late Seerah moments that opened, redirected, and completed the Prophetic mission.'**
+  /// **'The moments that completed the Prophet’s ﷺ mission.'**
   String get learnSeerahCompanionMomentsSubtitle;
 
   /// No description provided for @learnSeerahCompanionFocusTitle.
@@ -50422,7 +50422,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionFocusSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose one period when you want the page to stay centered on a specific Seerah moment.'**
+  /// **'Choose one period to focus on.'**
   String get learnSeerahCompanionFocusSubtitle;
 
   /// No description provided for @learnSeerahCompanionAllPeriodsChip.
@@ -50440,7 +50440,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionContinueExploringSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Stay with one Seerah moment long enough to connect its lessons, events, and next steps.'**
+  /// **'Stay with one moment of the Seerah a little longer.'**
   String get learnSeerahCompanionContinueExploringSubtitle;
 
   /// No description provided for @learnSeerahCompanionContinueExploringAction.
@@ -50458,19 +50458,19 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionExploreSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose the clearest next path when this Seerah moment needs broader study, chronology, or source guidance.'**
+  /// **'Where to go deeper.'**
   String get learnSeerahCompanionExploreSubtitle;
 
   /// No description provided for @learnSeerahCompanionExploreTimelineSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the wider history owner when treaties, openings, and public milestones need firmer chronology.'**
+  /// **'Place this moment in the history timeline.'**
   String get learnSeerahCompanionExploreTimelineSubtitle;
 
   /// No description provided for @learnSeerahCompanionExploreHadithSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open prophetic guidance when Seerah themes need reinforcement through hadith, mercy, and lived sunnah.'**
+  /// **'Hadith on the same moment.'**
   String get learnSeerahCompanionExploreHadithSubtitle;
 
   /// No description provided for @learnSeerahCompanionExploreHadithDescription.
@@ -50482,7 +50482,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionExploreQuranSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open Qur’an-linked study when migration, patience, and prophetic lessons need deeper reflection.'**
+  /// **'The ayahs about this moment.'**
   String get learnSeerahCompanionExploreQuranSubtitle;
 
   /// No description provided for @learnSeerahCompanionExploreQuranDescription.
@@ -50506,7 +50506,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCompanionSourcesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Each handoff opens the owned surface that carries this part of the topic further.'**
+  /// **'Each one opens the part of the app that goes deeper.'**
   String get learnCompanionSourcesSubtitle;
 
   /// No description provided for @learnCompanionSourceLabelJourney.
@@ -50566,7 +50566,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCharacterCompanionFocusSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose one trait when you want the page to stay practical and personally relevant on return visits.'**
+  /// **'Choose one trait to focus on.'**
   String get learnCharacterCompanionFocusSubtitle;
 
   /// No description provided for @learnCharacterCompanionAllTraitsChip.
@@ -50584,7 +50584,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCharacterCompanionPracticeTodaySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use one lived situation to turn the trait you chose into a deliberate response today.'**
+  /// **'Put your chosen trait into practice in one real moment.'**
   String get learnCharacterCompanionPracticeTodaySubtitle;
 
   /// No description provided for @learnCharacterCompanionMeaningTitle.
@@ -50632,7 +50632,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCharacterCompanionTraitsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Return to the inner qualities that shape beautiful conduct before it appears in speech, service, and relationships.'**
+  /// **'The inner qualities behind good conduct.'**
   String get learnCharacterCompanionTraitsSubtitle;
 
   /// No description provided for @learnCharacterCompanionScenariosTitle.
@@ -50734,7 +50734,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnDailyWisdomSavedSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep a short shelf of reminders you want to revisit without turning this page into a feed.'**
+  /// **'Reminders you saved to come back to.'**
   String get learnDailyWisdomSavedSubtitle;
 
   /// No description provided for @learnDailyWisdomRecentTitle.
@@ -50746,7 +50746,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnDailyWisdomRecentSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Revisit a few recent reminders when you want a calm place to begin again.'**
+  /// **'Your recent reminders.'**
   String get learnDailyWisdomRecentSubtitle;
 
   /// No description provided for @learnDailyWisdomEntryMercyTitle.
@@ -50866,7 +50866,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionTurningPointsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow the treaty, opening, and closing moments that redirected the Muslim community.'**
+  /// **'The moments that changed the course of the Seerah.'**
   String get learnSeerahCompanionTurningPointsSubtitle;
 
   /// No description provided for @learnSeerahCompanionTurningPointsDescription.
@@ -50902,7 +50902,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionMakkahNextExplore.
   ///
   /// In en, this message translates to:
-  /// **'Continue into the Makkan journey stage, then open Qur’an-linked study to revisit how tawhid, patience, and the Hereafter formed the first believing community.'**
+  /// **'Continue with the Makkah stage, then the ayahs revealed in Makkah.'**
   String get learnSeerahCompanionMakkahNextExplore;
 
   /// No description provided for @learnSeerahCompanionHijrahWhyItMatters.
@@ -50914,7 +50914,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionHijrahNextExplore.
   ///
   /// In en, this message translates to:
-  /// **'Open the Hijrah stage first, then follow the history timeline to place migration and its consequences into the wider Muslim story.'**
+  /// **'Open the Hijrah stage, then place it in the history timeline.'**
   String get learnSeerahCompanionHijrahNextExplore;
 
   /// No description provided for @learnSeerahCompanionMadinahWhyItMatters.
@@ -50926,7 +50926,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionMadinahNextExplore.
   ///
   /// In en, this message translates to:
-  /// **'Open the Madinah Society stage, then move into hadith and Qur’an-linked study to follow how community life, character, and guidance were carried forward.'**
+  /// **'Open the Madinah Society stage, then the hadith and ayahs on life in the community.'**
   String get learnSeerahCompanionMadinahNextExplore;
 
   /// No description provided for @learnSeerahCompanionTurningPointsWhyItMatters.
@@ -50950,31 +50950,31 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionFinalSermonNextExplore.
   ///
   /// In en, this message translates to:
-  /// **'Reopen the Final Sermon stage, then follow hadith and Qur’an-linked study to see how those closing principles remain active in worship, character, and communal responsibility.'**
+  /// **'Reopen the Final Sermon stage, then read the hadith and ayahs behind its principles.'**
   String get learnSeerahCompanionFinalSermonNextExplore;
 
   /// No description provided for @learnSeerahCompanionProphetsSourceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Compare the Seerah with wider prophetic stories and themes when you want a broader prophetic frame.'**
+  /// **'The Seerah beside the stories of the other prophets.'**
   String get learnSeerahCompanionProphetsSourceSubtitle;
 
   /// No description provided for @learnSeerahCompanionHadithSourceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Revisit prophetic guidance that keeps Seerah lessons close to mercy, covenant, leadership, and character in practice.'**
+  /// **'Hadith that bring the Seerah’s lessons into practice.'**
   String get learnSeerahCompanionHadithSourceSubtitle;
 
   /// No description provided for @learnSeerahCompanionHistorySourceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Place the Seerah in chronology and revisit the treaty, opening, and pilgrimage moments surrounding major transitions.'**
+  /// **'The history timeline around the Seerah.'**
   String get learnSeerahCompanionHistorySourceSubtitle;
 
   /// No description provided for @learnSeerahCompanionQuranSourceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Study Qur’anic passages that illuminate patience, migration, opening, victory, and prophetic guidance.'**
+  /// **'The ayahs behind the Seerah.'**
   String get learnSeerahCompanionQuranSourceSubtitle;
 
   /// No description provided for @learnSeerahCompanionExploreJourneyDescription.
@@ -50998,7 +50998,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionHudaybiyyahSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Stay with the treaty that looked restrictive at first but opened a wider path for da’wah and stability.'**
+  /// **'The treaty that looked like a loss, and opened the way.'**
   String get learnSeerahCompanionHudaybiyyahSubtitle;
 
   /// No description provided for @learnSeerahCompanionHudaybiyyahDescription.
@@ -51016,7 +51016,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionHudaybiyyahNextExplore.
   ///
   /// In en, this message translates to:
-  /// **'Open the history timeline first, then revisit hadith guidance on patience, covenant, and prophetic leadership when tensions are high.'**
+  /// **'Open the history timeline, then the hadith on patience and keeping covenants.'**
   String get learnSeerahCompanionHudaybiyyahNextExplore;
 
   /// No description provided for @learnSeerahCompanionConquestTitle.
@@ -51028,7 +51028,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionConquestSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Return to the opening where public strength, mercy, and the clearing of falsehood appeared together.'**
+  /// **'The opening of Makkah, when strength came with mercy.'**
   String get learnSeerahCompanionConquestSubtitle;
 
   /// No description provided for @learnSeerahCompanionConquestDescription.
@@ -51046,7 +51046,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionConquestNextExplore.
   ///
   /// In en, this message translates to:
-  /// **'Open the history timeline first, then return to Prophets and hadith surfaces to keep mercy, leadership, and public reopening connected.'**
+  /// **'Open the history timeline, then the Prophets and hadith.'**
   String get learnSeerahCompanionConquestNextExplore;
 
   /// No description provided for @learnSeerahCompanionFarewellHajjTitle.
@@ -51058,7 +51058,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionFarewellHajjSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'See the closing pilgrimage where worship, public teaching, and completion of the mission gathered together.'**
+  /// **'The last pilgrimage, and the completion of the mission.'**
   String get learnSeerahCompanionFarewellHajjSubtitle;
 
   /// No description provided for @learnSeerahCompanionFarewellHajjDescription.
@@ -51190,7 +51190,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCharacterCompanionAngerNextStep.
   ///
   /// In en, this message translates to:
-  /// **'Open the anger and self-control scenario, then use the anger journey stage when you need prophetic restraint more than argument.'**
+  /// **'Open the scenario on anger, then the journey stage on restraint.'**
   String get learnCharacterCompanionAngerNextStep;
 
   /// No description provided for @learnCharacterCompanionKindnessDescription.
@@ -51208,7 +51208,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCharacterCompanionKindnessNextStep.
   ///
   /// In en, this message translates to:
-  /// **'Begin with the speech scenario, then return to the kindness journey stage when you need mercy to remain visible in ordinary interactions.'**
+  /// **'Begin with the scenario on speech, then the journey stage on kindness.'**
   String get learnCharacterCompanionKindnessNextStep;
 
   /// No description provided for @learnCharacterCompanionScenarioFamilyDescription.
@@ -51382,7 +51382,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCharacterCompanionLifeSourceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move into broader life lessons when a trait needs more practical context, examples, and daily application.'**
+  /// **'Life lessons that show a trait in daily practice.'**
   String get learnCharacterCompanionLifeSourceSubtitle;
 
   /// No description provided for @learnCharacterCompanionQuranSourceSubtitle.
@@ -51394,7 +51394,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnDailyWisdomSourceSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the owning surface when today’s reminder needs one deeper step instead of a longer feed.'**
+  /// **'Where to go deeper.'**
   String get learnDailyWisdomSourceSectionSubtitle;
 
   /// No description provided for @learnDailyWisdomThemeMercy.
@@ -51478,19 +51478,19 @@ abstract class AppLocalizations {
   /// No description provided for @learnDailyWisdomSourceQuranSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the Qur’an learning surface when today’s wisdom needs deeper reflection and ayah context.'**
+  /// **'The ayah behind today’s reminder.'**
   String get learnDailyWisdomSourceQuranSubtitle;
 
   /// No description provided for @learnDailyWisdomSourceHadithSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move into hadith when you want the reminder reinforced through prophetic words and themes.'**
+  /// **'Hadith on the same theme.'**
   String get learnDailyWisdomSourceHadithSubtitle;
 
   /// No description provided for @learnDailyWisdomSourceProphetsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Return to Seerah and prophetic stories when today’s wisdom is best understood through lived example.'**
+  /// **'The same lesson, lived by the prophets.'**
   String get learnDailyWisdomSourceProphetsSubtitle;
 
   /// No description provided for @learnDailyWisdomSourceCharacterSubtitle.
@@ -51502,19 +51502,19 @@ abstract class AppLocalizations {
   /// No description provided for @learnDailyWisdomSourceLifeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open Divine Life when today’s reminder needs a broader lesson in service, family, or daily conduct.'**
+  /// **'Divine Life lessons on daily conduct.'**
   String get learnDailyWisdomSourceLifeSubtitle;
 
   /// No description provided for @learnDailyWisdomSourceHopeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open Qur’an ayah insights on the Hereafter when hope needs stronger perspective, accountability, and mercy.'**
+  /// **'Ayah lessons on the Hereafter, for hope.'**
   String get learnDailyWisdomSourceHopeSubtitle;
 
   /// No description provided for @learnDailyWisdomSourceReflectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open saved Qur’an reflections when today’s reminder needs a quieter review of what has already touched your heart.'**
+  /// **'Your saved reflections on the Qur’an.'**
   String get learnDailyWisdomSourceReflectionSubtitle;
 
   /// No description provided for @learnDailyWisdomEntryIntentionTitle.
@@ -51658,7 +51658,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnDailyWisdomEntryReflectionStep.
   ///
   /// In en, this message translates to:
-  /// **'Return to one ayah or note after one prayer today and ask what it is requiring from your heart right now.'**
+  /// **'After one prayer, return to one ayah or note and ask what it asks of your heart.'**
   String get learnDailyWisdomEntryReflectionStep;
 
   /// No description provided for @learnDailyWisdomEntryForgivenessTitle.
@@ -51682,7 +51682,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnDailyWisdomEntryServicePresenceTitle.
   ///
   /// In en, this message translates to:
-  /// **'Service can begin with presence'**
+  /// **'Service begins with being present'**
   String get learnDailyWisdomEntryServicePresenceTitle;
 
   /// No description provided for @learnDailyWisdomEntryServicePresenceBody.
@@ -52568,7 +52568,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningSearchKidsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Search letters, words, phrases, and gentle review ideas.'**
+  /// **'Find a letter, word or phrase.'**
   String get arabicLearningSearchKidsSubtitle;
 
   /// No description provided for @arabicLearningSearchKidsHint.
@@ -52586,13 +52586,13 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningSearchAdultSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Search letters, words, phrases, review, and Qur’an bridge snippets.'**
+  /// **'Find a letter, word or phrase.'**
   String get arabicLearningSearchAdultSubtitle;
 
   /// No description provided for @arabicLearningSearchAdultHint.
   ///
   /// In en, this message translates to:
-  /// **'Search Arabic letters, words, phrases, or review...'**
+  /// **'Search letters, words and phrases'**
   String get arabicLearningSearchAdultHint;
 
   /// No description provided for @arabicLearningSearchFilterLetters.
@@ -52694,13 +52694,13 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningProgressKidsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm look at what your child has explored so far.'**
+  /// **'What your child has explored so far.'**
   String get arabicLearningProgressKidsSubtitle;
 
   /// No description provided for @arabicLearningProgressKidsStartSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start gently with letters, words, and short phrases.'**
+  /// **'Start with the letters.'**
   String get arabicLearningProgressKidsStartSubtitle;
 
   /// No description provided for @arabicLearningProgressKidsLettersValue.
@@ -52772,7 +52772,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningProgressAdultSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A simple summary of what you have covered, opened, and should continue next.'**
+  /// **'What you’ve covered, and what comes next.'**
   String get arabicLearningProgressAdultSubtitle;
 
   /// No description provided for @arabicLearningProgressAdultStartSubtitle.
@@ -52868,7 +52868,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningLessonPacksAdultSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Curated grouped paths for letters, words, reading, review, and bridge work.'**
+  /// **'Lessons grouped by stage.'**
   String get arabicLearningLessonPacksAdultSubtitle;
 
   /// No description provided for @arabicLearningLessonPacksOpenAction.
@@ -52946,7 +52946,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningPackKidsBeginnerLettersSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with the first tracing letters and keep moving in the same calm order.'**
+  /// **'Trace the first letters, in order.'**
   String get arabicLearningPackKidsBeginnerLettersSubtitle;
 
   /// No description provided for @arabicLearningPackKidsFirstWordsTitle.
@@ -52958,7 +52958,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningPackKidsFirstWordsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the early shared Arabic words without leaving the main Kids flow.'**
+  /// **'First Arabic words.'**
   String get arabicLearningPackKidsFirstWordsSubtitle;
 
   /// No description provided for @arabicLearningPackKidsMiniPhrasesTitle.
@@ -52982,7 +52982,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningPackKidsDailyWordsThemeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep a small set of everyday Arabic words and phrases together in one gentle place.'**
+  /// **'Everyday Arabic words and phrases.'**
   String get arabicLearningPackKidsDailyWordsThemeSubtitle;
 
   /// No description provided for @arabicLearningPackKidsPrayerWordsThemeTitle.
@@ -52994,7 +52994,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningPackKidsPrayerWordsThemeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Revisit familiar words and phrases that already connect to salah, dhikr, and the opening surah.'**
+  /// **'Words your child hears in salah and dhikr.'**
   String get arabicLearningPackKidsPrayerWordsThemeSubtitle;
 
   /// No description provided for @arabicLearningPackKidsQuranLinkedWordsThemeTitle.
@@ -53012,13 +53012,13 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningPackKidsReviewTitle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle review'**
+  /// **'Review'**
   String get arabicLearningPackKidsReviewTitle;
 
   /// No description provided for @arabicLearningPackKidsReviewSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Return to letters and practice targets that already live in the Kids review surface.'**
+  /// **'Go back over letters already learned.'**
   String get arabicLearningPackKidsReviewSubtitle;
 
   /// No description provided for @arabicLearningPackKidsQuranReadinessTitle.
@@ -53042,7 +53042,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningPackAdultBeginnerLettersSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep the adult letter path, forms, and first recognition lessons grouped under one calm start point.'**
+  /// **'The letters and their forms.'**
   String get arabicLearningPackAdultBeginnerLettersSubtitle;
 
   /// No description provided for @arabicLearningPackAdultFirstWordsTitle.
@@ -53066,7 +53066,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningPackAdultPhraseReadingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Continue into connected reading through the existing adult phrase-reading module.'**
+  /// **'Read connected phrases.'**
   String get arabicLearningPackAdultPhraseReadingSubtitle;
 
   /// No description provided for @arabicLearningPackAdultDailyWordsThemeTitle.
@@ -53078,7 +53078,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningPackAdultDailyWordsThemeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Browse a calm set of shared beginner words and phrases used in everyday Arabic.'**
+  /// **'Beginner words and phrases for everyday Arabic.'**
   String get arabicLearningPackAdultDailyWordsThemeSubtitle;
 
   /// No description provided for @arabicLearningPackAdultPrayerWordsThemeTitle.
@@ -53090,7 +53090,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningPackAdultPrayerWordsThemeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep familiar salah and dhikr vocabulary grouped without adding a separate learning flow.'**
+  /// **'Words from salah and dhikr.'**
   String get arabicLearningPackAdultPrayerWordsThemeSubtitle;
 
   /// No description provided for @arabicLearningPackAdultQuranLinkedWordsThemeTitle.
@@ -53102,7 +53102,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningPackAdultQuranLinkedWordsThemeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Group the beginner words and phrases that appear again in the Qur’an bridge and short reading steps.'**
+  /// **'Beginner words you’ll meet again in the Qur’an.'**
   String get arabicLearningPackAdultQuranLinkedWordsThemeSubtitle;
 
   /// No description provided for @arabicLearningPackAdultReviewTitle.
@@ -53114,7 +53114,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningPackAdultReviewSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Return to weak spots and gentle repetition without leaving the adult Arabic hub.'**
+  /// **'Go back over what needs more practice.'**
   String get arabicLearningPackAdultReviewSubtitle;
 
   /// No description provided for @arabicLearningPackAdultQuranReadinessTitle.
@@ -53138,7 +53138,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningPackAdultTajweedSupportSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the current beginner-safe pronunciation guidance without adding a separate search island.'**
+  /// **'Pronunciation help for beginners.'**
   String get arabicLearningPackAdultTajweedSupportSubtitle;
 
   /// No description provided for @arabicQuickActionAdultContinue.
@@ -53168,7 +53168,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicQuickResumeWidgetSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the next calm Arabic step in one tap.'**
+  /// **'Your next Arabic step.'**
   String get arabicQuickResumeWidgetSubtitle;
 
   /// No description provided for @arabicQuickResumeKidsSectionTitle.
@@ -53306,7 +53306,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningMiniAssessmentIntroTitle.
   ///
   /// In en, this message translates to:
-  /// **'Let’s practice gently'**
+  /// **'Let’s practice'**
   String get arabicLearningMiniAssessmentIntroTitle;
 
   /// No description provided for @arabicLearningMiniAssessmentIntroBody.
@@ -53357,7 +53357,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningMiniAssessmentRetryFeedback.
   ///
   /// In en, this message translates to:
-  /// **'Try again. A gentle second look is enough.'**
+  /// **'Try again. Take a second look.'**
   String get arabicLearningMiniAssessmentRetryFeedback;
 
   /// No description provided for @arabicLearningMiniAssessmentNextAction.
@@ -53381,7 +53381,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningMiniAssessmentReviewAction.
   ///
   /// In en, this message translates to:
-  /// **'Review gently'**
+  /// **'Review'**
   String get arabicLearningMiniAssessmentReviewAction;
 
   /// No description provided for @arabicLearningMiniAssessmentCompleteTitle.
@@ -54378,7 +54378,7 @@ abstract class AppLocalizations {
   /// No description provided for @khusuSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm space to reduce noise and return to presence.'**
+  /// **'Set distractions aside and be present in worship.'**
   String get khusuSectionSubtitle;
 
   /// No description provided for @khusuSectionIntroBody.
@@ -54408,7 +54408,7 @@ abstract class AppLocalizations {
   /// No description provided for @khusuDhikrFocusSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Close-opened dhikr flow with a clean breathing rhythm.'**
+  /// **'Dhikr at the pace of your breath.'**
   String get khusuDhikrFocusSubtitle;
 
   /// No description provided for @khusuReflectionPauseTitle.
@@ -54426,13 +54426,13 @@ abstract class AppLocalizations {
   /// No description provided for @khusuQuietResetTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quiet Reset'**
+  /// **'Begin Again'**
   String get khusuQuietResetTitle;
 
   /// No description provided for @khusuQuietResetSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Restart focus with gentle re-entry if attention drifted.'**
+  /// **'When your attention drifts, begin again.'**
   String get khusuQuietResetSubtitle;
 
   /// No description provided for @khusuSessionSettingsTitle.
@@ -54462,7 +54462,7 @@ abstract class AppLocalizations {
   /// No description provided for @khusuGentleRemindersTitle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle reminders'**
+  /// **'Subtle reminders'**
   String get khusuGentleRemindersTitle;
 
   /// No description provided for @khusuAmbientModeTitle.
@@ -55566,7 +55566,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSalahHubWuduGuideSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Review purification, sequence, and reminders before prayer.'**
+  /// **'Wudu, step by step.'**
   String get learnSalahHubWuduGuideSubtitle;
 
   /// No description provided for @learnSalahHubWuduTrainerSubtitle.
@@ -57234,7 +57234,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedLearningPathsSectionKidsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with one gentle path made for younger learners.'**
+  /// **'A first path for younger learners.'**
   String get guidedLearningPathsSectionKidsSubtitle;
 
   /// No description provided for @guidedLearningPathMissingBody.
@@ -57330,7 +57330,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathFoundationsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with a calm, beginner-safe path through Islam, belief, and your first steady steps.'**
+  /// **'The basics of Islam and belief, for beginners.'**
   String get guidedPathFoundationsSubtitle;
 
   /// No description provided for @guidedPathFoundationsDescription.
@@ -57348,7 +57348,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathSalahSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin with why salah matters, then move into prayer preparation and guided practice step by step.'**
+  /// **'Why we pray, then how, step by step.'**
   String get guidedPathSalahSubtitle;
 
   /// No description provided for @guidedPathSalahDescription.
@@ -57366,7 +57366,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathQuranBeginnerSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin gently, start small, and enter the Qur’an with calm reflection instead of pressure.'**
+  /// **'Start small with the Qur’an, without pressure.'**
   String get guidedPathQuranBeginnerSubtitle;
 
   /// No description provided for @guidedPathQuranBeginnerDescription.
@@ -57384,7 +57384,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathDailyDhikrSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin with the meaning of dhikr, then build a small and steady habit of remembrance.'**
+  /// **'What dhikr means, then a small daily habit.'**
   String get guidedPathDailyDhikrSubtitle;
 
   /// No description provided for @guidedPathDailyDhikrDescription.
@@ -57402,7 +57402,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathCharacterSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin with what good character means, then carry one trait into daily life with calm reflection.'**
+  /// **'What good character means, and one trait to practice.'**
   String get guidedPathCharacterSubtitle;
 
   /// No description provided for @guidedPathCharacterDescription.
@@ -57420,7 +57420,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathStoriesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Learn through prophets, Seerah, and story-led lessons that shape the heart before the details.'**
+  /// **'Stories of the prophets and the Seerah.'**
   String get guidedPathStoriesSubtitle;
 
   /// No description provided for @guidedPathStoriesDescription.
@@ -57438,7 +57438,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathKidsStarterSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A joyful first path through one letter, one story, and one simple dua.'**
+  /// **'A first path: one letter, one story, one du’a.'**
   String get guidedPathKidsStarterSubtitle;
 
   /// No description provided for @guidedPathKidsStarterDescription.
@@ -57456,7 +57456,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathFoundationsStepOverviewSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin with a simple introduction to Islam as surrender, worship, and mercy.'**
+  /// **'A simple introduction to Islam.'**
   String get guidedPathFoundationsStepOverviewSubtitle;
 
   /// No description provided for @guidedPathFoundationsStepDuasTitle.
@@ -57468,7 +57468,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathFoundationsStepDuasSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Build a calm foundation by learning who Allah is before moving deeper into practice.'**
+  /// **'Learn who Allah is, before going further.'**
   String get guidedPathFoundationsStepDuasSubtitle;
 
   /// No description provided for @guidedPathFoundationsStepSalahTitle.
@@ -57492,7 +57492,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathFoundationsStepHadithSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Finish the foundations path with a clear handoff into salah, Qur’an, or daily dhikr.'**
+  /// **'Choose where to go next.'**
   String get guidedPathFoundationsStepHadithSubtitle;
 
   /// No description provided for @guidedPathSalahStepHubTitle.
@@ -57504,7 +57504,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathSalahStepHubSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin with a calm introduction to prayer as your daily meeting with Allah before entering the full salah tools.'**
+  /// **'Prayer as your daily meeting with Allah.'**
   String get guidedPathSalahStepHubSubtitle;
 
   /// No description provided for @guidedPathSalahStepWuduGuideTitle.
@@ -57528,7 +57528,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathSalahStepWuduTrainerSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use the trainer to reinforce each step with calm repetition.'**
+  /// **'Practice each step until it’s familiar.'**
   String get guidedPathSalahStepWuduTrainerSubtitle;
 
   /// No description provided for @guidedPathSalahStepGuidedPrayerTitle.
@@ -57546,13 +57546,13 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathQuranStepSummaryTitle.
   ///
   /// In en, this message translates to:
-  /// **'Start gently with the Qur’an'**
+  /// **'Starting with the Qur’an'**
   String get guidedPathQuranStepSummaryTitle;
 
   /// No description provided for @guidedPathQuranStepSummarySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin with a calm welcome that removes pressure and helps you take the first small step.'**
+  /// **'A welcome, and a first small step.'**
   String get guidedPathQuranStepSummarySubtitle;
 
   /// No description provided for @guidedPathQuranStepDailyTitle.
@@ -57564,7 +57564,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathQuranStepDailySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Browse the surahs through a calmer summary surface before entering the full reading flow.'**
+  /// **'Browse the surahs before you start reading.'**
   String get guidedPathQuranStepDailySubtitle;
 
   /// No description provided for @guidedPathQuranStepReaderTitle.
@@ -57576,7 +57576,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathQuranStepReaderSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the canonical Qur’an reader and continue at your own pace through reading or listening.'**
+  /// **'Read or listen in the Qur’an reader.'**
   String get guidedPathQuranStepReaderSubtitle;
 
   /// No description provided for @guidedPathQuranStepPathsTitle.
@@ -57600,7 +57600,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathDhikrStepIntroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin with a calm explanation of remembrance and why it softens the heart.'**
+  /// **'What remembrance is, and why it softens the heart.'**
   String get guidedPathDhikrStepIntroSubtitle;
 
   /// No description provided for @guidedPathDhikrStepCounterTitle.
@@ -57636,7 +57636,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathDhikrStepRoutineSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the counter with intention, then choose the next lane that will help the habit stay alive.'**
+  /// **'Use the counter, then choose what comes next.'**
   String get guidedPathDhikrStepRoutineSubtitle;
 
   /// No description provided for @guidedPathCharacterStepCompanionTitle.
@@ -57648,7 +57648,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathCharacterStepCompanionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with a soft introduction to adab, sincerity, patience, and the kind of heart you want to build.'**
+  /// **'An introduction to adab, and the heart you want to build.'**
   String get guidedPathCharacterStepCompanionSubtitle;
 
   /// No description provided for @guidedPathCharacterStepLessonsTitle.
@@ -57672,7 +57672,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathCharacterStepQuranSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Take one relatable trait into speech, service, and everyday relationships.'**
+  /// **'Carry one trait into everyday life.'**
   String get guidedPathCharacterStepQuranSubtitle;
 
   /// No description provided for @guidedPathCharacterStepJourneyTitle.
@@ -57696,7 +57696,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathStoriesStepIntroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin with a calm welcome that shows why stories matter in Islamic learning.'**
+  /// **'Why stories matter in Islamic learning.'**
   String get guidedPathStoriesStepIntroSubtitle;
 
   /// No description provided for @guidedPathStoriesStepProphetsEntryTitle.
@@ -57726,7 +57726,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathStoriesStepSeerahIntroTitle.
   ///
   /// In en, this message translates to:
-  /// **'Enter the Seerah gently'**
+  /// **'Beginning the Seerah'**
   String get guidedPathStoriesStepSeerahIntroTitle;
 
   /// No description provided for @guidedPathStoriesStepSeerahIntroSubtitle.
@@ -57744,7 +57744,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathStoriesStepSeerahMomentSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'See one key moment of sacrifice, planning, and trust in Allah.'**
+  /// **'One moment of sacrifice and trust in Allah.'**
   String get guidedPathStoriesStepSeerahMomentSubtitle;
 
   /// No description provided for @guidedPathStoriesStepReflectionTitle.
@@ -57756,7 +57756,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathStoriesStepReflectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Reflect on how mercy, courage, and patience become lived character.'**
+  /// **'How mercy and courage become character.'**
   String get guidedPathStoriesStepReflectionSubtitle;
 
   /// No description provided for @guidedPathStoriesStepNextTitle.
@@ -57768,7 +57768,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathStoriesStepNextSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Finish with a clear handoff into character, Qur’an reflection, or deeper history.'**
+  /// **'Choose where to go next.'**
   String get guidedPathStoriesStepNextSubtitle;
 
   /// No description provided for @guidedPathKidsStepQuranTitle.
@@ -57780,7 +57780,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathKidsStepQuranSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with a warm welcome and one small step at a gentle pace.'**
+  /// **'A warm welcome, and one small step.'**
   String get guidedPathKidsStepQuranSubtitle;
 
   /// No description provided for @guidedPathKidsStepArabicTitle.
@@ -57804,7 +57804,7 @@ abstract class AppLocalizations {
   /// No description provided for @guidedPathKidsStepStoriesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow a gentle story about saying Bismillah before eating.'**
+  /// **'A story about saying bismillah before eating.'**
   String get guidedPathKidsStepStoriesSubtitle;
 
   /// No description provided for @guidedPathKidsStepGamesTitle.
@@ -57852,7 +57852,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnKidsStarterBridgeStoryHint.
   ///
   /// In en, this message translates to:
-  /// **'Then we hear a short story that helps the next dua feel meaningful.'**
+  /// **'Then a short story about the next dua.'**
   String get learnKidsStarterBridgeStoryHint;
 
   /// No description provided for @learnKidsStarterBridgeBeginAction.
@@ -57900,7 +57900,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnKidsStarterNextStepsSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You can keep growing through letters, stories, or more daily duas.'**
+  /// **'What to learn next.'**
   String get learnKidsStarterNextStepsSectionSubtitle;
 
   /// No description provided for @learnKidsStarterNextStepsArabicHint.
@@ -57912,7 +57912,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnKidsStarterNextStepsStoriesHint.
   ///
   /// In en, this message translates to:
-  /// **'Enjoy more prophet stories and gentle lessons through story time.'**
+  /// **'More stories of the prophets.'**
   String get learnKidsStarterNextStepsStoriesHint;
 
   /// No description provided for @learnKidsStarterNextStepsDuasHint.
@@ -57930,13 +57930,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnStoriesPathBridgeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Stories help the heart understand faith, patience, and trust before details feel heavy.'**
+  /// **'Stories reach the heart before the details do.'**
   String get learnStoriesPathBridgeSubtitle;
 
   /// No description provided for @learnStoriesPathBridgeIntroTitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm way to begin'**
+  /// **'A good way to begin'**
   String get learnStoriesPathBridgeIntroTitle;
 
   /// No description provided for @learnStoriesPathBridgeIntroBody.
@@ -57948,7 +57948,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnStoriesPathBridgeHintNarrative.
   ///
   /// In en, this message translates to:
-  /// **'Stories help knowledge feel connected, memorable, and easier to carry.'**
+  /// **'Stories make knowledge easier to remember.'**
   String get learnStoriesPathBridgeHintNarrative;
 
   /// No description provided for @learnStoriesPathBridgeHintMeaning.
@@ -57972,7 +57972,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnStoriesPathNextStepsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Let the stories lead you into character, Qur’an reflection, or deeper history.'**
+  /// **'Let the stories lead you further.'**
   String get learnStoriesPathNextStepsSubtitle;
 
   /// No description provided for @learnStoriesPathNextStepsIntroTitle.
@@ -58002,13 +58002,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnStoriesPathNextStepsSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow the lesson into character, Qur’an reflection, or broader historical context.'**
+  /// **'Where the stories can lead next.'**
   String get learnStoriesPathNextStepsSectionSubtitle;
 
   /// No description provided for @learnStoriesPathNextStepsCharacterHint.
   ///
   /// In en, this message translates to:
-  /// **'Keep the story lessons alive by growing in patience, adab, and self-improvement.'**
+  /// **'Live the lessons of the stories.'**
   String get learnStoriesPathNextStepsCharacterHint;
 
   /// No description provided for @learnStoriesPathNextStepsQuranHint.
@@ -58068,13 +58068,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnEnrichmentSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Calm milestones and quiet encouragement for the long journey.'**
+  /// **'Milestones along the way.'**
   String get learnEnrichmentSectionSubtitle;
 
   /// No description provided for @learnEnrichmentMomentLabel.
   ///
   /// In en, this message translates to:
-  /// **'A gentle milestone'**
+  /// **'A milestone'**
   String get learnEnrichmentMomentLabel;
 
   /// No description provided for @learnEnrichmentMemoriesTitle.
@@ -58116,7 +58116,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnEnrichmentCompletionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A meaningful chapter is complete.'**
+  /// **'A chapter is complete, alhamdulillah.'**
   String get learnEnrichmentCompletionSubtitle;
 
   /// No description provided for @learnEnrichmentCompletionBody.
@@ -58128,13 +58128,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnEnrichmentCompletionKidsTitle.
   ///
   /// In en, this message translates to:
-  /// **'You learned something new today'**
+  /// **'You learned something new'**
   String get learnEnrichmentCompletionKidsTitle;
 
   /// No description provided for @learnEnrichmentCompletionKidsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle kids journey is complete.'**
+  /// **'A journey is complete, masha’Allah.'**
   String get learnEnrichmentCompletionKidsSubtitle;
 
   /// No description provided for @learnEnrichmentCompletionKidsBody.
@@ -58152,31 +58152,31 @@ abstract class AppLocalizations {
   /// No description provided for @learnEnrichmentEncouragementSteadyRhythm.
   ///
   /// In en, this message translates to:
-  /// **'You are building a steady rhythm.'**
+  /// **'You keep coming back, alhamdulillah.'**
   String get learnEnrichmentEncouragementSteadyRhythm;
 
   /// No description provided for @learnEnrichmentEncouragementWelcomeBack.
   ///
   /// In en, this message translates to:
-  /// **'Returning gently is still progress.'**
+  /// **'Coming back is progress too.'**
   String get learnEnrichmentEncouragementWelcomeBack;
 
   /// No description provided for @learnEnrichmentEncouragementNextChapter.
   ///
   /// In en, this message translates to:
-  /// **'You are ready for the next gentle chapter.'**
+  /// **'You are ready for the next chapter.'**
   String get learnEnrichmentEncouragementNextChapter;
 
   /// No description provided for @learnEnrichmentEncouragementReadyForNextPath.
   ///
   /// In en, this message translates to:
-  /// **'You are ready for a calm next path.'**
+  /// **'You are ready for the next path.'**
   String get learnEnrichmentEncouragementReadyForNextPath;
 
   /// No description provided for @learnEnrichmentEncouragementQuran.
   ///
   /// In en, this message translates to:
-  /// **'Understanding can grow one calm step at a time.'**
+  /// **'Understanding grows one step at a time.'**
   String get learnEnrichmentEncouragementQuran;
 
   /// No description provided for @learnEnrichmentEncouragementStories.
@@ -58194,7 +58194,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnEnrichmentMilestoneGenericTitle.
   ///
   /// In en, this message translates to:
-  /// **'A meaningful step is complete'**
+  /// **'A step is complete'**
   String get learnEnrichmentMilestoneGenericTitle;
 
   /// No description provided for @learnEnrichmentMilestoneGenericBody.
@@ -58290,7 +58290,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnEnrichmentMilestoneThreeStepsWeekTitle.
   ///
   /// In en, this message translates to:
-  /// **'A steady rhythm is forming'**
+  /// **'Three steps this week'**
   String get learnEnrichmentMilestoneThreeStepsWeekTitle;
 
   /// No description provided for @learnEnrichmentMilestoneThreeStepsWeekBody.
@@ -58320,7 +58320,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnPersonalizationSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm recommendation based on your recent learning.'**
+  /// **'Based on what you learned recently.'**
   String get learnPersonalizationSectionSubtitle;
 
   /// No description provided for @learnPersonalizationContinuePathTitle.
@@ -58386,7 +58386,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnPersonalizationBecauseDhikrMomentum.
   ///
   /// In en, this message translates to:
-  /// **'Your recent dhikr rhythm makes this a gentle next step.'**
+  /// **'A good next step after your recent dhikr.'**
   String get learnPersonalizationBecauseDhikrMomentum;
 
   /// No description provided for @learnPersonalizationBecauseSalahMomentum.
@@ -58416,7 +58416,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnPersonalizationBecauseFridayRhythm.
   ///
   /// In en, this message translates to:
-  /// **'Friday is a good time for a gentle Qur’an-focused return.'**
+  /// **'Friday is a good day to return to the Qur’an.'**
   String get learnPersonalizationBecauseFridayRhythm;
 
   /// No description provided for @learnPersonalizationBecauseRamadanRhythm.
@@ -58434,7 +58434,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnPersonalizationBecauseSafeFallback.
   ///
   /// In en, this message translates to:
-  /// **'This is a steady next step while your recent signals are still light.'**
+  /// **'A good next step to begin with.'**
   String get learnPersonalizationBecauseSafeFallback;
 
   /// No description provided for @learnPersonalizationFridayBadge.
@@ -58464,13 +58464,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnFoundationsNextStepsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You have enough to move forward calmly. Choose the lane that feels most helpful right now.'**
+  /// **'You have what you need to go on. Choose what helps most.'**
   String get learnFoundationsNextStepsSubtitle;
 
   /// No description provided for @learnFoundationsNextStepsIntroTitle.
   ///
   /// In en, this message translates to:
-  /// **'A steady beginning matters more than doing everything at once'**
+  /// **'A good start matters more than doing everything at once'**
   String get learnFoundationsNextStepsIntroTitle;
 
   /// No description provided for @learnFoundationsNextStepsIntroBody.
@@ -58488,19 +58488,19 @@ abstract class AppLocalizations {
   /// No description provided for @learnFoundationsNextStepsSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'These next paths stay focused, so you can keep learning without running into a wall of options.'**
+  /// **'A few focused next paths, not a wall of options.'**
   String get learnFoundationsNextStepsSectionSubtitle;
 
   /// No description provided for @learnFoundationsNextStepsSalahHint.
   ///
   /// In en, this message translates to:
-  /// **'Choose this if you want to understand prayer, wudu, and the first practical steps of daily worship.'**
+  /// **'Choose this to learn salah and wudu.'**
   String get learnFoundationsNextStepsSalahHint;
 
   /// No description provided for @learnFoundationsNextStepsQuranHint.
   ///
   /// In en, this message translates to:
-  /// **'Choose this if you want a calm way into reading, listening, and reflecting with the Qur’an.'**
+  /// **'Choose this to start reading and listening to the Qur’an.'**
   String get learnFoundationsNextStepsQuranHint;
 
   /// No description provided for @learnFoundationsNextStepsDhikrHint.
@@ -58518,7 +58518,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnDailyDhikrNextStepsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You began with meaning. Now practice gently and let dhikr join the rest of your worship.'**
+  /// **'You began with meaning. Now let dhikr join the rest of your worship.'**
   String get learnDailyDhikrNextStepsSubtitle;
 
   /// No description provided for @learnDailyDhikrNextStepsIntroTitle.
@@ -58548,13 +58548,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnDailyDhikrNextStepsSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose one nearby path if you want your remembrance to strengthen prayer, character, or your wider daily rhythm.'**
+  /// **'Where dhikr can lead next.'**
   String get learnDailyDhikrNextStepsSectionSubtitle;
 
   /// No description provided for @learnDailyDhikrNextStepsCharacterHint.
   ///
   /// In en, this message translates to:
-  /// **'Choose this if you want your remembrance to shape patience, adab, and everyday conduct.'**
+  /// **'Choose this to let dhikr shape your character.'**
   String get learnDailyDhikrNextStepsCharacterHint;
 
   /// No description provided for @learnDailyDhikrNextStepsSalahHint.
@@ -58572,13 +58572,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuranBeginnerSoftBridgeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You do not need to feel ready. Start small, stay calm, and let understanding grow.'**
+  /// **'You don’t need to feel ready. Start small, and let understanding grow.'**
   String get learnQuranBeginnerSoftBridgeSubtitle;
 
   /// No description provided for @learnQuranBeginnerSoftBridgeIntroTitle.
   ///
   /// In en, this message translates to:
-  /// **'It is okay to begin gently'**
+  /// **'It is fine to start small'**
   String get learnQuranBeginnerSoftBridgeIntroTitle;
 
   /// No description provided for @learnQuranBeginnerSoftBridgeIntroBody.
@@ -58590,13 +58590,13 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuranBeginnerSoftBridgeHintStartSmall.
   ///
   /// In en, this message translates to:
-  /// **'Start with one small step. A little steady time with the Qur’an is better than waiting for the perfect moment.'**
+  /// **'Start small. A little time with the Qur’an, often, is better than waiting for the perfect moment.'**
   String get learnQuranBeginnerSoftBridgeHintStartSmall;
 
   /// No description provided for @learnQuranBeginnerSoftBridgeHintPace.
   ///
   /// In en, this message translates to:
-  /// **'You can read, listen, or simply reflect. Move at a pace that feels sincere and sustainable.'**
+  /// **'Read or listen, at a pace you can keep.'**
   String get learnQuranBeginnerSoftBridgeHintPace;
 
   /// No description provided for @learnQuranBeginnerSoftBridgeBeginAction.
@@ -60940,7 +60940,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithSearchSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Search the trusted hadith library by text, source, or category.'**
+  /// **'Search the hadith library.'**
   String get hadithSearchSubtitle;
 
   /// No description provided for @hadithSearchOpenAction.
@@ -60988,7 +60988,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithSearchEmptyQuerySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Search by translation, Arabic, source book, narrator, category, subcategory, or reference.'**
+  /// **'Search by any word, in English or Arabic.'**
   String get hadithSearchEmptyQuerySubtitle;
 
   /// No description provided for @hadithSearchSuggestedSourcesTitle.
@@ -61012,7 +61012,7 @@ abstract class AppLocalizations {
   /// No description provided for @hadithSearchNoResultsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Try a different phrase, source book, or category.'**
+  /// **'Try a different word or filter.'**
   String get hadithSearchNoResultsSubtitle;
 
   /// No description provided for @hadithSearchResultsCount.
@@ -61670,13 +61670,13 @@ abstract class AppLocalizations {
   /// Subtitle for the canonical hadith browse page.
   ///
   /// In en, this message translates to:
-  /// **'A calm, filterable way to explore the wider hadith library.'**
+  /// **'The whole hadith library, with filters.'**
   String get hadithBrowsePageSubtitle;
 
   /// Orientation heading at the top of the canonical hadith browse page.
   ///
   /// In en, this message translates to:
-  /// **'Start with a calmer lane'**
+  /// **'Where to start'**
   String get hadithBrowseIntroTitle;
 
   /// Orientation body copy at the top of the canonical hadith browse page.
@@ -62287,19 +62287,19 @@ abstract class AppLocalizations {
   /// No description provided for @learnContainedStateIslandSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This learning area is being kept calm and production-safe.'**
+  /// **'This learning area isn’t ready yet.'**
   String get learnContainedStateIslandSubtitle;
 
   /// No description provided for @learnContainedStateJourneySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This journey surface is being kept contained until its next safe pass.'**
+  /// **'This journey isn’t ready yet.'**
   String get learnContainedStateJourneySubtitle;
 
   /// No description provided for @learnContainedStateGuidesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'These guides are being held in a contained state for now.'**
+  /// **'These guides aren’t ready yet.'**
   String get learnContainedStateGuidesSubtitle;
 
   /// No description provided for @learnContainedStateQuranMappingTitle.
@@ -62311,7 +62311,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnContainedStateQuranMappingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This mapping surface is contained until more lesson links are ready.'**
+  /// **'These lesson links aren’t ready yet.'**
   String get learnContainedStateQuranMappingSubtitle;
 
   /// No description provided for @learnContainedStateBody.
@@ -62341,7 +62341,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCategoryDivineLifeLessonsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Qur’an-rooted lessons for reflection, character, and grounded living.'**
+  /// **'Lessons from the Qur’an for daily life.'**
   String get learnCategoryDivineLifeLessonsSubtitle;
 
   /// No description provided for @salahTrainerStepNiyyahTitle.
@@ -62815,7 +62815,7 @@ abstract class AppLocalizations {
   /// No description provided for @salahTrainerWitrNote2.
   ///
   /// In en, this message translates to:
-  /// **'This trainer shows one common guided flow, not the only valid form.'**
+  /// **'This shows one common way to pray it, not the only valid one.'**
   String get salahTrainerWitrNote2;
 
   /// No description provided for @salahTrainerPrayerJummahTitle.
@@ -62887,7 +62887,7 @@ abstract class AppLocalizations {
   /// No description provided for @salahTrainerJummahNote2.
   ///
   /// In en, this message translates to:
-  /// **'If Jumu’ah is missed or not obligatory in a person’s circumstance, Dhuhr remains the fallback prayer.'**
+  /// **'If you miss Jumu’ah, or it isn’t obligatory for you, pray Dhuhr instead.'**
   String get salahTrainerJummahNote2;
 
   /// No description provided for @salahTrainerRecitationTakbirTitle.
@@ -64081,13 +64081,13 @@ abstract class AppLocalizations {
   /// No description provided for @dhikrInsightsObservationQuiet.
   ///
   /// In en, this message translates to:
-  /// **'{routine} is the quiet gap this week. It takes about {minutes} min.'**
+  /// **'{routine} was missed most this week. It takes about {minutes} min.'**
   String dhikrInsightsObservationQuiet(String routine, int minutes);
 
   /// No description provided for @dhikrInsightsObservationSteady.
   ///
   /// In en, this message translates to:
-  /// **'A steady week. Keep the rhythm.'**
+  /// **'A consistent week, alhamdulillah.'**
   String get dhikrInsightsObservationSteady;
 
   /// No description provided for @dhikrRoutineSleepTitle.
@@ -64903,7 +64903,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubSubcategoryKidsHadithSubtitleText.
   ///
   /// In en, this message translates to:
-  /// **'Short, gentle hadith cards with simple meanings and daily lessons.'**
+  /// **'Short hadith with simple meanings.'**
   String get learnHubSubcategoryKidsHadithSubtitleText;
 
   /// No description provided for @learnHubSubcategoryKidsHadithStoriesTitleText.
