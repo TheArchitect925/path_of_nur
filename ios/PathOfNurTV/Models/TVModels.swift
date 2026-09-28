@@ -652,3 +652,59 @@ enum TVQuranRepeat: String, CaseIterable, Identifiable {
     return all[(all.firstIndex(of: self)! + 1) % all.count]
   }
 }
+
+/// When the recitation stops by itself.
+enum TVQuranSleepTimer: String, CaseIterable, Identifiable {
+  case off
+  case fifteen
+  case thirty
+  case sixty
+  case endOfSurah
+
+  var id: String { rawValue }
+
+  /// How long it plays for, where it is a length of time.
+  var duration: TimeInterval? {
+    switch self {
+    case .fifteen: return 15 * 60
+    case .thirty: return 30 * 60
+    case .sixty: return 60 * 60
+    case .off, .endOfSurah: return nil
+    }
+  }
+
+  var title: String {
+    switch self {
+    case .off:
+      return tvLocalized("No sleep timer")
+    case .fifteen:
+      return tvLocalized("Stop after 15 minutes")
+    case .thirty:
+      return tvLocalized("Stop after 30 minutes")
+    case .sixty:
+      return tvLocalized("Stop after an hour")
+    case .endOfSurah:
+      return tvLocalized("Stop at the end of the surah")
+    }
+  }
+}
+
+/// How fast the recitation is played. Slower helps a learner follow it.
+enum TVQuranSpeed: Double, CaseIterable, Identifiable {
+  case slower = 0.75
+  case normal = 1.0
+  case faster = 1.25
+
+  var id: Double { rawValue }
+
+  var title: String {
+    switch self {
+    case .slower:
+      return tvLocalized("Slower (0.75×)")
+    case .normal:
+      return tvLocalized("Normal speed")
+    case .faster:
+      return tvLocalized("Faster (1.25×)")
+    }
+  }
+}

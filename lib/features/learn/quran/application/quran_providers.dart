@@ -921,6 +921,26 @@ class QuranBookmarksNotifier extends StateNotifier<List<QuranBookmark>> {
     _save();
   }
 
+  /// Replaces the bookmarks with those kept on another device (the Apple
+  /// TV), keeping the date each one here was made where it is already here.
+  void replacePlaces(List<({int surahNumber, int ayahNumber})> places) {
+    final nowIso = DateTime.now().toIso8601String();
+    state = [
+      for (final place in places)
+        state.firstWhere(
+          (bookmark) =>
+              bookmark.surahNumber == place.surahNumber &&
+              bookmark.ayahNumber == place.ayahNumber,
+          orElse: () => QuranBookmark(
+            surahNumber: place.surahNumber,
+            ayahNumber: place.ayahNumber,
+            createdAtIso: nowIso,
+          ),
+        ),
+    ];
+    _save();
+  }
+
   void _load() {
     final data = _store.getJsonList(_bookmarksKey);
     if (data == null) return;

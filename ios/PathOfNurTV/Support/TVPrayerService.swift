@@ -50,6 +50,14 @@ final class TVPrayerService: NSObject, ObservableObject, CLLocationManagerDelega
   @Published private(set) var status: TVPrayerLocationStatus
   @Published private(set) var method: TVPrayerMethod
   @Published private(set) var asr: TVAsrRule
+  /// Minutes each prayer is moved by, to match a local mosque's timetable,
+  /// within half an hour either way as on the phone.
+  @Published private(set) var offsets: [String: Int]
+  /// When Jumu'ah is prayed, in minutes after midnight.
+  @Published private(set) var jumuahMinutes: Int
+
+  static let adjustablePrayers = ["fajr", "dhuhr", "asr", "maghrib", "isha"]
+  static let offsetLimit = 30
 
   private let userDefaults: UserDefaults
   private let locationManager = CLLocationManager()
@@ -63,6 +71,10 @@ final class TVPrayerService: NSObject, ObservableObject, CLLocationManagerDelega
     asr = TVAsrRule(
       rawValue: userDefaults.string(forKey: Self.asrKey) ?? ""
     ) ?? .standard
+    offsets = (userDefaults.dictionary(forKey: Self.offsetsKey) as? [String: Int] ?? [:])
+      .filter { Self.adjustablePrayers.contains($0.key) && $0.value != 0 }
+    jumuahMinutes = (userDefaults.object(forKey: Self.jumuahKey) as? Int)
+      ?? TVPrayerSchedule.jumuahDisplayMinutes
     let stored = Self.storedPlace(in: userDefaults)
     place = stored
     status = stored == nil ? .unset : .ready
@@ -121,6 +133,49 @@ final class TVPrayerService: NSObject, ObservableObject, CLLocationManagerDelega
     userDefaults.set(asr.rawValue, forKey: Self.asrKey)
   }
 
+  func offset(for prayer: String) -> Int {
+    offsets[prayer] ?? 0
+  }
+
+  /// Moves one prayer by `delta` minutes, never more than half an hour from
+  /// the time calculated.
+  func adjust(_ prayer: String, by delta: Int) {
+    guard Self.adjustablePrayers.contains(prayer) else { return }
+    let value = min(max(offset(for: prayer) + delta, -Self.offsetLimit), Self.offsetLimit)
+    offsets[prayer] = value == 0 ? nil : value
+    userDefaults.set(offsets, forKey: Self.offsetsKey)
+  }
+
+  func resetOffsets() {
+    offsets = [:]
+    userDefaults.removeObject(forKey: Self.offsetsKey)
+  }
+
+  /// Moves Jumu'ah by `delta` minutes, between 11:30 and 15:30.
+  func adjustJumuah(by delta: Int) {
+    jumuahMinutes = min(max(jumuahMinutes + delta, 11 * 60 + 30), 15 * 60 + 30)
+    userDefaults.set(jumuahMinutes, forKey: Self.jumuahKey)
+  }
+
+  /// "13:30", or as the viewer's clock writes it.
+  func jumuahLabel() -> String {
+    var calendar = Calendar(identifier: .gregorian)
+    calendar.timeZone = place?.timeZone ?? .current
+    let formatter = DateFormatter()
+    formatter.locale = .current
+    formatter.timeZone = calendar.timeZone
+    formatter.setLocalizedDateFormatFromTemplate("jm")
+    let date = calendar.date(
+      bySettingHour: jumuahMinutes / 60, minute: jumuahMinutes % 60, second: 0, of: Date()
+    ) ?? Date()
+    return formatter.string(from: date)
+  }
+
+  /// Today's time of one prayer as it is shown, the offset included.
+  func timeLabel(for prayer: String, at now: Date = Date()) -> String {
+    snapshot(at: now).prayerTimes.first { $0.id == prayer }?.timeLabel ?? ""
+  }
+
   // MARK: - Today
 
   func snapshot(at now: Date = Date()) -> TVPrayerSnapshot {
@@ -167,8 +222,8 @@ final class TVPrayerService: NSObject, ObservableObject, CLLocationManagerDelega
     var windows = TVPrayerSchedule.windows(day: day, following: following)
     let isFriday = calendar.component(.weekday, from: now) == 6
     if isFriday, let jumuah = calendar.date(
-      bySettingHour: TVPrayerSchedule.jumuahDisplayMinutes / 60,
-      minute: TVPrayerSchedule.jumuahDisplayMinutes % 60,
+      bySettingHour: jumuahMinutes / 60,
+      minute: jumuahMinutes % 60,
       second: 0,
       of: now
     ) {
@@ -309,10 +364,24 @@ final class TVPrayerService: NSObject, ObservableObject, CLLocationManagerDelega
     guard let year = date.year, let month = date.month, let day = date.day else {
       return nil
     }
-    return TVPrayerCalculator.day(
+    guard let calculated = TVPrayerCalculator.day(
       year: year, month: month, day: day,
       latitude: place.latitude, longitude: place.longitude,
       method: method, asr: asr
+    ) else {
+      return nil
+    }
+    guard !offsets.isEmpty else { return calculated }
+    func moved(_ date: Date, _ prayer: String) -> Date {
+      date.addingTimeInterval(TimeInterval(offset(for: prayer) * 60))
+    }
+    return TVPrayerDay(
+      fajr: moved(calculated.fajr, "fajr"),
+      sunrise: calculated.sunrise,
+      dhuhr: moved(calculated.dhuhr, "dhuhr"),
+      asr: moved(calculated.asr, "asr"),
+      maghrib: moved(calculated.maghrib, "maghrib"),
+      isha: moved(calculated.isha, "isha")
     )
   }
 
@@ -428,6 +497,8 @@ final class TVPrayerService: NSObject, ObservableObject, CLLocationManagerDelega
   private static let placeKey = "PathOfNurTV.prayer.place"
   private static let methodKey = "PathOfNurTV.prayer.method"
   private static let asrKey = "PathOfNurTV.prayer.asr"
+  private static let offsetsKey = "PathOfNurTV.prayer.offsets"
+  private static let jumuahKey = "PathOfNurTV.prayer.jumuah"
 }
 
 // MARK: - What Settings shows

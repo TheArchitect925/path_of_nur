@@ -111,6 +111,22 @@ than the screen, so a viewer deep in one still finds the other beside them.
   or none (`TVQuranTranslation`, kept under `PathOfNurTV.quran.translation`).
   A new viewer hears the phone's reciter (`TVQuranReciter.phoneDefault`) and
   reads the translation of their language, English where there is none.
+- Go to (a card beside Today's verse) lists the bookmarks, the 30 juz
+  (`TVQuranData.juzStarts`, generated) and every ayah of the open surah by
+  number. An ayah is bookmarked by holding it in the reader, or from the
+  player's bar.
+- The reading place, bookmarks, reciter and translation are shared with
+  the phone through the iCloud key-value store, one document under
+  `quran.shared.v1`, the newer change of each field winning
+  (`Support/TVQuranCloudShare.swift`, `quran_cloud_share.dart`;
+  `tools/tv_quran_shared_reference.json` holds the two to one shape). It
+  needs the target's `PathOfNurTV.entitlements`, and is off in the
+  simulator unless `TV_SAMPLE_CLOUD=1`.
+- **No Now Playing.** Publishing `MPNowPlayingInfoCenter` info together
+  with `MPRemoteCommandCenter` handlers made the app the television's Now
+  Playing app, and Menu then stopped reaching the player once the ayah had
+  changed (QuranFocusTests/test49). Either alone was harmless; both
+  together are not used, and there is no background audio.
 - The recitation plays through an `AVQueuePlayer`: the next ayah is fetched
   while this one plays, an ayah heard again is replayed from memory
   (`TVQuranRepeat`: each ayah 3 or 5 times, one ayah or the whole surah

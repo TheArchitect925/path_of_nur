@@ -299,4 +299,5 @@ enum TVFocusSectionId {
   static let quranPlaybackListening = "quran.playback.listening"
 
   static let quranPlaybackOptions = "quran.playback.options"
+  static let quranGoTo = "quran.browse.shortcut.goto"
 }

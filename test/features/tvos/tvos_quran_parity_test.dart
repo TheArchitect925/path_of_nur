@@ -76,6 +76,27 @@ void main() {
     }
   });
 
+  test('the 30 juz begin in order, the first at the Qur’an’s beginning', () {
+    final index = File(tvQuranIndexPath).readAsStringSync();
+    final starts =
+        RegExp(r'TVQuranPlace\(surahNumber: (\d+), ayahNumber: (\d+)\)')
+            .allMatches(index)
+            .map((m) => [int.parse(m[1]!), int.parse(m[2]!)])
+            .toList();
+    expect(starts, hasLength(q.totalJuzCount));
+    expect(starts.first, [1, 1]);
+    for (var juz = 1; juz < starts.length; juz++) {
+      final before = starts[juz - 1];
+      final here = starts[juz];
+      expect(
+        here[0] > before[0] || (here[0] == before[0] && here[1] > before[1]),
+        isTrue,
+        reason: 'juz ${juz + 1} begins after juz $juz',
+      );
+      expect(here[1], lessThanOrEqualTo(q.getVerseCount(here[0])));
+    }
+  });
+
   // Read back from the files as the television reads them, and held against
   // the phone's sources verse by verse, not against the renderer.
   test('every verse of the Arabic is the verse the phone shows', () {

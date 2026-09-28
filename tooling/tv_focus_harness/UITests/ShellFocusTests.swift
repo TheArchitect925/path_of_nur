@@ -333,7 +333,7 @@ final class ShellFocusTests: TVFocusTestCase {
   }
 
   func test87_aPhraseIsCounted() {
-    launch(["TV_SAMPLE_ROUTE": "dhikr"])
+    launch(["TV_SAMPLE_ROUTE": "dhikr", "TV_SAMPLE_PHRASE_TARGET": "33"])
     log("== Dhikr, a phrase")
     expect(press(.down), "dhikr.phrases", "down from the routines is the first phrase")
     let first = "\(focusedElement.label) · \(focusedElement.value as? String ?? "")"
@@ -550,6 +550,61 @@ final class ShellFocusTests: TVFocusTestCase {
     XCTAssertTrue(stays, "there is nowhere further")
   }
 
+  func test88_aPhraseIsCountedToTheNumberChosen() {
+    launch(["TV_SAMPLE_ROUTE": "dhikr", "TV_SAMPLE_SECTION": "dhikr.target.33"])
+    log("== The count of a phrase")
+    expect(focus, "dhikr.target.33", "opens on the count, at 33")
+    expect(press(.right), "dhikr.target.99", "right to 99")
+    press(.select)
+    sleep(1)
+    expect(value(of: "dhikr.target.99"), "Selected", "99 is chosen")
+    app.terminate()
+    launch(["TV_SAMPLE_ROUTE": "dhikr", "TV_SAMPLE_SECTION": "dhikr.target.99"], keeping: true)
+    expect(value(of: "dhikr.target.99"), "Selected", "and kept")
+    let phrase = press(.up)
+    note("up from the count", phrase)
+    XCTAssertTrue(phrase.hasPrefix("dhikr.phrase"), "up is a phrase")
+    press(.select)
+    sleep(2)
+    let counted = app.staticTexts.allElementsBoundByIndex.map(\.label).contains { $0.contains("99") }
+    log("\(counted ? "PASS" : "FAIL")  the phrase is counted to 99")
+    XCTAssertTrue(counted, "the player counts to 99")
+    press(.menu)
+    sleep(1)
+    // Put it back.
+    app.terminate()
+    launch(["TV_SAMPLE_ROUTE": "dhikr", "TV_SAMPLE_SECTION": "dhikr.target.33"], keeping: true)
+    expect(focus, "dhikr.target.33", "opened again on 33")
+    press(.select)
+    sleep(1)
+    expect(value(of: "dhikr.target.33"), "Selected", "33 again")
+  }
+
+  func test89_aPrayerIsMovedToMatchTheMosque() {
+    launch(["TV_SAMPLE_ROUTE": "settings", "TV_SAMPLE_ADJUST": "1", "TV_SAMPLE_CITY": "toronto"])
+    log("== Adjusting prayer times")
+    sleep(1)
+    expect(focus, "settings.prayer.adjust.fajr.later", "opens on Fajr, later")
+    func shown(_ id: String) -> String {
+      let text = app.staticTexts["settings.prayer.adjust.\(id).value"]
+      return text.exists ? text.label : "<none>"
+    }
+    expect(shown("fajr"), "As calculated", "Fajr is as calculated")
+    press(.select, 3)
+    sleep(1)
+    expect(shown("fajr"), "3 min later", "three presses move it three minutes later")
+    shot("89-adjust")
+    expect(press(.left), "settings.prayer.adjust.fajr.earlier", "left to earlier")
+    press(.select, 3)
+    sleep(1)
+    expect(shown("fajr"), "As calculated", "and back")
+    expect(press(.down, 5), "settings.prayer.adjust.jumuah.earlier", "down to Jumu’ah")
+    note("Jumu’ah", shown("jumuah"))
+    press(.menu)
+    sleep(1)
+    XCTAssertFalse(focus.hasPrefix("settings.prayer.adjust."), "Menu closes it")
+  }
+
   func test77_theReciterChosenIsKept() {
     launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.playback", "TV_SAMPLE_RECITER": "alafasy"])
     log("== The reciter is kept")
@@ -557,9 +612,10 @@ final class ShellFocusTests: TVFocusTestCase {
     expect(press(.up), "quran.playback.options", "up to the options in the hero")
     press(.select)
     sleep(2)
-    // Five repeats, two switches, eight translations and none, then the
-    // reciters: Alafasy, Husary, Husary teaching, Abdul Basit.
-    expect(press(.down, 19), "player.options.reciter.abdulbasit", "down to Abdul Basit")
+    // Five repeats, two switches, the next-surah switch, three speeds, five
+    // sleep timers, eight translations and none, then the reciters:
+    // Alafasy, Husary, Husary teaching, Abdul Basit.
+    expect(press(.down, 28), "player.options.reciter.abdulbasit", "down to Abdul Basit")
     press(.select)
     sleep(1)
     expect(value(of: "player.options.reciter.abdulbasit"), "Selected", "pressing him chooses Abdul Basit")

@@ -142,6 +142,9 @@
 		A30000000000000000000D14 /* TVQuranTranslation_tr.json in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D14 /* TVQuranTranslation_tr.json */; };
 		A30000000000000000000D15 /* TVQuranTranslation_fa.json in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D15 /* TVQuranTranslation_fa.json */; };
 		A30000000000000000000D16 /* TVQuranPlayerOptionsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D16 /* TVQuranPlayerOptionsPanel.swift */; };
+		A30000000000000000000D1A /* TVQuranCloudShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D1A /* TVQuranCloudShare.swift */; };
+		A30000000000000000000D19 /* TVPrayerAdjustScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D19 /* TVPrayerAdjustScreen.swift */; };
+		A30000000000000000000D18 /* TVQuranGoToScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D18 /* TVQuranGoToScreen.swift */; };
 		A30000000000000000000D0E /* TVQuranLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D0E /* TVQuranLibrary.swift */; };
 		A30000000000000000000D0F /* TVQuranAyahLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D0F /* TVQuranAyahLayout.swift */; };
 		A30000000000000000000D10 /* TVUmmAlQuraTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D10 /* TVUmmAlQuraTable.swift */; };
@@ -403,6 +406,10 @@
 		A20000000000000000000D14 /* TVQuranTranslation_tr.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TVQuranTranslation_tr.json; path = Quran/TVQuranTranslation_tr.json; sourceTree = "<group>"; };
 		A20000000000000000000D15 /* TVQuranTranslation_fa.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TVQuranTranslation_fa.json; path = Quran/TVQuranTranslation_fa.json; sourceTree = "<group>"; };
 		A20000000000000000000D16 /* TVQuranPlayerOptionsPanel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranPlayerOptionsPanel.swift; sourceTree = "<group>"; };
+		A20000000000000000000D1A /* TVQuranCloudShare.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranCloudShare.swift; sourceTree = "<group>"; };
+		A20000000000000000000D1B /* PathOfNurTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PathOfNurTV.entitlements; sourceTree = "<group>"; };
+		A20000000000000000000D19 /* TVPrayerAdjustScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVPrayerAdjustScreen.swift; sourceTree = "<group>"; };
+		A20000000000000000000D18 /* TVQuranGoToScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranGoToScreen.swift; sourceTree = "<group>"; };
 		A20000000000000000000D0E /* TVQuranLibrary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranLibrary.swift; sourceTree = "<group>"; };
 		A20000000000000000000D0F /* TVQuranAyahLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranAyahLayout.swift; sourceTree = "<group>"; };
 		A20000000000000000000D10 /* TVUmmAlQuraTable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVUmmAlQuraTable.swift; sourceTree = "<group>"; };
@@ -710,6 +717,8 @@
 				A20000000000000000000031 /* TVGamesScreen.swift */,
 				A20000000000000000000020 /* TVQuranListeningModeScreen.swift */,
 				A20000000000000000000D16 /* TVQuranPlayerOptionsPanel.swift */,
+				A20000000000000000000D19 /* TVPrayerAdjustScreen.swift */,
+				A20000000000000000000D18 /* TVQuranGoToScreen.swift */,
 				A20000000000000000000022 /* TVLearnScreen.swift */,
 				A20000000000000000000026 /* TVPrayerScreen.swift */,
 				A20000000000000000000029 /* TVDhikrScreen.swift */,
@@ -829,6 +838,7 @@
 				A2000000000000000000003D /* TVTelemetry.swift */,
 				A20000000000000000000D06 /* TVPrayerService.swift */,
 				A20000000000000000000D0F /* TVQuranAyahLayout.swift */,
+				A20000000000000000000D1A /* TVQuranCloudShare.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -870,6 +880,7 @@
 				A10000000000000000000008 /* Support */,
 				A1F00000000000000000F000 /* Fonts */,
 				A20000000000000000000D03 /* PrivacyInfo.xcprivacy */,
+				A20000000000000000000D1B /* PathOfNurTV.entitlements */,
 			);
 			path = PathOfNurTV;
 			sourceTree = "<group>";
@@ -1396,6 +1407,9 @@
 				A30000000000000000000019 /* TVQuranReaderSummaryCard.swift in Sources */,
 				A30000000000000000000020 /* TVQuranListeningModeScreen.swift in Sources */,
 				A30000000000000000000D16 /* TVQuranPlayerOptionsPanel.swift in Sources */,
+				A30000000000000000000D1A /* TVQuranCloudShare.swift in Sources */,
+				A30000000000000000000D19 /* TVPrayerAdjustScreen.swift in Sources */,
+				A30000000000000000000D18 /* TVQuranGoToScreen.swift in Sources */,
 				A30000000000000000000021 /* TVLearnHubItemCard.swift in Sources */,
 				A30000000000000000000022 /* TVLearnScreen.swift in Sources */,
 				A30000000000000000000023 /* TVLearnStoryEntryCard.swift in Sources */,
@@ -1843,6 +1857,7 @@
 				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
+				CODE_SIGN_ENTITLEMENTS = PathOfNurTV/PathOfNurTV.entitlements;
 				INFOPLIST_FILE = PathOfNurTV/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2240,6 +2255,7 @@
 				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
+				CODE_SIGN_ENTITLEMENTS = PathOfNurTV/PathOfNurTV.entitlements;
 				INFOPLIST_FILE = PathOfNurTV/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2326,6 +2342,7 @@
 				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
+				CODE_SIGN_ENTITLEMENTS = PathOfNurTV/PathOfNurTV.entitlements;
 				INFOPLIST_FILE = PathOfNurTV/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = (

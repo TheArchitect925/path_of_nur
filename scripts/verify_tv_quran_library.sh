@@ -19,6 +19,7 @@ env -u TOOLCHAINS xcrun swiftc -O \
   ios/PathOfNurTV/Support/TVQuranAyahLayout.swift \
   ios/PathOfNurTV/Data/TVQuranLibrary.swift \
   ios/PathOfNurTV/Data/TVQuranData.swift \
+  ios/PathOfNurTV/Support/TVQuranCloudShare.swift \
   "$BUILD_DIR/main.swift" \
   -o "$BUILD_DIR/verify"
 

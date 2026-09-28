@@ -233,11 +233,59 @@ final class QuranFocusTests: TVFocusTestCase {
     expect(press(.left), "quran.browse.36", "left returns to its surah in the list")
   }
 
+  func test23_goToAJuzAndABookmark() {
+    launch([
+      "TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SURAH": "1", "TV_SAMPLE_FRESH": "1",
+    ])
+    log("== Go to")
+    expect(press(.up), "quran.browse.shortcut.continue", "up from the first surah")
+    expect(press(.right, 2), "quran.browse.shortcut.goto", "right to Go to")
+    press(.select)
+    sleep(2)
+    expect(focus, "quran.goto.juz.1", "Go to opens on the first juz, there being no bookmarks")
+    shot("23-go-to")
+    expect(press(.down, 4), "quran.goto.juz.25", "down the grid of juz")
+    expect(press(.right, 5), "quran.goto.juz.30", "right to the last juz")
+    press(.select)
+    sleep(3)
+    expect(focus, "quran.reader.78:1", "Juz 30 opens at An Naba 78:1")
+    expectFocusWithinPane("78:1 is wholly in the pane")
+
+    // Bookmarked in the player, and found again in Go to.
+    expect(press(.up), "quran.playback", "up to play")
+    press(.up)
+    expect(press(.up), "quran.playback.options", "up to the hero")
+    expect(press(.left), "quran.playback.listening", "left to listen")
+    press(.select)
+    sleep(3)
+    press(.select)
+    sleep(1)
+    expect(label(of: "listening.playPause"), "Play audio", "paused")
+    let ayah = ayahInHeading
+    expect(press(.right, 3), "listening.bookmark", "right to the bookmark")
+    press(.select)
+    sleep(1)
+    expect(value(of: "listening.bookmark"), "Bookmarked", "pressing it bookmarks the ayah")
+    app.terminate()
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SURAH": "1"], keeping: true)
+    expect(press(.up), "quran.browse.shortcut.continue", "opened again, up to the shortcuts")
+    expect(press(.right, 2), "quran.browse.shortcut.goto", "right to Go to")
+    press(.select)
+    sleep(2)
+    expect(focus, "quran.goto.bookmark.78:\(ayah)", "Go to opens on the bookmark")
+    press(.select)
+    sleep(3)
+    expect(focus, "quran.reader.78:\(ayah)", "the bookmark opens its ayah")
+    // Leave nothing behind for the tests after this one.
+    app.terminate()
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_FRESH": "1"], keeping: true)
+  }
+
   func test22_aGroupOpensTheListAtItsFirstSurah() {
     launch(["TV_SAMPLE_ROUTE": "quran"])
     log("== A group of surahs")
     press(.up)
-    expect(press(.right, 2), "quran.browse.collection.short_surahs", "right to the first group")
+    expect(press(.right, 3), "quran.browse.collection.short_surahs", "right past Go to, to the first group")
     press(.select)
     sleep(2)
     expect(focus, "quran.browse.112", "a group opens the list at its first surah")
@@ -329,6 +377,56 @@ final class QuranFocusTests: TVFocusTestCase {
     expect(focus, "quran.playback.listening", "Menu closes it, and the focus is where it was opened from")
   }
 
+  /// Menu leaves the player while the recitation plays. Needs the network.
+  func test47_menuLeavesThePlayerWhileItPlays() {
+    menuWhilePlaying([:])
+  }
+
+  /// After the recitation has moved on by itself. Needs the network.
+  func test49_menuLeavesThePlayerAfterTheAyahChanges() {
+    menuAfterAyahChanges([:])
+  }
+
+  private func menuAfterAyahChanges(_ extra: [String: String]) {
+    launch([
+      "TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SURAH": "112", "TV_SAMPLE_AYAH": "1",
+      "TV_SAMPLE_LISTENING": "1",
+    ].merging(extra) { $1 })
+    log("== Menu after the ayah changes \(extra)")
+    var ayah = ayahInHeading
+    for _ in 0..<20 where ayah < 2 {
+      sleep(1)
+      ayah = ayahInHeading
+    }
+    note("the ayah now", "\(ayah)")
+    note("focus", focus)
+    press(.menu)
+    sleep(2)
+    log("\(focus.hasPrefix("listening.") ? "FAIL" : "PASS")  Menu leaves the player after the ayah changed: \(focus)")
+    XCTAssertFalse(focus.hasPrefix("listening."), "Menu leaves the player")
+  }
+
+  private func menuWhilePlaying(_ extra: [String: String]) {
+    launch([
+      "TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SURAH": "2", "TV_SAMPLE_AYAH": "255",
+      "TV_SAMPLE_LISTENING": "1",
+    ].merging(extra) { $1 })
+    log("== Menu while playing \(extra)")
+    sleep(3)
+    expect(label(of: "listening.playPause"), "Pause audio", "it plays")
+    expect(press(.right, 2), "listening.options", "right to the options")
+    press(.select)
+    sleep(1)
+    expect(focus, "player.options.repeat.off", "the options open")
+    press(.menu)
+    sleep(1)
+    expect(focus, "listening.options", "Menu closes the options while it plays")
+    press(.menu)
+    sleep(2)
+    XCTAssertFalse(focus.hasPrefix("listening."), "Menu leaves the player while it plays")
+    log("\(focus.hasPrefix("listening.") ? "FAIL" : "PASS")  Menu leaves the player while it plays: \(focus)")
+  }
+
   func test41_listeningModeMovesAyahByAyah() {
     launch([
       "TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SURAH": "1", "TV_SAMPLE_AYAH": "2",
@@ -391,7 +489,7 @@ final class QuranFocusTests: TVFocusTestCase {
     sleep(1)
     expect(value(of: "player.options.show.translation"), "Selected", "the translation is shown again")
     expect(value(of: "player.options.show.transliteration"), "Selected", "and the reading")
-    expect(press(.down), "player.options.translation.en", "down to the translations")
+    expect(press(.down, 10), "player.options.translation.en", "down past playback and the sleep timer to the translations")
     expect(press(.down, 4), "player.options.translation.bn", "down to Bengali")
     press(.select)
     sleep(1)
@@ -401,7 +499,8 @@ final class QuranFocusTests: TVFocusTestCase {
     shot("42-2-255-bengali")
     press(.select)
     sleep(1)
-    expect(press(.down, 7), "player.options.translation.en", "back to English")
+    expect(focus, "player.options.repeat.off", "the options open again at the repeat")
+    expect(press(.down, 16), "player.options.translation.en", "back to English")
     press(.select)
     sleep(1)
     expect(value(of: "player.options.translation.en"), "Selected", "English is chosen again")
@@ -453,6 +552,47 @@ final class QuranFocusTests: TVFocusTestCase {
     press(.select)
   }
 
+  /// Needs the network: the recitation is streamed.
+  func test46_theRecitationCarriesOnIntoTheNextSurah() {
+    launch([
+      "TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SURAH": "112", "TV_SAMPLE_AYAH": "4",
+      "TV_SAMPLE_LISTENING": "1", "TV_SAMPLE_OPTIONS": "1",
+    ])
+    log("== Into the next surah")
+    sleep(2)
+    expect(focus, "player.options.repeat.off", "the options are open")
+    expect(press(.down, 7), "player.options.continues", "down to Continue into the next surah")
+    if value(of: "player.options.continues") != "Selected" {
+      press(.select)
+      sleep(1)
+    }
+    expect(value(of: "player.options.continues"), "Selected", "it is on")
+    press(.menu)
+    sleep(1)
+    expect(press(.left, 2), "listening.playPause", "left to play")
+    if label(of: "listening.playPause") == "Play audio" {
+      // The last ayah was over before the switch was turned on.
+      press(.select)
+    }
+    var surahNext = false
+    for _ in 0..<40 where !surahNext {
+      sleep(1)
+      surahNext = app.staticTexts.allElementsBoundByIndex.map(\.label).contains { $0.contains("113:") }
+    }
+    log("\(surahNext ? "PASS" : "FAIL")  after the last ayah of Al Ikhlas it goes on into Al Falaq")
+    XCTAssertTrue(surahNext, "carried on into 113")
+    shot("46-into-113")
+    // Put it back.
+    expect(press(.right, 2), "listening.options", "right to the options")
+    press(.select)
+    sleep(1)
+    expect(focus, "player.options.repeat.off", "the options open at the repeat")
+    press(.down, 7)
+    press(.select)
+    sleep(1)
+    expect(value(of: "player.options.continues"), "", "and it is off again")
+  }
+
   /// The translation chosen is kept, and shown in the reader too.
   func test45_theTranslationChosenIsKept() {
     launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.playback", "TV_SAMPLE_TRANSLATION": "en"])
@@ -461,7 +601,7 @@ final class QuranFocusTests: TVFocusTestCase {
     press(.select)
     sleep(2)
     expect(focus, "player.options.repeat.off", "the options open")
-    expect(press(.down, 9), "player.options.translation.fr", "down to French")
+    expect(press(.down, 18), "player.options.translation.fr", "down to French")
     press(.select)
     sleep(1)
     expect(value(of: "player.options.translation.fr"), "Selected", "French is chosen")

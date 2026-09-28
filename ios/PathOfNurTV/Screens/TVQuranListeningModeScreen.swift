@@ -89,6 +89,15 @@ struct TVQuranListeningModeScreen: View {
       viewModel.togglePlayback()
       wake()
     }
+    // Menu puts the options away first, and only then leaves the player.
+    .onExitCommand {
+      if viewModel.isPlayerOptionsPresented {
+        closeOptions()
+      } else {
+        viewModel.closeListeningMode()
+        dismiss()
+      }
+    }
   }
 
   // MARK: - The heading
@@ -114,10 +123,13 @@ struct TVQuranListeningModeScreen: View {
           .foregroundColor(TVTheme.cautionText)
           .lineLimit(1)
       } else {
-        Text(viewModel.listeningModeStatusLine)
-          .font(TVTypography.figtreeMedium(22))
-          .foregroundColor(TVTheme.textSecondary)
-          .lineLimit(1)
+        // Read again every half minute, so a sleep timer counts down.
+        TimelineView(.periodic(from: .now, by: 30)) { _ in
+          Text(viewModel.listeningModeStatusLine)
+            .font(TVTypography.figtreeMedium(22))
+            .foregroundColor(TVTheme.textSecondary)
+            .lineLimit(1)
+        }
       }
     }
     .opacity(isBarResting ? 0.55 : 1)
@@ -270,6 +282,24 @@ struct TVQuranListeningModeScreen: View {
       }
       .accessibilityLabel(tvLocalized("Listening options"))
       .accessibilityHint(tvLocalized("Reciter, translation, transliteration and repeat."))
+
+      if let ayah = viewModel.selectedAyah {
+        let isBookmarked = viewModel.isBookmarked(ayah)
+        Button {
+          viewModel.toggleBookmark(ayah)
+          wake()
+        } label: {
+          Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
+            .font(.system(size: 22, weight: .semibold))
+            .foregroundColor(isBookmarked ? TVTheme.accentStrong : TVTheme.textPrimary)
+            .frame(width: 62, height: 62)
+            .background(Circle().fill(TVTheme.surface))
+        }
+        .buttonStyle(TVCardButtonStyle(shape: .capsule))
+        .tvFocusID($focusedControl, "listening.bookmark")
+        .accessibilityLabel(isBookmarked ? tvLocalized("Remove bookmark") : tvLocalized("Bookmark this ayah"))
+        .accessibilityValue(isBookmarked ? tvLocalized("Bookmarked") : "")
+      }
 
       Spacer(minLength: 12)
 

@@ -14,14 +14,22 @@ struct TVQuranAyahCard: View {
   let isPlaying: Bool
   var metrics: TVQuranAyahMetrics?
   var isCentered = false
+  var isBookmarked = false
 
   var body: some View {
     VStack(alignment: isCentered ? .center : .leading, spacing: Self.spacing) {
-      HStack {
+      HStack(spacing: 10) {
         Text(part.heading)
           .font(TVTypography.detail)
           .foregroundColor(TVTheme.textSecondary)
           .lineLimit(1)
+
+        if isBookmarked {
+          Image(systemName: "bookmark.fill")
+            .font(.system(size: 16, weight: .semibold))
+            .foregroundColor(TVTheme.accentStrong)
+            .accessibilityLabel(tvLocalized("Bookmarked"))
+        }
 
         Spacer()
 

@@ -20,6 +20,7 @@ struct TVQuranScreen: View {
   /// Where the viewer last was in the reader, to come back to.
   @State private var placeInReader: String?
   @State private var isOptionsPresented = false
+  @State private var isGoToPresented = false
 
   /// A pane asked to bring what is selected into view.
   private struct ScrollRequest: Equatable {
@@ -80,6 +81,20 @@ struct TVQuranScreen: View {
     .fullScreenCover(isPresented: $viewModel.isListeningModePresented) {
       TVQuranListeningModeScreen(viewModel: viewModel)
         .environmentObject(themeController)
+    }
+    .fullScreenCover(isPresented: $isGoToPresented) {
+      TVQuranGoToScreen(
+        viewModel: viewModel,
+        onChoose: { place in
+          isGoToPresented = false
+          // Once the cover is gone, so that the focus has the reader to go to.
+          DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+            open(surah: place.surahNumber, ayah: place.ayahNumber)
+          }
+        },
+        onClose: { isGoToPresented = false }
+      )
+      .environmentObject(themeController)
     }
     .fullScreenCover(isPresented: $isOptionsPresented) {
       ZStack(alignment: .trailing) {
@@ -228,6 +243,20 @@ struct TVQuranScreen: View {
         .buttonStyle(TVCardButtonStyle())
         .tvFocusID($focusedSection, TVFocusSectionId.quranTodaysVerse)
 
+        Button {
+          isGoToPresented = true
+        } label: {
+          TVQuranBrowseCollectionCard(
+            title: tvLocalized("Go to"),
+            subtitle: viewModel.bookmarks.isEmpty
+              ? tvLocalized("Juz, or an ayah by number")
+              : tvLocalized("Bookmarks, juz, or an ayah"),
+            systemImage: "arrow.turn.down.right"
+          )
+        }
+        .buttonStyle(TVCardButtonStyle())
+        .tvFocusID($focusedSection, TVFocusSectionId.quranGoTo)
+
         ForEach(viewModel.browseCollections) { collection in
           Button {
             viewModel.selectBrowseCollection(collection)
@@ -363,11 +392,23 @@ struct TVQuranScreen: View {
             part: part,
             isSelected: isSelected,
             isPlaying: isPlaying,
-            metrics: metrics
+            metrics: metrics,
+            isBookmarked: part.index == 0 && viewModel.isBookmarked(ayah)
           )
         }
         .buttonStyle(TVCardButtonStyle())
         .tvFocusID($focusedSection, TVFocusSectionId.quranAyahPart(part.id))
+        .contextMenu {
+          Button {
+            viewModel.toggleBookmark(ayah)
+          } label: {
+            if viewModel.isBookmarked(ayah) {
+              Label(tvLocalized("Remove bookmark"), systemImage: "bookmark.slash")
+            } else {
+              Label(tvLocalized("Bookmark this ayah"), systemImage: "bookmark")
+            }
+          }
+        }
         .onMoveCommand { direction in
           if direction == .towardRail(in: layoutDirection) {
             focusList()

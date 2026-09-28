@@ -42,6 +42,7 @@ struct TVDhikrScreen: View {
           subtitle: viewModel.phrasesSubtitle
         )
 
+
         // A phrase opens in the player the routines open in, and is counted
         // there.
         ScrollView(.horizontal, showsIndicators: false) {
@@ -64,6 +65,29 @@ struct TVDhikrScreen: View {
           .padding(TVTheme.railBleed)
         }
         .tvRail()
+
+        HStack(spacing: 14) {
+          Text(tvLocalized("Count each phrase to"))
+            .font(TVTypography.figtreeMedium(22))
+            .foregroundColor(TVTheme.textSecondary)
+          ForEach(TVDhikrViewModel.phraseTargets, id: \.self) { target in
+            let isChosen = viewModel.phraseTarget == target
+            Button {
+              viewModel.selectPhraseTarget(target)
+            } label: {
+              Text("\(target)")
+                .font(TVTypography.figtreeMedium(22))
+                .foregroundColor(isChosen ? TVTheme.prayerCurrentText : TVTheme.textPrimary)
+                .padding(.horizontal, 22)
+                .padding(.vertical, 10)
+                .background(isChosen ? TVTheme.prayerCurrent : TVTheme.surfaceSoft, in: Capsule())
+            }
+            .buttonStyle(TVCardButtonStyle(shape: .capsule))
+            .tvFocusID($focusedSection, "dhikr.target.\(target)")
+            .accessibilityValue(isChosen ? tvLocalized("Selected") : "")
+          }
+        }
+        .focusSection()
       }
       .padding(TVTheme.outerPadding)
     }

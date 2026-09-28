@@ -79,6 +79,18 @@ String renderTvQuranSwift() {
   }
   buffer
     ..writeln('  ]')
+    ..writeln()
+    ..writeln('  /// Where each of the 30 juz begins, in order.')
+    ..writeln('  static let juzStarts: [TVQuranPlace] = [');
+  for (var juz = 1; juz <= q.totalJuzCount; juz++) {
+    final verses = q.getSurahAndVersesFromJuz(juz);
+    final surah = verses.keys.reduce((a, b) => a < b ? a : b);
+    buffer.writeln(
+      '    TVQuranPlace(surahNumber: $surah, ayahNumber: ${verses[surah]![0]}),',
+    );
+  }
+  buffer
+    ..writeln('  ]')
     ..writeln('}');
   return buffer.toString();
 }

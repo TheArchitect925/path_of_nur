@@ -4,6 +4,7 @@ struct TVSettingsScreen: View {
   @ObservedObject var viewModel: TVSettingsViewModel
   @ObservedObject var prayerService: TVPrayerService
   @State private var isCityPickerPresented = TVSettingsScreen.opensOnCityPicker
+  @State private var isAdjustPresented = TVSettingsScreen.opensOnAdjust
   @EnvironmentObject private var appViewModel: TVAppViewModel
   @EnvironmentObject private var themeController: TVThemeController
   @FocusState private var focusedSection: String?
@@ -218,6 +219,12 @@ struct TVSettingsScreen: View {
       // screen is then drawn again.
       appViewModel.markContentSectionFocused(section, for: .settings)
     }
+    .fullScreenCover(isPresented: $isAdjustPresented) {
+      TVPrayerAdjustScreen(prayerService: prayerService) {
+        isAdjustPresented = false
+      }
+      .environmentObject(themeController)
+    }
     .fullScreenCover(isPresented: $isCityPickerPresented) {
       TVPrayerCityPickerScreen(
         prayerService: prayerService,
@@ -263,6 +270,19 @@ struct TVSettingsScreen: View {
         }
         .buttonStyle(TVCardButtonStyle())
         .tvFocusID($focusedSection, "settings.prayer.city")
+
+        Button {
+          isAdjustPresented = true
+        } label: {
+          optionCard(
+            title: tvLocalized("Adjust times"),
+            subtitle: adjustLine,
+            systemImage: "slider.horizontal.below.rectangle",
+            isSelected: !prayerService.offsets.isEmpty
+          )
+        }
+        .buttonStyle(TVCardButtonStyle())
+        .tvFocusID($focusedSection, "settings.prayer.adjust")
       }
       .padding(TVTheme.railBleed)
     }
@@ -309,6 +329,23 @@ struct TVSettingsScreen: View {
       .padding(TVTheme.railBleed)
     }
     .tvRail()
+  }
+
+  /// "As calculated · Jumu’ah 1:30 PM", or that some are moved.
+  private var adjustLine: String {
+    let offsets = prayerService.offsets.isEmpty
+      ? tvLocalized("As calculated")
+      : tvLocalized("%d adjusted", prayerService.offsets.count)
+    return "\(offsets) · \(tvLocalized("Jumu’ah")) \(prayerService.jumuahLabel())"
+  }
+
+  /// Simulator-only: TV_SAMPLE_ADJUST=1 opens on the prayer adjustments.
+  private static var opensOnAdjust: Bool {
+    #if targetEnvironment(simulator)
+    return ProcessInfo.processInfo.environment["TV_SAMPLE_ADJUST"] == "1"
+    #else
+    return false
+    #endif
   }
 
   /// Simulator-only, like TV_SAMPLE_ROUTE: open on the list of cities.

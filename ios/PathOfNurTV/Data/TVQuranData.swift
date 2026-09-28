@@ -1034,4 +1034,38 @@ enum TVQuranData {
       revelationPlace: "Makkah"
     ),
   ]
+
+  /// Where each of the 30 juz begins, in order.
+  static let juzStarts: [TVQuranPlace] = [
+    TVQuranPlace(surahNumber: 1, ayahNumber: 1),
+    TVQuranPlace(surahNumber: 2, ayahNumber: 142),
+    TVQuranPlace(surahNumber: 2, ayahNumber: 253),
+    TVQuranPlace(surahNumber: 3, ayahNumber: 93),
+    TVQuranPlace(surahNumber: 4, ayahNumber: 24),
+    TVQuranPlace(surahNumber: 4, ayahNumber: 148),
+    TVQuranPlace(surahNumber: 5, ayahNumber: 82),
+    TVQuranPlace(surahNumber: 6, ayahNumber: 111),
+    TVQuranPlace(surahNumber: 7, ayahNumber: 88),
+    TVQuranPlace(surahNumber: 8, ayahNumber: 41),
+    TVQuranPlace(surahNumber: 9, ayahNumber: 92),
+    TVQuranPlace(surahNumber: 11, ayahNumber: 6),
+    TVQuranPlace(surahNumber: 12, ayahNumber: 53),
+    TVQuranPlace(surahNumber: 15, ayahNumber: 1),
+    TVQuranPlace(surahNumber: 17, ayahNumber: 1),
+    TVQuranPlace(surahNumber: 18, ayahNumber: 75),
+    TVQuranPlace(surahNumber: 21, ayahNumber: 1),
+    TVQuranPlace(surahNumber: 23, ayahNumber: 1),
+    TVQuranPlace(surahNumber: 25, ayahNumber: 21),
+    TVQuranPlace(surahNumber: 27, ayahNumber: 56),
+    TVQuranPlace(surahNumber: 29, ayahNumber: 46),
+    TVQuranPlace(surahNumber: 33, ayahNumber: 31),
+    TVQuranPlace(surahNumber: 36, ayahNumber: 28),
+    TVQuranPlace(surahNumber: 39, ayahNumber: 32),
+    TVQuranPlace(surahNumber: 41, ayahNumber: 47),
+    TVQuranPlace(surahNumber: 46, ayahNumber: 1),
+    TVQuranPlace(surahNumber: 51, ayahNumber: 31),
+    TVQuranPlace(surahNumber: 58, ayahNumber: 1),
+    TVQuranPlace(surahNumber: 67, ayahNumber: 1),
+    TVQuranPlace(surahNumber: 78, ayahNumber: 1),
+  ]
 }

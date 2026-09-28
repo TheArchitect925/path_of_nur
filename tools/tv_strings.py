@@ -63,6 +63,8 @@ RELEASED_FILES = (
     "Screens/TVPrayerScreen.swift",
     "Screens/TVQuranListeningModeScreen.swift",
     "Screens/TVQuranPlayerOptionsPanel.swift",
+    "Screens/TVQuranGoToScreen.swift",
+    "Screens/TVPrayerAdjustScreen.swift",
     "Screens/TVQuranScreen.swift",
     "Screens/TVSettingsScreen.swift",
     "Support/TVPrayerService.swift",
@@ -72,6 +74,8 @@ RELEASED_PARTS = {
     "Models/TVModels.swift": (
         "enum TVQuranReciter",
         "enum TVQuranRepeat",
+        "enum TVQuranSleepTimer",
+        "enum TVQuranSpeed",
     ),
     "ViewModels/TVAppViewModel.swift": (
         "final class TVSettingsViewModel",

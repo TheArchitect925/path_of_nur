@@ -20,6 +20,9 @@ struct TVQuranPlayerOptionsPanel: View {
   static func reciterID(_ reciter: TVQuranReciter) -> String { "\(prefix)reciter.\(reciter.rawValue)" }
   static let showTranslationID = "\(prefix)show.translation"
   static let showTransliterationID = "\(prefix)show.transliteration"
+  static let continuesID = "\(prefix)continues"
+  static func speedID(_ speed: TVQuranSpeed) -> String { "\(prefix)speed.\(speed.rawValue)" }
+  static func sleepID(_ timer: TVQuranSleepTimer) -> String { "\(prefix)sleep.\(timer.rawValue)" }
 
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
@@ -62,6 +65,40 @@ struct TVQuranPlayerOptionsPanel: View {
             isSwitch: true
           ) {
             viewModel.toggleListeningTransliteration()
+          }
+
+          section(tvLocalized("Playback"))
+          row(
+            title: tvLocalized("Continue into the next surah"),
+            subtitle: viewModel.continuesIntoNextSurah
+              ? tvLocalized("On")
+              : tvLocalized("Off, it stops at the end of the surah"),
+            isChosen: viewModel.continuesIntoNextSurah,
+            id: Self.continuesID,
+            isSwitch: true
+          ) {
+            viewModel.setContinuesIntoNextSurah(!viewModel.continuesIntoNextSurah)
+          }
+          ForEach(TVQuranSpeed.allCases) { speed in
+            row(
+              title: speed.title,
+              isChosen: viewModel.speed == speed,
+              id: Self.speedID(speed)
+            ) {
+              viewModel.selectSpeed(speed)
+            }
+          }
+
+          section(tvLocalized("Sleep timer"))
+          ForEach(TVQuranSleepTimer.allCases) { timer in
+            row(
+              title: timer.title,
+              subtitle: viewModel.sleepTimer == timer ? (viewModel.sleepTimerLine() ?? "") : "",
+              isChosen: viewModel.sleepTimer == timer,
+              id: Self.sleepID(timer)
+            ) {
+              viewModel.selectSleepTimer(timer)
+            }
           }
 
           section(tvLocalized("Translation"))

@@ -272,9 +272,56 @@ for (key, isPlace) in [("2:255", true), ("2:287", false), ("115:1", false), ("0:
   }
 }
 
+// MARK: - 4. The document shared with the phone
+
+if let raw = try? String(contentsOfFile: "tools/tv_quran_shared_reference.json", encoding: .utf8) {
+  let shared = TVQuranSharedState(json: raw)
+  var utc = Calendar(identifier: .gregorian)
+  utc.timeZone = TimeZone(identifier: "UTC")!
+  func moment(_ hour: Int, _ minute: Int = 0, _ second: Int = 0) -> Date {
+    utc.date(from: DateComponents(year: 2026, month: 9, day: 27, hour: hour, minute: minute, second: second))!
+  }
+  if shared.place != "36:12" || shared.bookmarks != ["67:1", "2:255"]
+    || shared.reciter != "husary" || shared.translation != "ur.urdu" {
+    failures.append("shared: the phone's document is not read as the phone wrote it")
+  }
+  if let placeAt = shared.placeAt {
+    if abs(placeAt.timeIntervalSince(moment(11, 30, 5)) - 0.25) > 0.001 {
+      failures.append("shared: the place's moment is read as \(placeAt)")
+    }
+  } else {
+    failures.append("shared: the place's moment cannot be read")
+  }
+  if shared.bookmarksAt != moment(11) || shared.reciterAt != moment(10) || shared.translationAt != moment(9) {
+    failures.append("shared: a moment is not read as the phone wrote it")
+  }
+  if TVQuranSharedState(json: shared.json) != shared {
+    failures.append("shared: the document does not survive being written again")
+  }
+  let newer = TVQuranSharedState(reciter: "sudais", reciterAt: moment(12))
+  if shared.merged(with: newer).reciter != "sudais" || newer.merged(with: shared).place != "36:12" {
+    failures.append("shared: the newer change of a field does not win")
+  }
+  if case .some(.some(let urdu)) = TVQuranTranslationCodes.translation(for: "ur.urdu"), urdu.id == "ur" {
+  } else {
+    failures.append("shared: ur.urdu is not the Urdu translation")
+  }
+  for translation in TVQuranTranslation.all {
+    if case .some(.some(let back)) = TVQuranTranslationCodes.translation(
+      for: TVQuranTranslationCodes.code(for: translation)
+    ), back == translation {
+      continue
+    }
+    failures.append("shared: \(translation.id) does not come back from its code")
+  }
+} else {
+  failures.append("tools/tv_quran_shared_reference.json: cannot be read")
+}
+
 if failures.isEmpty {
   print("Apple TV Qur’an: \(verses) verses read across \(texts.count) files, a surah at a time.")
   print("Apple TV Qur’an: the verse of the day is the phone’s on all \(days) days.")
+  print("Apple TV Qur’an: the document shared with the phone is read and written as the phone does.")
   print("Apple TV Qur’an: \(planned) ayahs set, every word in place, every part within its room.")
   for room in inParts.keys.sorted() {
     let most = mostParts[room]!

@@ -22,6 +22,7 @@ import '../features/wallpaper/application/wallpaper_provider.dart';
 import '../features/accounts_sync/application/accounts_sync_controller.dart';
 import '../features/accounts_sync/application/auto_backup_engine.dart';
 import '../features/ios_widgets/application/iphone_home_widget_sync_service.dart';
+import '../features/learn/quran/application/quran_cloud_share.dart';
 import '../features/profile/application/profile_settings_provider.dart';
 import '../features/watch_companion/application/apple_watch_runtime_bridge.dart';
 import '../shared/application/daily_clock_provider.dart';
@@ -54,6 +55,7 @@ class PathOfNurApp extends ConsumerWidget {
     ref.watch(journeyProgressAutoSyncProvider);
     ref.watch(wallpaperAutoUnlockProvider);
     ref.watch(prayerLiveActivityBootstrapProvider);
+    ref.watch(quranCloudShareBootstrapProvider);
     final occasionNow = ref.watch(dailyNowProvider).value ?? DateTime.now();
     final specialMode = ref.watch(specialModeProvider);
     // A child (or an adult who switched the kids UI on) gets the daylight
