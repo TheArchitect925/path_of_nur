@@ -2074,37 +2074,37 @@ abstract class AppLocalizations {
   /// No description provided for @hadithNarratorSummaryAbuHurairah.
   ///
   /// In en, this message translates to:
-  /// **'Abu Hurairah was a Companion of the Prophet ﷺ known for staying close to the Messenger of Allah ﷺ and transmitting a large number of hadith. In this library, he appears often in narrations about worship, character, repentance, and daily Muslim life.'**
+  /// **'Abu Hurairah (may Allah be pleased with him) was a Companion who stayed close to the Messenger of Allah ﷺ and passed on a great number of hadith. In this library, he narrates many of the hadith on worship and character.'**
   String get hadithNarratorSummaryAbuHurairah;
 
   /// No description provided for @hadithNarratorSummaryAishah.
   ///
   /// In en, this message translates to:
-  /// **'Aishah bint Abi Bakr, may Allah be pleased with her, was the wife of the Prophet ﷺ and one of the most knowledgeable teachers of the sunnah. Her narrations in this library often preserve guidance about worship, Qur’an, character, and life within the Prophet’s ﷺ household.'**
+  /// **'Aishah bint Abi Bakr (may Allah be pleased with her) was a wife of the Prophet ﷺ and one of the most knowledgeable teachers of the sunnah. Her narrations in this library often preserve guidance from within the Prophet’s ﷺ household.'**
   String get hadithNarratorSummaryAishah;
 
   /// No description provided for @hadithNarratorSummaryAbdullahIbnUmar.
   ///
   /// In en, this message translates to:
-  /// **'Abdullah ibn Umar was a Companion known for his careful following of the sunnah and his devotion to worship. His narrations in this library often center on prayer, travel, restraint, and living with awareness of the Hereafter.'**
+  /// **'Abdullah ibn Umar (may Allah be pleased with him) was a Companion known for following the sunnah closely and for his devotion to worship. His narrations in this library often concern prayer and travel, and living with the Hereafter in mind.'**
   String get hadithNarratorSummaryAbdullahIbnUmar;
 
   /// No description provided for @hadithNarratorSummaryAnasIbnMalik.
   ///
   /// In en, this message translates to:
-  /// **'Anas ibn Malik served the Prophet ﷺ in Madinah and transmitted many hadith about the Prophet’s ﷺ conduct, mercy, and daily example. In this library, his narrations often carry practical guidance rooted in close companionship and service.'**
+  /// **'Anas ibn Malik (may Allah be pleased with him) served the Prophet ﷺ in Madinah and passed on many hadith about his conduct and his mercy. In this library, his narrations carry practical guidance from years of close service.'**
   String get hadithNarratorSummaryAnasIbnMalik;
 
   /// No description provided for @hadithNarratorSummaryJabirIbnAbdullah.
   ///
   /// In en, this message translates to:
-  /// **'Jabir ibn Abdullah was a Companion from the Ansar who narrated hadith across worship, manners, and community life. His narrations in this library often preserve guidance that connects devotion with everyday conduct.'**
+  /// **'Jabir ibn Abdullah (may Allah be pleased with him) was a Companion from the Ansar whose hadith cover worship and community life. His narrations in this library often join devotion with everyday conduct.'**
   String get hadithNarratorSummaryJabirIbnAbdullah;
 
   /// No description provided for @hadithNarratorSummaryAbdullahIbnAbbas.
   ///
   /// In en, this message translates to:
-  /// **'Abdullah ibn Abbas, cousin of the Prophet ﷺ, became widely known for knowledge, understanding, and teaching. In this library, his narrations often appear where hadith connects worship with reflection, understanding, and broader insight.'**
+  /// **'Abdullah ibn Abbas (may Allah be pleased with him), cousin of the Prophet ﷺ, became known for his knowledge and his teaching. In this library, his narrations often join worship with understanding.'**
   String get hadithNarratorSummaryAbdullahIbnAbbas;
 
   /// No description provided for @hadithLessonAlreadyCompleted.
@@ -29197,7 +29197,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsThemeModeEasyReadDescription.
   ///
   /// In en, this message translates to:
-  /// **'Plain surfaces and strong contrast for long reading.'**
+  /// **'Plain backgrounds and strong contrast for long reading.'**
   String get settingsThemeModeEasyReadDescription;
 
   /// No description provided for @settingsThemeModeDarkDescription.
@@ -37255,7 +37255,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaLightBuildMessage.
   ///
   /// In en, this message translates to:
-  /// **'Let’s keep your light shining today.'**
+  /// **'Let’s keep your light shining!'**
   String get kidsDuaLightBuildMessage;
 
   /// No description provided for @kidsDuaLightSteadyMessage.
@@ -37297,7 +37297,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaReminderMorningTitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle morning dua'**
+  /// **'Your morning du’a'**
   String get kidsDuaReminderMorningTitle;
 
   /// No description provided for @kidsDuaReminderMorningBody.
@@ -37321,7 +37321,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaReminderEveningTitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm return to Allah'**
+  /// **'Time to remember Allah'**
   String get kidsDuaReminderEveningTitle;
 
   /// No description provided for @kidsDuaReminderEveningBody.
@@ -37333,7 +37333,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaReminderBedtimeTitle.
   ///
   /// In en, this message translates to:
-  /// **'A peaceful bedtime dua'**
+  /// **'Your bedtime du’a'**
   String get kidsDuaReminderBedtimeTitle;
 
   /// No description provided for @kidsDuaReminderBedtimeBody.
@@ -46481,7 +46481,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeRoutineDefaultPlanTitle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle bedtime routine'**
+  /// **'Bedtime routine'**
   String get bedtimeRoutineDefaultPlanTitle;
 
   /// No description provided for @bedtimeRoutineStepGetReadyTitle.
@@ -58662,13 +58662,13 @@ abstract class AppLocalizations {
   /// No description provided for @settingsThemeModeNoGlassDescription.
   ///
   /// In en, this message translates to:
-  /// **'Warm, solid surfaces without transparency.'**
+  /// **'Warm, solid colors without transparency.'**
   String get settingsThemeModeNoGlassDescription;
 
   /// No description provided for @settingsThemeModeNoGlassDarkDescription.
   ///
   /// In en, this message translates to:
-  /// **'Dark, solid surfaces for low light.'**
+  /// **'Dark, solid colors for low light.'**
   String get settingsThemeModeNoGlassDarkDescription;
 
   /// No description provided for @settingsThemeModeMidnightManuscriptDescription.

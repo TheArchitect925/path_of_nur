@@ -1142,27 +1142,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hadithNarratorSummaryAbuHurairah =>
-      'Abu Hurairah was a Companion of the Prophet ﷺ known for staying close to the Messenger of Allah ﷺ and transmitting a large number of hadith. In this library, he appears often in narrations about worship, character, repentance, and daily Muslim life.';
+      'Abu Hurairah (may Allah be pleased with him) was a Companion who stayed close to the Messenger of Allah ﷺ and passed on a great number of hadith. In this library, he narrates many of the hadith on worship and character.';
 
   @override
   String get hadithNarratorSummaryAishah =>
-      'Aishah bint Abi Bakr, may Allah be pleased with her, was the wife of the Prophet ﷺ and one of the most knowledgeable teachers of the sunnah. Her narrations in this library often preserve guidance about worship, Qur’an, character, and life within the Prophet’s ﷺ household.';
+      'Aishah bint Abi Bakr (may Allah be pleased with her) was a wife of the Prophet ﷺ and one of the most knowledgeable teachers of the sunnah. Her narrations in this library often preserve guidance from within the Prophet’s ﷺ household.';
 
   @override
   String get hadithNarratorSummaryAbdullahIbnUmar =>
-      'Abdullah ibn Umar was a Companion known for his careful following of the sunnah and his devotion to worship. His narrations in this library often center on prayer, travel, restraint, and living with awareness of the Hereafter.';
+      'Abdullah ibn Umar (may Allah be pleased with him) was a Companion known for following the sunnah closely and for his devotion to worship. His narrations in this library often concern prayer and travel, and living with the Hereafter in mind.';
 
   @override
   String get hadithNarratorSummaryAnasIbnMalik =>
-      'Anas ibn Malik served the Prophet ﷺ in Madinah and transmitted many hadith about the Prophet’s ﷺ conduct, mercy, and daily example. In this library, his narrations often carry practical guidance rooted in close companionship and service.';
+      'Anas ibn Malik (may Allah be pleased with him) served the Prophet ﷺ in Madinah and passed on many hadith about his conduct and his mercy. In this library, his narrations carry practical guidance from years of close service.';
 
   @override
   String get hadithNarratorSummaryJabirIbnAbdullah =>
-      'Jabir ibn Abdullah was a Companion from the Ansar who narrated hadith across worship, manners, and community life. His narrations in this library often preserve guidance that connects devotion with everyday conduct.';
+      'Jabir ibn Abdullah (may Allah be pleased with him) was a Companion from the Ansar whose hadith cover worship and community life. His narrations in this library often join devotion with everyday conduct.';
 
   @override
   String get hadithNarratorSummaryAbdullahIbnAbbas =>
-      'Abdullah ibn Abbas, cousin of the Prophet ﷺ, became widely known for knowledge, understanding, and teaching. In this library, his narrations often appear where hadith connects worship with reflection, understanding, and broader insight.';
+      'Abdullah ibn Abbas (may Allah be pleased with him), cousin of the Prophet ﷺ, became known for his knowledge and his teaching. In this library, his narrations often join worship with understanding.';
 
   @override
   String get hadithLessonAlreadyCompleted => 'Lesson already completed';
@@ -17706,7 +17706,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsThemeModeEasyReadDescription =>
-      'Plain surfaces and strong contrast for long reading.';
+      'Plain backgrounds and strong contrast for long reading.';
 
   @override
   String get settingsThemeModeDarkDescription => 'A dark look for night use.';
@@ -22507,7 +22507,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kidsDuaLightStartMessage => 'One small dua can brighten your day.';
 
   @override
-  String get kidsDuaLightBuildMessage => 'Let’s keep your light shining today.';
+  String get kidsDuaLightBuildMessage => 'Let’s keep your light shining!';
 
   @override
   String get kidsDuaLightSteadyMessage =>
@@ -22532,7 +22532,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kidsDuaMyDayLightComplete => 'Today, your light is shining!';
 
   @override
-  String get kidsDuaReminderMorningTitle => 'A gentle morning dua';
+  String get kidsDuaReminderMorningTitle => 'Your morning du’a';
 
   @override
   String get kidsDuaReminderMorningBody => 'A small dua can brighten your day.';
@@ -22544,13 +22544,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kidsDuaReminderMiddayBody => 'Let’s do one small dua together.';
 
   @override
-  String get kidsDuaReminderEveningTitle => 'A calm return to Allah';
+  String get kidsDuaReminderEveningTitle => 'Time to remember Allah';
 
   @override
   String get kidsDuaReminderEveningBody => 'Keep your light shining today.';
 
   @override
-  String get kidsDuaReminderBedtimeTitle => 'A peaceful bedtime dua';
+  String get kidsDuaReminderBedtimeTitle => 'Your bedtime du’a';
 
   @override
   String get kidsDuaReminderBedtimeBody =>
@@ -28008,7 +28008,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bedtimeCompanionStepNotStarted => 'Not started';
 
   @override
-  String get bedtimeRoutineDefaultPlanTitle => 'Gentle bedtime routine';
+  String get bedtimeRoutineDefaultPlanTitle => 'Bedtime routine';
 
   @override
   String get bedtimeRoutineStepGetReadyTitle => 'Get ready for bed';
@@ -35273,11 +35273,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoGlassDescription =>
-      'Warm, solid surfaces without transparency.';
+      'Warm, solid colors without transparency.';
 
   @override
   String get settingsThemeModeNoGlassDarkDescription =>
-      'Dark, solid surfaces for low light.';
+      'Dark, solid colors for low light.';
 
   @override
   String get settingsThemeModeMidnightManuscriptDescription =>

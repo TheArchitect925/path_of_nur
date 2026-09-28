@@ -22448,7 +22448,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get kidsDuaLightStartMessage => 'One small dua can brighten your day.';
 
   @override
-  String get kidsDuaLightBuildMessage => 'Let’s keep your light shining today.';
+  String get kidsDuaLightBuildMessage => 'Let’s keep your light shining!';
 
   @override
   String get kidsDuaLightSteadyMessage =>
@@ -22473,7 +22473,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get kidsDuaMyDayLightComplete => 'Today, your light is shining!';
 
   @override
-  String get kidsDuaReminderMorningTitle => 'A gentle morning dua';
+  String get kidsDuaReminderMorningTitle => 'Your morning du’a';
 
   @override
   String get kidsDuaReminderMorningBody => 'A small dua can brighten your day.';
@@ -22485,13 +22485,13 @@ class AppLocalizationsFa extends AppLocalizations {
   String get kidsDuaReminderMiddayBody => 'Let’s do one small dua together.';
 
   @override
-  String get kidsDuaReminderEveningTitle => 'A calm return to Allah';
+  String get kidsDuaReminderEveningTitle => 'Time to remember Allah';
 
   @override
   String get kidsDuaReminderEveningBody => 'Keep your light shining today.';
 
   @override
-  String get kidsDuaReminderBedtimeTitle => 'A peaceful bedtime dua';
+  String get kidsDuaReminderBedtimeTitle => 'Your bedtime du’a';
 
   @override
   String get kidsDuaReminderBedtimeBody =>
@@ -27941,7 +27941,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get bedtimeCompanionStepNotStarted => 'Not started';
 
   @override
-  String get bedtimeRoutineDefaultPlanTitle => 'Gentle bedtime routine';
+  String get bedtimeRoutineDefaultPlanTitle => 'Bedtime routine';
 
   @override
   String get bedtimeRoutineStepGetReadyTitle => 'Get ready for bed';
@@ -61428,7 +61428,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get kidsDuaLightStartMessage => 'One small dua can brighten your day.';
 
   @override
-  String get kidsDuaLightBuildMessage => 'Let’s keep your light shining today.';
+  String get kidsDuaLightBuildMessage => 'Let’s keep your light shining!';
 
   @override
   String get kidsDuaLightSteadyMessage =>
@@ -61453,7 +61453,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get kidsDuaMyDayLightComplete => 'Today, your light is shining!';
 
   @override
-  String get kidsDuaReminderMorningTitle => 'A gentle morning dua';
+  String get kidsDuaReminderMorningTitle => 'Your morning du’a';
 
   @override
   String get kidsDuaReminderMorningBody => 'A small dua can brighten your day.';
@@ -61465,13 +61465,13 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get kidsDuaReminderMiddayBody => 'Let’s do one small dua together.';
 
   @override
-  String get kidsDuaReminderEveningTitle => 'A calm return to Allah';
+  String get kidsDuaReminderEveningTitle => 'Time to remember Allah';
 
   @override
   String get kidsDuaReminderEveningBody => 'Keep your light shining today.';
 
   @override
-  String get kidsDuaReminderBedtimeTitle => 'A peaceful bedtime dua';
+  String get kidsDuaReminderBedtimeTitle => 'Your bedtime du’a';
 
   @override
   String get kidsDuaReminderBedtimeBody =>
@@ -66921,7 +66921,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get bedtimeCompanionStepNotStarted => 'Not started';
 
   @override
-  String get bedtimeRoutineDefaultPlanTitle => 'Gentle bedtime routine';
+  String get bedtimeRoutineDefaultPlanTitle => 'Bedtime routine';
 
   @override
   String get bedtimeRoutineStepGetReadyTitle => 'Get ready for bed';

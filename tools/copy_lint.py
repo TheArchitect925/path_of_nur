@@ -128,6 +128,9 @@ CONTENT_KEYS = re.compile(
     r"|^learnDailyWisdomEntry|^learnTogether(Prompt|Guidance|FamilyPrompt)"
     r"|^learning\w*(ActionStep|WhyThisMatters|Themes|Suggestion)$"
     r"|^learningJourney\w*Section\d+Title$"
+    # V5: a glossary definition, a madhhab summary and a narrator biography are
+    # lesson prose; their keys end in the term, the school or the name.
+    r"|^glossaryEntry|^salahTrainer(?:Witr|Jummah)Guidance|^hadithNarratorSummary"
 )
 
 
@@ -135,8 +138,23 @@ def is_content(key: str) -> bool:
     return bool(CONTENT_SUFFIX.search(key)) or bool(CONTENT_KEYS.match(key))
 
 
+# V5: the lock (2026-09-27). Staff-only screens (the PIN-gated editorial
+# dashboard, the internal content builder) are tools, not copy for readers;
+# the mechanics rules still read them.
+STAFF_KEYS = re.compile(r"^(?:editorialDashboard|contentBuilder)")
+
+# Deliberate exceptions, one reason each. A key listed under a rule is not
+# counted by that rule. Add to this only with a reason a reviewer would accept.
+ALLOW: dict[str, dict[str, str]] = {
+    "tone-list-of-three": {
+        "triviaKnowledgeStageProphetsNuhHudSalih": "a stage title naming its three prophets",
+        "triviaKnowledgeStageProphetsKingsWisdomTrial": "a stage title naming its three themes",
+    },
+}
+
+
 def is_chrome(key: str) -> bool:
-    return not is_sacred(key) and not is_content(key)
+    return not is_sacred(key) and not is_content(key) and not STAFF_KEYS.match(key)
 
 
 def words(value: str) -> list[str]:
@@ -758,7 +776,9 @@ def prose_findings(strings: dict[str, str]) -> dict[str, list[str]]:
 # ------------------------------------------------------------------ report
 
 def offenders(rule: Rule, strings: dict[str, str]) -> list[tuple[str, str]]:
-    return [(k, v) for k, v in strings.items() if rule.applies(k) and rule.match(k, v)]
+    allowed = ALLOW.get(rule.id, {})
+    return [(k, v) for k, v in strings.items()
+            if k not in allowed and rule.applies(k) and rule.match(k, v)]
 
 
 def run(strings: dict[str, str] | None = None) -> dict[str, list[str]]:

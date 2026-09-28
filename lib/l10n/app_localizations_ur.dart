@@ -1139,27 +1139,27 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get hadithNarratorSummaryAbuHurairah =>
-      'ابوہریرہ رضی اللہ عنہ رسول اللہ صلی اللہ علیہ وسلم کے صحابی تھے جو رسول اللہ صلی اللہ علیہ وسلم کے قریب رہنے اور کثیر تعداد میں حدیثیں نقل کرنے کے لیے مشہور تھے۔ اس لائبریری میں، وہ اکثر عبادت، کردار، توبہ، اور روزمرہ کی مسلم زندگی کے بارے میں روایات میں نظر آتے ہیں۔';
+      'ابو ہریرہ رضی اللہ عنہ ایک صحابی تھے جو رسول اللہ ﷺ کے قریب رہے اور بہت بڑی تعداد میں احادیث روایت کیں۔ اس لائبریری میں وہ عبادت اور اخلاق کی بہت سی احادیث روایت کرتے ہیں۔';
 
   @override
   String get hadithNarratorSummaryAishah =>
-      'عائشہ بنت ابی بکر رضی اللہ عنہا رسول اللہ صلی اللہ علیہ وسلم کی زوجہ محترمہ اور اہل سنت میں سے ایک تھیں۔ اس کتب خانے میں ان کی روایات اکثر عبادت، قرآن، کردار اور رسول اللہ کے گھر کی زندگی کے بارے میں رہنمائی کو محفوظ رکھتی ہیں۔';
+      'عائشہ بنت ابی بکر رضی اللہ عنہا نبی ﷺ کی ازواج میں سے تھیں اور سنت کی سب سے زیادہ علم رکھنے والی معلمات میں سے ایک۔ اس لائبریری میں ان کی روایات اکثر نبی ﷺ کے گھر کے اندر کی رہنمائی محفوظ رکھتی ہیں۔';
 
   @override
   String get hadithNarratorSummaryAbdullahIbnUmar =>
-      'عبداللہ ابن عمر ایک صحابی تھے جو سنت کی محتاط پیروی اور عبادت میں لگن کے لیے مشہور تھے۔ اس کتب خانے میں ان کی روایتیں اکثر نماز، سفر، تحمل اور آخرت کی بیداری کے ساتھ زندگی گزارنے پر مرکوز ہوتی ہیں۔';
+      'عبداللہ بن عمر رضی اللہ عنہما ایک صحابی تھے جو سنت کی باریک پیروی اور عبادت میں انہماک کے لیے مشہور تھے۔ اس لائبریری میں ان کی روایات اکثر نماز اور سفر، اور آخرت کو پیشِ نظر رکھ کر جینے کے بارے میں ہیں۔';
 
   @override
   String get hadithNarratorSummaryAnasIbnMalik =>
-      'انس بن مالک نے مدینہ میں رسول اللہ صلی اللہ علیہ وسلم کی خدمت کی اور نبی صلی اللہ علیہ وسلم کے اخلاق، رحمت اور روزانہ کی مثال کے بارے میں بہت سی حدیثیں نقل کیں۔ اس کتب خانے میں ان کی روایتوں میں اکثر عملی رہنمائی ملتی ہے جس کی جڑیں قریبی صحبت اور خدمت پر مبنی ہوتی ہیں۔';
+      'انس بن مالک رضی اللہ عنہ نے مدینہ میں نبی ﷺ کی خدمت کی اور آپ ﷺ کے طرزِ عمل اور رحمت کے بارے میں بہت سی احادیث روایت کیں۔ اس لائبریری میں ان کی روایات برسوں کی قریبی خدمت سے آئی عملی رہنمائی رکھتی ہیں۔';
 
   @override
   String get hadithNarratorSummaryJabirIbnAbdullah =>
-      'جابر بن عبداللہ انصار میں سے ایک صحابی تھے جنہوں نے عبادت، آداب اور اجتماعی زندگی میں حدیثیں بیان کیں۔ اس لائبریری میں ان کی روایتیں اکثر رہنمائی کو محفوظ رکھتی ہیں جو عقیدت کو روزمرہ کے طرز عمل سے جوڑتی ہے۔';
+      'جابر بن عبداللہ رضی اللہ عنہما انصار میں سے ایک صحابی تھے جن کی احادیث عبادت اور اجتماعی زندگی سے متعلق ہیں۔ اس لائبریری میں ان کی روایات اکثر بندگی کو روزمرہ کے طرزِ عمل سے جوڑتی ہیں۔';
 
   @override
   String get hadithNarratorSummaryAbdullahIbnAbbas =>
-      'عبداللہ ابن عباس، رسول اللہ صلی اللہ علیہ وسلم کے چچا زاد بھائی، علم، فہم اور تدریس کے لیے بڑے پیمانے پر مشہور ہوئے۔ اس کتب خانے میں ان کی روایتیں اکثر نظر آتی ہیں جہاں حدیث عبادت کو غور و فکر، تفہیم اور وسیع تر بصیرت سے جوڑتی ہے۔';
+      'عبداللہ بن عباس رضی اللہ عنہما، نبی ﷺ کے چچا زاد بھائی، اپنے علم اور تعلیم کے لیے مشہور ہوئے۔ اس لائبریری میں ان کی روایات اکثر عبادت کو فہم سے جوڑتی ہیں۔';
 
   @override
   String get hadithLessonAlreadyCompleted => 'سبق پہلے ہی مکمل ہو چکا ہے۔';
@@ -17640,7 +17640,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get settingsThemeModeEasyReadDescription =>
-      'لمبے مطالعے کے لیے سادہ سطحیں اور گہرا کنٹراسٹ۔';
+      'طویل مطالعے کے لیے سادہ پس منظر اور گہرا تضاد۔';
 
   @override
   String get settingsThemeModeDarkDescription => 'رات کے لیے ایک گہرا انداز۔';
@@ -22412,7 +22412,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'ایک چھوٹی سی دعا آپ کا دن روشن کر سکتی ہے۔';
 
   @override
-  String get kidsDuaLightBuildMessage => 'آئیے آج آپ کی روشنی کو روشن رکھیں۔';
+  String get kidsDuaLightBuildMessage => 'آئیے اپنا نور روشن رکھیں!';
 
   @override
   String get kidsDuaLightSteadyMessage =>
@@ -22437,7 +22437,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get kidsDuaMyDayLightComplete => 'آج آپ کا نور چمک رہا ہے!';
 
   @override
-  String get kidsDuaReminderMorningTitle => 'صبح کی نرم دعا';
+  String get kidsDuaReminderMorningTitle => 'آپ کی صبح کی دعا';
 
   @override
   String get kidsDuaReminderMorningBody =>
@@ -22451,13 +22451,13 @@ class AppLocalizationsUr extends AppLocalizations {
       'آئیے مل کر ایک چھوٹی سی دعا کرتے ہیں۔';
 
   @override
-  String get kidsDuaReminderEveningTitle => 'A calm return to Allah';
+  String get kidsDuaReminderEveningTitle => 'اللہ کو یاد کرنے کا وقت';
 
   @override
   String get kidsDuaReminderEveningBody => 'آج اپنی روشنی کو روشن رکھیں۔';
 
   @override
-  String get kidsDuaReminderBedtimeTitle => 'سونے کے وقت پر سکون دعا';
+  String get kidsDuaReminderBedtimeTitle => 'آپ کی سونے کی دعا';
 
   @override
   String get kidsDuaReminderBedtimeBody =>
@@ -27913,7 +27913,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get bedtimeCompanionStepNotStarted => 'شروع نہیں ہوا۔';
 
   @override
-  String get bedtimeRoutineDefaultPlanTitle => 'نرم سونے کے وقت کا معمول';
+  String get bedtimeRoutineDefaultPlanTitle => 'سونے کا معمول';
 
   @override
   String get bedtimeRoutineStepGetReadyTitle => 'بستر کے لئے تیار ہو جاؤ';
@@ -35161,11 +35161,11 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoGlassDescription =>
-      'شفافیت کے بغیر گرم، ٹھوس سطحیں۔';
+      'شفافیت کے بغیر گرم، ٹھوس رنگ۔';
 
   @override
   String get settingsThemeModeNoGlassDarkDescription =>
-      'کم روشنی کے لیے گہری، ٹھوس سطحیں۔';
+      'کم روشنی کے لیے گہرے، ٹھوس رنگ۔';
 
   @override
   String get settingsThemeModeMidnightManuscriptDescription =>

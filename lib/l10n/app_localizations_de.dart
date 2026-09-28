@@ -1173,27 +1173,27 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get hadithNarratorSummaryAbuHurairah =>
-      'Abu Hurairah war ein Gefährte des Propheten ﷺ, der dafür bekannt war, dem Gesandten Allahs ﷺ nahe zu bleiben und eine große Anzahl von Hadithen zu übermitteln. In dieser Bibliothek erscheint er häufig in Erzählungen über Gottesdienst, Charakter, Reue und das tägliche muslimische Leben.';
+      'Abu Hurairah (möge Allah mit ihm zufrieden sein) war ein Gefährte, der dem Gesandten Allahs ﷺ nahe blieb und sehr viele Hadithe überlieferte. In dieser Bibliothek überliefert er viele der Hadithe über Anbetung und Charakter.';
 
   @override
   String get hadithNarratorSummaryAishah =>
-      'Aishah bint Abi Bakr, möge Allah mit ihr zufrieden sein, war die Frau des Propheten ﷺ und eine der kenntnisreichsten Lehrerinnen der Sunnah. Ihre Erzählungen in dieser Bibliothek enthalten häufig Anleitungen zu Gottesdienst, Koran, Charakter und Leben im Haushalt des Propheten.';
+      'Aishah bint Abi Bakr (möge Allah mit ihr zufrieden sein) war eine Frau des Propheten ﷺ und eine der kundigsten Lehrerinnen der Sunnah. Ihre Überlieferungen in dieser Bibliothek bewahren oft Weisung aus dem Haus des Propheten ﷺ.';
 
   @override
   String get hadithNarratorSummaryAbdullahIbnUmar =>
-      'Abdullah ibn Umar war ein Gefährte, der für seine sorgfältige Befolgung der Sunnah und seine Hingabe an die Anbetung bekannt war. Seine Erzählungen in dieser Bibliothek konzentrieren sich oft auf Gebet, Reisen, Zurückhaltung und ein Leben im Bewusstsein des Jenseits.';
+      'Abdullah ibn Umar (möge Allah mit ihm zufrieden sein) war ein Gefährte, bekannt dafür, der Sunnah genau zu folgen und sich der Anbetung zu widmen. Seine Überlieferungen in dieser Bibliothek handeln oft vom Gebet und vom Reisen und davon, mit dem Jenseits vor Augen zu leben.';
 
   @override
   String get hadithNarratorSummaryAnasIbnMalik =>
-      'Anas ibn Malik diente dem Propheten ﷺ in Medina und übermittelte viele Hadithe über das Verhalten, die Barmherzigkeit und das tägliche Beispiel des Propheten. In dieser Bibliothek enthalten seine Erzählungen oft praktische Anleitungen, die auf enger Kameradschaft und Dienst beruhen.';
+      'Anas ibn Malik (möge Allah mit ihm zufrieden sein) diente dem Propheten ﷺ in Madinah und überlieferte viele Hadithe über sein Verhalten und seine Barmherzigkeit. In dieser Bibliothek tragen seine Überlieferungen praktische Weisung aus Jahren des nahen Dienstes.';
 
   @override
   String get hadithNarratorSummaryJabirIbnAbdullah =>
-      'Jabir ibn Abdullah war ein Gefährte der Ansar, der Hadithe über Anbetung, Sitten und das Gemeinschaftsleben erzählte. Seine Erzählungen in dieser Bibliothek bewahren oft Anleitungen, die Hingabe mit alltäglichem Verhalten verbinden.';
+      'Jabir ibn Abdullah (möge Allah mit ihm zufrieden sein) war ein Gefährte aus den Ansar, dessen Hadithe Anbetung und Gemeinschaftsleben betreffen. Seine Überlieferungen in dieser Bibliothek verbinden oft Hingabe mit dem Verhalten im Alltag.';
 
   @override
   String get hadithNarratorSummaryAbdullahIbnAbbas =>
-      'Abdullah ibn Abbas, Cousin des Propheten ﷺ, wurde weithin für sein Wissen, sein Verständnis und seine Lehrtätigkeit bekannt. In dieser Bibliothek erscheinen seine Erzählungen oft dort, wo Hadithe Anbetung mit Reflexion, Verständnis und umfassenderen Einsichten verbinden.';
+      'Abdullah ibn Abbas (möge Allah mit ihm zufrieden sein), ein Cousin des Propheten ﷺ, wurde für sein Wissen und seine Lehre bekannt. In dieser Bibliothek verbinden seine Überlieferungen oft die Anbetung mit dem Verstehen.';
 
   @override
   String get hadithLessonAlreadyCompleted => 'Lektion bereits abgeschlossen';
@@ -17945,7 +17945,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsThemeModeEasyReadDescription =>
-      'Schlichte Flächen und starker Kontrast für langes Lesen.';
+      'Schlichte Hintergründe und starker Kontrast für langes Lesen.';
 
   @override
   String get settingsThemeModeDarkDescription =>
@@ -22829,7 +22829,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Ein kleines Dua kann deinen Tag heller machen.';
 
   @override
-  String get kidsDuaLightBuildMessage => 'Lass dein Licht heute leuchten.';
+  String get kidsDuaLightBuildMessage => 'Lass dein Licht leuchten!';
 
   @override
   String get kidsDuaLightSteadyMessage =>
@@ -22853,7 +22853,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get kidsDuaMyDayLightComplete => 'Heute strahlt dein Licht!';
 
   @override
-  String get kidsDuaReminderMorningTitle => 'Ein sanftes Morgendua';
+  String get kidsDuaReminderMorningTitle => 'Dein Dua am Morgen';
 
   @override
   String get kidsDuaReminderMorningBody =>
@@ -22867,14 +22867,13 @@ class AppLocalizationsDe extends AppLocalizations {
       'Lass uns zusammen ein kleines Dua sprechen.';
 
   @override
-  String get kidsDuaReminderEveningTitle => 'Eine ruhige Rückkehr zu Allah';
+  String get kidsDuaReminderEveningTitle => 'Zeit, an Allah zu denken';
 
   @override
   String get kidsDuaReminderEveningBody => 'Lass dein Licht heute leuchten.';
 
   @override
-  String get kidsDuaReminderBedtimeTitle =>
-      'Ein friedliches Dua vor dem Schlafen';
+  String get kidsDuaReminderBedtimeTitle => 'Dein Dua vor dem Schlafen';
 
   @override
   String get kidsDuaReminderBedtimeBody =>
@@ -28425,7 +28424,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get bedtimeCompanionStepNotStarted => 'Nicht gestartet';
 
   @override
-  String get bedtimeRoutineDefaultPlanTitle => 'Sanfte Schlafenszeitroutine';
+  String get bedtimeRoutineDefaultPlanTitle => 'Abendroutine';
 
   @override
   String get bedtimeRoutineStepGetReadyTitle => 'Mach dich bettfertig';
@@ -35803,11 +35802,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoGlassDescription =>
-      'Warme, feste Flächen ohne Transparenz.';
+      'Warme, volle Farben ohne Transparenz.';
 
   @override
   String get settingsThemeModeNoGlassDarkDescription =>
-      'Dunkle, feste Flächen für wenig Licht.';
+      'Dunkle, volle Farben für wenig Licht.';
 
   @override
   String get settingsThemeModeMidnightManuscriptDescription =>

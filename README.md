@@ -126,6 +126,9 @@ Notes:
 - keep placeholder shapes aligned across locale files
 - do not hardcode user-facing strings in new UI work
 - treat `app_en.arb` as the source of truth for key structure
+- write English copy by `docs/voice_and_copy_guide.md` (gentle, calm, kind,
+  Islamic, as rules), and run `python3 tools/copy_lint.py --check` before
+  committing strings; CI runs it as its own step
 
 ## Common Flutter commands
 

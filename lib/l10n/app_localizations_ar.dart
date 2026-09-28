@@ -1139,27 +1139,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get hadithNarratorSummaryAbuHurairah =>
-      'كان أبو هريرة من أصحاب النبي صلى الله عليه وسلم معروفا بقربه من رسول الله صلى الله عليه وسلم، ونقل عدد كبير من الأحاديث. ويظهر في هذه المكتبة كثيرًا في روايات العبادة والأخلاق والتوبة وحياة المسلم اليومية.';
+      'أبو هريرة رضي الله عنه صحابي لزم رسول الله ﷺ وروى عددًا كبيرًا من الأحاديث. وفي هذه المكتبة يروي كثيرًا من الأحاديث في العبادة والأخلاق.';
 
   @override
   String get hadithNarratorSummaryAishah =>
-      'عائشة بنت أبي بكر رضي الله عنها، زوجة النبي صلى الله عليه وسلم، ومن أعلم علماء السنة. غالبًا ما تحافظ رواياتها في هذه المكتبة على إرشادات حول العبادة والقرآن والأخلاق والحياة داخل بيت النبي.';
+      'عائشة بنت أبي بكر رضي الله عنهما زوج من أزواج النبي ﷺ ومن أعلم معلمي السنة. وتحفظ رواياتها في هذه المكتبة كثيرًا من الهدي من داخل بيت النبي ﷺ.';
 
   @override
   String get hadithNarratorSummaryAbdullahIbnUmar =>
-      'وكان عبد الله بن عمر صحابيًا معروفًا بحرصه على اتباع السنة وإخلاصه للعبادة. غالبًا ما تتمحور رواياته في هذه المكتبة حول الصلاة والسفر والزهد والعيش مع الوعي بالآخرة.';
+      'عبد الله بن عمر رضي الله عنهما صحابي عُرف بشدة اتباعه للسنة وتفانيه في العبادة. وتتناول رواياته في هذه المكتبة كثيرًا الصلاة والسفر، والعيش مع استحضار الآخرة.';
 
   @override
   String get hadithNarratorSummaryAnasIbnMalik =>
-      'وقد خدم أنس بن مالك النبي صلى الله عليه وسلم في المدينة، ونقل عنه أحاديث كثيرة في سيرة النبي ورحمته وقدوته اليومية. وفي هذه المكتبة، غالبًا ما تحمل رواياته إرشادات عملية متجذرة في الرفقة والخدمة الوثيقة.';
+      'أنس بن مالك رضي الله عنه خدم النبي ﷺ في المدينة وروى أحاديث كثيرة عن هديه ورحمته. وتحمل رواياته في هذه المكتبة توجيهًا عمليًا من سنوات الخدمة القريبة.';
 
   @override
   String get hadithNarratorSummaryJabirIbnAbdullah =>
-      'كان جابر بن عبد الله صحابيًا من الأنصار، روى الحديث في العبادة والأخلاق وحياة المجتمع. غالبًا ما تحافظ رواياته في هذه المكتبة على التوجيهات التي تربط الإخلاص بالسلوك اليومي.';
+      'جابر بن عبد الله رضي الله عنهما صحابي من الأنصار تتناول أحاديثه العبادة وحياة الجماعة. وكثيرًا ما تجمع رواياته في هذه المكتبة بين التعبّد والسلوك اليومي.';
 
   @override
   String get hadithNarratorSummaryAbdullahIbnAbbas =>
-      'وكان عبد الله بن عباس ابن عم النبي ﷺ مشهوراً بالعلم والفهم والتعليم. وفي هذه المكتبة تظهر رواياته غالبا حيث يربط الحديث العبادة بالتدبر والفهم والبصيرة الأوسع.';
+      'عبد الله بن عباس رضي الله عنهما، ابن عم النبي ﷺ، اشتهر بعلمه وتعليمه. وفي هذه المكتبة كثيرًا ما تجمع رواياته بين العبادة والفهم.';
 
   @override
   String get hadithLessonAlreadyCompleted => 'اكتمل الدرس بالفعل';
@@ -17542,7 +17542,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsThemeModeEasyReadDescription =>
-      'أسطح بسيطة وتباين قوي للقراءة الطويلة.';
+      'خلفيات بسيطة وتباين قوي للقراءة الطويلة.';
 
   @override
   String get settingsThemeModeDarkDescription => 'مظهر داكن للاستخدام ليلًا.';
@@ -22282,7 +22282,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get kidsDuaLightStartMessage => 'دعاء صغير يمكنه أن يضيء يومك.';
 
   @override
-  String get kidsDuaLightBuildMessage => 'لنُبقِ نورك مضيئًا اليوم.';
+  String get kidsDuaLightBuildMessage => 'لنُبقِ نورك مضيئًا!';
 
   @override
   String get kidsDuaLightSteadyMessage => 'نورك يكبر مع كل دعاء صغير.';
@@ -22303,7 +22303,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get kidsDuaMyDayLightComplete => 'اليوم، نورك يضيء!';
 
   @override
-  String get kidsDuaReminderMorningTitle => 'دعاء صباحي لطيف';
+  String get kidsDuaReminderMorningTitle => 'دعاؤك في الصباح';
 
   @override
   String get kidsDuaReminderMorningBody => 'دعاء صغير يمكنه أن يضيء يومك.';
@@ -22315,13 +22315,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get kidsDuaReminderMiddayBody => 'لنقل دعاءً صغيرًا معًا.';
 
   @override
-  String get kidsDuaReminderEveningTitle => 'A calm return to Allah';
+  String get kidsDuaReminderEveningTitle => 'حان وقت ذكر الله';
 
   @override
   String get kidsDuaReminderEveningBody => 'أبقِ نورك مضيئًا اليوم.';
 
   @override
-  String get kidsDuaReminderBedtimeTitle => 'دعاء هادئ قبل النوم';
+  String get kidsDuaReminderBedtimeTitle => 'دعاؤك قبل النوم';
 
   @override
   String get kidsDuaReminderBedtimeBody =>
@@ -27735,7 +27735,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get bedtimeCompanionStepNotStarted => 'لم يبدأ';
 
   @override
-  String get bedtimeRoutineDefaultPlanTitle => 'روتين هادئ لوقت النوم';
+  String get bedtimeRoutineDefaultPlanTitle => 'روتين وقت النوم';
 
   @override
   String get bedtimeRoutineStepGetReadyTitle => 'استعد للنوم';
@@ -34932,11 +34932,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoGlassDescription =>
-      'أسطح دافئة مصمتة دون شفافية.';
+      'ألوان دافئة ومصمتة بلا شفافية.';
 
   @override
   String get settingsThemeModeNoGlassDarkDescription =>
-      'أسطح داكنة مصمتة للإضاءة الخافتة.';
+      'ألوان داكنة ومصمتة للإضاءة الخافتة.';
 
   @override
   String get settingsThemeModeMidnightManuscriptDescription =>

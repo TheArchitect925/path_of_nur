@@ -39,6 +39,9 @@ jobs:
       - name: Localization gate
         run: python3 tools/localization_gate.py --release-from-source
 
+      - name: Copy lint
+        run: python3 tools/copy_lint.py --check
+
       - name: Analyze
         run: flutter analyze
 

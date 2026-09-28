@@ -210,6 +210,16 @@ so the exception is visible where it lives:
 subtitle: 'What happens to ال at the beginning.', // copy-lint: allow arabic-in-english
 ```
 
+Since V5 (2026-09-27) every chrome rule is at zero and stays there: a new
+offence fails CI in its own step (`python3 tools/copy_lint.py --check`) as well
+as in the ratchet test. Two things sit outside the chrome count on purpose:
+staff-only screens (`STAFF_KEYS`: the editorial dashboard and the content
+builder, which the mechanics rules still read) and the exceptions named in
+`ALLOW`, one reason each (a trivia stage titled with its three prophets). The
+prose ratchets `prose-tail` and `prose-list-of-three` are V3c and V3d, still
+counting down. The native string tables (Apple TV, Watch, widgets, the Live
+Activity) are not linted; V4 reviewed them by hand.
+
 The ratchet test fails when a count rises (new drift: fix the string) and when
 it falls (lock it: `--write-baseline`). Never raise a baseline by hand.
 
@@ -254,4 +264,4 @@ Then `flutter gen-l10n`, then `python3 tools/localization_gate.py
 | V2d · Long tail (done 2026-09-27) | the knowledge games (crossword, word search, matching, ayah completion, trivia), circles, journal, family learning, accounts and backup, baby names, history, world and sky; game difficulty reads *Simple / Moderate / Reflective / Deep*. Left as written: the editorial dashboard and content builder (staff tools), narrator biographies, madhhab summaries, glossary definitions |
 | V3 · Prose | the content keys and the Dart content files: (a) mechanics, (b) studio vocabulary and roadmap and (c) tails, done 2026-09-27 · (d) lists in cards and summaries |
 | V4 · Native (done 2026-09-27) | the Live Activity speaks all five languages (it was English-only on every lock screen); widgets, Watch and complications say *days in a row* and *light*; the Apple TV’s design notes (“tvOS … direction”, “Works well on TV because…”, the guidance rails) are off its screens and 159 unused TV keys are gone. The six TV sections still on sample content (Learn, Kids, Arabic, Games, Saved, Profiles) are rewritten when each ships |
-| V5 · Lock | baselines to zero, lint blocks CI on its own step |
+| V5 · Lock (done 2026-09-27) | every chrome rule at zero and held there by its own CI step; staff screens out of scope; glossary definitions, madhhab summaries and narrator biographies are prose; two named exceptions. Still counting down: `prose-tail` and `prose-list-of-three` (V3c, V3d) |

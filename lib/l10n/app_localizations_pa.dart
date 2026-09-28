@@ -27976,7 +27976,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get bedtimeCompanionStepNotStarted => 'Not started';
 
   @override
-  String get bedtimeRoutineDefaultPlanTitle => 'Gentle bedtime routine';
+  String get bedtimeRoutineDefaultPlanTitle => 'Bedtime routine';
 
   @override
   String get bedtimeRoutineStepGetReadyTitle => 'Get ready for bed';

@@ -1152,27 +1152,27 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get hadithNarratorSummaryAbuHurairah =>
-      'Abu Hurairah was a Companion of the Prophet ﷺ known for staying close to the Messenger of Allah ﷺ and transmitting a large number of hadith. In this library, he appears often in narrations about worship, character, repentance, and daily Muslim life.';
+      'Abu Hurairah (qu’Allah l’agrée) était un Compagnon resté proche du Messager d’Allah ﷺ, qui a transmis un très grand nombre de hadiths. Dans cette bibliothèque, il rapporte beaucoup des hadiths sur l’adoration et le caractère.';
 
   @override
   String get hadithNarratorSummaryAishah =>
-      'Aishah bint Abi Bakr, may Allah be pleased with her, was the wife of the Prophet ﷺ and one of the most knowledgeable teachers of the Sunnah. Her narrations in this library often preserve guidance about worship, Qur’an, character, and life within the Prophet’s household.';
+      'Aïcha bint Abi Bakr (qu’Allah l’agrée) était une épouse du Prophète ﷺ et l’une des enseignantes les plus savantes de la sunnah. Dans cette bibliothèque, ses récits préservent souvent des enseignements venus du foyer du Prophète ﷺ.';
 
   @override
   String get hadithNarratorSummaryAbdullahIbnUmar =>
-      'Abdullah ibn Umar was a Companion known for his careful following of the Sunnah and his devotion to worship. His narrations in this library often center on prayer, travel, restraint, and living with awareness of the Hereafter.';
+      'Abdullah ibn Umar (qu’Allah l’agrée) était un Compagnon connu pour suivre la sunnah de près et pour sa dévotion. Dans cette bibliothèque, ses récits portent souvent sur la prière et le voyage, et sur une vie tournée vers l’au-delà.';
 
   @override
   String get hadithNarratorSummaryAnasIbnMalik =>
-      'Anas ibn Malik served the Prophet ﷺ in Madinah and transmitted many hadith about the Prophet’s conduct, mercy, and daily example. In this library, his narrations often carry practical guidance rooted in close companionship and service.';
+      'Anas ibn Malik (qu’Allah l’agrée) a servi le Prophète ﷺ à Médine et a transmis de nombreux hadiths sur sa conduite et sa miséricorde. Dans cette bibliothèque, ses récits portent des conseils pratiques nés d’années de service proche.';
 
   @override
   String get hadithNarratorSummaryJabirIbnAbdullah =>
-      'Jabir ibn Abdullah was a Companion from the Ansar who narrated hadith across worship, manners, and community life. His narrations in this library often preserve guidance that connects devotion with everyday conduct.';
+      'Jabir ibn Abdullah (qu’Allah l’agrée) était un Compagnon des Ansar dont les hadiths touchent l’adoration et la vie de la communauté. Dans cette bibliothèque, ses récits relient souvent la dévotion à la conduite de tous les jours.';
 
   @override
   String get hadithNarratorSummaryAbdullahIbnAbbas =>
-      'Abdullah ibn Abbas, cousin of the Prophet ﷺ, became widely known for knowledge, understanding, and teaching. In this library, his narrations often appear where hadith connects worship with reflection, understanding, and broader insight.';
+      'Abdullah ibn Abbas (qu’Allah l’agrée), cousin du Prophète ﷺ, est devenu connu pour son savoir et son enseignement. Dans cette bibliothèque, ses récits relient souvent l’adoration à la compréhension.';
 
   @override
   String get hadithLessonAlreadyCompleted => 'Lesson already completed';
@@ -17820,7 +17820,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsThemeModeEasyReadDescription =>
-      'Des surfaces simples et un fort contraste pour lire longtemps.';
+      'Des fonds sobres et un fort contraste pour lire longtemps.';
 
   @override
   String get settingsThemeModeDarkDescription =>
@@ -22654,7 +22654,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kidsDuaLightStartMessage => 'One small dua can brighten your day.';
 
   @override
-  String get kidsDuaLightBuildMessage => 'Let’s keep your light shining today.';
+  String get kidsDuaLightBuildMessage => 'Gardons ta lumière allumée !';
 
   @override
   String get kidsDuaLightSteadyMessage =>
@@ -22679,7 +22679,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kidsDuaMyDayLightComplete => 'Aujourd’hui, ta lumière brille !';
 
   @override
-  String get kidsDuaReminderMorningTitle => 'A gentle morning dua';
+  String get kidsDuaReminderMorningTitle => 'Ta dua du matin';
 
   @override
   String get kidsDuaReminderMorningBody => 'A small dua can brighten your day.';
@@ -22691,13 +22691,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kidsDuaReminderMiddayBody => 'Let’s do one small dua together.';
 
   @override
-  String get kidsDuaReminderEveningTitle => 'A calm return to Allah';
+  String get kidsDuaReminderEveningTitle => 'C’est l’heure de penser à Allah';
 
   @override
   String get kidsDuaReminderEveningBody => 'Keep your light shining today.';
 
   @override
-  String get kidsDuaReminderBedtimeTitle => 'A peaceful bedtime dua';
+  String get kidsDuaReminderBedtimeTitle => 'Ta dua du coucher';
 
   @override
   String get kidsDuaReminderBedtimeBody =>
@@ -28191,7 +28191,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get bedtimeCompanionStepNotStarted => 'Not started';
 
   @override
-  String get bedtimeRoutineDefaultPlanTitle => 'Gentle bedtime routine';
+  String get bedtimeRoutineDefaultPlanTitle => 'Routine du coucher';
 
   @override
   String get bedtimeRoutineStepGetReadyTitle => 'Get ready for bed';
@@ -35489,11 +35489,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoGlassDescription =>
-      'Des surfaces chaudes et pleines, sans transparence.';
+      'Des couleurs chaudes et pleines, sans transparence.';
 
   @override
   String get settingsThemeModeNoGlassDarkDescription =>
-      'Des surfaces sombres et pleines pour la pénombre.';
+      'Des couleurs sombres et pleines pour la faible lumière.';
 
   @override
   String get settingsThemeModeMidnightManuscriptDescription =>
