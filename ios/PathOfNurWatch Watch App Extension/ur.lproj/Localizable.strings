@@ -36,7 +36,7 @@
 "watch.sync.justNow" = "ابھی ابھی";
 "watch.progress.growth" = "نمو";
 "watch.prayer.completed.title" = "نماز درج ہو گئی";
-"watch.prayer.completed.body" = "نماز کے بعد مختصر اذکار کے ساتھ اس لمحے کو تھامے رکھیں۔";
+"watch.prayer.completed.body" = "نماز کے بعد چند اذکار کے لیے رکیں۔";
 "watch.prayer.postPrayerAdhkar" = "نمازِ بعد اذکار";
 "watch.common.done" = "ہو گیا";
 "watch.common.skip" = "چھوڑیں";
@@ -46,7 +46,7 @@
 "watch.adhkar.tap" = "ذکر کے لیے ٹیپ کریں";
 "watch.adhkar.sequence" = "نماز کے بعد کا ذکر";
 "watch.adhkar.completed.title" = "اذکار مکمل";
-"watch.adhkar.completed.body" = "نماز سے آگے بڑھایا گیا ایک نرم ذکر۔";
+"watch.adhkar.completed.body" = "نماز کے بعد کے اذکار مکمل ہو گئے۔";
 "watch.adhkar.step" = "کلمہ";
 "watch.adhkar.phrase.subhanAllah" = "سبحان اللہ";
 "watch.adhkar.phrase.alhamdulillah" = "الحمد للہ";
@@ -68,7 +68,7 @@
 "watch.complication.prayerProgress.completedFormat" = "%d از %d مکمل";
 "watch.complication.autoDhikr.summaryFormat" = "%d • %@/گنتی";
 "watch.complication.autoDhikr.runningFormat" = "%d/%d • %@/گنتی";
-"watch.notification.prayer.body" = "نرمی سے اس نماز کی طرف لوٹیں۔";
+"watch.notification.prayer.body" = "اس نماز کا وقت ہو گیا ہے۔";
 "watch.notification.action.markPrayed" = "ادا شدہ نشان زد کریں";
 "watch.notification.action.markPrayedLate" = "تاخیر سے ادا نشان زد کریں";
 "watch.notification.action.snooze" = "بعد میں یاد دلائیں";
@@ -81,8 +81,8 @@
 "watch.dhikr.preset.34.phrase" = "اللہ اکبر";
 "watch.dhikr.preset.99.phrase" = "سبحان اللہ";
 "watch.dhikr.preset.custom.phrase" = "ذکر کی نشست";
-"watch.dhikr.antiRush.title" = "نرمی سے آہستہ ہوں";
-"watch.dhikr.antiRush.body" = "ذکر صرف گنتی میں نہیں، حضورِ قلب میں ہے۔ آہستہ ہوں، سانس لیں، اور خلوص کے ساتھ یاد کریں۔";
+"watch.dhikr.antiRush.title" = "آہستہ کریں";
+"watch.dhikr.antiRush.body" = "ذکر حضوری ہے، صرف گنتی نہیں۔ آہستہ ہوں اور سانس لیں۔";
 "watch.dhikr.antiRush.acknowledge" = "جاری رکھیں";
 "watch.dhikr.mode.manual" = "دستی";
 "watch.dhikr.mode.auto" = "خودکار";
@@ -98,12 +98,12 @@
 "watch.dhikr.auto.pace" = "رفتار";
 "watch.dhikr.auto.faster" = "تیز";
 "watch.dhikr.auto.slower" = "آہستہ";
-"watch.dhikr.auto.keepFocus" = "گھڑی کو پُرسکون روانی سنبھالنے دیں۔";
+"watch.dhikr.auto.keepFocus" = "گھڑی آپ کے لیے رفتار سنبھالتی ہے۔";
 "watch.dhikr.auto.minimalHint" = "رفتار اور اختتام کے کنٹرول دیکھنے کے لیے ٹیپ کریں۔";
 "watch.dhikr.auto.showControls" = "کنٹرول دکھائیں";
 "watch.dhikr.auto.hideControls" = "کنٹرول چھپائیں";
 "watch.dhikr.auto.complete.title" = "خودکار ذکر مکمل";
-"watch.dhikr.auto.complete.body" = "ایک پُرسکون رہنمائی شدہ ذکر اپنے ہدف تک پہنچ گیا۔";
+"watch.dhikr.auto.complete.body" = "آپ اپنے ہدف تک پہنچ گئے، الحمدللہ۔";
 "watch.dhikr.auto.end.confirm.title" = "نشست ختم کریں؟";
 "watch.dhikr.auto.end.confirm.body" = "آپ کے خودکار ذکر کی موجودہ پیش رفت صرف آج کی تاریخ میں محفوظ رہے گی۔";
 "watch.dhikr.auto.phrase.subhanAllah" = "سبحان اللہ";

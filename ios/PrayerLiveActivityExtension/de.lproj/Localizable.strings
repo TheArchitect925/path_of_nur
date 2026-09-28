@@ -1,0 +1,21 @@
+/* Live Activity labels. Prayer names come from the app. */
+"live_ramadan" = "Ramadan";
+"live_iftar" = "Iftar";
+"live_iftar_in" = "Iftar in";
+"live_now" = "Jetzt";
+"live_current_salah" = "Aktuelles Gebet";
+"live_ends_in" = "Endet in";
+"live_next" = "Nächstes";
+"live_next_salah" = "Nächstes Gebet";
+"live_starts_in" = "Beginnt in";
+"live_fast" = "Fasten";
+"live_fasting" = "Fasten";
+"live_quran" = "Koran";
+"live_elapsed_format" = "Vergangen %@";
+"live_short_fajr" = "Fjr";
+"live_short_dhuhr" = "Dhr";
+"live_short_asr" = "Asr";
+"live_short_maghrib" = "Mgr";
+"live_short_isha" = "Ish";
+"live_short_tahajjud" = "Thj";
+"live_short_prayer" = "Geb";

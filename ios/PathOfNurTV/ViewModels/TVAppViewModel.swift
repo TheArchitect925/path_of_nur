@@ -584,8 +584,6 @@ final class TVProfilesViewModel: ObservableObject {
   @Published private(set) var hero: TVHeroContent = TVSeedRepository.profilesHero()
   @Published private(set) var profiles: [TVHouseholdProfile] =
       TVSeedRepository.householdProfiles()
-  @Published private(set) var supportCards: [TVHouseholdSupportCard] =
-      TVSeedRepository.householdSupportCards()
   @Published private(set) var continuityCards: [TVSessionContinuityCard] = []
   @Published private(set) var activeProfileId: String
   @Published private(set) var selectedProfileId: String
@@ -600,7 +598,6 @@ final class TVProfilesViewModel: ObservableObject {
   ) {
     let seededProfiles = TVSeedRepository.householdProfiles()
     profiles = seededProfiles
-    supportCards = TVSeedRepository.householdSupportCards()
     let resolvedActiveProfileId = seededProfiles.contains(where: { $0.id == activeProfileId })
         ? activeProfileId ?? seededProfiles.first?.id ?? ""
         : seededProfiles.first?.id ?? ""
@@ -646,24 +643,8 @@ final class TVProfilesViewModel: ObservableObject {
     tvLocalized("Each profile keeps a calm return path so Qur'an, learning, and worship can resume from the strongest place for that part of the household.")
   }
 
-  var supportTitle: String {
-    tvLocalized("Shared-device guidance")
-  }
-
-  var supportSubtitle: String {
-    tvLocalized("Profile switching on tvOS should stay simple, respectful, and safe for mixed-age family-room use.")
-  }
-
   var detailRailTitle: String {
     tvLocalized("Active profile")
-  }
-
-  var detailRailNoteTitle: String {
-    tvLocalized("tvOS household direction")
-  }
-
-  var detailRailNoteSubtitle: String {
-    tvLocalized("Apple TV should handle fast switching and calm continuity, while account edits, backup controls, and deeper permissions stay on iPhone or iPad.")
   }
 
   var continuityRailTitle: String {
@@ -721,8 +702,6 @@ final class TVFavoritesViewModel: ObservableObject {
       TVSeedRepository.favoritesPrimaryItems()
   @Published private(set) var savedItems: [TVSavedItemCard] =
       TVSeedRepository.favoritesSavedItems()
-  @Published private(set) var supportCards: [TVFavoritesSupportCard] =
-      TVSeedRepository.favoritesSupportCards()
   @Published private(set) var selectedPrimaryItemId: String
   @Published private(set) var selectedSavedItemId: String
 
@@ -747,24 +726,8 @@ final class TVFavoritesViewModel: ObservableObject {
     tvLocalized("Keep the strongest saved return close on TV so reading, listening, or reflection can resume without typing or list management.")
   }
 
-  var supportTitle: String {
-    tvLocalized("Watch-later and playlist flow")
-  }
-
-  var supportSubtitle: String {
-    tvLocalized("Television saves should favor low-friction resume behavior, while deeper editing and organizing stays on iPhone or iPad.")
-  }
-
   var detailRailTitle: String {
     tvLocalized("Selected saved lane")
-  }
-
-  var detailRailNoteTitle: String {
-    tvLocalized("tvOS saved-items direction")
-  }
-
-  var detailRailNoteSubtitle: String {
-    tvLocalized("Saved on TV should help the household return quickly to Qur'an, listening, and reflection without turning the route into a heavy library manager.")
   }
 
   var savedItemRailTitle: String {
@@ -798,8 +761,6 @@ final class TVGamesViewModel: ObservableObject {
       TVSeedRepository.gamesPrimaryItems()
   @Published private(set) var challengeCards: [TVGamesChallengeCard] =
       TVSeedRepository.gamesChallengeCards()
-  @Published private(set) var supportCards: [TVGamesSupportCard] =
-      TVSeedRepository.gamesSupportCards()
   @Published private(set) var selectedPrimaryItemId: String
   @Published private(set) var selectedChallengeId: String
   @Published private(set) var selectedOptionIdByChallenge: [String: String] = [:]
@@ -825,24 +786,8 @@ final class TVGamesViewModel: ObservableObject {
     tvLocalized("Use simple directional movement and one clear answer choice at a time instead of typing-heavy game patterns.")
   }
 
-  var supportTitle: String {
-    tvLocalized("Family-room game guidance")
-  }
-
-  var supportSubtitle: String {
-    tvLocalized("Keep games short, educational, and easy to leave so television play reinforces learning instead of stretching it thin.")
-  }
-
   var detailRailTitle: String {
     tvLocalized("Selected game path")
-  }
-
-  var detailRailNoteTitle: String {
-    tvLocalized("tvOS games direction")
-  }
-
-  var detailRailNoteSubtitle: String {
-    tvLocalized("Games on TV should reward recall, recognition, and discussion with the room, not speed tapping, typing, or noisy effects.")
   }
 
   var challengeRailTitle: String {
@@ -895,8 +840,6 @@ final class TVArabicViewModel: ObservableObject {
       TVSeedRepository.arabicPrimaryItems()
   @Published private(set) var letterGroups: [TVArabicLetterGroup] =
       TVSeedRepository.arabicLetterGroups()
-  @Published private(set) var supportCards: [TVArabicSupportCard] =
-      TVSeedRepository.arabicSupportCards()
   @Published private(set) var selectedItemId: String
   @Published private(set) var selectedLetterGroupId: String
 
@@ -921,24 +864,8 @@ final class TVArabicViewModel: ObservableObject {
     tvLocalized("Learn small families of letters with large forms, simple sound cues, and distance-friendly examples.")
   }
 
-  var supportTitle: String {
-    tvLocalized("Arabic learning guidance")
-  }
-
-  var supportSubtitle: String {
-    tvLocalized("Keep beginner Arabic on TV visual, repeatable, and easy to leave before fatigue replaces benefit.")
-  }
-
   var detailRailTitle: String {
     tvLocalized("Selected Arabic path")
-  }
-
-  var detailRailNoteTitle: String {
-    tvLocalized("tvOS Arabic direction")
-  }
-
-  var detailRailNoteSubtitle: String {
-    tvLocalized("Arabic on TV should help the room see, hear, and recognize with confidence before pushing speed, testing, or typing.")
   }
 
   var selectedItem: TVLearnHubItem? {
@@ -1305,8 +1232,6 @@ final class TVKidsViewModel: ObservableObject {
       TVSeedRepository.kidsPrimaryItems()
   @Published private(set) var featuredStories: [TVLearnStoryEntry] =
       TVSeedRepository.kidsFeaturedStories()
-  @Published private(set) var supportCards: [TVKidsSupportCard] =
-      TVSeedRepository.kidsSupportCards()
   @Published private(set) var selectedItemId: String
   @Published private(set) var selectedStoryId: String
 
@@ -1331,24 +1256,8 @@ final class TVKidsViewModel: ObservableObject {
     tvLocalized("Use short, safe, discussion-friendly stories that work for mixed ages and simple remote movement.")
   }
 
-  var supportTitle: String {
-    tvLocalized("Family-safe guidance")
-  }
-
-  var supportSubtitle: String {
-    tvLocalized("Keep the television calm, age-appropriate, and easy to leave without losing the benefit of the session.")
-  }
-
   var detailRailTitle: String {
     tvLocalized("Selected kids path")
-  }
-
-  var detailRailNoteTitle: String {
-    tvLocalized("tvOS kids direction")
-  }
-
-  var detailRailNoteSubtitle: String {
-    tvLocalized("Kids mode on TV should stay visually clear, safe for shared use, and lighter than the full mobile kids ecosystem.")
   }
 
   var selectedItem: TVLearnHubItem? {
@@ -1441,14 +1350,6 @@ final class TVLearnViewModel: ObservableObject {
     tvLocalized("Selected learning path")
   }
 
-  var layoutNoteTitle: String {
-    tvLocalized("tvOS Learn direction")
-  }
-
-  var layoutNoteSubtitle: String {
-    tvLocalized("This Learn hub is intentionally curated for television: large choices, simple focus movement, and no heavy typing or settings-first setup.")
-  }
-
   var storiesSectionTitle: String {
     activeStoryCollection.title
   }
@@ -1469,14 +1370,6 @@ final class TVLearnViewModel: ObservableObject {
     tvLocalized("Reflect together")
   }
 
-  var storyDirectionTitle: String {
-    tvLocalized("tvOS stories direction")
-  }
-
-  var storyDirectionSubtitle: String {
-    tvLocalized("Stories and reflection should feel calm on TV: large choices, memorable lessons, and simple prompts that lead the room back into worship and character.")
-  }
-
   var visualsSectionTitle: String {
     activeVisualCollection.title
   }
@@ -1495,14 +1388,6 @@ final class TVLearnViewModel: ObservableObject {
 
   var visualReflectionTitle: String {
     tvLocalized("Observe together")
-  }
-
-  var visualDirectionTitle: String {
-    tvLocalized("tvOS visual learning direction")
-  }
-
-  var visualDirectionSubtitle: String {
-    tvLocalized("Visual Learn should use scale, atmosphere, and simple comparison to guide the room toward wonder, humility, and gratitude without turning TV into a dense study tool.")
   }
 
   var selectedItem: TVLearnHubItem? {

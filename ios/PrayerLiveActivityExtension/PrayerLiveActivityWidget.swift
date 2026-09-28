@@ -106,7 +106,7 @@ struct PrayerLiveActivityWidget: Widget {
           }
         }
       } compactLeading: {
-        Text(shortPrayerLabel(primary.name))
+        Text(shortPrayerLabel(primary.prayerId))
           .font(.caption2)
           .foregroundStyle(Color(hex: 0xE8D9C0))
       } compactTrailing: {
@@ -325,7 +325,7 @@ struct FastingLiveActivityWidget: Widget {
       DynamicIsland {
         DynamicIslandExpandedRegion(.leading) {
           VStack(alignment: .leading, spacing: 2) {
-            Text("Fast")
+            Text(liveString("live_fast"))
               .font(.caption2)
               .foregroundStyle(Color(hex: 0xA7B9C4))
             Text(context.state.title)
@@ -372,7 +372,7 @@ struct FastingLiveActivityWidget: Widget {
           .fixedSize(horizontal: true, vertical: true)
         }
       } compactLeading: {
-        Text("Fast")
+        Text(liveString("live_fast"))
           .font(.caption2)
           .foregroundStyle(Color(hex: 0xE8D9C0))
       } compactTrailing: {
@@ -415,7 +415,7 @@ private struct FastingLockscreenCard: View {
         )
 
       VStack(spacing: 8) {
-        Text("Fasting")
+        Text(liveString("live_fasting"))
           .font(.caption2.weight(.semibold))
           .foregroundStyle(Color(hex: 0xA7B9C4))
         Text(state.title)
@@ -476,10 +476,10 @@ struct QuranPlaybackLiveActivityWidget: Widget {
       DynamicIsland {
         DynamicIslandExpandedRegion(.leading) {
           VStack(alignment: .leading, spacing: 2) {
-            Text("Qur’an")
+            Text(liveString("live_quran"))
               .font(.caption2.weight(.semibold))
               .foregroundStyle(Color(hex: 0xA7B9C4))
-            Text(shortPrayerLabel(context.state.surahName))
+            Text(context.state.surahName)
               .font(.headline)
               .lineLimit(1)
               .foregroundStyle(Color(hex: 0xF3EEE5))
@@ -604,6 +604,7 @@ private struct _QuranControlPill: View {
 }
 
 private struct PrayerPrimaryPresentation {
+  let prayerId: String
   let compactLabel: String
   let sectionLabel: String
   let name: String
@@ -622,11 +623,12 @@ private func resolvePrimaryPrayerPresentation(
      let ramadanSeconds = state.ramadanRemainingSeconds {
     let ramadanArabic = state.ramadanPrayerArabicName ?? ""
     return PrayerPrimaryPresentation(
-      compactLabel: "Ramadan",
-      sectionLabel: "Ramadan",
-      name: "Iftar",
+      prayerId: state.ramadanPrayerId ?? ramadanName,
+      compactLabel: liveString("live_ramadan"),
+      sectionLabel: liveString("live_ramadan"),
+      name: liveString("live_iftar"),
       arabicName: ramadanArabic.isEmpty ? ramadanName : ramadanArabic,
-      metricLabel: "Iftar in",
+      metricLabel: liveString("live_iftar_in"),
       seconds: max(0, ramadanSeconds),
       scheduledEpoch: state.ramadanTargetAtEpoch,
       targetEpoch: state.ramadanTargetAtEpoch
@@ -638,11 +640,12 @@ private func resolvePrimaryPrayerPresentation(
      !currentName.isEmpty,
      let currentSeconds = state.currentRemainingSeconds {
     return PrayerPrimaryPresentation(
-      compactLabel: "Current",
-      sectionLabel: "Current Salah",
+      prayerId: state.currentPrayerId ?? currentName,
+      compactLabel: liveString("live_now"),
+      sectionLabel: liveString("live_current_salah"),
       name: currentName,
       arabicName: state.currentPrayerArabicName ?? "",
-      metricLabel: "Ends in",
+      metricLabel: liveString("live_ends_in"),
       seconds: max(0, currentSeconds),
       scheduledEpoch: state.currentPrayerAtEpoch,
       targetEpoch: state.nextTargetAtEpoch
@@ -650,11 +653,12 @@ private func resolvePrimaryPrayerPresentation(
   }
 
   return PrayerPrimaryPresentation(
-    compactLabel: "Next",
-    sectionLabel: "Next Salah",
+    prayerId: state.nextPrayerId,
+    compactLabel: liveString("live_next"),
+    sectionLabel: liveString("live_next_salah"),
     name: state.nextPrayerName,
     arabicName: state.nextPrayerArabicName,
-    metricLabel: "Starts in",
+    metricLabel: liveString("live_starts_in"),
     seconds: max(0, state.nextRemainingSeconds),
     scheduledEpoch: state.nextTargetAtEpoch,
     targetEpoch: state.nextTargetAtEpoch
@@ -729,19 +733,19 @@ private struct _MinuteCountdownText: View {
 private func shortPrayerLabel(_ value: String) -> String {
   switch value.lowercased() {
   case "fajr":
-    return "Fjr"
+    return liveString("live_short_fajr")
   case "dhuhr":
-    return "Dhr"
+    return liveString("live_short_dhuhr")
   case "asr":
-    return "Asr"
+    return liveString("live_short_asr")
   case "maghrib":
-    return "Mgr"
+    return liveString("live_short_maghrib")
   case "isha":
-    return "Ish"
+    return liveString("live_short_isha")
   case "tahajjud":
-    return "Thj"
+    return liveString("live_short_tahajjud")
   default:
-    return "Pr"
+    return liveString("live_short_prayer")
   }
 }
 
@@ -755,7 +759,7 @@ private func quranTimerText(state: QuranPlaybackAttributes.ContentState) -> Stri
   let elapsed = max(0, state.elapsedSeconds)
   let total = max(0, state.totalSeconds)
   if total <= 0 {
-    return "Elapsed \(compactTimeLeft(elapsed))"
+    return String(format: liveString("live_elapsed_format"), compactTimeLeft(elapsed))
   }
   return "\(compactTimeLeft(elapsed)) / \(compactTimeLeft(total))"
 }
@@ -775,4 +779,8 @@ private extension Color {
     let blue = Double(hex & 0xFF) / 255.0
     self.init(red: red, green: green, blue: blue, opacity: alpha)
   }
+}
+
+private func liveString(_ key: String) -> String {
+  NSLocalizedString(key, comment: "")
 }

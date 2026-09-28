@@ -207,15 +207,6 @@ struct TVDhikrSupportCard: Identifiable, Hashable {
   let systemImage: String
 }
 
-struct TVKidsSupportCard: Identifiable, Hashable {
-  let id: String
-  let eyebrow: String
-  let title: String
-  let subtitle: String
-  let supportingLine: String
-  let systemImage: String
-}
-
 struct TVArabicLetterGroup: Identifiable, Hashable {
   let id: String
   let eyebrow: String
@@ -225,15 +216,6 @@ struct TVArabicLetterGroup: Identifiable, Hashable {
   let letters: [String]
   let exampleSound: String
   let focusPoints: [String]
-}
-
-struct TVArabicSupportCard: Identifiable, Hashable {
-  let id: String
-  let eyebrow: String
-  let title: String
-  let subtitle: String
-  let supportingLine: String
-  let systemImage: String
 }
 
 struct TVGamesChallengeOption: Identifiable, Hashable {
@@ -257,15 +239,6 @@ struct TVGamesChallengeCard: Identifiable, Hashable {
   let options: [TVGamesChallengeOption]
 }
 
-struct TVGamesSupportCard: Identifiable, Hashable {
-  let id: String
-  let eyebrow: String
-  let title: String
-  let subtitle: String
-  let supportingLine: String
-  let systemImage: String
-}
-
 struct TVSavedItemCard: Identifiable, Hashable {
   let id: String
   let eyebrow: String
@@ -277,15 +250,6 @@ struct TVSavedItemCard: Identifiable, Hashable {
   let tags: [String]
 }
 
-struct TVFavoritesSupportCard: Identifiable, Hashable {
-  let id: String
-  let eyebrow: String
-  let title: String
-  let subtitle: String
-  let supportingLine: String
-  let systemImage: String
-}
-
 struct TVHouseholdProfile: Identifiable, Hashable {
   let id: String
   let avatar: String
@@ -295,7 +259,6 @@ struct TVHouseholdProfile: Identifiable, Hashable {
   let systemImage: String
   let audienceLabel: String
   let syncLabel: String
-  let detailPoints: [String]
   let preferredRoute: TVRoute
 }
 
@@ -309,15 +272,6 @@ struct TVSessionContinuityCard: Identifiable, Hashable {
   let systemImage: String
   let route: TVRoute
   let chips: [String]
-}
-
-struct TVHouseholdSupportCard: Identifiable, Hashable {
-  let id: String
-  let eyebrow: String
-  let title: String
-  let subtitle: String
-  let supportingLine: String
-  let systemImage: String
 }
 
 struct TVSystemStatusSnapshot: Hashable {
@@ -361,7 +315,6 @@ struct TVLearnHubItem: Identifiable, Hashable {
   let subtitle: String
   let supportingLine: String
   let systemImage: String
-  let detailPoints: [String]
 }
 
 struct TVLearnHubSection: Identifiable, Hashable {

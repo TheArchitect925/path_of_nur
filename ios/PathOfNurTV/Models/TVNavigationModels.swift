@@ -173,7 +173,6 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
       return [
         TVFocusSectionId.profilesPrimary,
         TVFocusSectionId.profilesContinuity,
-        TVFocusSectionId.profilesSupport,
       ]
     case .quran:
       return [
@@ -185,7 +184,6 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
       return [
         TVFocusSectionId.favoritesPrimary,
         TVFocusSectionId.favoritesSaved,
-        TVFocusSectionId.favoritesSupport,
       ]
     case .settings:
       return [
@@ -198,7 +196,6 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
       return [
         TVFocusSectionId.arabicPrimary,
         TVFocusSectionId.arabicLetters,
-        TVFocusSectionId.arabicSupport,
       ]
     case .learn:
       return [
@@ -211,7 +208,6 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
       return [
         TVFocusSectionId.gamesPrimary,
         TVFocusSectionId.gamesChallenge,
-        TVFocusSectionId.gamesSupport,
       ]
     case .prayer:
       return [
@@ -227,7 +223,6 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
       return [
         TVFocusSectionId.kidsPrimary,
         TVFocusSectionId.kidsStory,
-        TVFocusSectionId.kidsSupport,
       ]
     }
   }
@@ -254,34 +249,29 @@ enum TVFocusSectionId {
   static let homeVerse = "home.verse"
   static let profilesPrimary = "profiles.primary"
   static let profilesContinuity = "profiles.continuity"
-  static let profilesSupport = "profiles.support"
   static let quranPlayback = "quran.playback"
   static let quranBrowse = "quran.browse"
   static let quranReader = "quran.reader"
   static let favoritesPrimary = "favorites.primary"
   static let favoritesSaved = "favorites.saved"
-  static let favoritesSupport = "favorites.support"
   static let settingsStartup = "settings.startup"
   static let settingsPrayer = "settings.prayer"
   static let settingsAppearance = "settings.appearance"
   static let settingsListening = "settings.listening"
   static let arabicPrimary = "arabic.primary"
   static let arabicLetters = "arabic.letters"
-  static let arabicSupport = "arabic.support"
   static let learnPrimary = "learn.primary"
   static let learnShelf = "learn.shelf"
   static let learnStory = "learn.story"
   static let learnVisual = "learn.visual"
   static let gamesPrimary = "games.primary"
   static let gamesChallenge = "games.challenge"
-  static let gamesSupport = "games.support"
   static let prayerCurrentNext = "prayer.currentNext"
   static let prayerSchedule = "prayer.schedule"
   static let dhikrRoutines = "dhikr.routines"
   static let dhikrPhrases = "dhikr.phrases"
   static let kidsPrimary = "kids.primary"
   static let kidsStory = "kids.story"
-  static let kidsSupport = "kids.support"
 
   static func quranSurahRow(_ surahId: Int) -> String {
     "quran.browse.\(surahId)"

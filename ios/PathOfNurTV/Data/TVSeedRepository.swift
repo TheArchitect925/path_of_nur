@@ -149,11 +149,6 @@ enum TVSeedRepository {
         systemImage: "person.3.fill",
         audienceLabel: tvLocalized("Shared"),
         syncLabel: tvLocalized("Companion backup"),
-        detailPoints: [
-          tvLocalized("Keeps Home and Qur'an close as the strongest shared return paths."),
-          tvLocalized("Useful when multiple people may reopen the same Apple TV session in one day."),
-          tvLocalized("Avoids dense device-management prompts on the main television flow."),
-        ],
         preferredRoute: .home
       ),
       TVHouseholdProfile(
@@ -165,11 +160,6 @@ enum TVSeedRepository {
         systemImage: "book.closed.fill",
         audienceLabel: tvLocalized("Protected"),
         syncLabel: tvLocalized("Manual or remote backup"),
-        detailPoints: [
-          tvLocalized("Keeps Saved and Qur'an resume lanes visible without exposing the full mobile account manager."),
-          tvLocalized("Fits family-room recitation, reflection, and evening learning better than dense settings controls."),
-          tvLocalized("Leaves signing in, backup review, and restore decisions to companion devices."),
-        ],
         preferredRoute: .quran
       ),
       TVHouseholdProfile(
@@ -181,41 +171,7 @@ enum TVSeedRepository {
         systemImage: "figure.child.circle.fill",
         audienceLabel: tvLocalized("Guardian managed"),
         syncLabel: tvLocalized("Phone handoff"),
-        detailPoints: [
-          tvLocalized("Keeps Kids and Arabic close without turning tvOS into a profile-heavy management workflow."),
-          tvLocalized("Supports mixed-age room use by making the household context obvious before content starts."),
-          tvLocalized("Lets guardians handle deeper permissions and editing later on iPhone or iPad."),
-        ],
         preferredRoute: .kids
-      ),
-    ]
-  }
-
-  static func householdSupportCards() -> [TVHouseholdSupportCard] {
-    [
-      TVHouseholdSupportCard(
-        id: "shared_device_safety",
-        eyebrow: tvLocalized("Shared device"),
-        title: tvLocalized("Keep switching simple"),
-        subtitle: tvLocalized("A television profile flow should help the room choose the right context quickly instead of recreating the full mobile profile editor."),
-        supportingLine: tvLocalized("Best when Apple TV needs to stay calm, visible, and easy for guests or family members to leave safely."),
-        systemImage: "rectangle.on.rectangle.circle.fill"
-      ),
-      TVHouseholdSupportCard(
-        id: "companion_handoff",
-        eyebrow: tvLocalized("Companion handoff"),
-        title: tvLocalized("Edit deeper settings later"),
-        subtitle: tvLocalized("Use iPhone or iPad for account changes, backup review, and detailed permissions while tvOS keeps only the strongest household actions."),
-        supportingLine: tvLocalized("This keeps writing, sign-in, and recovery work off the television and preserves a better family-room experience."),
-        systemImage: "iphone.gen3"
-      ),
-      TVHouseholdSupportCard(
-        id: "continuity_first",
-        eyebrow: tvLocalized("Session continuity"),
-        title: tvLocalized("Resume from the right route"),
-        subtitle: tvLocalized("Each household profile should remember its strongest last-used route so Qur'an, learning, and worship feel ready when the room returns."),
-        supportingLine: tvLocalized("Good tvOS continuity remembers context without forcing repeated selection, typing, or setup every time the television wakes."),
-        systemImage: "arrow.trianglehead.clockwise"
       ),
     ]
   }
@@ -269,12 +225,7 @@ enum TVSeedRepository {
         title: tvLocalized("Bookmarked ayahs"),
         subtitle: tvLocalized("Keep the ayahs and short surahs the household returns to most close to the first shelf."),
         supportingLine: tvLocalized("Best for resuming reading or reflection without searching from the sofa."),
-        systemImage: "bookmark.fill",
-        detailPoints: [
-          tvLocalized("Resume at the exact ayah family reading paused on most recently."),
-          tvLocalized("Keep short-surah anchors ready for nightly recitation and reflection."),
-          tvLocalized("Preserve Qur'an-first continuity instead of turning saves into a generic content list."),
-        ]
+        systemImage: "bookmark.fill"
       ),
       TVLearnHubItem(
         id: "listening_playlists",
@@ -282,12 +233,7 @@ enum TVSeedRepository {
         title: tvLocalized("Listening playlists"),
         subtitle: tvLocalized("Return to recitation sequences, repeat-ready passages, and calm listening queues with one remote-friendly entry."),
         supportingLine: tvLocalized("Best for family-room recitation, revision, and background listening with intention."),
-        systemImage: "music.note.list",
-        detailPoints: [
-          tvLocalized("Keep recitation queues short enough to resume without losing the room."),
-          tvLocalized("Use saved playlists to reopen listening mode from a familiar starting point."),
-          tvLocalized("Favor calm continuity instead of heavy playlist editing on television."),
-        ]
+        systemImage: "music.note.list"
       ),
       TVLearnHubItem(
         id: "watch_later_reflection",
@@ -295,12 +241,7 @@ enum TVSeedRepository {
         title: tvLocalized("Watch later and reflection"),
         subtitle: tvLocalized("Hold visual learning picks, prophet-story revisits, and saved reflection cards for a calmer later session."),
         supportingLine: tvLocalized("Best for signs, stories, and learning paths the household wants to reopen together."),
-        systemImage: "clock.arrow.circlepath",
-        detailPoints: [
-          tvLocalized("Keep later-session learning visible without requiring repeated search or typing."),
-          tvLocalized("Preserve the strongest next return for stories, visual learning, and saved notes."),
-          tvLocalized("Let iPhone and iPad remain the place for heavier sorting and curation."),
-        ]
+        systemImage: "clock.arrow.circlepath"
       ),
     ]
   }
@@ -348,35 +289,6 @@ enum TVSeedRepository {
           tvLocalized("Listening mode"),
           tvLocalized("Short surahs"),
         ]
-      ),
-    ]
-  }
-
-  static func favoritesSupportCards() -> [TVFavoritesSupportCard] {
-    [
-      TVFavoritesSupportCard(
-        id: "light_management",
-        eyebrow: tvLocalized("Light management"),
-        title: tvLocalized("Keep saves light on TV"),
-        subtitle: tvLocalized("Use television for returning, resuming, and choosing. Leave large-scale sorting and renaming to mobile devices."),
-        supportingLine: tvLocalized("This protects calm navigation and keeps the route useful with one remote."),
-        systemImage: "rectangle.stack.badge.person.crop"
-      ),
-      TVFavoritesSupportCard(
-        id: "household_resume",
-        eyebrow: tvLocalized("Household continuity"),
-        title: tvLocalized("Resume together"),
-        subtitle: tvLocalized("The strongest saved flow on tvOS is the one that helps the room return quickly to a known ayah, playlist, or learning pick."),
-        supportingLine: tvLocalized("Keep the first return simple so the session starts with worship or learning, not setup."),
-        systemImage: "person.2.fill"
-      ),
-      TVFavoritesSupportCard(
-        id: "phone_handoff",
-        eyebrow: tvLocalized("Phone handoff"),
-        title: tvLocalized("Edit on iPhone later"),
-        subtitle: tvLocalized("If a save needs deeper notes, playlist changes, or reorganization, finish that on iPhone or iPad and let tvOS stay focused on return."),
-        supportingLine: tvLocalized("This route is designed for large-screen continuity, not heavy authoring."),
-        systemImage: "iphone"
       ),
     ]
   }
@@ -466,12 +378,7 @@ enum TVSeedRepository {
         title: tvLocalized("Learning Journey"),
         subtitle: tvLocalized("Open the journey-first path for guided study, structured growth, and a clear next lesson."),
         supportingLine: tvLocalized("Best for steady weekly learning with one strong path instead of scattered browsing."),
-        systemImage: "point.topleft.down.curvedto.point.bottomright.up.fill",
-        detailPoints: [
-          tvLocalized("Journey-first learning stays closest to the mobile Learn direction."),
-          tvLocalized("Works well on TV because the next step is obvious and typing is not required."),
-          tvLocalized("Sets the foundation for deeper story and reflection phases later."),
-        ]
+        systemImage: "point.topleft.down.curvedto.point.bottomright.up.fill"
       ),
       TVLearnHubItem(
         id: "explore",
@@ -479,12 +386,7 @@ enum TVSeedRepository {
         title: tvLocalized("Explore all knowledge"),
         subtitle: tvLocalized("Move across the main Learn domains without leaving one calm master layout."),
         supportingLine: tvLocalized("Best for evening browsing, family discovery, and choosing a topic together."),
-        systemImage: "safari.fill",
-        detailPoints: [
-          tvLocalized("Explore keeps the Learn route broad without copying every mobile screen."),
-          tvLocalized("Shared content ownership remains on the existing mobile Learn systems."),
-          tvLocalized("tvOS can grow by adding more shelves to this hub instead of inventing parallel routes too early."),
-        ]
+        systemImage: "safari.fill"
       ),
       TVLearnHubItem(
         id: "family",
@@ -492,12 +394,7 @@ enum TVSeedRepository {
         title: tvLocalized("Family-safe learning"),
         subtitle: tvLocalized("Surface stories, reflection, and calm educational shelves that fit shared viewing."),
         supportingLine: tvLocalized("Best for mixed-age household use where simple choices matter more than deep controls."),
-        systemImage: "person.3.fill",
-        detailPoints: [
-          tvLocalized("Family-room usage favors large visuals, simple remote input, and calm pacing."),
-          tvLocalized("This route avoids heavy typing, account setup, or dense settings on TV."),
-          tvLocalized("Later kids and stories phases can plug into the same master Learn structure."),
-        ]
+        systemImage: "person.3.fill"
       ),
     ]
   }
@@ -510,12 +407,7 @@ enum TVSeedRepository {
         title: tvLocalized("Prophet stories for the room"),
         subtitle: tvLocalized("Open short, trusted story sessions built for mixed ages, simple focus movement, and family discussion."),
         supportingLine: tvLocalized("Best for shared evening learning where one calm story is stronger than a dense library."),
-        systemImage: "book.pages.fill",
-        detailPoints: [
-          tvLocalized("Short story cards help the room stay together without remote confusion."),
-          tvLocalized("Story-first learning is one of the safest and strongest television fits for kids."),
-          tvLocalized("These shelves are structured for later shared search and content-registry expansion."),
-        ]
+        systemImage: "book.pages.fill"
       ),
       TVLearnHubItem(
         id: "quran",
@@ -523,12 +415,7 @@ enum TVSeedRepository {
         title: tvLocalized("Short surahs and listening"),
         subtitle: tvLocalized("Keep beginner-friendly recitation, short surahs, and repeatable listening close to the biggest screen in the home."),
         supportingLine: tvLocalized("Best for family recitation, memorization support, and gentle return to familiar passages."),
-        systemImage: "book.closed.fill",
-        detailPoints: [
-          tvLocalized("Kids Qur'an on TV should stay audio-first and short-session friendly."),
-          tvLocalized("Remote movement works best when surah choices are curated rather than sprawling."),
-          tvLocalized("This surface remains aligned with the main Qur'an direction instead of creating a separate playback stack."),
-        ]
+        systemImage: "book.closed.fill"
       ),
       TVLearnHubItem(
         id: "arabic",
@@ -536,12 +423,7 @@ enum TVSeedRepository {
         title: tvLocalized("Arabic letters and sounds"),
         subtitle: tvLocalized("Use large visuals and simple selection to introduce letters, sounds, and first recognition on TV."),
         supportingLine: tvLocalized("Best for early learners who benefit from repetition, shape recognition, and shared guidance from a parent."),
-        systemImage: "character.book.closed.fill",
-        detailPoints: [
-          tvLocalized("Beginner Arabic on TV should stay visual, audible, and low-input."),
-          tvLocalized("Large letter presentation suits the family-room better than worksheet-style drill screens."),
-          tvLocalized("This path prepares for the dedicated Arabic phase without overbuilding too early."),
-        ]
+        systemImage: "character.book.closed.fill"
       ),
       TVLearnHubItem(
         id: "bedtime",
@@ -549,12 +431,7 @@ enum TVSeedRepository {
         title: tvLocalized("Bedtime return"),
         subtitle: tvLocalized("End the evening with one quiet story, short remembrance, or a gentle Qur'an return before leaving the screen."),
         supportingLine: tvLocalized("Best for calmer household transitions when the television should support routine rather than prolong it."),
-        systemImage: "moon.stars.fill",
-        detailPoints: [
-          tvLocalized("The strongest bedtime tvOS flow is brief, calm, and easy to leave."),
-          tvLocalized("This route should help parents close the session cleanly instead of trapping the room in more choices."),
-          tvLocalized("A short bedtime lane fits tvOS better than complex rewards or profile-heavy loops."),
-        ]
+        systemImage: "moon.stars.fill"
       ),
     ]
   }
@@ -606,35 +483,6 @@ enum TVSeedRepository {
     ]
   }
 
-  static func kidsSupportCards() -> [TVKidsSupportCard] {
-    [
-      TVKidsSupportCard(
-        id: "age_safe",
-        eyebrow: tvLocalized("Family-safe"),
-        title: tvLocalized("Keep it age-appropriate"),
-        subtitle: tvLocalized("Use calm story summaries, short sessions, and simple choices that fit mixed ages in the same room."),
-        supportingLine: tvLocalized("tvOS kids learning should be easier to supervise than a tablet and easier to leave than a game loop."),
-        systemImage: "checkmark.shield.fill"
-      ),
-      TVKidsSupportCard(
-        id: "shared_use",
-        eyebrow: tvLocalized("Shared use"),
-        title: tvLocalized("Let the room learn together"),
-        subtitle: tvLocalized("Choose content that invites listening, discussion, and repeatable recitation instead of private screen time patterns."),
-        supportingLine: tvLocalized("The main television should support family learning, not replace parent guidance or one-to-one teaching."),
-        systemImage: "person.3.sequence.fill"
-      ),
-      TVKidsSupportCard(
-        id: "easy_exit",
-        eyebrow: tvLocalized("Calm exit"),
-        title: tvLocalized("Make leaving the screen easy"),
-        subtitle: tvLocalized("End with one clear next step so bedtime, prayer, or the next family routine begins without friction."),
-        supportingLine: tvLocalized("The best kids flow on TV is spiritually useful and easy to close without negotiation."),
-        systemImage: "moon.zzz.fill"
-      ),
-    ]
-  }
-
   static func arabicPrimaryItems() -> [TVLearnHubItem] {
     [
       TVLearnHubItem(
@@ -643,12 +491,7 @@ enum TVSeedRepository {
         title: tvLocalized("Letter families"),
         subtitle: tvLocalized("Learn the alphabet in calm grouped sets so the room can recognize shapes and sounds without overload."),
         supportingLine: tvLocalized("Best for first exposure, review after a gap, and mixed-age family guidance."),
-        systemImage: "square.grid.3x3.fill",
-        detailPoints: [
-          tvLocalized("Grouped letters reduce overload and make remote navigation easier."),
-          tvLocalized("Large forms matter more than dense worksheets on TV."),
-          tvLocalized("This path prepares learners for words and short Qur'an snippets without rushing."),
-        ]
+        systemImage: "square.grid.3x3.fill"
       ),
       TVLearnHubItem(
         id: "listen",
@@ -656,12 +499,7 @@ enum TVSeedRepository {
         title: tvLocalized("Listen and repeat"),
         subtitle: tvLocalized("Use short sound-led practice so learners can hear a letter family, then repeat together in the room."),
         supportingLine: tvLocalized("Best for beginners who need confidence before reading from denser pages."),
-        systemImage: "waveform",
-        detailPoints: [
-          tvLocalized("TV Arabic should stay audio-supported and recognition-first."),
-          tvLocalized("Short listening loops are more natural in the family room than typing or tracing."),
-          tvLocalized("This route keeps the pace calm so practice stays inviting."),
-        ]
+        systemImage: "waveform"
       ),
       TVLearnHubItem(
         id: "words",
@@ -669,12 +507,7 @@ enum TVSeedRepository {
         title: tvLocalized("First words"),
         subtitle: tvLocalized("Move from single letters into simple joined forms and early Qur'anic vocabulary with large readable examples."),
         supportingLine: tvLocalized("Best for learners ready to connect shapes, sounds, and familiar short words."),
-        systemImage: "character.textbox.ar",
-        detailPoints: [
-          tvLocalized("Joined-form examples help the room see that letters can change shape when connected."),
-          tvLocalized("Short words are a better TV fit than long lesson lists or grammar tables."),
-          tvLocalized("The route stays beginner-safe by emphasizing recognition before explanation."),
-        ]
+        systemImage: "character.textbox.ar"
       ),
       TVLearnHubItem(
         id: "readiness",
@@ -682,12 +515,7 @@ enum TVSeedRepository {
         title: tvLocalized("Qur'an readiness"),
         subtitle: tvLocalized("Hand off into the shared readiness path once letters and first words feel familiar enough for short ayah snippets."),
         supportingLine: tvLocalized("Best for learners who are ready to connect Arabic practice back to the Qur'an without leaving beginner mode."),
-        systemImage: "book.closed.circle.fill",
-        detailPoints: [
-          tvLocalized("The strongest Arabic handoff on TV is into short Qur'an recognition, not deeper grammar."),
-          tvLocalized("This keeps Arabic aligned with the existing Qur'an-owned progression path."),
-          tvLocalized("A gentle bridge is better than forcing the full reader too early."),
-        ]
+        systemImage: "book.closed.circle.fill"
       ),
     ]
   }
@@ -700,12 +528,7 @@ enum TVSeedRepository {
         title: tvLocalized("Trivia rounds"),
         subtitle: tvLocalized("Use short multiple-choice rounds that work well from the sofa and still reinforce real learning goals."),
         supportingLine: tvLocalized("Best for steady knowledge recall without turning the TV into a rapid-fire arcade surface."),
-        systemImage: "bolt.fill",
-        detailPoints: [
-          tvLocalized("Multiple-choice prompts are the cleanest remote-first quiz format for television."),
-          tvLocalized("Trivia fits the current mobile knowledge path direction without copying dense mobile stats screens."),
-          tvLocalized("Short rounds keep the room engaged and make it easy to exit at a natural stopping point."),
-        ]
+        systemImage: "bolt.fill"
       ),
       TVLearnHubItem(
         id: "matching",
@@ -713,12 +536,7 @@ enum TVSeedRepository {
         title: tvLocalized("Matching review"),
         subtitle: tvLocalized("Practice simple concept pairing with visually clear options instead of drag-and-drop interactions that do not fit tvOS."),
         supportingLine: tvLocalized("Best for worship terms, prophets, and beginner review where recognition matters more than speed."),
-        systemImage: "square.grid.2x2.fill",
-        detailPoints: [
-          tvLocalized("Matching on TV should become focused choice-making, not touch-style dragging."),
-          tvLocalized("Recognition-based review works well for families learning together from one screen."),
-          tvLocalized("This path keeps the challenge educational and accessible for mixed experience levels."),
-        ]
+        systemImage: "square.grid.2x2.fill"
       ),
       TVLearnHubItem(
         id: "family",
@@ -726,12 +544,7 @@ enum TVSeedRepository {
         title: tvLocalized("Family challenge night"),
         subtitle: tvLocalized("Choose discussion-friendly rounds that let the room answer together, reflect briefly, and move on without pressure."),
         supportingLine: tvLocalized("Best for mixed ages where one shared answer rhythm is stronger than private turn-taking loops."),
-        systemImage: "person.3.fill",
-        detailPoints: [
-          tvLocalized("Family-room games should create conversation, not remote confusion."),
-          tvLocalized("One shared answer choice keeps pacing calm for children and adults alike."),
-          tvLocalized("The strongest TV game flow teaches, confirms, and then hands the room back to worship or reflection."),
-        ]
+        systemImage: "person.3.fill"
       ),
       TVLearnHubItem(
         id: "review",
@@ -739,12 +552,7 @@ enum TVSeedRepository {
         title: tvLocalized("Review mistakes gently"),
         subtitle: tvLocalized("Use short repeatable challenges to revisit weak spots without scoreboard pressure or noisy rewards."),
         supportingLine: tvLocalized("Best for learning continuity after trivia or matching sessions on other devices."),
-        systemImage: "arrow.uturn.backward.circle.fill",
-        detailPoints: [
-          tvLocalized("Review on TV should be encouraging, not punitive."),
-          tvLocalized("Remote-first review works best when choices stay large and explanations stay short."),
-          tvLocalized("This path leaves room for future shared continuity once household profiles and sync are active."),
-        ]
+        systemImage: "arrow.uturn.backward.circle.fill"
       ),
     ]
   }
@@ -862,35 +670,6 @@ enum TVSeedRepository {
     ]
   }
 
-  static func gamesSupportCards() -> [TVGamesSupportCard] {
-    [
-      TVGamesSupportCard(
-        id: "keep_it_short",
-        eyebrow: tvLocalized("Session length"),
-        title: tvLocalized("Keep rounds short"),
-        subtitle: tvLocalized("A few strong questions with clear explanations fit tvOS better than long noisy sessions."),
-        supportingLine: tvLocalized("Short rounds protect focus and make it easier to return to worship, reading, or bedtime routines."),
-        systemImage: "timer"
-      ),
-      TVGamesSupportCard(
-        id: "choose_together",
-        eyebrow: tvLocalized("Shared play"),
-        title: tvLocalized("Answer together"),
-        subtitle: tvLocalized("The television works best when one answer can be discussed and chosen with the room."),
-        supportingLine: tvLocalized("This keeps the surface family-friendly and avoids turn-based friction with one remote."),
-        systemImage: "person.3.sequence.fill"
-      ),
-      TVGamesSupportCard(
-        id: "learning_first",
-        eyebrow: tvLocalized("Purpose"),
-        title: tvLocalized("Keep learning ahead of scoring"),
-        subtitle: tvLocalized("Use each explanation to strengthen knowledge instead of centering points, streaks, or flashy reward loops."),
-        supportingLine: tvLocalized("The best tvOS game flow still feels like guided learning with a lighter entry point."),
-        systemImage: "brain.head.profile"
-      ),
-    ]
-  }
-
   static func arabicLetterGroups() -> [TVArabicLetterGroup] {
     [
       TVArabicLetterGroup(
@@ -952,35 +731,6 @@ enum TVSeedRepository {
     ]
   }
 
-  static func arabicSupportCards() -> [TVArabicSupportCard] {
-    [
-      TVArabicSupportCard(
-        id: "pace",
-        eyebrow: tvLocalized("Pacing"),
-        title: tvLocalized("Keep the pace gentle"),
-        subtitle: tvLocalized("Beginner Arabic on TV should favor recognition and repetition over testing, speed, or correction-heavy drilling."),
-        supportingLine: tvLocalized("A calm family-room pace protects confidence and makes return sessions more likely."),
-        systemImage: "tortoise.fill"
-      ),
-      TVArabicSupportCard(
-        id: "family",
-        eyebrow: tvLocalized("Shared learning"),
-        title: tvLocalized("Let the room hear together"),
-        subtitle: tvLocalized("Choose letters and short words that parents, children, and new learners can repeat together without embarrassment."),
-        supportingLine: tvLocalized("The television works best when Arabic becomes a shared listening and noticing surface."),
-        systemImage: "person.3.fill"
-      ),
-      TVArabicSupportCard(
-        id: "handoff",
-        eyebrow: tvLocalized("Next step"),
-        title: tvLocalized("Return to the Qur'an gently"),
-        subtitle: tvLocalized("Use Arabic on TV as a bridge into short Qur'an recognition, not as a separate study track disconnected from recitation."),
-        supportingLine: tvLocalized("The strongest next step is usually a short surah, a readiness snippet, or one familiar word revisited well."),
-        systemImage: "arrowshape.right.circle.fill"
-      ),
-    ]
-  }
-
   static func learnSections() -> [TVLearnHubSection] {
     [
       TVLearnHubSection(
@@ -994,11 +744,7 @@ enum TVSeedRepository {
             title: tvLocalized("Prophets"),
             subtitle: tvLocalized("Revisit prophetic lives through a simple story-first entry point built for shared viewing."),
             supportingLine: tvLocalized("A natural TV fit because narrative content works better than dense reading lists."),
-            systemImage: "book.pages.fill",
-            detailPoints: [
-              tvLocalized("Prophetic stories anchor moral lessons in memorable narrative form."),
-              tvLocalized("The TV layout should surface selected highlights before deeper later-phase detail screens."),
-            ]
+            systemImage: "book.pages.fill"
           ),
           TVLearnHubItem(
             id: "seerah",
@@ -1006,11 +752,7 @@ enum TVSeedRepository {
             title: tvLocalized("Seerah"),
             subtitle: tvLocalized("Keep the Prophetic biography close through guided viewing paths and calm reflection."),
             supportingLine: tvLocalized("Useful for family-room learning because it supports listening, discussion, and repeat visits."),
-            systemImage: "sparkles",
-            detailPoints: [
-              tvLocalized("Seerah content belongs in a companion-style shelf, not a cluttered library port."),
-              tvLocalized("This master layout prepares for later story and reflection phases without overbuilding early."),
-            ]
+            systemImage: "sparkles"
           ),
           TVLearnHubItem(
             id: "daily_wisdom",
@@ -1018,11 +760,7 @@ enum TVSeedRepository {
             title: tvLocalized("Daily Wisdom"),
             subtitle: tvLocalized("Use short reflective prompts for a brief shared learning moment on the main TV."),
             supportingLine: tvLocalized("Best for quiet evening use when the room wants one meaningful reminder, not a long lesson."),
-            systemImage: "sun.max.fill",
-            detailPoints: [
-              tvLocalized("Daily Wisdom keeps Learn lightweight and re-openable."),
-              tvLocalized("Short-form reflection is one of the safest and most natural TV-native learning surfaces."),
-            ]
+            systemImage: "sun.max.fill"
           ),
         ]
       ),
@@ -1037,11 +775,7 @@ enum TVSeedRepository {
             title: tvLocalized("Hadith"),
             subtitle: tvLocalized("Open short thematic hadith learning through calmer browse-first entry points."),
             supportingLine: tvLocalized("A strong fit for TV when presented as themed selections instead of dense study controls."),
-            systemImage: "text.book.closed.fill",
-            detailPoints: [
-              tvLocalized("Hadith on TV should emphasize themes, authenticity, and short takeaways."),
-              tvLocalized("This route can later expand into stronger thematic shelves without changing shell ownership."),
-            ]
+            systemImage: "text.book.closed.fill"
           ),
           TVLearnHubItem(
             id: "world_creation",
@@ -1049,11 +783,7 @@ enum TVSeedRepository {
             title: tvLocalized("World and Creation"),
             subtitle: tvLocalized("Bring visual learning and signs in creation into a format that suits the largest screen in the home."),
             supportingLine: tvLocalized("Especially strong for future TV because creation content benefits from scale and shared viewing."),
-            systemImage: "globe.europe.africa.fill",
-            detailPoints: [
-              tvLocalized("Creation and signs content should stay visual, calm, and discussion-friendly on TV."),
-              tvLocalized("This master layout gives those later visual phases one clear Learn home."),
-            ]
+            systemImage: "globe.europe.africa.fill"
           ),
           TVLearnHubItem(
             id: "life_lessons",
@@ -1061,11 +791,7 @@ enum TVSeedRepository {
             title: tvLocalized("Life lessons"),
             subtitle: tvLocalized("Use practical Islamic guidance shelves for daily questions, adab, and thoughtful living."),
             supportingLine: tvLocalized("Works best on TV as curated themes, not long searchable forms or dense text controls."),
-            systemImage: "leaf.fill",
-            detailPoints: [
-              tvLocalized("Life lessons should remain curated and readable at distance."),
-              tvLocalized("This route keeps future practical-learning surfaces inside one stable Learn hub."),
-            ]
+            systemImage: "leaf.fill"
           ),
         ]
       ),

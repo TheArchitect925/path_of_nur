@@ -1,7 +1,7 @@
 "watch.home.title" = "Today";
 "watch.progress.title" = "Progress";
 "watch.home.nextPrayer" = "Next Prayer";
-"watch.common.streak" = "Streak";
+"watch.common.streak" = "Days in a row";
 "watch.complication.allSet" = "All set";
 "watch.complication.needsSync" = "Needs Sync";
 "watch.complication.dueNow" = "Due now";

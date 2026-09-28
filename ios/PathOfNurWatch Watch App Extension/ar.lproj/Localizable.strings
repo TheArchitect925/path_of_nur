@@ -36,7 +36,7 @@
 "watch.sync.justNow" = "الآن";
 "watch.progress.growth" = "النمو";
 "watch.prayer.completed.title" = "سُجّلت الصلاة";
-"watch.prayer.completed.body" = "أبقِ على اللحظة بأذكار قصيرة بعد الصلاة.";
+"watch.prayer.completed.body" = "ابقَ لأذكار قليلة بعد الصلاة.";
 "watch.prayer.postPrayerAdhkar" = "أذكار بعد الصلاة";
 "watch.common.done" = "تم";
 "watch.common.skip" = "تخطٍ";
@@ -46,7 +46,7 @@
 "watch.adhkar.tap" = "انقر للذكر";
 "watch.adhkar.sequence" = "ذكر ما بعد الصلاة";
 "watch.adhkar.completed.title" = "اكتملت الأذكار";
-"watch.adhkar.completed.body" = "ذكر لطيف محمول من الصلاة.";
+"watch.adhkar.completed.body" = "أتممت أذكار ما بعد الصلاة.";
 "watch.adhkar.step" = "العبارة";
 "watch.adhkar.phrase.subhanAllah" = "سبحان الله";
 "watch.adhkar.phrase.alhamdulillah" = "الحمد لله";
@@ -68,7 +68,7 @@
 "watch.complication.prayerProgress.completedFormat" = "%d من %d مكتملة";
 "watch.complication.autoDhikr.summaryFormat" = "%d • %@/عدة";
 "watch.complication.autoDhikr.runningFormat" = "%d/%d • %@/عدة";
-"watch.notification.prayer.body" = "عُد إلى هذه الصلاة برفق.";
+"watch.notification.prayer.body" = "حان وقت هذه الصلاة.";
 "watch.notification.action.markPrayed" = "سجّل أنها صُلّيت";
 "watch.notification.action.markPrayedLate" = "سجّل أنها صُلّيت متأخرة";
 "watch.notification.action.snooze" = "ذكّرني لاحقًا";
@@ -81,8 +81,8 @@
 "watch.dhikr.preset.34.phrase" = "الله أكبر";
 "watch.dhikr.preset.99.phrase" = "سبحان الله";
 "watch.dhikr.preset.custom.phrase" = "جلسة ذكر";
-"watch.dhikr.antiRush.title" = "تمهّل برفق";
-"watch.dhikr.antiRush.body" = "الذكر ليس بالعدد وحده، بل بالحضور. تمهّل، وتنفّس، واذكر بإخلاص.";
+"watch.dhikr.antiRush.title" = "تمهّل";
+"watch.dhikr.antiRush.body" = "الذكر حضور، لا عدد فقط. تمهّل وتنفّس.";
 "watch.dhikr.antiRush.acknowledge" = "متابعة";
 "watch.dhikr.mode.manual" = "يدوي";
 "watch.dhikr.mode.auto" = "تلقائي";
@@ -98,12 +98,12 @@
 "watch.dhikr.auto.pace" = "الإيقاع";
 "watch.dhikr.auto.faster" = "أسرع";
 "watch.dhikr.auto.slower" = "أبطأ";
-"watch.dhikr.auto.keepFocus" = "دع الساعة تحفظ إيقاعًا هادئًا.";
+"watch.dhikr.auto.keepFocus" = "الساعة تحفظ الإيقاع عنك.";
 "watch.dhikr.auto.minimalHint" = "انقر لإظهار الإيقاع وأدوات الإنهاء.";
 "watch.dhikr.auto.showControls" = "أظهر الأدوات";
 "watch.dhikr.auto.hideControls" = "أخفِ الأدوات";
 "watch.dhikr.auto.complete.title" = "اكتمل الذكر التلقائي";
-"watch.dhikr.auto.complete.body" = "ذكر موجَّه هادئ بلغ هدفه.";
+"watch.dhikr.auto.complete.body" = "بلغت هدفك، والحمد لله.";
 "watch.dhikr.auto.end.confirm.title" = "إنهاء الجلسة؟";
 "watch.dhikr.auto.end.confirm.body" = "سيُحفظ تقدمك الحالي في الذكر التلقائي ضمن سجل اليوم فقط.";
 "watch.dhikr.auto.phrase.subhanAllah" = "سبحان الله";

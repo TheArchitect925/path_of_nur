@@ -100,25 +100,6 @@ struct TVProfilesScreen: View {
           continuityRail
             .frame(width: 500, alignment: .top)
         }
-
-        TVSectionHeader(
-          title: viewModel.supportTitle,
-          subtitle: viewModel.supportSubtitle
-        )
-
-        ScrollView(.horizontal, showsIndicators: false) {
-          HStack(spacing: TVTheme.railSpacing) {
-            ForEach(Array(viewModel.supportCards.enumerated()), id: \.element.id) { index, item in
-              TVHouseholdSupportCardView(item: item)
-                .focused(
-                  $focusedSection,
-                  equals: index == 0 ? TVFocusSectionId.profilesSupport : "profiles.support.\(item.id)"
-                )
-            }
-          }
-          .padding(TVTheme.railBleed)
-        }
-        .tvRail()
       }
       .padding(TVTheme.outerPadding)
     }
@@ -134,8 +115,6 @@ struct TVProfilesScreen: View {
         appViewModel.markContentSectionFocused(TVFocusSectionId.profilesPrimary, for: .profiles)
       } else if section.hasPrefix("profiles.continuity") {
         appViewModel.markContentSectionFocused(TVFocusSectionId.profilesContinuity, for: .profiles)
-      } else if section.hasPrefix("profiles.support") {
-        appViewModel.markContentSectionFocused(TVFocusSectionId.profilesSupport, for: .profiles)
       }
     }
     .onMoveCommand { direction in
@@ -169,31 +148,6 @@ struct TVProfilesScreen: View {
         Text(selectedProfile.supportingLine)
           .font(TVTypography.detail)
           .foregroundColor(TVTheme.textMuted)
-
-        VStack(alignment: .leading, spacing: 12) {
-          ForEach(selectedProfile.detailPoints, id: \.self) { point in
-            HStack(alignment: .top, spacing: 10) {
-              Circle()
-                .fill(TVTheme.focus)
-                .frame(width: 8, height: 8)
-                .padding(.top, 7)
-
-              Text(point)
-                .font(TVTypography.detail)
-                .foregroundColor(TVTheme.textSecondary)
-            }
-          }
-        }
-        Divider()
-          .overlay(TVTheme.surfaceStroke)
-
-        Text(viewModel.detailRailNoteTitle)
-          .font(TVTypography.summaryTitle)
-          .foregroundColor(TVTheme.textPrimary)
-
-        Text(viewModel.detailRailNoteSubtitle)
-          .font(TVTypography.detail)
-          .foregroundColor(TVTheme.textSecondary)
       } else {
         emptyRailCard()
       }

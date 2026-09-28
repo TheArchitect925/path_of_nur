@@ -228,31 +228,6 @@ struct TVLearnScreen: View {
         Text(selectedItem.supportingLine)
           .font(TVTypography.detail)
           .foregroundColor(TVTheme.textMuted)
-
-        VStack(alignment: .leading, spacing: 12) {
-          ForEach(selectedItem.detailPoints, id: \.self) { point in
-            HStack(alignment: .top, spacing: 10) {
-              Circle()
-                .fill(TVTheme.focus)
-                .frame(width: 8, height: 8)
-                .padding(.top, 7)
-
-              Text(point)
-                .font(TVTypography.detail)
-                .foregroundColor(TVTheme.textSecondary)
-            }
-          }
-        }
-        Divider()
-          .overlay(TVTheme.surfaceStroke)
-
-        Text(viewModel.layoutNoteTitle)
-          .font(TVTypography.summaryTitle)
-          .foregroundColor(TVTheme.textPrimary)
-
-        Text(viewModel.layoutNoteSubtitle)
-          .font(TVTypography.detail)
-          .foregroundColor(TVTheme.textSecondary)
       } else {
         emptyRailCard()
       }
@@ -305,16 +280,6 @@ struct TVLearnScreen: View {
 
         Text(selectedStory.reflectionPrompt)
           .font(TVTypography.body)
-          .foregroundColor(TVTheme.textSecondary)
-        Divider()
-          .overlay(TVTheme.surfaceStroke)
-
-        Text(viewModel.storyDirectionTitle)
-          .font(TVTypography.summaryTitle)
-          .foregroundColor(TVTheme.textPrimary)
-
-        Text(viewModel.storyDirectionSubtitle)
-          .font(TVTypography.detail)
           .foregroundColor(TVTheme.textSecondary)
       } else {
         emptyRailCard()
@@ -378,16 +343,6 @@ struct TVLearnScreen: View {
 
         Text(selectedVisual.observationPrompt)
           .font(TVTypography.body)
-          .foregroundColor(TVTheme.textSecondary)
-        Divider()
-          .overlay(TVTheme.surfaceStroke)
-
-        Text(viewModel.visualDirectionTitle)
-          .font(TVTypography.summaryTitle)
-          .foregroundColor(TVTheme.textPrimary)
-
-        Text(viewModel.visualDirectionSubtitle)
-          .font(TVTypography.detail)
           .foregroundColor(TVTheme.textSecondary)
       } else {
         emptyRailCard()

@@ -36,7 +36,7 @@
 "watch.sync.justNow" = "Gerade eben";
 "watch.progress.growth" = "Wachstum";
 "watch.prayer.completed.title" = "Gebet erfasst";
-"watch.prayer.completed.body" = "Halten Sie den Moment mit einem kurzen Adhkar nach dem Gebet.";
+"watch.prayer.completed.body" = "Bleiben Sie für ein paar Adhkar nach dem Gebet.";
 "watch.prayer.postPrayerAdhkar" = "Adhkar nach dem Gebet";
 "watch.common.done" = "Fertig";
 "watch.common.skip" = "Überspringen";
@@ -46,7 +46,7 @@
 "watch.adhkar.tap" = "Zum Gedenken tippen";
 "watch.adhkar.sequence" = "Gedenken nach dem Gebet";
 "watch.adhkar.completed.title" = "Adhkar abgeschlossen";
-"watch.adhkar.completed.body" = "Ein sanftes Gedenken, aus dem Salah weitergetragen.";
+"watch.adhkar.completed.body" = "Ihre Adhkar nach dem Gebet sind erledigt.";
 "watch.adhkar.step" = "Formel";
 "watch.adhkar.phrase.subhanAllah" = "SubhanAllah";
 "watch.adhkar.phrase.alhamdulillah" = "Alhamdulillah";
@@ -68,7 +68,7 @@
 "watch.complication.prayerProgress.completedFormat" = "%d von %d erledigt";
 "watch.complication.autoDhikr.summaryFormat" = "%d • %@/Zählung";
 "watch.complication.autoDhikr.runningFormat" = "%d/%d • %@/Zählung";
-"watch.notification.prayer.body" = "Kehren Sie in Ruhe zu diesem Gebet zurück.";
+"watch.notification.prayer.body" = "Es ist Zeit für dieses Gebet.";
 "watch.notification.action.markPrayed" = "Als gebetet markieren";
 "watch.notification.action.markPrayedLate" = "Als spät gebetet markieren";
 "watch.notification.action.snooze" = "Später erinnern";
@@ -81,8 +81,8 @@
 "watch.dhikr.preset.34.phrase" = "Allahu Akbar";
 "watch.dhikr.preset.99.phrase" = "SubhanAllah";
 "watch.dhikr.preset.custom.phrase" = "Dhikr-Sitzung";
-"watch.dhikr.antiRush.title" = "Werden Sie sanft langsamer";
-"watch.dhikr.antiRush.body" = "Dhikr liegt nicht nur in der Zahl, sondern in der Gegenwärtigkeit. Werden Sie langsamer, atmen Sie, und gedenken Sie aufrichtig.";
+"watch.dhikr.antiRush.title" = "Langsamer";
+"watch.dhikr.antiRush.body" = "Dhikr ist Gegenwart, nicht nur Zahl. Werden Sie langsamer und atmen Sie.";
 "watch.dhikr.antiRush.acknowledge" = "Weiter";
 "watch.dhikr.mode.manual" = "Manuell";
 "watch.dhikr.mode.auto" = "Automatisch";
@@ -98,12 +98,12 @@
 "watch.dhikr.auto.pace" = "Tempo";
 "watch.dhikr.auto.faster" = "Schneller";
 "watch.dhikr.auto.slower" = "Langsamer";
-"watch.dhikr.auto.keepFocus" = "Lassen Sie die Uhr einen ruhigen Rhythmus halten.";
+"watch.dhikr.auto.keepFocus" = "Die Uhr hält den Rhythmus für Sie.";
 "watch.dhikr.auto.minimalHint" = "Tippen Sie, um Tempo- und Endsteuerung einzublenden.";
 "watch.dhikr.auto.showControls" = "Steuerung einblenden";
 "watch.dhikr.auto.hideControls" = "Steuerung ausblenden";
 "watch.dhikr.auto.complete.title" = "Auto-Dhikr abgeschlossen";
-"watch.dhikr.auto.complete.body" = "Ein ruhiges geführtes Gedenken hat sein Ziel erreicht.";
+"watch.dhikr.auto.complete.body" = "Sie haben Ihr Ziel erreicht, alhamdulillah.";
 "watch.dhikr.auto.end.confirm.title" = "Sitzung beenden?";
 "watch.dhikr.auto.end.confirm.body" = "Ihr aktueller Auto-Dhikr-Fortschritt bleibt nur im heutigen Verlauf erhalten.";
 "watch.dhikr.auto.phrase.subhanAllah" = "SubhanAllah";

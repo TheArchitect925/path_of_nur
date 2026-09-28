@@ -36,7 +36,7 @@
 "watch.sync.justNow" = "À l’instant";
 "watch.progress.growth" = "Croissance";
 "watch.prayer.completed.title" = "Prière enregistrée";
-"watch.prayer.completed.body" = "Prolongez ce moment par de courts adhkar d’après-prière.";
+"watch.prayer.completed.body" = "Restez pour quelques adhkar après la prière.";
 "watch.prayer.postPrayerAdhkar" = "Adhkar d’après-prière";
 "watch.common.done" = "Terminé";
 "watch.common.skip" = "Passer";
@@ -46,7 +46,7 @@
 "watch.adhkar.tap" = "Toucher pour le rappel";
 "watch.adhkar.sequence" = "Rappel après la prière";
 "watch.adhkar.completed.title" = "Adhkar terminés";
-"watch.adhkar.completed.body" = "Un rappel paisible prolongé depuis la prière.";
+"watch.adhkar.completed.body" = "Vos adhkar d’après la prière sont faits.";
 "watch.adhkar.step" = "Formule";
 "watch.adhkar.phrase.subhanAllah" = "SubhanAllah";
 "watch.adhkar.phrase.alhamdulillah" = "Alhamdulillah";
@@ -68,7 +68,7 @@
 "watch.complication.prayerProgress.completedFormat" = "%d sur %d accomplies";
 "watch.complication.autoDhikr.summaryFormat" = "%d • %@/compte";
 "watch.complication.autoDhikr.runningFormat" = "%d/%d • %@/compte";
-"watch.notification.prayer.body" = "Revenez doucement à cette prière.";
+"watch.notification.prayer.body" = "C’est l’heure de cette prière.";
 "watch.notification.action.markPrayed" = "Marquer comme accomplie";
 "watch.notification.action.markPrayedLate" = "Marquer accomplie en retard";
 "watch.notification.action.snooze" = "Me rappeler plus tard";
@@ -81,8 +81,8 @@
 "watch.dhikr.preset.34.phrase" = "Allahu Akbar";
 "watch.dhikr.preset.99.phrase" = "SubhanAllah";
 "watch.dhikr.preset.custom.phrase" = "Séance de dhikr";
-"watch.dhikr.antiRush.title" = "Ralentissez doucement";
-"watch.dhikr.antiRush.body" = "Le dhikr n’est pas seulement affaire de nombre, mais de présence. Ralentissez, respirez et souvenez-vous avec sincérité.";
+"watch.dhikr.antiRush.title" = "Ralentissez";
+"watch.dhikr.antiRush.body" = "Le dhikr est présence, pas seulement nombre. Ralentissez et respirez.";
 "watch.dhikr.antiRush.acknowledge" = "Continuer";
 "watch.dhikr.mode.manual" = "Manuel";
 "watch.dhikr.mode.auto" = "Automatique";
@@ -98,12 +98,12 @@
 "watch.dhikr.auto.pace" = "Rythme";
 "watch.dhikr.auto.faster" = "Plus vite";
 "watch.dhikr.auto.slower" = "Plus lentement";
-"watch.dhikr.auto.keepFocus" = "Laissez la montre tenir un rythme paisible.";
+"watch.dhikr.auto.keepFocus" = "La montre garde le rythme pour vous.";
 "watch.dhikr.auto.minimalHint" = "Touchez pour afficher le rythme et les commandes de fin.";
 "watch.dhikr.auto.showControls" = "Afficher les commandes";
 "watch.dhikr.auto.hideControls" = "Masquer les commandes";
 "watch.dhikr.auto.complete.title" = "Dhikr automatique terminé";
-"watch.dhikr.auto.complete.body" = "Un rappel guidé et paisible a atteint son objectif.";
+"watch.dhikr.auto.complete.body" = "Vous avez atteint votre objectif, alhamdulillah.";
 "watch.dhikr.auto.end.confirm.title" = "Terminer la séance ?";
 "watch.dhikr.auto.end.confirm.body" = "Votre progression de dhikr automatique ne sera conservée que dans l’historique du jour.";
 "watch.dhikr.auto.phrase.subhanAllah" = "SubhanAllah";

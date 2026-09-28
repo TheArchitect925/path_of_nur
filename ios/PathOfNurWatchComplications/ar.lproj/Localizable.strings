@@ -1,7 +1,7 @@
 "watch.home.title" = "اليوم";
 "watch.progress.title" = "التقدم";
 "watch.home.nextPrayer" = "الصلاة القادمة";
-"watch.common.streak" = "السلسلة";
+"watch.common.streak" = "أيام متتالية";
 "watch.complication.allSet" = "كل شيء مكتمل";
 "watch.complication.needsSync" = "يحتاج مزامنة";
 "watch.complication.dueNow" = "حان وقتها";
