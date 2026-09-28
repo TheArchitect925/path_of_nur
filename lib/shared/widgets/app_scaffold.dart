@@ -23,6 +23,7 @@ import '../state/shell_state.dart';
 import 'app_hero_glass_shell.dart';
 import 'global_background.dart';
 import 'quick_actions_sheet.dart';
+import 'web_layout.dart';
 
 class AppShellScaffold extends ConsumerWidget {
   static const double _mainTabSwipeMinDistance = 72;
@@ -59,6 +60,23 @@ class AppShellScaffold extends ConsumerWidget {
     }
 
     final isRootTabPage = currentLocation == activeTab.path;
+    final hideNavigation = focusRecitationOpen || isQuranFocusRoute;
+    // A wide browser window swaps the tab bar for a sidebar. Pages learn about
+    // it through their safe-area padding, so their backgrounds stay
+    // full-bleed while their content moves clear of it. The MediaQuery is
+    // always here so the navigator below keeps its state across the switch.
+    final useSidebar = WebLayout.usesSidebar(context);
+    final media = MediaQuery.of(context);
+    final pageMedia = useSidebar && !hideNavigation
+        ? media.copyWith(
+            padding: media.padding.copyWith(
+              left: media.padding.left + WebLayout.sidebarWidth,
+            ),
+            viewPadding: media.viewPadding.copyWith(
+              left: media.viewPadding.left + WebLayout.sidebarWidth,
+            ),
+          )
+        : media;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -73,31 +91,43 @@ class AppShellScaffold extends ConsumerWidget {
                 ? kMoonFractionHome
                 : kMoonFractionDefault,
           ),
-          _MainTabSwipeWrapper(
-            enabled: isRootTabPage,
-            activeTab: activeTab,
-            child: AppSwipeBackWrapper(
-              enabled: AppNavigationGestureConfig.isEnabledForLocation(
-                currentLocation,
+          MediaQuery(
+            data: pageMedia,
+            child: _MainTabSwipeWrapper(
+              enabled: isRootTabPage,
+              activeTab: activeTab,
+              child: AppSwipeBackWrapper(
+                enabled: AppNavigationGestureConfig.isEnabledForLocation(
+                  currentLocation,
+                ),
+                child: child,
               ),
-              child: child,
             ),
           ),
           _QuranPhoneLiveActivityBridge(currentLocation: currentLocation),
           Positioned(
-            left: 16,
+            left: useSidebar ? WebLayout.sidebarWidth + 16 : 16,
             right: 16,
-            bottom: 82,
+            bottom: useSidebar ? 16 : 82,
             child: _buildGlobalQuranMiniPlayer(context: context, ref: ref),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 6,
-            child: focusRecitationOpen || isQuranFocusRoute
-                ? const SizedBox.shrink()
-                : _buildBottomBar(context, activeTab),
-          ),
+          if (hideNavigation)
+            const SizedBox.shrink()
+          else if (useSidebar)
+            Positioned(
+              left: 0,
+              top: 0,
+              bottom: 0,
+              width: WebLayout.sidebarWidth,
+              child: _buildSidebar(context, activeTab),
+            )
+          else
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 6,
+              child: _buildBottomBar(context, activeTab),
+            ),
         ],
       ),
     );
@@ -237,6 +267,112 @@ class AppShellScaffold extends ConsumerWidget {
                           ),
                         )
                         .toList(),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSidebar(BuildContext context, NavTab activeTab) {
+    // Home leads the list; the rest keep the tab bar's order.
+    final tabs = [
+      NavTab.home,
+      ...NavTab.values.where((tab) => tab != NavTab.home),
+    ];
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    return SafeArea(
+      right: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: IgnorePointer(
+                child: AppHeroGlassShell(
+                  padding: EdgeInsets.zero,
+                  tintColor: const Color(0xFFE7C98C),
+                  surfaceAlphaOverride: 0.2,
+                  radius: 28,
+                  borderColor: const Color(0x42FFFFFF),
+                  highlightGradientColors: const [
+                    Color(0x24FFFFFF),
+                    Colors.transparent,
+                    Color(0x16E8C98F),
+                  ],
+                  child: const SizedBox.expand(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 22, 10, 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 18),
+                    child: Text(
+                      AppLocalizations.of(context).appTitle,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontFamily: AppFonts.latinSerif,
+                        fontWeight: FontWeight.w600,
+                        color: appearance?.backgroundForeground,
+                      ),
+                    ),
+                  ),
+                  for (final tab in tabs)
+                    _sidebarButton(context, tab, activeTab == tab),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _sidebarButton(BuildContext context, NavTab tab, bool active) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final iconColor = appearance?.navLabelActive ?? const Color(0xFF1A1A1A);
+    final subtle = appearance?.navLabelInactive ?? const Color(0xFF4A4A4A);
+    final label = _tabLabel(context, tab);
+    return Semantics(
+      button: true,
+      selected: active,
+      label: label,
+      excludeSemantics: true,
+      child: InkWell(
+        onTap: () => context.go(tab.path),
+        onLongPress: tab == NavTab.home
+            ? () => showQuickActionsSheet(context)
+            : null,
+        borderRadius: BorderRadius.circular(20),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 2),
+          child: Row(
+            children: [
+              _navIcon(
+                context,
+                tab.icon,
+                isHome: false,
+                active: active,
+                iconColor: active ? iconColor : subtle,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: active ? iconColor : subtle,
+                    fontWeight: active ? FontWeight.w800 : FontWeight.w600,
+                    fontFamily: AppFonts.uiFontFamilyForLocale(
+                      Localizations.localeOf(context),
+                    ),
                   ),
                 ),
               ),

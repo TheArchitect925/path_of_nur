@@ -13,6 +13,7 @@ import '../../../features/learn/quran/application/quran_providers.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/widgets/global_background.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/web_layout.dart';
 import '../../profile/application/profile_settings_provider.dart';
 import '../../profile/domain/profile_age_preferences.dart';
 import '../../learn/journey/application/learning_path_provider.dart';
@@ -170,6 +171,11 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
     final showSettingsHint = _index > 1 && _index < _lastIndex;
+    final side = WebLayout.sidePadding(
+      MediaQuery.sizeOf(context).width -
+          MediaQuery.paddingOf(context).horizontal,
+      maxWidth: WebLayout.flowMaxWidth,
+    );
 
     return Scaffold(
       body: Stack(
@@ -177,7 +183,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           const GlobalBackground(),
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 14, 16, 20),
+              // A wide browser window keeps setup to one readable column.
+              padding: EdgeInsets.fromLTRB(side, 14, side, 20),
               child: Column(
                 children: [
                   Row(

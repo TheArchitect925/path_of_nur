@@ -20,7 +20,9 @@ Needs `brotli` (Homebrew) and a Cloudflare login for Wrangler (`npx wrangler log
   file in IndexedDB. See `lib/shared/persistence/sqlite_opener*.dart`.
 - **Qur'an audio** streams from everyayah.com; there are no downloads, and no
   lock-screen controls (`just_audio_background` is skipped).
-- **Wide windows** show the app at phone width, centred (`WebPhoneFrame`).
+- **Wide windows** fill the browser: past 1000 px the tab bar becomes a sidebar,
+  and page content stops widening at 960 px, centred (`WebLayout`, used by the
+  shell, `AppPageScaffold`, Home and setup).
 - Notifications, widgets, Live Activities, the watch and camera features are
   phone-only and stay quiet.
 

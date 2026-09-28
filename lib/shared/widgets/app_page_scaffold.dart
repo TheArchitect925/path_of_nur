@@ -12,6 +12,7 @@ import 'display/hub_list_group.dart';
 import 'global_background.dart';
 import 'quran_navigation.dart';
 import 'quran_quote_block.dart';
+import 'web_layout.dart';
 
 class PageLayoutConfig {
   final bool extendBehindBottomNav;
@@ -300,69 +301,98 @@ class _AppPageScaffoldState extends ConsumerState<AppPageScaffold> {
       enabled:
           !reduceMotion &&
           pageTransitionStyle != AppPageTransitionStyle.noAnimation,
-      child: Stack(
-        children: [
-          if (widget.ownsBackground)
-            widget.layoutConfig.extendBehindBottomNav
-                ? GlobalBackground(
-                    assetPath: widget.backgroundAssetPath,
-                    overlayColor: widget.backgroundOverlayColor,
-                    atmosphere: widget.backgroundAtmosphere,
-                  )
-                : ClipRect(
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: bottomInset),
-                      child: Stack(
-                        children: [
-                          GlobalBackground(
-                            assetPath: widget.backgroundAssetPath,
-                            overlayColor: widget.backgroundOverlayColor,
-                            atmosphere: widget.backgroundAtmosphere,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-          SafeArea(
-            // A thin scroll indicator so long pages show how much is left.
-            child: Scrollbar(
-              controller: _effectiveController,
-              thickness: 3,
-              radius: const Radius.circular(999),
-              child: hasCustomSlivers
-                  ? CustomScrollView(
-                      controller: _effectiveController,
-                      physics: const BouncingScrollPhysics(),
-                      slivers: [
-                        SliverPadding(
-                          padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
-                          sliver: SliverList.list(
-                            children: [...headerContent, ...widget.children],
+      // In a wide browser window the page stays full-bleed while its content
+      // centres at a readable width (WebLayout); native builds keep 16.
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final insets = MediaQuery.paddingOf(context);
+          final side = WebLayout.sidePadding(
+            constraints.maxWidth - insets.horizontal,
+          );
+          return Stack(
+            children: [
+              if (widget.ownsBackground)
+                widget.layoutConfig.extendBehindBottomNav
+                    ? GlobalBackground(
+                        assetPath: widget.backgroundAssetPath,
+                        overlayColor: widget.backgroundOverlayColor,
+                        atmosphere: widget.backgroundAtmosphere,
+                      )
+                    : ClipRect(
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: bottomInset),
+                          child: Stack(
+                            children: [
+                              GlobalBackground(
+                                assetPath: widget.backgroundAssetPath,
+                                overlayColor: widget.backgroundOverlayColor,
+                                atmosphere: widget.backgroundAtmosphere,
+                              ),
+                            ],
                           ),
                         ),
-                        ...widget.bodySlivers!,
-                        if (bottomInset > 0)
-                          SliverToBoxAdapter(
-                            child: SizedBox(height: bottomInset),
+                      ),
+              SafeArea(
+                // A thin scroll indicator so long pages show how much is left.
+                child: Scrollbar(
+                  controller: _effectiveController,
+                  thickness: 3,
+                  radius: const Radius.circular(999),
+                  child: hasCustomSlivers
+                      ? CustomScrollView(
+                          controller: _effectiveController,
+                          physics: const BouncingScrollPhysics(),
+                          slivers: [
+                            SliverPadding(
+                              padding: EdgeInsets.fromLTRB(side, 18, side, 0),
+                              sliver: SliverList.list(
+                                children: [
+                                  ...headerContent,
+                                  ...widget.children,
+                                ],
+                              ),
+                            ),
+                            // Body slivers pad themselves for a phone; on the web
+                            // they take the extra centring on top.
+                            if (WebLayout.isWeb)
+                              for (final sliver in widget.bodySlivers!)
+                                SliverPadding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: side - 16,
+                                  ),
+                                  sliver: sliver,
+                                )
+                            else
+                              ...widget.bodySlivers!,
+                            if (bottomInset > 0)
+                              SliverToBoxAdapter(
+                                child: SizedBox(height: bottomInset),
+                              ),
+                          ],
+                        )
+                      : ListView(
+                          controller: _effectiveController,
+                          physics: const BouncingScrollPhysics(),
+                          padding: EdgeInsets.fromLTRB(
+                            side,
+                            18,
+                            side,
+                            bottomInset,
                           ),
-                      ],
-                    )
-                  : ListView(
-                      controller: _effectiveController,
-                      physics: const BouncingScrollPhysics(),
-                      padding: EdgeInsets.fromLTRB(16, 18, 16, bottomInset),
-                      children: [...headerContent, ...widget.children],
-                    ),
-            ),
-          ),
-          if (widget.floatingBottom != null)
-            Positioned(
-              left: 16,
-              right: 16,
-              bottom: AppPageScaffold._homeMatchedFloatingBottomOffset,
-              child: widget.floatingBottom!,
-            ),
-        ],
+                          children: [...headerContent, ...widget.children],
+                        ),
+                ),
+              ),
+              if (widget.floatingBottom != null)
+                Positioned(
+                  left: side + (WebLayout.isWeb ? insets.left : 0),
+                  right: side + (WebLayout.isWeb ? insets.right : 0),
+                  bottom: AppPageScaffold._homeMatchedFloatingBottomOffset,
+                  child: widget.floatingBottom!,
+                ),
+            ],
+          );
+        },
       ),
     );
   }

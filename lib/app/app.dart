@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app_navigation_bridge.dart';
 import 'app_router.dart';
 import 'app_quick_actions.dart';
-import 'web_phone_frame.dart';
 import '../core/localization/locale_provider.dart';
 import '../core/reminders/prayer_live_activity_service.dart';
 import '../core/reminders/reminder_scheduler.dart';
@@ -140,9 +139,8 @@ class PathOfNurApp extends ConsumerWidget {
       themeMode: useSystemTheme ? ThemeMode.system : ThemeMode.light,
       routerConfig: ref.read(appRouterProvider),
       // One ticker for all ambient life, above every route.
-      builder: (context, child) => WebPhoneFrame(
-        child: AmbientMotion(child: child ?? const SizedBox.shrink()),
-      ),
+      builder: (context, child) =>
+          AmbientMotion(child: child ?? const SizedBox.shrink()),
       locale: locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,

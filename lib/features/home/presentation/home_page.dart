@@ -48,6 +48,7 @@ import '../domain/home_modules.dart';
 import 'widgets/home_prayer_strip.dart';
 import 'widgets/home_today_card.dart';
 import '../../../shared/widgets/quick_actions_sheet.dart';
+import '../../../shared/widgets/web_layout.dart';
 import 'widgets/occasion_offer_sheet.dart';
 import 'widgets/garden_vista_home_card.dart';
 import 'widgets/ramadan_hero_card.dart';
@@ -174,6 +175,12 @@ class _HomePageState extends ConsumerState<HomePage> {
             ) !=
             AppPageTransitionStyle.noAnimation;
 
+    // A wide browser window centres Home at a readable width (WebLayout).
+    final side = WebLayout.sidePadding(
+      MediaQuery.sizeOf(context).width -
+          MediaQuery.paddingOf(context).horizontal,
+      minimum: 18,
+    );
     return SafeArea(
       child: Stack(
         children: [
@@ -181,7 +188,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           const QuickActionsHintCoordinator(),
           SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.fromLTRB(18, 8, 18, 28),
+            padding: EdgeInsets.fromLTRB(side, 8, side, 28),
             // Home settles in like every page: greeting first, then the hero
             // and the first modules, one after the other.
             child: MotionStaggerScope(
