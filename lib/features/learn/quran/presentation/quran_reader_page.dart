@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
@@ -206,17 +205,35 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if (kIsWeb || !Platform.isIOS) return;
-    if (state == AppLifecycleState.inactive ||
-        state == AppLifecycleState.paused) {
-      _pauseReadingSession();
-      _saveViewportReadingProgress();
-      final audioSettings = ref.read(quranAudioSettingsProvider);
-      if (!audioSettings.backgroundPlaybackEnabled && _audioPlayer.playing) {
-        unawaited(_playerController.pause());
-      }
-    } else if (state == AppLifecycleState.resumed) {
-      _resumeReadingSession();
+    switch (state) {
+      case AppLifecycleState.resumed:
+        _resumeReadingSession();
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.hidden:
+      case AppLifecycleState.paused:
+        // Leaving arrives as several states in a row (a hidden browser tab
+        // stops at hidden); save the place on the first of them.
+        if (_readingSessionStartedAt != null) _saveViewportReadingProgress();
+        _pauseReadingSession();
+        _pauseAudioUnlessPlayingInBackground();
+      case AppLifecycleState.detached:
+        break;
+    }
+  }
+
+  /// With "Keep playing in the background" off, recitation stops when the
+  /// app leaves the screen. Phones only: a browser keeps a hidden tab's audio
+  /// playing and reports a window losing focus as inactive, and a desktop
+  /// window can be minimised mid-surah.
+  void _pauseAudioUnlessPlayingInBackground() {
+    if (kIsWeb) return;
+    if (defaultTargetPlatform != TargetPlatform.iOS &&
+        defaultTargetPlatform != TargetPlatform.android) {
+      return;
+    }
+    final audioSettings = ref.read(quranAudioSettingsProvider);
+    if (!audioSettings.backgroundPlaybackEnabled && _audioPlayer.playing) {
+      unawaited(_playerController.pause());
     }
   }
 

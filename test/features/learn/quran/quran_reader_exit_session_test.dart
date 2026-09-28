@@ -190,6 +190,56 @@ void main() {
     expect(find.text('sessions 2'), findsOneWidget);
   });
 
+  // What the binding delivers on the way out and back in. A phone walks
+  // through inactive and hidden to paused; a browser stops at hidden when
+  // the tab is hidden and never reports paused.
+  const trips =
+      <String, (List<AppLifecycleState> away, List<AppLifecycleState> back)>{
+        'the app is backgrounded': (
+          [AppLifecycleState.paused],
+          [AppLifecycleState.resumed],
+        ),
+        'the phone walks through every state': (
+          [
+            AppLifecycleState.inactive,
+            AppLifecycleState.hidden,
+            AppLifecycleState.paused,
+          ],
+          [
+            AppLifecycleState.hidden,
+            AppLifecycleState.inactive,
+            AppLifecycleState.resumed,
+          ],
+        ),
+        'the browser tab is hidden': (
+          [AppLifecycleState.inactive, AppLifecycleState.hidden],
+          [AppLifecycleState.inactive, AppLifecycleState.resumed],
+        ),
+      };
+
+  for (final MapEntry(key: trip, value: (away, back)) in trips.entries) {
+    testWidgets('time away is not reading when $trip', (tester) async {
+      now = DateTime(2026, 4, 10, 20, 15);
+      final container = await pumpApp(tester);
+
+      await openReader(tester);
+      now = now.add(const Duration(seconds: 20));
+      away.forEach(tester.binding.handleAppLifecycleStateChanged);
+      now = now.add(const Duration(minutes: 30));
+      back.forEach(tester.binding.handleAppLifecycleStateChanged);
+      now = now.add(const Duration(seconds: 25));
+      await closeReader(tester);
+
+      expect(tester.takeException(), isNull);
+      final stats = container.read(quranReadingStatsProvider);
+      expect(stats.totalSessions, 1);
+      // The twenty seconds before leaving and the twenty-five after coming
+      // back; the half hour away is not counted.
+      expect(stats.totalReadingSeconds, 45);
+      expect(find.text('sessions 1'), findsOneWidget);
+    });
+  }
+
   testWidgets('switching surah in place logs the first surah as a session', (
     tester,
   ) async {
