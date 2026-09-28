@@ -6,7 +6,6 @@ import 'learn_hub_page_scaffold.dart';
 class LearnContainedStatePage extends StatelessWidget {
   const LearnContainedStatePage({
     super.key,
-    required this.headerIcon,
     required this.title,
     required this.subtitle,
     required this.body,
@@ -16,7 +15,6 @@ class LearnContainedStatePage extends StatelessWidget {
     this.onSecondaryAction,
   });
 
-  final IconData headerIcon;
   final String title;
   final String subtitle;
   final String body;
@@ -28,7 +26,6 @@ class LearnContainedStatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LearnHubPageScaffold(
-      headerIcon: headerIcon,
       title: title,
       subtitle: subtitle,
       children: [
@@ -38,7 +35,13 @@ class LearnContainedStatePage extends StatelessWidget {
             children: [
               Text(
                 body,
-                style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+                // PremiumCard re-themes the inherited TextTheme per surface,
+                // so bodyMedium already carries the right colour for Midnight,
+                // Ramadan, Eid and the rest. Naming a literal here is what
+                // used to leave this text parchment-brown on dark glass.
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(height: 1.4),
               ),
               if (primaryActionLabel != null || secondaryActionLabel != null)
                 const SizedBox(height: 14),

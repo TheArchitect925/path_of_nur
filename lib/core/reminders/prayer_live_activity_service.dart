@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,7 +25,7 @@ class PrayerLiveActivityService {
   );
 
   Future<bool> isSupported() async {
-    if (!Platform.isIOS) return false;
+    if (kIsWeb || !Platform.isIOS) return false;
     try {
       final value = await _channel.invokeMethod<bool>('isSupported');
       return value ?? false;
@@ -45,7 +46,7 @@ class PrayerLiveActivityService {
     Duration? ramadanRemaining,
     DateTime? ramadanTargetTime,
   }) async {
-    if (!Platform.isIOS) return;
+    if (kIsWeb || !Platform.isIOS) return;
     try {
       await _channel.invokeMethod<void>('updatePrayerCountdown', {
         'showCurrentPrayer': currentPrayer != null,
@@ -77,7 +78,7 @@ class PrayerLiveActivityService {
   }
 
   Future<void> endPrayerCountdown() async {
-    if (!Platform.isIOS) return;
+    if (kIsWeb || !Platform.isIOS) return;
     try {
       await _channel.invokeMethod<void>('endPrayerCountdown');
     } catch (_) {
@@ -97,7 +98,7 @@ class PrayerLiveActivityService {
     required String duaArabic,
     required String duaTranslation,
   }) async {
-    if (!Platform.isIOS) return;
+    if (kIsWeb || !Platform.isIOS) return;
     try {
       await _channel.invokeMethod<void>('updateFastingCountdown', {
         'title': title,
@@ -117,7 +118,7 @@ class PrayerLiveActivityService {
   }
 
   Future<void> endFastingCountdown() async {
-    if (!Platform.isIOS) return;
+    if (kIsWeb || !Platform.isIOS) return;
     try {
       await _channel.invokeMethod<void>('endFastingCountdown');
     } catch (_) {
@@ -445,7 +446,7 @@ _FastingLivePresentation? _buildFastingPresentation({
     return _FastingLivePresentation(
       title: l10n.notificationsFastingLiveFastBeginsTitle,
       arabicTitle: l10n.notificationsFastingLiveFastBeginsArabicTitle,
-      metricLabel: l10n.notificationsFastingLiveStartsIn(''),
+      metricLabel: l10n.notificationsFastingLiveStartsIn,
       remaining: _nonNegative(fajrStart.difference(now)),
       targetTime: fajrStart,
       targetRoute: '/learn/duas/stub_092_special_days_ramadan',
@@ -465,7 +466,7 @@ _FastingLivePresentation? _buildFastingPresentation({
     return _FastingLivePresentation(
       title: l10n.notificationsFastingLiveFastEndsTitle,
       arabicTitle: l10n.notificationsFastingLiveFastEndsArabicTitle,
-      metricLabel: l10n.notificationsFastingLiveEndsIn(''),
+      metricLabel: l10n.notificationsFastingLiveEndsIn,
       remaining: _nonNegative(maghribStart.difference(now)),
       targetTime: maghribStart,
       targetRoute: '/learn/duas/stub_091_special_days_ramadan',

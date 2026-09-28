@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
-import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/display/expandable_tile.dart';
 import '../../../shared/widgets/section_title.dart';
 
 class ProfileWhatsNewPage extends StatefulWidget {
@@ -18,7 +18,6 @@ class _ProfileWhatsNewPageState extends State<ProfileWhatsNewPage> {
     final l10n = AppLocalizations.of(context);
     final entries = _buildEntries(l10n);
     return AppPageScaffold(
-      headerIcon: Icons.new_releases_outlined,
       title: l10n.settingsWhatsNewTitle,
       subtitle: l10n.settingsWhatsNewSubtitle,
       children: [
@@ -55,56 +54,49 @@ class _WhatsNewEntryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return PremiumCard(
-      child: Theme(
-        data: theme.copyWith(dividerColor: Colors.transparent),
-        child: ExpansionTile(
-          tilePadding: EdgeInsets.zero,
-          childrenPadding: EdgeInsets.zero,
-          initiallyExpanded: initiallyExpanded,
-          title: Text(
-            entry.title,
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w700,
+    // Was a Material ExpansionTile wrapped in a dividerColor override to stop
+    // it drawing its own lines over the glass card.
+    return ExpandableTile(
+      initiallyExpanded: initiallyExpanded,
+      title: Text(
+        entry.title,
+        style: theme.textTheme.titleMedium?.copyWith(
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+      subtitle: Text('${entry.version} • ${entry.dateLabel}'),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              entry.summary,
+              style: theme.textTheme.bodyMedium?.copyWith(height: 1.4),
             ),
           ),
-          subtitle: Text('${entry.version} • ${entry.dateLabel}'),
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Text(
-                  entry.summary,
-                  style: theme.textTheme.bodyMedium?.copyWith(height: 1.4),
-                ),
+          ...entry.items.map(
+            (item) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 7),
+                    child: Icon(Icons.circle_rounded, size: 6),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      item,
+                      style: theme.textTheme.bodyMedium?.copyWith(height: 1.4),
+                    ),
+                  ),
+                ],
               ),
             ),
-            ...entry.items.map(
-              (item) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 7),
-                      child: Icon(Icons.circle, size: 6),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Text(
-                        item,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          height: 1.4,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -23,8 +23,8 @@ void main() {
     });
 
     test('seeds a polished non-prophet quiz and memory subset', () {
-      expect(kKidsIslamicStoryQuizzes.length, 5);
-      expect(kKidsIslamicStoryMemoryDecks.length, 5);
+      expect(kKidsIslamicStoryQuizzes.length, 10);
+      expect(kKidsIslamicStoryMemoryDecks.length, 10);
       expect(
         kKidsIslamicStoryQuizzes.map((quiz) => quiz.storyId),
         contains('story_telling_the_truth_v1'),

@@ -54,7 +54,7 @@ ImportedQuranTranslationValidationResult validateImportedQuranTranslationBundle(
           type: ImportedQuranTranslationIssueType.missingVerse,
           verseKey: verseKey,
           message:
-              'Imported Qur\'an translation bundle ${bundle.code} is missing verse '
+              'Imported Qur’an translation bundle ${bundle.code} is missing verse '
               '$verseKey.',
         ),
       );
@@ -66,7 +66,7 @@ ImportedQuranTranslationValidationResult validateImportedQuranTranslationBundle(
           type: ImportedQuranTranslationIssueType.emptyTranslation,
           verseKey: verseKey,
           message:
-              'Imported Qur\'an translation bundle ${bundle.code} has an empty '
+              'Imported Qur’an translation bundle ${bundle.code} has an empty '
               'translation for verse $verseKey.',
         ),
       );
@@ -80,7 +80,7 @@ ImportedQuranTranslationValidationResult validateImportedQuranTranslationBundle(
           type: ImportedQuranTranslationIssueType.unknownVerseKey,
           verseKey: verseKey,
           message:
-              'Imported Qur\'an translation bundle ${bundle.code} contains an '
+              'Imported Qur’an translation bundle ${bundle.code} contains an '
               'unknown verse key: $verseKey.',
         ),
       );

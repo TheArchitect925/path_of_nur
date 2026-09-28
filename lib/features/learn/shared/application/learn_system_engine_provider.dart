@@ -397,8 +397,9 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
   final hadithEntries = ref.watch(hadithEntriesProvider);
   final prophetEntries = ref.watch(prophetsProvider);
   final lifeLessons = divineLifeLessons;
-  final salahPrayers = salah_data.salahPrayers;
-  final salahSurahs = salah_data.salahSurahs;
+  final salahContent = salah_data.buildSalahTrainerContent(l10n);
+  final salahPrayers = salahContent.prayers;
+  final salahSurahs = salahContent.surahs;
   final hadithQuizzes = ref.watch(hadithChapterQuizzesProvider);
   final prophetQuizQuestions = ProphetQuizPoolService.buildExpandedPool();
   final quranNotes = ref.watch(quranNotesProvider);
@@ -570,7 +571,7 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         relatedItemIds: const <String>[],
         reflectionPrompts: [surah.reflection],
         practiceActions: const [
-          'Play the surah in Learn Ayah and repeat it verse by verse.',
+          'Play the surah in Learn Ayah and repeat it verse by verse.', // copy-lint: allow prose-term-casing
         ],
         isFeatured:
             surah.id == 'al_fatihah' ||

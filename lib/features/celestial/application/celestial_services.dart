@@ -14,6 +14,7 @@ import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../data/celestial_verse_catalog.dart';
 import '../domain/celestial_models.dart';
+import '../domain/moon_ephemeris.dart';
 
 final celestialCalculationServiceProvider =
     Provider<CelestialCalculationService>(
@@ -356,9 +357,7 @@ class CelestialVerseSelector {
 class CelestialCalculationService {
   const CelestialCalculationService();
 
-  static const double _synodicMonthDays = 29.53058867;
-  static const Duration _moonTravelTime = Duration(hours: 12, minutes: 24);
-  static final DateTime _knownNewMoon = DateTime.utc(2000, 1, 6, 18, 14);
+  static const MoonEphemeris _moon = MoonEphemeris();
 
   CelestialSnapshot buildSnapshot({
     required DateTime timestamp,
@@ -384,13 +383,14 @@ class CelestialCalculationService {
     );
     final lunar = _buildLunarData(
       timestamp: timestamp,
-      sunrise: prayerTimes.sunrise,
-      sunset: prayerTimes.maghrib,
+      latitude: latitude,
+      longitude: longitude,
     );
     final nextEvent = _nextEvent(
       timestamp: timestamp,
+      latitude: latitude,
+      longitude: longitude,
       solar: solar,
-      lunar: lunar,
     );
     final verse = verseSelector.selectForSnapshot(
       skyState: solar.state,
@@ -476,52 +476,50 @@ class CelestialCalculationService {
 
   LunarData _buildLunarData({
     required DateTime timestamp,
-    required DateTime sunrise,
-    required DateTime sunset,
+    required double latitude,
+    required double longitude,
   }) {
-    final daysSinceKnown =
-        timestamp.toUtc().difference(_knownNewMoon).inMinutes / 1440;
-    final age =
-        ((daysSinceKnown % _synodicMonthDays) + _synodicMonthDays) %
-        _synodicMonthDays;
-    final phaseValue = age / _synodicMonthDays;
-    final illumination = (((1 - math.cos(phaseValue * math.pi * 2)) / 2) * 100)
-        .round();
+    final phase = _moon.phaseAt(timestamp);
 
-    final riseOffsetHours = phaseValue * 24;
-    var moonrise = sunrise.add(
-      Duration(minutes: (riseOffsetHours * 60).round()),
+    // Rise and set belong to the day, as in an almanac: the set can come
+    // before the rise, and once a month a day has no rise (or no set).
+    final events = _moon.eventsOnDay(
+      day: timestamp,
+      latitude: latitude,
+      longitude: longitude,
     );
-    if (moonrise.day != sunrise.day) {
-      moonrise = DateTime(
-        sunrise.year,
-        sunrise.month,
-        sunrise.day,
-        moonrise.hour,
-        moonrise.minute,
-      );
-    }
-    final moonset = moonrise.add(_moonTravelTime);
-    final isAboveHorizon =
-        !timestamp.isBefore(moonrise) && timestamp.isBefore(moonset);
+    final position = _moon.positionAt(
+      timestamp,
+      latitude: latitude,
+      longitude: longitude,
+    );
 
     return LunarData(
-      moonrise: moonrise,
-      moonset: moonset,
-      phaseName: _moonPhaseName(age),
-      phaseValue: phaseValue,
-      illuminationPercent: illumination,
-      ageInCycleDays: age,
-      isAboveHorizon: isAboveHorizon,
-      riseSetApproximate: true,
+      moonrise: events.rise,
+      moonset: events.set,
+      phaseName: _moonPhaseName(phase.phase),
+      phaseValue: phase.cycleFraction,
+      illuminationPercent: phase.illuminationPercent,
+      ageInCycleDays: phase.ageDays,
+      isAboveHorizon: position.isAboveHorizon,
+      riseSetApproximate: false,
     );
   }
 
   CelestialEvent _nextEvent({
     required DateTime timestamp,
+    required double latitude,
+    required double longitude,
     required SolarData solar,
-    required LunarData lunar,
   }) {
+    // The moon keeps no daily hour, so its next rise and set are searched
+    // for rather than carried over from today's.
+    final moon = _moon.eventsBetween(
+      from: timestamp,
+      to: timestamp.add(const Duration(hours: 26)),
+      latitude: latitude,
+      longitude: longitude,
+    );
     final candidates = <CelestialEvent>[
       CelestialEvent(
         type: CelestialEventType.sunrise,
@@ -541,25 +539,19 @@ class CelestialCalculationService {
           timestamp,
         ),
       ),
-      if (lunar.moonrise != null)
+      if (moon.rise case final rise?)
         CelestialEvent(
           type: CelestialEventType.moonrise,
-          time: _normalizeFutureEvent(timestamp, lunar.moonrise!),
+          time: rise,
           label: 'Moonrise',
-          relativeDescription: _relativeTime(
-            _normalizeFutureEvent(timestamp, lunar.moonrise!),
-            timestamp,
-          ),
+          relativeDescription: _relativeTime(rise, timestamp),
         ),
-      if (lunar.moonset != null)
+      if (moon.set case final set?)
         CelestialEvent(
           type: CelestialEventType.moonset,
-          time: _normalizeFutureEvent(timestamp, lunar.moonset!),
+          time: set,
           label: 'Moonset',
-          relativeDescription: _relativeTime(
-            _normalizeFutureEvent(timestamp, lunar.moonset!),
-            timestamp,
-          ),
+          relativeDescription: _relativeTime(set, timestamp),
         ),
     ]..sort((a, b) => a.time.compareTo(b.time));
 
@@ -616,42 +608,25 @@ class CelestialCalculationService {
     required CelestialSnapshot snapshot,
     required double? headingDegrees,
   }) {
-    final moonrise = snapshot.lunarData.moonrise;
-    final moonset = snapshot.lunarData.moonset;
-    if (moonrise == null || moonset == null) {
-      return CelestialDirectionMarker(
-        label: 'Moon',
-        status: 'Unavailable',
-        guidance:
-            'Moonrise and moonset are approximate here and unavailable for this moment.',
-        azimuthDegrees: 0,
-        altitudeDegrees: -12,
-        relativeBearingDegrees: null,
-        isVisible: false,
-      );
-    }
-    final moonProgress = snapshot.timestamp.isBefore(moonrise)
-        ? 0.0
-        : snapshot.timestamp.isAfter(moonset)
-        ? 1.0
-        : _fraction(moonrise, moonset, snapshot.timestamp);
-    final azimuth = 90 + (moonProgress * 180);
-    final altitude = snapshot.lunarData.isAboveHorizon
-        ? math.sin(moonProgress * math.pi) * 55
-        : -10.0;
+    final position = _moon.positionAt(
+      snapshot.timestamp,
+      latitude: snapshot.latitude,
+      longitude: snapshot.longitude,
+    );
+    final azimuth = position.azimuthDegrees;
     return CelestialDirectionMarker(
       label: 'Moon',
-      status: snapshot.lunarData.isAboveHorizon ? 'Visible' : 'Below horizon',
-      guidance: snapshot.lunarData.isAboveHorizon
+      status: position.isAboveHorizon ? 'Visible' : 'Below horizon',
+      guidance: position.isAboveHorizon
           ? _guidanceForBearing(
               _relativeBearing(headingDegrees, azimuth),
               'moon',
             )
           : 'The moon is below the horizon right now.',
       azimuthDegrees: azimuth,
-      altitudeDegrees: altitude,
+      altitudeDegrees: position.altitudeDegrees,
       relativeBearingDegrees: _relativeBearing(headingDegrees, azimuth),
-      isVisible: snapshot.lunarData.isAboveHorizon,
+      isVisible: position.isAboveHorizon,
     );
   }
 
@@ -667,17 +642,16 @@ class CelestialCalculationService {
     return event.add(const Duration(days: 1));
   }
 
-  static String _moonPhaseName(double age) {
-    if (age < 1.5) return 'New moon';
-    if (age < 6.5) return 'Waxing crescent';
-    if (age < 8.5) return 'First quarter';
-    if (age < 13.5) return 'Waxing gibbous';
-    if (age < 16.5) return 'Full moon';
-    if (age < 21.5) return 'Waning gibbous';
-    if (age < 23.5) return 'Last quarter';
-    if (age < 28.5) return 'Waning crescent';
-    return 'New moon';
-  }
+  static String _moonPhaseName(MoonPhase phase) => switch (phase) {
+    MoonPhase.newMoon => 'New moon',
+    MoonPhase.waxingCrescent => 'Waxing crescent',
+    MoonPhase.firstQuarter => 'First quarter',
+    MoonPhase.waxingGibbous => 'Waxing gibbous',
+    MoonPhase.fullMoon => 'Full moon',
+    MoonPhase.waningGibbous => 'Waning gibbous',
+    MoonPhase.lastQuarter => 'Last quarter',
+    MoonPhase.waningCrescent => 'Waning crescent',
+  };
 
   static String _relativeTime(DateTime target, DateTime now) {
     final diff = target.difference(now);

@@ -11,7 +11,7 @@ import 'package:path_of_nur/features/learn/companion_surfaces/presentation/daily
 import 'package:path_of_nur/features/learn/companion_surfaces/presentation/seerah_companion_page.dart';
 import 'package:path_of_nur/features/learn/journey/data/learning_journey_lesson_content.dart';
 import 'package:path_of_nur/features/learn/journey/data/learning_journey_registry.dart';
-import 'package:path_of_nur/features/learn/presentation/pages/learn_quran_hub_page.dart';
+import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/features/worship/presentation/worship_section_pages.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
@@ -225,7 +225,7 @@ void main() {
 
     router.goNamed('quranLearningHub');
     await pumpRouteFrames(tester);
-    expect(find.byType(LearnQuranHubPage), findsOneWidget);
+    expect(find.byType(QuranAppHubPage), findsOneWidget);
 
     router.goNamed('worshipDhikrPage');
     await pumpRouteFrames(tester);

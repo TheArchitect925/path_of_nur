@@ -62,7 +62,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
         id: 'c1_q4',
         type: HadithQuizQuestionType.quranConnection,
         text:
-            'Which Qur\'anic anchor aligns with sincerity of worship in this chapter?',
+            'Which Qur’anic anchor aligns with sincerity of worship in this chapter?',
         options: [
           'Qur\'an 98:5',
           'Qur\'an 87:14-15',
@@ -71,7 +71,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
         ],
         correctAnswer: 'Qur\'an 98:5',
         explanation:
-            'Qur\'an 98:5 highlights worship with pure devotion, matching the chapter\'s emphasis on sincere intention.',
+            'Qur’an 98:5 highlights worship with pure devotion, matching the chapter’s emphasis on sincere intention.',
         lessonId: 'religion_sincerity',
       ),
       HadithQuizQuestion(
@@ -118,7 +118,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
         ],
         correctAnswer: 'Islam is built on five',
         explanation:
-            'Prayer is one of the central pillars in the hadith describing Islam\'s foundation.',
+            'Prayer is one of the central pillars in the hadith describing Islam’s foundation.',
         lessonId: 'islam_built_on_five_prayer',
       ),
       HadithQuizQuestion(
@@ -144,7 +144,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
         options: ['Teach', 'Remember', 'Pray', 'Repent'],
         correctAnswer: 'Pray',
         explanation:
-            'The Sunnah gives practical form to salah, making the Prophet\'s example central.',
+            'The sunnah gives practical form to salah, making the Prophet’s ﷺ example central.',
         lessonId: 'pray_as_you_have_seen_me',
       ),
       HadithQuizQuestion(
@@ -160,7 +160,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
         ],
         correctAnswer: 'Qur\'an 4:103',
         explanation:
-            'Qur\'an 4:103 stresses prayer as prescribed at appointed times.',
+            'Qur’an 4:103 stresses prayer as prescribed at appointed times.',
         lessonId: 'first_account_prayer',
       ),
       HadithQuizQuestion(
@@ -191,7 +191,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
       surahName: 'Az-Zumar',
       surahNumber: 39,
       verseRange: '53',
-      label: 'Do not despair of Allah\'s mercy',
+      label: 'Do not despair of Allah’s mercy',
     ),
     questions: [
       HadithQuizQuestion(
@@ -249,7 +249,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
         ],
         correctAnswer: 'Qur\'an 66:8',
         explanation:
-            'Qur\'an 66:8 calls believers to sincere repentance, matching this chapter closely.',
+            'Qur’an 66:8 calls believers to sincere repentance, matching this chapter closely.',
         lessonId: 'allah_accepts_repentance_night_day',
       ),
       HadithQuizQuestion(
@@ -264,7 +264,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
         ],
         correctAnswer: 'Regular repentance keeps the heart soft and alert',
         explanation:
-            'The Prophet\'s frequent istighfar teaches humility and continuous return to Allah.',
+            'The Prophet’s frequent istighfar teaches humility and continuous return to Allah.',
         lessonId: 'prophet_sought_forgiveness_daily',
       ),
     ],
@@ -279,13 +279,13 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
       surahName: 'Al-Qalam',
       surahNumber: 68,
       verseRange: '4',
-      label: 'The Prophet\'s exalted character',
+      label: 'The Prophet’s exalted character',
     ),
     questions: [
       HadithQuizQuestion(
         id: 'c4_q1',
         type: HadithQuizQuestionType.multipleChoice,
-        text: 'Which hadith summarizes the Prophet\'s mission in conduct?',
+        text: 'Which hadith summarizes the Prophet’s ﷺ mission in conduct?',
         options: [
           'I was sent to perfect noble character',
           'The dunya is a prison for the believer',
@@ -337,7 +337,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
         ],
         correctAnswer: 'Qur\'an 49:11-12',
         explanation:
-            'Qur\'an 49:11-12 addresses social speech ethics and protecting dignity.',
+            'Qur’an 49:11-12 addresses social speech ethics and protecting dignity.',
         lessonId: 'not_insulting_or_cursing',
       ),
       HadithQuizQuestion(
@@ -424,7 +424,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
         ],
         correctAnswer: 'Qur\'an 3:159',
         explanation:
-            'Qur\'an 3:159 links gentleness and mercy with effective guidance.',
+            'Qur’an 3:159 links gentleness and mercy with effective guidance.',
         lessonId: 'mercy_creation',
       ),
       HadithQuizQuestion(
@@ -509,7 +509,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
         ],
         correctAnswer: 'Qur\'an 14:7',
         explanation:
-            'Qur\'an 14:7 reinforces grateful awareness in times of ease.',
+            'Qur’an 14:7 reinforces grateful awareness in times of ease.',
         lessonId: 'look_at_those_below',
       ),
       HadithQuizQuestion(
@@ -597,7 +597,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
         ],
         correctAnswer: 'Qur\'an 33:72',
         explanation:
-            'Qur\'an 33:72 highlights the trust (amanah), matching ethical responsibility themes.',
+            'Qur’an 33:72 highlights the trust (amanah), matching ethical responsibility themes.',
         lessonId: 'trust_honesty',
       ),
       HadithQuizQuestion(
@@ -686,7 +686,7 @@ const List<HadithChapterQuiz> seededHadithChapterQuizzes = [
         ],
         correctAnswer: 'Qur\'an 99:7-8',
         explanation:
-            'Qur\'an 99:7-8 mirrors the chapter\'s focus on precise accountability.',
+            'Qur’an 99:7-8 mirrors the chapter’s focus on precise accountability.',
         lessonId: 'accountability_day_of_judgment',
       ),
       HadithQuizQuestion(

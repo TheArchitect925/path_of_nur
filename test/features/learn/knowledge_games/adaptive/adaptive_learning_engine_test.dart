@@ -71,5 +71,60 @@ void main() {
 
       expect(quranPriority, lessThan(hadithPriority));
     });
+
+    test('insight stays quiet on a flat profile', () {
+      // The stored default is 0.3 for every game. Lowest and highest key both
+      // resolve to the first entry on a tie, which used to surface the same
+      // game as "extra support" and "slight stretch" on the daily hub.
+      const flat = UserLearningProfile(
+        categoryStrength: <String, double>{'quran': 0.3, 'hadith': 0.3},
+        gameTypeStrength: <String, double>{
+          'crossword': 0.3,
+          'matching': 0.3,
+          'ayah_completion': 0.3,
+        },
+        overallSkillLevel: 0.3,
+        recentPerformance: <String, int>{},
+        difficultyComfort: <String, double>{},
+      );
+
+      final insight = engine.buildInsight(flat);
+
+      expect(insight.hasAdaptiveData, isFalse);
+      expect(insight.supportGameType, isNull);
+      expect(insight.challengeGameType, isNull);
+    });
+
+    test('insight names different games for support and stretch', () {
+      const profile = UserLearningProfile(
+        categoryStrength: <String, double>{},
+        gameTypeStrength: <String, double>{
+          'crossword': 0.35,
+          'matching': 0.8,
+          'ayah_completion': 0.6,
+        },
+        overallSkillLevel: 0.6,
+        recentPerformance: <String, int>{'game:matching': 3},
+        difficultyComfort: <String, double>{},
+      );
+
+      final insight = engine.buildInsight(profile);
+
+      expect(insight.hasAdaptiveData, isTrue);
+      expect(insight.supportGameType, 'crossword');
+      expect(insight.challengeGameType, 'matching');
+    });
+
+    test('insight ignores a gap too small to act on', () {
+      const profile = UserLearningProfile(
+        categoryStrength: <String, double>{},
+        gameTypeStrength: <String, double>{'crossword': 0.50, 'matching': 0.56},
+        overallSkillLevel: 0.53,
+        recentPerformance: <String, int>{'game:matching': 1},
+        difficultyComfort: <String, double>{},
+      );
+
+      expect(engine.buildInsight(profile).hasAdaptiveData, isFalse);
+    });
   });
 }

@@ -2,10 +2,19 @@ import SwiftUI
 
 struct TVHomeScreen: View {
   @ObservedObject var viewModel: TVHomeViewModel
+  /// Home goes on from where the Qur'an was left, and shows its verse of
+  /// the day.
+  @ObservedObject var quran: TVQuranViewModel
   @EnvironmentObject private var appViewModel: TVAppViewModel
   @FocusState private var focusedSection: String?
 
   var body: some View {
+    GeometryReader { geometry in
+      page(in: geometry.size)
+    }
+  }
+
+  private func page(in screen: CGSize) -> some View {
     ScrollView {
       VStack(alignment: .leading, spacing: TVTheme.sectionSpacing) {
         TVHeroCard(
@@ -17,12 +26,15 @@ struct TVHomeScreen: View {
 
         TVSectionHeader(
           title: viewModel.continueJourneySummaryTitle,
-          subtitle: viewModel.continueJourneySummarySubtitle
+          subtitle: ""
         )
 
         ScrollView(.horizontal, showsIndicators: false) {
-          LazyHStack(spacing: TVTheme.railSpacing) {
-            ForEach(Array(viewModel.continueJourneyItems.enumerated()), id: \.element.id) { index, item in
+          // Not lazy, here or in the prayer times below. What is lazy and
+          // below the screen's edge is not yet there for the focus to move
+          // to, and a press down goes past it to whatever is.
+          HStack(spacing: TVTheme.railSpacing) {
+            ForEach(Array(continueJourneyItems.enumerated()), id: \.element.id) { index, item in
               let focusID = index == 0
                   ? TVFocusSectionId.homeContinueJourney
                   : "home.continueJourney.\(item.id)"
@@ -32,85 +44,69 @@ struct TVHomeScreen: View {
               } label: {
                 TVContinueJourneyCard(item: item)
               }
-              .buttonStyle(.plain)
-              .focused($focusedSection, equals: focusID)
+              .buttonStyle(TVCardButtonStyle())
+              .tvFocusID($focusedSection, focusID)
             }
           }
-          .padding(.vertical, 8)
+          .padding(TVTheme.railBleed)
         }
+        .tvRail()
 
         TVSectionHeader(
-          title: tvLocalized("Prayer Times"),
-          subtitle: viewModel.prayerSectionSubtitle
+          title: tvLocalized("Prayer times"),
+          subtitle: ""
         )
 
         VStack(alignment: .leading, spacing: TVTheme.blockSpacing) {
-          _summaryCard(
-            title: viewModel.prayerSummaryLine,
-            subtitle: viewModel.prayerSummaryDetail
-          )
-
-          LazyVGrid(
-            columns: [
-              GridItem(.flexible(), spacing: 18),
-              GridItem(.flexible(), spacing: 18),
-            ],
-            spacing: 18
-          ) {
-            ForEach(viewModel.prayerTimes) { prayer in
-              TVPrayerTimeCard(prayer: prayer)
-            }
-          }
-        }
-
-        TVSectionHeader(
-          title: tvLocalized("Today's Light"),
-          subtitle: viewModel.dailyLightSubtitle
-        )
-
-        _verseCard
-
-        TVSectionHeader(
-          title: tvLocalized("Featured Qur'an paths"),
-          subtitle: tvLocalized("Open the same Qur'an space from the home surface.")
-        )
-
-        ScrollView(.horizontal, showsIndicators: false) {
-          LazyHStack(spacing: TVTheme.railSpacing) {
+          if viewModel.prayerTimes.isEmpty {
+            // With no place there are no times, and the card that says so
+            // is the way to choose one, as it is on Prayer.
             Button {
-              appViewModel.navigate(to: .quran, preferredColumn: .content)
+              appViewModel.markContentSectionFocused(TVFocusSectionId.settingsPrayer, for: .settings)
+              appViewModel.navigate(to: .settings, preferredColumn: .content)
             } label: {
-              TVActionCard(
-                title: tvLocalized("Continue Reading"),
-                subtitle: tvLocalized(
-                  "Continue with %@ %d:%d",
-                  viewModel.continueReading.surahName,
-                  viewModel.continueReading.surahNumber,
-                  viewModel.continueReading.ayahNumber
-                ),
-                systemImage: "book.closed.fill"
+              _summaryCard(
+                title: viewModel.prayerSummaryLine,
+                subtitle: viewModel.prayerSummaryDetail
               )
             }
-            .buttonStyle(.plain)
-            .focused($focusedSection, equals: TVFocusSectionId.homeContinueJourney)
+            .buttonStyle(TVCardButtonStyle())
+            .tvFocusID($focusedSection, "home.prayer.place")
+          } else {
+            _summaryCard(
+              title: viewModel.prayerSummaryLine,
+              subtitle: viewModel.prayerSummaryDetail
+            )
+          }
 
-            ForEach(viewModel.actions) { item in
-              Button {
-                if item.id == "home_quran" {
-                  appViewModel.navigate(to: .quran, preferredColumn: .content)
+          VStack(spacing: 18) {
+            ForEach(_prayerRows, id: \.first?.id) { row in
+              HStack(alignment: .top, spacing: 18) {
+                ForEach(row) { prayer in
+                  TVPrayerTimeCard(prayer: prayer)
+                    .tvFocusID($focusedSection, "home.prayer.\(prayer.id)")
                 }
-              } label: {
-                TVShelfCard(item: item)
+                // The last row of an odd number keeps its card to one column.
+                if row.count == 1 {
+                  Color.clear.frame(maxWidth: .infinity, maxHeight: 1)
+                }
               }
-              .buttonStyle(.plain)
             }
           }
-          .padding(.vertical, 8)
         }
+
+        TVSectionHeader(
+          title: tvLocalized("Today’s verse"),
+          subtitle: ""
+        )
+
+        _verseCard(in: screen)
       }
       .padding(TVTheme.outerPadding)
     }
+    .tvPreferredFocus($focusedSection, appViewModel.preferredContentSection(for: .home))
     .onAppear {
+      quran.refreshVerseOfTheDay()
       restorePreferredFocus()
     }
     .onChange(of: appViewModel.contentFocusRequest) { _ in
@@ -127,9 +123,13 @@ struct TVHomeScreen: View {
         appViewModel.markContentSectionFocused(section, for: .home)
       }
     }
-    .onMoveCommand { direction in
-      guard direction == .left else { return }
-      appViewModel.focusNavigation()
+  }
+
+  /// The prayer times two to a row.
+  private var _prayerRows: [[TVPrayerTime]] {
+    let times = viewModel.prayerTimes
+    return stride(from: 0, to: times.count, by: 2).map { start in
+      Array(times[start..<min(start + 2, times.count)])
     }
   }
 
@@ -140,10 +140,12 @@ struct TVHomeScreen: View {
         .foregroundColor(TVTheme.textPrimary)
         .tvReadableTitle()
 
-      Text(subtitle)
-        .font(TVTypography.summaryLine)
-        .foregroundColor(TVTheme.textSecondary)
-        .tvReadableBody()
+      if !subtitle.isEmpty {
+        Text(subtitle)
+          .font(TVTypography.summaryLine)
+          .foregroundColor(TVTheme.textSecondary)
+          .tvReadableBody()
+      }
     }
     .frame(maxWidth: .infinity, alignment: .leading)
     .padding(TVTheme.cardPadding)
@@ -151,42 +153,69 @@ struct TVHomeScreen: View {
     .tvCombinedAccessibility(label: title, hint: subtitle)
   }
 
-  private var _verseCard: some View {
-    Button {
-      appViewModel.navigate(to: .quran, preferredColumn: .content)
+  private var continueJourneyItems: [TVContinueJourneyItem] {
+    TVSeedRepository.homeContinueJourneyItems(quran: quran)
+  }
+
+  // What the verse's card puts around the verse: its padding, the line that
+  // says where the verse is from, and the line that says there is more.
+  private static let verseLineHeight: CGFloat = 22
+  private static let verseChrome =
+      TVTheme.cardPadding * 2 + (verseLineHeight + TVQuranAyahMetrics.cardSpacing) * 2
+
+  /// The verse of the day, which opens in the reader. It is set to fit the
+  /// screen, since a card taller than the screen cannot be read to its end.
+  private func _verseCard(in screen: CGSize) -> some View {
+    let verse = quran.dailyVerse
+    let textWidth = screen.width - TVTheme.outerPadding * 2 - TVTheme.cardPadding * 2
+    let fitted = TVQuranAyahPlanner.homePlan(
+      for: TVQuranAyah(
+        id: "\(verse.surahNumber):\(verse.ayahNumber)",
+        surahNumber: verse.surahNumber,
+        ayahNumber: verse.ayahNumber,
+        arabic: verse.arabic,
+        transliteration: verse.transliteration,
+        translation: verse.translation
+      ),
+      screen: screen,
+      textWidth: textWidth,
+      chrome: Self.verseChrome,
+      inset: TVTheme.railBleed,
+      focusScale: TVTheme.focusScale,
+      language: Locale.current.languageCode ?? "en"
+    )
+
+    return Button {
+      appViewModel.openQuran(
+        at: TVQuranPlace(surahNumber: verse.surahNumber, ayahNumber: verse.ayahNumber)
+      )
     } label: {
-      VStack(alignment: .leading, spacing: 14) {
-        Text(viewModel.verse.arabic)
-          .font(TVTypography.arabicHero)
-          .foregroundColor(TVTheme.textPrimary)
-          .frame(maxWidth: .infinity, alignment: .trailing)
-          .tvReadableArabic()
+      VStack(alignment: .leading, spacing: TVQuranAyahMetrics.cardSpacing) {
+        if let beginning = fitted.parts.first {
+          TVQuranAyahText(part: beginning, metrics: fitted.metrics)
+        }
 
-        Text(viewModel.verse.transliteration)
-          .font(TVTypography.bodySecondary.italic())
-          .italic()
-          .foregroundColor(TVTheme.textMuted)
-          .tvReadableBody()
+        if !fitted.isWhole {
+          Text(tvLocalized("The rest is in the reader."))
+            .font(TVTypography.detail)
+            .foregroundColor(TVTheme.textMuted)
+            .frame(height: Self.verseLineHeight)
+        }
 
-        Text(viewModel.verse.translation)
-          .font(TVTypography.body)
-          .foregroundColor(TVTheme.textSecondary)
-          .tvReadableBody()
-
-        Text(viewModel.verse.locationLabel)
+        Text(verse.locationLabel)
           .font(TVTypography.detail)
           .foregroundColor(TVTheme.accentStrong)
-          .tvReadableBody()
+          .frame(height: Self.verseLineHeight)
       }
       .frame(maxWidth: .infinity, alignment: .leading)
       .padding(TVTheme.cardPadding)
       .tvSurfaceCard(elevated: true)
     }
-    .buttonStyle(.plain)
-    .focused($focusedSection, equals: TVFocusSectionId.homeVerse)
-    .tvFocusableCard()
-    .accessibilityLabel(viewModel.verse.locationLabel)
-    .accessibilityHint(tvLocalized("Opens this ayah in the Qur'an route."))
+    .buttonStyle(TVCardButtonStyle())
+    .tvFocusID($focusedSection, TVFocusSectionId.homeVerse)
+    .accessibilityLabel(verse.locationLabel)
+    .accessibilityValue(verse.translation)
+    .accessibilityHint(tvLocalized("Opens the Qur’an."))
   }
 
   private func restorePreferredFocus() {
@@ -201,12 +230,14 @@ struct TVHomeScreen: View {
 
   private func _handleContinueJourneyTap(for itemId: String) {
     switch itemId {
-    case "continue_reading", "resume_listening":
-      appViewModel.navigate(to: .quran, preferredColumn: .content)
-    case "prayer_focus":
-      focusedSection = TVFocusSectionId.homeContinueJourney
+    case "continue_reading":
+      appViewModel.openQuran(at: quran.continueReadingPlace)
+    case "resume_listening":
+      appViewModel.openQuran(at: quran.continueReadingPlace, listening: true)
+    case "dhikr_routines":
+      appViewModel.navigate(to: .dhikr, preferredColumn: .content)
     default:
-      appViewModel.navigate(to: .quran, preferredColumn: .content)
+      break
     }
   }
 }

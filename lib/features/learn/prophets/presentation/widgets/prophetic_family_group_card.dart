@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../domain/prophet_lineage_node.dart';
 import 'prophetic_family_connector_painter.dart';
@@ -76,7 +76,7 @@ class _PropheticFamilyGroupCardState extends State<PropheticFamilyGroupCard> {
                       Text(
                         widget.group.lineageLabel!,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.onSurfaceSubtle,
+                          color: context.palette.onSurfaceSubtle,
                         ),
                       ),
                     ],
@@ -138,7 +138,7 @@ class _PropheticFamilyGroupCardState extends State<PropheticFamilyGroupCard> {
                   height: 62,
                   child: CustomPaint(
                     painter: PropheticFamilyConnectorPainter(
-                      color: AppColors.accentGoldSoft.withValues(alpha: 0.45),
+                      color: context.palette.accentSoft.withValues(alpha: 0.45),
                       drawVertical: drawVerticalAbove,
                     ),
                   ),
@@ -233,8 +233,8 @@ class _LineageNodeCardState extends State<_LineageNodeCard> {
   @override
   Widget build(BuildContext context) {
     final borderColor = widget.focused
-        ? AppColors.accentGold
-        : AppColors.accentGoldSoft.withValues(alpha: 0.33);
+        ? context.palette.accent
+        : context.palette.accentSoft.withValues(alpha: 0.33);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
@@ -242,7 +242,7 @@ class _LineageNodeCardState extends State<_LineageNodeCard> {
         boxShadow: widget.focused
             ? [
                 BoxShadow(
-                  color: AppColors.accentGold.withValues(alpha: 0.2),
+                  color: context.palette.accent.withValues(alpha: 0.2),
                   blurRadius: 14,
                   spreadRadius: 0.5,
                 ),
@@ -250,7 +250,7 @@ class _LineageNodeCardState extends State<_LineageNodeCard> {
             : null,
       ),
       child: Material(
-        color: AppColors.surface.withValues(alpha: 0.2),
+        color: context.palette.surface.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(14),
         child: InkWell(
           borderRadius: BorderRadius.circular(14),
@@ -272,7 +272,7 @@ class _LineageNodeCardState extends State<_LineageNodeCard> {
                       Text(
                         widget.node.honoredArabicName,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.onSurfaceSubtle,
+                          color: context.palette.onSurfaceSubtle,
                         ),
                       ),
                       if (widget.node.lineageLabel != null) ...[
@@ -310,9 +310,9 @@ class _LineageNodeCardState extends State<_LineageNodeCard> {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surface.withValues(alpha: 0.26),
+        color: context.palette.surface.withValues(alpha: 0.26),
         border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.34),
+          color: context.palette.accentSoft.withValues(alpha: 0.34),
         ),
       ),
       child: Text(text, style: const TextStyle(fontSize: 11.1)),

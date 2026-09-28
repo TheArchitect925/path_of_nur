@@ -6,6 +6,7 @@ import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_reference_block.dart';
 import '../../data/world_creation_data.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class WorldCreationReflectionModePage extends ConsumerStatefulWidget {
   const WorldCreationReflectionModePage({super.key});
@@ -25,11 +26,14 @@ class _WorldCreationReflectionModePageState
         .where((lesson) => lesson.featured)
         .toList(growable: false);
     if (pool.isEmpty) {
-      return const AppPageScaffold(
-        headerIcon: Icons.self_improvement_rounded,
-        title: 'Reflection Mode',
-        subtitle: 'No reflection lessons available',
-        children: [PremiumCard(child: Text('Please check back later.'))],
+      return AppPageScaffold(
+        title: AppLocalizations.of(context).worldLandingReflectionModeTitle,
+        children: [
+          PremiumCard(
+            child: Text(AppLocalizations.of(context).worldReflectionModeEmpty),
+          ),
+          PremiumCard(child: Text('Please check back later.')),
+        ],
       );
     }
 
@@ -38,9 +42,10 @@ class _WorldCreationReflectionModePageState
     final verse = lesson.quranVerses.first;
 
     return AppPageScaffold(
-      headerIcon: Icons.self_improvement_rounded,
-      title: 'Reflection Mode',
-      subtitle: '${cappedIndex + 1} of ${pool.length}',
+      title: AppLocalizations.of(context).worldLandingReflectionModeTitle,
+      subtitle: AppLocalizations.of(
+        context,
+      ).worldReflectionModeProgress(cappedIndex + 1, pool.length),
       children: [
         Container(
           decoration: BoxDecoration(

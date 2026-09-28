@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -14,6 +14,7 @@ import 'quran_teaching_review_presenter.dart';
 import 'quran_teaching_theme.dart';
 import 'widgets/quran_teaching_asset_widgets.dart';
 import 'widgets/quran_teaching_review_widgets.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranTeachingDailyReviewPage extends ConsumerStatefulWidget {
   const QuranTeachingDailyReviewPage({super.key});
@@ -370,7 +371,10 @@ class _RecordReviewCard extends StatelessWidget {
                 record.promptArabic!,
                 textAlign: TextAlign.center,
                 textDirection: TextDirection.rtl,
-                style: const TextStyle(fontSize: 36, fontFamily: 'AmiriQuran'),
+                style: const TextStyle(
+                  fontSize: 36,
+                  fontFamily: AppFonts.quranArabic,
+                ),
               ),
             ),
           ],
@@ -384,7 +388,7 @@ class _RecordReviewCard extends StatelessWidget {
               child: Text(
                 record.meaning!,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
             ),
@@ -434,7 +438,7 @@ class _RecordReviewCard extends StatelessWidget {
                             textDirection: TextDirection.rtl,
                             style: const TextStyle(
                               fontSize: 24,
-                              fontFamily: 'AmiriQuran',
+                              fontFamily: AppFonts.quranArabic,
                             ),
                           ),
                         Text(option.label),
@@ -524,7 +528,10 @@ class _MistakeReviewCard extends StatelessWidget {
                 item.promptArabic!,
                 textAlign: TextAlign.center,
                 textDirection: TextDirection.rtl,
-                style: const TextStyle(fontSize: 34, fontFamily: 'AmiriQuran'),
+                style: const TextStyle(
+                  fontSize: 34,
+                  fontFamily: AppFonts.quranArabic,
+                ),
               ),
             ),
           ],
@@ -606,7 +613,7 @@ class _MistakeReviewCard extends StatelessWidget {
                             textDirection: TextDirection.rtl,
                             style: const TextStyle(
                               fontSize: 24,
-                              fontFamily: 'AmiriQuran',
+                              fontFamily: AppFonts.quranArabic,
                             ),
                           ),
                         Text(option.label),

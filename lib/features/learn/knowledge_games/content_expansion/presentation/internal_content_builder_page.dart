@@ -74,7 +74,6 @@ class _InternalContentBuilderPageState
     final systemReport = repository.validateSnapshot();
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.construction_rounded,
       title: l10n.contentBuilderTitle,
       subtitle: l10n.contentBuilderSubtitle,
       children: [
@@ -401,7 +400,7 @@ class _InternalContentBuilderPageState
                 children: [
                   FilledButton.icon(
                     onPressed: () => _validateDraft(repository),
-                    icon: const Icon(Icons.verified_outlined),
+                    icon: const Icon(Icons.verified_rounded),
                     label: Text(l10n.contentBuilderValidateAction),
                   ),
                   FilledButton.tonalIcon(

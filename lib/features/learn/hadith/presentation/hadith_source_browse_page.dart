@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/expandable_tile.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/hadith_reader_share_service.dart';
 import '../application/hadith_foundation_repository.dart';
@@ -42,7 +44,6 @@ class _HadithSourceCollectionListPage extends ConsumerWidget {
     final collections = ref.watch(hadithSourceBrowseCollectionsProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.library_books_rounded,
       title: l10n.hadithSourceBrowseTitle,
       subtitle: l10n.hadithSourceBrowseSubtitle,
       children: [
@@ -51,25 +52,21 @@ class _HadithSourceCollectionListPage extends ConsumerWidget {
         else
           ...collections.map(
             (collection) => Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: PremiumCard(
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(collection.title),
-                  subtitle: Text(
-                    collection.hasChapters
-                        ? l10n.hadithSourceBrowseCollectionSummary(
-                            collection.entryCount,
-                            collection.chapterCount,
-                          )
-                        : l10n.hadithSourceBrowseCollectionCountOnly(
-                            collection.entryCount,
-                          ),
-                  ),
-                  onTap: () => context.pushNamed(
-                    'hadithSourceDetail',
-                    pathParameters: {'sourceId': collection.id},
-                  ),
+              padding: const EdgeInsets.only(bottom: 8),
+              child: CompactListTile(
+                leading: const Icon(Icons.menu_book_rounded),
+                title: collection.title,
+                subtitle: collection.hasChapters
+                    ? l10n.hadithSourceBrowseCollectionSummary(
+                        collection.entryCount,
+                        collection.chapterCount,
+                      )
+                    : l10n.hadithSourceBrowseCollectionCountOnly(
+                        collection.entryCount,
+                      ),
+                onTap: () => context.pushNamed(
+                  'hadithSourceDetail',
+                  pathParameters: {'sourceId': collection.id},
                 ),
               ),
             ),
@@ -92,9 +89,7 @@ class _HadithSourceCollectionDetailPage extends ConsumerWidget {
     );
     if (collection == null) {
       return AppPageScaffold(
-        headerIcon: Icons.library_books_rounded,
         title: l10n.hadithSourceBrowseTitle,
-        subtitle: l10n.hadithSourceBrowseNotFoundSubtitle,
         children: [
           PremiumCard(child: Text(l10n.hadithSourceBrowseNotFoundBody)),
         ],
@@ -119,7 +114,6 @@ class _HadithSourceCollectionDetailPage extends ConsumerWidget {
         : null;
 
     return AppPageScaffold(
-      headerIcon: Icons.library_books_rounded,
       title: collection.title,
       subtitle: chapters.isEmpty
           ? l10n.hadithSourceBrowseCollectionCountOnly(collection.entryCount)
@@ -127,6 +121,22 @@ class _HadithSourceCollectionDetailPage extends ConsumerWidget {
               collection.entryCount,
               collection.chapterCount,
             ),
+      bodySlivers: chapters.isEmpty
+          ? [
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                sliver: SliverList.separated(
+                  itemCount: entries.length,
+                  itemBuilder: (context, index) => _HadithBrowseEntryTile(
+                    entry: entries[index],
+                    laneContext: laneContext,
+                  ),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 8),
+                ),
+              ),
+            ]
+          : null,
       children: [
         if (chapters.isNotEmpty) ...[
           Text(
@@ -138,24 +148,19 @@ class _HadithSourceCollectionDetailPage extends ConsumerWidget {
           const SizedBox(height: 8),
           ...chapters.map(
             (chapter) => Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: PremiumCard(
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(chapterPrimaryLabel(chapter, l10n)),
-                  subtitle: Text(
-                    l10n.hadithSourceBrowseChapterSummary(
-                      chapterSecondaryLabel(chapter, l10n),
-                      chapter.entryCount,
-                    ),
-                  ),
-                  onTap: () => context.pushNamed(
-                    'hadithSourceChapterDetail',
-                    pathParameters: {
-                      'sourceId': sourceId,
-                      'chapterId': chapter.id,
-                    },
-                  ),
+              padding: const EdgeInsets.only(bottom: 8),
+              child: CompactListTile(
+                title: chapterPrimaryLabel(chapter, l10n),
+                subtitle: l10n.hadithSourceBrowseChapterSummary(
+                  chapterSecondaryLabel(chapter, l10n),
+                  chapter.entryCount,
+                ),
+                onTap: () => context.pushNamed(
+                  'hadithSourceChapterDetail',
+                  pathParameters: {
+                    'sourceId': sourceId,
+                    'chapterId': chapter.id,
+                  },
                 ),
               ),
             ),
@@ -171,17 +176,18 @@ class _HadithSourceCollectionDetailPage extends ConsumerWidget {
           ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 8),
-        ...entries
-            .take(chapters.isEmpty ? entries.length : 8)
-            .map(
-              (entry) => Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: _HadithBrowseEntryTile(
-                  entry: entry,
-                  laneContext: laneContext,
+        if (chapters.isNotEmpty)
+          ...entries
+              .take(8)
+              .map(
+                (entry) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: _HadithBrowseEntryTile(
+                    entry: entry,
+                    laneContext: laneContext,
+                  ),
                 ),
               ),
-            ),
       ],
     );
   }
@@ -210,9 +216,7 @@ class _HadithSourceChapterDetailPage extends ConsumerWidget {
     );
     if (collection == null || chapter == null) {
       return AppPageScaffold(
-        headerIcon: Icons.library_books_rounded,
         title: l10n.hadithSourceBrowseTitle,
-        subtitle: l10n.hadithSourceBrowseNotFoundSubtitle,
         children: [
           PremiumCard(child: Text(l10n.hadithSourceBrowseNotFoundBody)),
         ],
@@ -237,24 +241,26 @@ class _HadithSourceChapterDetailPage extends ConsumerWidget {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.library_books_rounded,
       title: chapterPrimaryLabel(chapter, l10n),
       subtitle: l10n.hadithSourceBrowseChapterPageSubtitle(
         collection.title,
         chapterSecondaryLabel(chapter, l10n),
         entries.length,
       ),
-      children: [
-        ...entries.map(
-          (entry) => Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: _HadithBrowseEntryTile(
-              entry: entry,
+      bodySlivers: [
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+          sliver: SliverList.separated(
+            itemCount: entries.length,
+            itemBuilder: (context, index) => _HadithBrowseEntryTile(
+              entry: entries[index],
               laneContext: laneContext,
             ),
+            separatorBuilder: (context, index) => const SizedBox(height: 8),
           ),
         ),
       ],
+      children: const [],
     );
   }
 }
@@ -268,26 +274,56 @@ class _HadithBrowseEntryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        title: Text(entry.title),
-        subtitle: Text(
-          l10n.hadithSourceBrowseEntrySubtitle(
-            entry.displaySourceReference ?? entry.displaySourceCollectionTitle,
-            entry.standardizedGrade.displayLabel,
+    final narrator = entry.narrator?.trim();
+    return ExpandableTile(
+      title: Text(entry.title),
+      subtitle: Text(
+        l10n.hadithSourceBrowseEntrySubtitle(
+          entry.displaySourceReference ?? entry.displaySourceCollectionTitle,
+          entry.standardizedGrade.displayLabel,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (narrator != null && narrator.isNotEmpty) ...[
+            Text(
+              narrator,
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(fontStyle: FontStyle.italic),
+            ),
+            const SizedBox(height: 6),
+          ],
+          Text(
+            entry.displayEnglishText,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.5),
           ),
-        ),
-        trailing: IconButton(
-          onPressed: () => _shareCompactHadith(context, entry),
-          tooltip: l10n.hadithActionShare,
-          icon: const Icon(Icons.share_outlined),
-        ),
-        onTap: () => pushHadithLessonDetail(
-          context,
-          lessonId: entry.id,
-          laneContext: laneContext,
-        ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: () => _shareCompactHadith(context, entry),
+                tooltip: l10n.hadithActionShare,
+                visualDensity: VisualDensity.compact,
+                icon: const Icon(Icons.share_rounded, size: 20),
+              ),
+              IconButton(
+                onPressed: () => pushHadithLessonDetail(
+                  context,
+                  lessonId: entry.id,
+                  laneContext: laneContext,
+                ),
+                tooltip: entry.title,
+                visualDensity: VisualDensity.compact,
+                icon: const Icon(Icons.open_in_new_rounded, size: 20),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

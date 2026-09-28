@@ -62,3 +62,6 @@ app.*.map.json
 
 # Golden test failure output
 test/failures/
+
+# Wrangler local state (scripts/deploy_web.sh)
+.wrangler/

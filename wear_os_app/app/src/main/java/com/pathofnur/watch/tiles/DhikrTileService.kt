@@ -8,19 +8,20 @@ import androidx.wear.tiles.TileBuilders
 import androidx.wear.tiles.TileService
 import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
+import com.pathofnur.watch.R
 import com.pathofnur.watch.glance.GlanceDataProvider
 
 class DhikrTileService : TileService() {
     override fun onTileRequest(requestParams: RequestBuilders.TileRequest): ListenableFuture<TileBuilders.Tile> {
         val data = GlanceDataProvider(this).data()
         val root = materialTile(
-            title = "Dhikr",
+            title = getString(R.string.tile_dhikr),
             main = listOf(
                 text("${data.dhikrToday}", 32f, true)
             ),
             bottom = listOf(
                 button("+1", broadcastAction(TileRoutes.ACTION_DHIKR_INCREMENT)),
-                button("Reset", broadcastAction(TileRoutes.ACTION_DHIKR_RESET))
+                button(getString(R.string.tile_reset), broadcastAction(TileRoutes.ACTION_DHIKR_RESET))
             ),
             clickable = launchAction(TileRoutes.SCREEN_DHIKR)
         )

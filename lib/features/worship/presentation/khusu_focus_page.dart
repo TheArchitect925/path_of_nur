@@ -22,7 +22,6 @@ class KhusuFocusPage extends ConsumerWidget {
     final subtleForeground =
         appearance?.backgroundForegroundSubtle ?? const Color(0xFF6A5A4A);
     return AppPageScaffold(
-      headerIcon: Icons.self_improvement_rounded,
       title: l10n.khusuPageTitle,
       subtitle: localizedAppPageDescription(
         context,

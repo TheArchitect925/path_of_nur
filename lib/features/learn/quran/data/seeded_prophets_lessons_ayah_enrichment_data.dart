@@ -34,7 +34,7 @@ seededProphetsLessonsAyahEnrichmentEntries = [
     linkStrength: QuranAyahLinkStrength.direct,
     title: 'Trust in Allah remains firm when fear closes in',
     summary:
-        'Through Musa عليه السلام, this ayah shows reliance on Allah at a moment when outward escape seemed blocked.',
+        'Through Musa (peace be upon him), this ayah shows reliance on Allah at a moment when outward escape seemed blocked.',
     body:
         'The lesson here is not denial of danger, but confidence in Allah’s guidance even when the situation appears closed. Reliance becomes clearest when the heart refuses despair and continues to expect Allah’s way forward.',
     tags: [
@@ -57,7 +57,7 @@ seededProphetsLessonsAyahEnrichmentEntries = [
     linkStrength: QuranAyahLinkStrength.direct,
     title: 'Prophetic obedience begins with willing submission',
     summary:
-        'This ayah shows Ibrahim عليه السلام answering Allah’s command with immediate submission.',
+        'This ayah shows Ibrahim (peace be upon him) answering Allah’s command with immediate submission.',
     body:
         'The lesson is that obedience is not only external compliance. It begins with a heart that yields to Allah willingly and recognizes His lordship without argument or self-centered delay.',
     tags: [QuranAyahEnrichmentTag.prophets, QuranAyahEnrichmentTag.guidance],
@@ -76,7 +76,7 @@ seededProphetsLessonsAyahEnrichmentEntries = [
     linkStrength: QuranAyahLinkStrength.direct,
     title: 'Da’wah continues with perseverance even when response is slow',
     summary:
-        'Through Nuh عليه السلام, these ayahs show sustained calling despite long resistance from his people.',
+        'Through Nuh (peace be upon him), these ayahs show sustained calling despite long resistance from his people.',
     body:
         'The lesson is that truthful calling is measured by faithfulness, not only by immediate response. Perseverance in calling others to truth does not mean changing the message to gain acceptance, but continuing sincerely through disappointment.',
     tags: [QuranAyahEnrichmentTag.prophets, QuranAyahEnrichmentTag.guidance],
@@ -95,7 +95,7 @@ seededProphetsLessonsAyahEnrichmentEntries = [
     linkStrength: QuranAyahLinkStrength.direct,
     title: 'Trials are met with humble turning to Allah',
     summary:
-        'Through Ayyub عليه السلام, these ayahs show suffering met with supplication, humility, and hope in Allah’s mercy.',
+        'Through Ayyub (peace be upon him), these ayahs show suffering met with supplication, humility, and hope in Allah’s mercy.',
     body:
         'The lesson is that hardship does not have to harden the heart. A prophetic response to trial is to turn to Allah honestly, without arrogance or despair, while remaining hopeful in His mercy and wisdom.',
     tags: [
@@ -118,7 +118,7 @@ seededProphetsLessonsAyahEnrichmentEntries = [
     linkStrength: QuranAyahLinkStrength.direct,
     title: 'Leadership is a trust that must be ruled by justice',
     summary:
-        'Addressing Dawud عليه السلام, this ayah ties leadership to judging with truth and resisting personal desire.',
+        'Addressing Dawud (peace be upon him), this ayah ties leadership to judging with truth and resisting personal desire.',
     body:
         'The lesson is that authority is not permission for self-serving rule. Leadership becomes sound when truth governs decisions and desire is restrained, especially when judging between people.',
     tags: [
@@ -141,7 +141,7 @@ seededProphetsLessonsAyahEnrichmentEntries = [
     linkStrength: QuranAyahLinkStrength.direct,
     title: 'Rejecting prophetic guidance carries consequences',
     summary:
-        'In the words of Shu’ayb عليه السلام, this ayah warns that stubborn rejection of truth does not end without consequence.',
+        'In the words of Shu’ayb (peace be upon him), this ayah warns that stubborn rejection of truth does not end without consequence.',
     body:
         'The lesson is balanced but serious: prophetic warnings are given out of concern, not vengeance. When people persist in rejecting truth after clear calling, they should not assume there will be no consequence before Allah.',
     tags: [QuranAyahEnrichmentTag.prophets, QuranAyahEnrichmentTag.guidance],

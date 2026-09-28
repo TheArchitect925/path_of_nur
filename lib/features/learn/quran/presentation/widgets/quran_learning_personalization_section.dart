@@ -70,7 +70,7 @@ class QuranLearningPersonalizationSection extends ConsumerWidget {
                 ),
               if (summary.continueDomain != null)
                 ActionChip(
-                  avatar: const Icon(Icons.auto_awesome_outlined, size: 18),
+                  avatar: const Icon(Icons.auto_awesome_rounded, size: 18),
                   label: Text(l10n.quranLearningReturnToDomainAction),
                   onPressed: () => context.pushNamed(
                     'quranAyahInsightsDomain',
@@ -110,7 +110,7 @@ class QuranLearningPersonalizationSection extends ConsumerWidget {
             ),
           if (summary.suggestedDomain != null)
             _SuggestionTile(
-              icon: Icons.explore_outlined,
+              icon: Icons.explore_rounded,
               title: l10n.quranLearningMoreInDomainTitle,
               subtitle: _categoryTitle(l10n, summary.suggestedDomain!.id),
               onTap: () {
@@ -150,7 +150,7 @@ class QuranLearningPersonalizationSection extends ConsumerWidget {
               ),
               FilledButton.tonalIcon(
                 onPressed: () => context.pushNamed('quranAyahInsightsBrowse'),
-                icon: const Icon(Icons.auto_awesome_outlined),
+                icon: const Icon(Icons.auto_awesome_rounded),
                 label: Text(l10n.quranAyahInsightsBrowseAction),
               ),
             ],

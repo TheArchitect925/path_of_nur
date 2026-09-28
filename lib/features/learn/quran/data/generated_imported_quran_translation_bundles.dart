@@ -5,7 +5,7 @@ const germanBubenheimElyasImportBundle = ImportedQuranTranslationBundle(
   translatorName: 'Frank Bubenheim and Nadeem Elyas',
   sourceProvider: 'Quran Foundation',
   notes:
-      'Import placeholder only. Replace this generated file with the reviewed German Qur\'an translation bundle before enabling German in settings.',
+      'Import placeholder only. Replace this generated file with the reviewed German Qur’an translation bundle before enabling German in settings.',
   verseTextsByVerseKey: <String, String>{},
 );
 

@@ -13,6 +13,7 @@ import '../../../journey/drops/application/journey_drops_providers.dart';
 import '../../../journey/xp/application/journey_xp_providers.dart';
 import '../../journey/application/family_learning_provider.dart';
 import '../../knowledge_games/adaptive/application/user_learning_profile_provider.dart';
+import '../../knowledge_games/presentation/knowledge_game_screen.dart';
 import '../../knowledge_games/application/knowledge_game_variation_engine.dart';
 import '../../knowledge_games/daily/domain/daily_knowledge_challenge_models.dart';
 import '../../knowledge_games/domain/knowledge_game_variations.dart';
@@ -21,6 +22,12 @@ import '../application/crossword_game_adapter.dart';
 import '../application/crossword_repository.dart';
 import '../domain/crossword_models.dart';
 import 'crossword_ui_helpers.dart';
+
+/// Board geometry. Cells keep a tap-friendly floor; the board caps its width
+/// on tablets so a 5-grid does not become five enormous tiles.
+const double _cellMargin = 1.5;
+const double _minCellSize = 34.0;
+const double _maxBoardWidth = 440.0;
 
 class CrosswordPuzzlePage extends ConsumerStatefulWidget {
   const CrosswordPuzzlePage({
@@ -86,7 +93,6 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
   Widget _buildLoading(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).crosswordHomeTitle,
-      subtitle: AppLocalizations.of(context).crosswordLoadingSubtitle,
       children: const [Center(child: CircularProgressIndicator())],
     );
   }
@@ -106,7 +112,6 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
   Widget _buildNotFound(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).crosswordHomeTitle,
-      subtitle: AppLocalizations.of(context).crosswordNotFoundSubtitle,
       children: [
         PremiumCard(
           child: Text(AppLocalizations.of(context).crosswordNotFoundTitle),
@@ -129,7 +134,6 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
     if (isChildProfile && puzzle.mode != CrosswordMode.kids) {
       return AppPageScaffold(
         title: l10n.crosswordHomeTitle,
-        subtitle: l10n.crosswordNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.crosswordKidsOnlyTitle))],
       );
     }
@@ -188,8 +192,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
             puzzle.gridSize.toString(),
           );
 
-    return adapter.buildScreen(
-      context: context,
+    return KnowledgeGameScreen(
       title: title,
       subtitle: subtitle,
       game: knowledgeGame,
@@ -234,9 +237,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
               if (dailyStreak != null && dailyStreak.currentStreak > 0)
                 _modeChip(
                   context,
-                  l10n.crosswordDailyStreakLabel(
-                    dailyStreak.currentStreak.toString(),
-                  ),
+                  l10n.crosswordDailyStreakLabel(dailyStreak.currentStreak),
                 ),
               if (pack != null)
                 _modeChip(context, crosswordPackTitle(l10n, pack)),
@@ -392,7 +393,10 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
                     ],
                   ),
                 )
-              : PremiumCard(
+              : _hasSavedEntries(progress)
+              // Only worth saying once there is something saved; on a fresh
+              // board it read like a completion card.
+              ? PremiumCard(
                   key: const ValueKey('crossword-pending'),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -405,10 +409,18 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
                       Text(l10n.crosswordResumeSubtitle),
                     ],
                   ),
-                ),
+                )
+              : const SizedBox.shrink(key: ValueKey('crossword-idle')),
         ),
       ],
     );
+  }
+
+  bool _hasSavedEntries(CrosswordPuzzleProgress progress) {
+    return progress.solvedClueIds.isNotEmpty ||
+        progress.enteredLettersByCell.values.any(
+          (value) => value.trim().isNotEmpty,
+        );
   }
 
   void _bindPuzzleIfNeeded(
@@ -588,7 +600,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
           Icon(
             achieved
                 ? Icons.check_circle_rounded
-                : Icons.radio_button_unchecked,
+                : Icons.radio_button_unchecked_rounded,
             size: 18,
             color: achieved ? Theme.of(context).colorScheme.primary : null,
           ),
@@ -741,7 +753,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
                   onPressed: canViewExtraHint
                       ? () => _handleViewExtraHint(puzzle: puzzle, clue: clue)
                       : null,
-                  icon: const Icon(Icons.tips_and_updates_outlined),
+                  icon: const Icon(Icons.tips_and_updates_rounded),
                   label: Text(
                     extraHintViewed
                         ? l10n.crosswordExtraHintViewedAction
@@ -849,25 +861,33 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
     CrosswordPuzzle puzzle,
     CrosswordPuzzleProgress progress,
   ) {
-    final size = MediaQuery.of(context).size.width;
-    final maxGridWidth = math.min(size - 56, 440.0);
-    final cellSize = math.max(maxGridWidth / puzzle.gridSize, 42.0);
     final lockedCells = _lockedCellKeys(puzzle, progress);
     final highlightedCells = currentClueCellKeys(puzzle);
-    return Center(
-      child: SizedBox(
-        width: maxGridWidth,
-        child: Column(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // The card decides how wide the board may be. The previous version
+        // measured the screen instead and ignored both the card padding and
+        // the cell margins, so every board overflowed its card. Cells never
+        // shrink below a comfortable tap size; a board that still does not
+        // fit scrolls sideways rather than overflowing.
+        final available = constraints.maxWidth.isFinite
+            ? math.min(constraints.maxWidth, _maxBoardWidth)
+            : _maxBoardWidth;
+        final fitted = available / puzzle.gridSize - _cellMargin * 2;
+        final cellSize = math.max(fitted, _minCellSize);
+        final boardWidth = puzzle.gridSize * (cellSize + _cellMargin * 2);
+        final board = Column(
+          mainAxisSize: MainAxisSize.min,
           children: List.generate(puzzle.gridSize, (row) {
             return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: List.generate(puzzle.gridSize, (col) {
                 final solution = puzzle.solutionGrid[row][col];
                 if (solution.isEmpty) {
                   return Container(
                     width: cellSize,
                     height: cellSize,
-                    margin: const EdgeInsets.all(1.5),
+                    margin: const EdgeInsets.all(_cellMargin),
                     decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
@@ -902,7 +922,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
                   child: Container(
                     width: cellSize,
                     height: cellSize,
-                    margin: const EdgeInsets.all(1.5),
+                    margin: const EdgeInsets.all(_cellMargin),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       color: selected
@@ -952,8 +972,17 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
               }),
             );
           }),
-        ),
-      ),
+        );
+        final sized = SizedBox(width: boardWidth, child: board);
+        return Center(
+          child: boardWidth > available
+              ? SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: sized,
+                )
+              : sized,
+        );
+      },
     );
   }
 

@@ -1,5 +1,7 @@
 package com.pathofnur.watch.quran
 
+import androidx.annotation.StringRes
+import com.pathofnur.watch.R
 import com.pathofnur.watch.domain.QuranPlaybackSnapshot
 import com.pathofnur.watch.domain.QuranPlaybackSourceType
 
@@ -10,15 +12,21 @@ object WearListeningModeController {
         return snapshot.sourceType == QuranPlaybackSourceType.Watch || phoneReachable
     }
 
-    fun statusText(snapshot: QuranPlaybackSnapshot, phoneReachable: Boolean): String {
-        if (!snapshot.isPlaying) return "Playback finished"
+    /**
+     * Returns a string resource rather than text: this object has no Context,
+     * so resolving the wording here would hard-code English. The caller is a
+     * composable and can resolve it against the device locale.
+     */
+    @StringRes
+    fun statusTextRes(snapshot: QuranPlaybackSnapshot, phoneReachable: Boolean): Int {
+        if (!snapshot.isPlaying) return R.string.quran_status_finished
         if (snapshot.sourceType == QuranPlaybackSourceType.Phone && !phoneReachable) {
-            return "Phone unavailable"
+            return R.string.quran_status_phone_unavailable
         }
         return if (snapshot.sourceType == QuranPlaybackSourceType.Phone) {
-            "Playing on Phone"
+            R.string.quran_status_playing_phone
         } else {
-            "Playing on Watch"
+            R.string.quran_status_playing_watch
         }
     }
 }

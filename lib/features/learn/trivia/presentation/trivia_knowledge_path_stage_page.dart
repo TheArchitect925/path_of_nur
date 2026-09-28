@@ -3,10 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/trivia_controller.dart';
 import '../application/trivia_repository.dart';
 import '../domain/trivia_models.dart';
@@ -41,16 +42,19 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
       }
     }
     if (path == null || stage == null) {
-      return Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: TriviaEmptyStateCard(
-              title: l10n.triviaStageNotFoundTitle,
-              subtitle: l10n.triviaStageNotFoundSubtitle,
+      return LearnHubPageScaffold(
+        title: l10n.triviaKnowledgePathsPageTitle,
+        children: [
+          TriviaEmptyStateCard(
+            title: l10n.triviaKnowledgePathsEmptyTitle,
+            subtitle: l10n.triviaKnowledgePathsEmptySubtitle,
+            action: FilledButton.tonalIcon(
+              onPressed: () => context.goNamed('learnQuizzesHub'),
+              icon: const Icon(Icons.arrow_back_rounded),
+              label: Text(l10n.triviaResultsGoHomeAction),
             ),
           ),
-        ),
+        ],
       );
     }
     final resolvedStage = stage;
@@ -62,116 +66,106 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
         activeSession?.knowledgePathId == path.id &&
         activeSession?.knowledgeStageId == resolvedStage.id;
 
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(title: Text(resolvedStage.title)),
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
+    return LearnHubPageScaffold(
+      title: resolvedStage.title,
+      subtitle: path.title,
+      children: [
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
           children: [
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                _chip(context, path.title),
-                _chip(context, resolvedStage.difficulty.localizedLabel(l10n)),
-                _chip(
-                  context,
-                  l10n.triviaQuestionsCount(
-                    numberFormat.format(questions.length),
-                  ),
-                ),
-                _chip(context, stageState.localizedLabel(l10n)),
-              ],
+            _chip(context, resolvedStage.difficulty.localizedLabel(l10n)),
+            _chip(
+              context,
+              l10n.triviaQuestionsCount(numberFormat.format(questions.length)),
             ),
-            const SizedBox(height: 14),
-            PremiumCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    resolvedStage.title,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(resolvedStage.learningText),
-                  if (resolvedStage.reference != null) ...[
-                    const SizedBox(height: 10),
-                    Text(
-                      resolvedStage.reference!,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
-                      ),
-                    ),
-                  ],
-                  if (resolvedStage.note != null) ...[
-                    const SizedBox(height: 8),
-                    Text(
-                      resolvedStage.note!,
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
-                ],
-              ),
-            ),
-            const SizedBox(height: 14),
-            TriviaEmptyStateCard(
-              title: l10n.triviaStageQuizTitle,
-              subtitle: l10n.triviaStageQuizSubtitle(
-                numberFormat.format(questions.length),
-              ),
-              action: FilledButton.tonalIcon(
-                onPressed:
-                    stageState == TriviaKnowledgeStageState.locked ||
-                        questions.isEmpty
-                    ? null
-                    : () {
-                        final started = controller.startKnowledgePathStage(
-                          pathId: path.id,
-                          stageId: resolvedStage.id,
-                        );
-                        if (started) {
-                          context.pushNamed('learnTriviaSession');
-                        }
-                      },
-                icon: Icon(
-                  canResume
-                      ? Icons.play_circle_fill_rounded
-                      : Icons.quiz_rounded,
-                ),
-                label: Text(
-                  canResume
-                      ? l10n.triviaContinueQuizAction
-                      : l10n.triviaStartQuizAction,
-                ),
-              ),
-            ),
-            const SizedBox(height: 14),
-            TriviaSectionHeader(
-              title: l10n.triviaIncludedQuestionsTitle,
-              subtitle: l10n.triviaIncludedQuestionsSubtitle,
-            ),
-            const SizedBox(height: 8),
-            if (questions.isEmpty)
-              TriviaEmptyStateCard(
-                title: l10n.triviaNoQuestionsAvailableTitle,
-                subtitle: l10n.triviaNoQuestionsAvailableSubtitle,
-              )
-            else
-              ...questions.map((question) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: TriviaEmptyStateCard(
-                    title: question.prompt,
-                    subtitle: question.explanation,
-                  ),
-                );
-              }),
+            _chip(context, stageState.localizedLabel(l10n)),
           ],
         ),
-      ),
+        const SizedBox(height: 14),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                resolvedStage.title,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 10),
+              Text(resolvedStage.learningText),
+              if (resolvedStage.reference != null) ...[
+                const SizedBox(height: 10),
+                Text(
+                  resolvedStage.reference!,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: context.palette.onSurfaceSubtle,
+                  ),
+                ),
+              ],
+              if (resolvedStage.note != null) ...[
+                const SizedBox(height: 8),
+                Text(
+                  resolvedStage.note!,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
+        TriviaEmptyStateCard(
+          title: l10n.triviaStageQuizTitle,
+          subtitle: l10n.triviaStageQuizSubtitle(
+            numberFormat.format(questions.length),
+          ),
+          action: FilledButton.tonalIcon(
+            onPressed:
+                stageState == TriviaKnowledgeStageState.locked ||
+                    questions.isEmpty
+                ? null
+                : () {
+                    final started = controller.startKnowledgePathStage(
+                      pathId: path.id,
+                      stageId: resolvedStage.id,
+                    );
+                    if (started) {
+                      context.pushNamed('learnTriviaSession');
+                    }
+                  },
+            icon: Icon(
+              canResume ? Icons.play_circle_fill_rounded : Icons.quiz_rounded,
+            ),
+            label: Text(
+              canResume
+                  ? l10n.triviaContinueQuizAction
+                  : l10n.triviaStartQuizAction,
+            ),
+          ),
+        ),
+        const SizedBox(height: 14),
+        TriviaSectionHeader(
+          title: l10n.triviaIncludedQuestionsTitle,
+          subtitle: l10n.triviaIncludedQuestionsSubtitle,
+        ),
+        const SizedBox(height: 8),
+        if (questions.isEmpty)
+          TriviaEmptyStateCard(
+            title: l10n.triviaNoQuestionsAvailableTitle,
+            subtitle: l10n.triviaNoQuestionsAvailableSubtitle,
+          )
+        else
+          ...questions.map((question) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: TriviaEmptyStateCard(
+                title: question.prompt,
+                subtitle: question.explanation,
+              ),
+            );
+          }),
+      ],
     );
   }
 

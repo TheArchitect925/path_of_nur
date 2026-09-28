@@ -2,11 +2,15 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/hub_list_group.dart';
+import '../../../salah/presentation/salah_page.dart';
 import '../../../../shared/state/user_profile_state.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
@@ -18,7 +22,7 @@ import '../../application/sister_cycle_provider.dart';
 import '../../domain/prayer_name.dart';
 import '../../domain/prayer_tracker_fields.dart';
 import '../../domain/prayer_status.dart';
-import 'salah_timings_tracker_card.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class PrayerSection extends ConsumerWidget {
   const PrayerSection({super.key});
@@ -57,9 +61,9 @@ class _PrayerHubTabs extends StatelessWidget {
     return Container(
       decoration: surfaceStyle.decoration(radius: 14),
       child: TabBar(
-        labelColor: AppColors.onSurface,
-        unselectedLabelColor: AppColors.onSurfaceSubtle,
-        indicatorColor: AppColors.accentGold,
+        labelColor: context.palette.onSurface,
+        unselectedLabelColor: context.palette.onSurfaceSubtle,
+        indicatorColor: context.palette.accent,
         labelStyle: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w600),
         unselectedLabelStyle: TextStyle(
           fontSize: 13.5,
@@ -69,7 +73,7 @@ class _PrayerHubTabs extends StatelessWidget {
           Tab(text: l10n.worshipPrayerTabTimes),
           Tab(text: l10n.worshipPrayerTabQada),
           Tab(text: l10n.worshipPrayerTabStats),
-          Tab(text: l10n.worshipPrayerTabRakat),
+          Tab(text: l10n.worshipPrayerTabLearn),
         ],
       ),
     );
@@ -118,8 +122,6 @@ class _PrayerTimesTab extends ConsumerWidget {
         Localizations.localeOf(context).languageCode,
       )),
     );
-    final tracker = ref.watch(prayerTrackerControllerProvider);
-    final trackerNotifier = ref.read(prayerTrackerControllerProvider.notifier);
     final sisterCycle = ref.watch(sisterCycleProvider);
     final sisterCycleNotifier = ref.read(sisterCycleProvider.notifier);
     final sisterCycleGuidance = ref.watch(sisterCycleGuidanceProvider);
@@ -155,9 +157,9 @@ class _PrayerTimesTab extends ConsumerWidget {
                   const SizedBox(height: 4),
                   Text(
                     sisterCycleGuidance.summary,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12.5,
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                     ),
                   ),
@@ -166,7 +168,6 @@ class _PrayerTimesTab extends ConsumerWidget {
                     Text(
                       AppLocalizations.of(context).worshipPrayerCycleDay(
                         _formatCount(context, sisterCycleGuidance.dayNumber),
-                        sisterCycleGuidance.dayNumber,
                       ),
                       style: const TextStyle(
                         fontSize: 12,
@@ -265,10 +266,10 @@ class _PrayerTimesTab extends ConsumerWidget {
             ),
             const SizedBox(height: 12),
           ],
-          SalahTimingsTrackerCard(
-            selectedDate: tracker.selectedDate,
-            onSelectedDateChanged: trackerNotifier.setSelectedDate,
-          ),
+          // The former /salah-times page — offer windows, qada rules, live
+          // countdowns, notes — merged here as the Times tab
+          // (calm-navigation Phase 3b).
+          const SalahTimesPage(embedded: true),
           if (spiritualMoment != null) ...[
             const SizedBox(height: 12),
             QuranSpiritualMomentCard(
@@ -309,7 +310,7 @@ class _PrayerTrackerTab extends ConsumerWidget {
                 const SizedBox(height: 6),
                 Text(
                   l10n.worshipPrayerQadaOverviewSubtitle,
-                  style: TextStyle(color: AppColors.onSurfaceSubtle),
+                  style: TextStyle(color: context.palette.onSurfaceSubtle),
                 ),
                 const SizedBox(height: 10),
                 ...obligatoryPrayerNames.map(
@@ -351,7 +352,7 @@ class _PrayerTrackerTab extends ConsumerWidget {
                 Text(
                   l10n.worshipPrayerQadaGuidanceBody,
                   style: TextStyle(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.45,
                   ),
                 ),
@@ -392,8 +393,8 @@ class _QadaBacklogBar extends StatelessWidget {
             ),
             Text(
               l10n.worshipPrayerQueuedCount(count),
-              style: const TextStyle(
-                color: AppColors.onSurfaceSubtle,
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -405,8 +406,10 @@ class _QadaBacklogBar extends StatelessWidget {
           child: LinearProgressIndicator(
             value: progress.clamp(0.0, 1.0),
             minHeight: 9,
-            backgroundColor: AppColors.surfaceSoft,
-            color: count == 0 ? AppColors.success : const Color(0xFFC85E34),
+            backgroundColor: context.palette.surfaceSoft,
+            color: count == 0
+                ? context.palette.success
+                : const Color(0xFFC85E34),
           ),
         ),
       ],
@@ -434,9 +437,9 @@ class _StatMiniTile extends StatelessWidget {
         children: [
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 11,
-              color: AppColors.onSurfaceSubtle,
+              color: context.palette.onSurfaceSubtle,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -559,7 +562,7 @@ class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _MonthSectionHeader(
+                _MonthStepperHeader(
                   title: l10n.worshipPrayerMonthlyOverviewTitle,
                   selectedMonth: selectedMonth,
                   canGoToNextMonth: canGoToNextMonth,
@@ -618,8 +621,8 @@ class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
                   child: LinearProgressIndicator(
                     value: completion,
                     minHeight: 9,
-                    backgroundColor: AppColors.surfaceSoft,
-                    color: AppColors.success,
+                    backgroundColor: context.palette.surfaceSoft,
+                    color: context.palette.success,
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -629,13 +632,8 @@ class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
                       context,
                       (completion * 100).toStringAsFixed(1),
                     ),
-                    (completion * 100).round(),
-                    _formatCount(
-                      context,
-                      (completion * 100).toStringAsFixed(1),
-                    ),
                   ),
-                  style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                  style: TextStyle(color: context.palette.onSurfaceSubtle),
                 ),
               ],
             ),
@@ -654,7 +652,7 @@ class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
                   DateFormat.yMMMM(
                     Localizations.localeOf(context).toLanguageTag(),
                   ).format(selectedMonth),
-                  style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                  style: TextStyle(color: context.palette.onSurfaceSubtle),
                 ),
                 const SizedBox(height: 10),
                 _MonthlyTrackerGrid(
@@ -684,8 +682,8 @@ class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
   }
 }
 
-class _MonthSectionHeader extends StatelessWidget {
-  const _MonthSectionHeader({
+class _MonthStepperHeader extends StatelessWidget {
+  const _MonthStepperHeader({
     required this.title,
     required this.selectedMonth,
     required this.canGoToNextMonth,
@@ -712,7 +710,7 @@ class _MonthSectionHeader extends StatelessWidget {
               const SizedBox(height: 6),
               Text(
                 DateFormat.yMMMM(localeTag).format(selectedMonth),
-                style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                style: TextStyle(color: context.palette.onSurfaceSubtle),
               ),
             ],
           ),
@@ -729,7 +727,7 @@ class _MonthSectionHeader extends StatelessWidget {
             Icons.chevron_right_rounded,
             color: canGoToNextMonth
                 ? null
-                : AppColors.onSurfaceSubtle.withValues(alpha: 0.5),
+                : context.palette.onSurfaceSubtle.withValues(alpha: 0.5),
           ),
         ),
       ],
@@ -742,11 +740,35 @@ class _PrayerRakatTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(top: 12, bottom: 20),
+    final l10n = AppLocalizations.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(top: 12, bottom: 20),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [_RakatCard()],
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const _RakatCard(),
+          const SizedBox(height: 12),
+          CompactListTile(
+            title: l10n.learningJourneyToolWuduGuideTitle,
+            subtitle: l10n.learningJourneyToolWuduGuideSubtitle,
+            leading: const HubLeadingIcon(AppIcons.wudu),
+            onTap: () => context.pushNamed('learnWuduGuide'),
+          ),
+          const SizedBox(height: 6),
+          CompactListTile(
+            title: l10n.wuduTrainerPageTitle,
+            subtitle: l10n.wuduTrainerPageSubtitle,
+            leading: const HubLeadingIcon(AppIcons.path),
+            onTap: () => context.pushNamed('learnWuduTrainer'),
+          ),
+          const SizedBox(height: 6),
+          CompactListTile(
+            title: l10n.worshipLearnToPrayTitle,
+            subtitle: l10n.worshipLearnToPraySubtitle,
+            leading: const HubLeadingIcon(AppIcons.learn),
+            onTap: () => context.pushNamed('learnSalahHub'),
+          ),
+        ],
       ),
     );
   }
@@ -813,6 +835,7 @@ class _MonthlyTrackerGrid extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: _statusColor(
+                                    context,
                                     daily[prayer] ?? PrayerStatus.pending,
                                   ),
                                 ),
@@ -830,14 +853,14 @@ class _MonthlyTrackerGrid extends StatelessWidget {
     );
   }
 
-  Color _statusColor(PrayerStatus status) {
+  Color _statusColor(BuildContext context, PrayerStatus status) {
     switch (status) {
       case PrayerStatus.completed:
-        return AppColors.success;
+        return context.palette.success;
       case PrayerStatus.missed:
-        return AppColors.caution;
+        return context.palette.caution;
       case PrayerStatus.pending:
-        return AppColors.surfaceSoft;
+        return context.palette.surfaceSoft;
     }
   }
 }
@@ -852,9 +875,9 @@ class _WeekdayHead extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 11,
-          color: AppColors.onSurfaceSubtle,
+          color: context.palette.onSurfaceSubtle,
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -896,8 +919,8 @@ class _QadaPlannerCard extends ConsumerWidget {
           const SizedBox(height: 8),
           Text(
             l10n.worshipPrayerCadenceValue(recommendedCadence),
-            style: const TextStyle(
-              color: AppColors.onSurfaceSubtle,
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
               fontSize: 12.5,
             ),
           ),
@@ -905,7 +928,6 @@ class _QadaPlannerCard extends ConsumerWidget {
           Text(
             l10n.worshipPrayerEstimatedDaysToClear(
               _formatCount(context, estimatedDays),
-              estimatedDays,
             ),
             style: const TextStyle(fontWeight: FontWeight.w600),
           ),
@@ -915,8 +937,8 @@ class _QadaPlannerCard extends ConsumerWidget {
             child: LinearProgressIndicator(
               value: dailyProgress,
               minHeight: 8,
-              color: AppColors.success,
-              backgroundColor: AppColors.surfaceSoft,
+              color: context.palette.success,
+              backgroundColor: context.palette.surfaceSoft,
             ),
           ),
           const SizedBox(height: 6),
@@ -924,10 +946,9 @@ class _QadaPlannerCard extends ConsumerWidget {
             l10n.worshipPrayerTodaysQadaTarget(
               _formatCount(context, dailyCompleted),
               _formatCount(context, dailyTarget),
-              dailyTarget,
             ),
-            style: const TextStyle(
-              color: AppColors.onSurfaceSubtle,
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
               fontSize: 12,
             ),
           ),
@@ -967,7 +988,7 @@ class _QadaPlannerCard extends ConsumerWidget {
           if (queue.isEmpty)
             Text(
               l10n.worshipPrayerNoQueuedQadaLeft,
-              style: TextStyle(color: AppColors.onSurfaceSubtle),
+              style: TextStyle(color: context.palette.onSurfaceSubtle),
             )
           else
             Wrap(
@@ -1014,8 +1035,8 @@ class _TrendChartCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             subtitle,
-            style: const TextStyle(
-              color: AppColors.onSurfaceSubtle,
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
               fontSize: 12.5,
             ),
           ),
@@ -1044,10 +1065,10 @@ class _TrendChartCard extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: item.completionRate >= 0.7
-                                          ? AppColors.success
+                                          ? context.palette.success
                                           : item.completionRate >= 0.4
-                                          ? AppColors.accentGold
-                                          : AppColors.caution,
+                                          ? context.palette.accent
+                                          : context.palette.caution,
                                     ),
                                   ),
                                 ),
@@ -1056,9 +1077,9 @@ class _TrendChartCard extends StatelessWidget {
                             const SizedBox(height: 6),
                             Text(
                               item.label,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 11,
-                                color: AppColors.onSurfaceSubtle,
+                                color: context.palette.onSurfaceSubtle,
                               ),
                             ),
                           ],
@@ -1087,7 +1108,7 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
       return PremiumCard(
         child: Text(
           l10n.worshipPrayerNoRecordsThisMonth,
-          style: TextStyle(color: AppColors.onSurfaceSubtle),
+          style: TextStyle(color: context.palette.onSurfaceSubtle),
         ),
       );
     }
@@ -1104,7 +1125,10 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             l10n.worshipPrayerHeatmapSubtitle,
-            style: TextStyle(color: AppColors.onSurfaceSubtle, fontSize: 12.5),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              fontSize: 12.5,
+            ),
           ),
           const SizedBox(height: 10),
           for (final prayer in obligatoryPrayerNames)
@@ -1131,10 +1155,13 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
                               (day) => Container(
                                 width: 10,
                                 height: 10,
-                                margin: const EdgeInsets.only(right: 3),
+                                margin: const EdgeInsetsDirectional.only(
+                                  end: 3,
+                                ),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2),
                                   color: _heatmapColor(
+                                    context,
                                     monthRecords[day]?[prayer] ??
                                         PrayerStatus.pending,
                                   ),
@@ -1153,14 +1180,14 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
     );
   }
 
-  Color _heatmapColor(PrayerStatus status) {
+  Color _heatmapColor(BuildContext context, PrayerStatus status) {
     switch (status) {
       case PrayerStatus.completed:
-        return AppColors.success;
+        return context.palette.success;
       case PrayerStatus.missed:
-        return AppColors.caution;
+        return context.palette.caution;
       case PrayerStatus.pending:
-        return AppColors.surfaceSoft;
+        return context.palette.surfaceSoft;
     }
   }
 }
@@ -1291,7 +1318,7 @@ class _RakatCardState extends State<_RakatCard> {
           ),
           Text(
             l10n.salahDailyGuideNote,
-            style: const TextStyle(color: AppColors.onSurfaceSubtle),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
         ],
       ),
@@ -1333,19 +1360,19 @@ class _RakatGuideRow extends StatelessWidget {
     final guideColors = _RakatGuideColumnColors.resolve(context);
     final borderColor = AppSurfaceTheme.adaptiveColor(
       context,
-      AppColors.accentGoldSoft,
+      context.palette.accentSoft,
       alpha: 0.18,
       solidAlphaWhenDisabled: 0.24,
     );
     final headerColor = AppSurfaceTheme.adaptiveColor(
       context,
-      AppColors.accentGold,
+      context.palette.accent,
       alpha: 0.12,
       solidAlphaWhenDisabled: 0.16,
     );
     final rowColor = AppSurfaceTheme.adaptiveColor(
       context,
-      AppColors.surfaceSoft,
+      context.palette.surfaceSoft,
       alpha: 0.28,
       solidAlphaWhenDisabled: 0.42,
     );
@@ -1480,8 +1507,8 @@ class _RakatGuideColumnColors {
     return _RakatGuideColumnColors(
       prayer: _RakatGuideCellColors.fromBase(
         context,
-        base: AppColors.surfaceSoft,
-        textColor: AppColors.onSurface,
+        base: context.palette.surfaceSoft,
+        textColor: context.palette.onSurface,
       ),
       sunnah: _RakatGuideCellColors.fromBase(
         context,
@@ -1596,7 +1623,7 @@ List<_TrendPoint> _buildWeeklyTrend(
     }
     points.add(
       _TrendPoint(
-        label: l10n.worshipPrayerWeekLabel(weeks - i, i, weeks - i),
+        label: l10n.worshipPrayerWeekLabel(weeks - i),
         completionRate: total == 0 ? 0 : (completed / total),
       ),
     );

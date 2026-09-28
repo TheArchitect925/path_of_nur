@@ -7,6 +7,7 @@ import '../data/games_island_catalog.dart';
 import '../models/game_discovery_models.dart';
 import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearnGamesBrowseAllPage extends StatefulWidget {
   const LearnGamesBrowseAllPage({super.key, this.initialQuery});
@@ -40,7 +41,7 @@ class _LearnGamesBrowseAllPageState extends State<LearnGamesBrowseAllPage> {
     final filteredEntries = _filterEntries(entries, _searchController.text);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.travel_explore_rounded,
+      headerIcon: AppIcons.browseAll,
       title: l10n.learnGamesBrowseAllPageTitleText,
       subtitle: l10n.learnGamesBrowseAllPageSubtitleText,
       children: [

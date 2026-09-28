@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/prayer/prayer_preferences.dart';
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/app_fonts.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../features/home/application/home_calendar_progress_provider.dart';
 import '../../../../features/profile/application/profile_settings_provider.dart';
@@ -24,7 +26,17 @@ import '../../domain/prayer_status.dart';
 import '../../domain/prayer_tracker_fields.dart';
 import '../prayer_date_utils.dart';
 
-const Color _salahTrackerPrimaryTextColor = Color(0xFF25221E);
+Color _salahTrackerPrimaryText(BuildContext context) =>
+    Theme.of(context).extension<AppAppearanceTheme>()?.onSurface ??
+    const Color(0xFF25221E);
+
+Color _salahTrackerSubtleText(BuildContext context) =>
+    Theme.of(context).extension<AppAppearanceTheme>()?.onSurfaceSubtle ??
+    context.palette.onSurfaceSubtle;
+
+Color _salahTrackerAccent(BuildContext context) =>
+    Theme.of(context).extension<AppAppearanceTheme>()?.accentSoft ??
+    const Color(0xFF7A5A33);
 
 class SalahTimingsTrackerCard extends ConsumerWidget {
   const SalahTimingsTrackerCard({
@@ -96,9 +108,9 @@ class SalahTimingsTrackerCard extends ConsumerWidget {
                     selectedDate.subtract(const Duration(days: 1)),
                   );
                 },
-                icon: const Icon(
+                icon: Icon(
                   Icons.chevron_left_rounded,
-                  color: Color(0xFF7A5A33),
+                  color: _salahTrackerAccent(context),
                 ),
                 tooltip: l10n.homePrayerPreviousDayTooltip,
               ),
@@ -128,22 +140,22 @@ class SalahTimingsTrackerCard extends ConsumerWidget {
                           Text(
                             l10n.homePrayerSectionTitle,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
-                              color: _salahTrackerPrimaryTextColor,
-                              fontFamily: 'serif',
+                              color: _salahTrackerPrimaryText(context),
+                              fontFamily: AppFonts.latinSerif,
                             ),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             dateLabel,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 12.5,
                               fontWeight: FontWeight.w600,
-                              color: _salahTrackerPrimaryTextColor,
-                              fontFamily: 'serif',
+                              color: _salahTrackerPrimaryText(context),
+                              fontFamily: AppFonts.latinSerif,
                             ),
                           ),
                         ],
@@ -158,9 +170,9 @@ class SalahTimingsTrackerCard extends ConsumerWidget {
                     selectedDate.add(const Duration(days: 1)),
                   );
                 },
-                icon: const Icon(
+                icon: Icon(
                   Icons.chevron_right_rounded,
-                  color: Color(0xFF7A5A33),
+                  color: _salahTrackerAccent(context),
                 ),
                 tooltip: l10n.homePrayerNextDayTooltip,
               ),
@@ -179,9 +191,9 @@ class SalahTimingsTrackerCard extends ConsumerWidget {
                           _formatLocalizedCount(context, trackedPrayerCount),
                         ),
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 12.5,
-                          color: _salahTrackerPrimaryTextColor,
+                          color: _salahTrackerPrimaryText(context),
                           height: 1.3,
                         ),
                       ),
@@ -189,7 +201,7 @@ class SalahTimingsTrackerCard extends ConsumerWidget {
               IconButton(
                 onPressed: () => context.pushNamed('settingsPrayerWorship'),
                 icon: const Icon(
-                  Icons.settings_outlined,
+                  Icons.settings_rounded,
                   color: Color(0xFF8A7A6B),
                 ),
                 tooltip: l10n.profilePrayerSettingsTitle,
@@ -350,6 +362,7 @@ Future<void> openPrayerTrackerSheet(
       prayerName: prayerName,
       initialTiming: existingEntry?.timing,
       initialPlace: existingEntry?.place,
+      initialNotes: existingEntry?.notes,
     ),
   );
   if (result == null) return;
@@ -366,6 +379,7 @@ Future<void> openPrayerTrackerSheet(
           prayer,
           timing: result.timing,
           place: result.place,
+          notes: result.notes,
         );
     return;
   }
@@ -383,6 +397,7 @@ Future<void> openPrayerTrackerSheet(
                 current?.completedAtIso ?? defaultCompletedAt.toIso8601String(),
             timing: result.timing,
             place: result.place,
+            notes: result.notes,
           );
   repository.saveDayEntries(dayKey, entries);
   ref
@@ -391,10 +406,15 @@ Future<void> openPrayerTrackerSheet(
 }
 
 class _PrayerTrackerResult {
-  const _PrayerTrackerResult({required this.timing, required this.place});
+  const _PrayerTrackerResult({
+    required this.timing,
+    required this.place,
+    this.notes,
+  });
 
   final PrayerOfferTiming timing;
   final PrayerOfferPlace place;
+  final String? notes;
 }
 
 class _PrayerTrackerSheet extends StatefulWidget {
@@ -402,11 +422,13 @@ class _PrayerTrackerSheet extends StatefulWidget {
     required this.prayerName,
     required this.initialTiming,
     required this.initialPlace,
+    this.initialNotes,
   });
 
   final String prayerName;
   final PrayerOfferTiming? initialTiming;
   final PrayerOfferPlace? initialPlace;
+  final String? initialNotes;
 
   @override
   State<_PrayerTrackerSheet> createState() => _PrayerTrackerSheetState();
@@ -415,12 +437,20 @@ class _PrayerTrackerSheet extends StatefulWidget {
 class _PrayerTrackerSheetState extends State<_PrayerTrackerSheet> {
   late PrayerOfferTiming _timing;
   late PrayerOfferPlace _place;
+  late final TextEditingController _notesController;
 
   @override
   void initState() {
     super.initState();
     _timing = widget.initialTiming ?? PrayerOfferTiming.onTime;
     _place = widget.initialPlace ?? PrayerOfferPlace.alone;
+    _notesController = TextEditingController(text: widget.initialNotes ?? '');
+  }
+
+  @override
+  void dispose() {
+    _notesController.dispose();
+    super.dispose();
   }
 
   @override
@@ -480,6 +510,16 @@ class _PrayerTrackerSheetState extends State<_PrayerTrackerSheet> {
                     ),
                 ],
               ),
+              const SizedBox(height: 14),
+              TextFormField(
+                controller: _notesController,
+                maxLines: 2,
+                decoration: InputDecoration(
+                  labelText: l10n.salahOptionalNotesLabel,
+                  border: const OutlineInputBorder(),
+                  isDense: true,
+                ),
+              ),
               const SizedBox(height: 16),
               Row(
                 children: [
@@ -493,7 +533,11 @@ class _PrayerTrackerSheetState extends State<_PrayerTrackerSheet> {
                   Expanded(
                     child: FilledButton(
                       onPressed: () => Navigator.of(context).pop(
-                        _PrayerTrackerResult(timing: _timing, place: _place),
+                        _PrayerTrackerResult(
+                          timing: _timing,
+                          place: _place,
+                          notes: _notesController.text,
+                        ),
                       ),
                       child: Text(l10n.quranSave),
                     ),
@@ -583,7 +627,7 @@ class _PrayerCalendarSheetState extends ConsumerState<_PrayerCalendarSheet> {
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
-                      fontFamily: 'serif',
+                      fontFamily: AppFonts.latinSerif,
                     ),
                   ),
                 ),
@@ -609,19 +653,19 @@ class _PrayerCalendarSheetState extends ConsumerState<_PrayerCalendarSheet> {
               children: [
                 _CalendarLegendItem(
                   label: l10n.homeShortcutSalahLabel,
-                  color: AppColors.accentGoldSoft,
+                  color: context.palette.accentSoft,
                 ),
                 _CalendarLegendItem(
                   label: l10n.homeShortcutDhikrLabel,
-                  color: AppColors.success,
+                  color: context.palette.success,
                 ),
                 _CalendarLegendItem(
                   label: l10n.quranTitle,
-                  color: AppColors.caution,
+                  color: context.palette.caution,
                 ),
                 _CalendarLegendItem(
                   label: l10n.learnTitle,
-                  color: AppColors.onSurfaceSubtle,
+                  color: _salahTrackerSubtleText(context),
                 ),
               ],
             ),
@@ -633,9 +677,9 @@ class _PrayerCalendarSheetState extends ConsumerState<_PrayerCalendarSheet> {
                       child: Text(
                         day,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 11,
-                          color: _salahTrackerPrimaryTextColor,
+                          color: _salahTrackerPrimaryText(context),
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -698,9 +742,9 @@ class _CalendarLegendItem extends StatelessWidget {
         const SizedBox(width: 4),
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 11.5,
-            color: _salahTrackerPrimaryTextColor,
+            color: _salahTrackerPrimaryText(context),
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -729,7 +773,7 @@ class _CalendarDayCell extends StatelessWidget {
     final selectedStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     final unselectedStyle = AppSurfaceTheme.resolve(
       context,
@@ -753,7 +797,7 @@ class _CalendarDayCell extends StatelessWidget {
                     color: isSelected
                         ? selectedStyle.borderColor
                         : isToday
-                        ? AppColors.accentGoldSoft.withValues(alpha: 0.34)
+                        ? context.palette.accentSoft.withValues(alpha: 0.34)
                         : Colors.transparent,
                   ),
                 ),
@@ -767,7 +811,7 @@ class _CalendarDayCell extends StatelessWidget {
                     fontWeight: isSelected || isToday
                         ? FontWeight.w700
                         : FontWeight.w500,
-                    color: AppColors.onSurface,
+                    color: _salahTrackerPrimaryText(context),
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -801,19 +845,22 @@ class _CalendarDayProgressRow extends StatelessWidget {
       children: [
         _CalendarProgressDot(
           level: effective.salah,
-          color: AppColors.accentGoldSoft,
+          color: context.palette.accentSoft,
         ),
         const SizedBox(width: 2),
-        _CalendarProgressDot(level: effective.dhikr, color: AppColors.success),
+        _CalendarProgressDot(
+          level: effective.dhikr,
+          color: context.palette.success,
+        ),
         const SizedBox(width: 2),
         _CalendarProgressDot(
           level: effective.reading,
-          color: AppColors.caution,
+          color: context.palette.caution,
         ),
         const SizedBox(width: 2),
         _CalendarProgressDot(
           level: effective.learning,
-          color: AppColors.onSurfaceSubtle,
+          color: _salahTrackerSubtleText(context),
         ),
       ],
     );
@@ -877,37 +924,47 @@ class PrayerTimingPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final palette = _paletteForPrayerId(prayerId);
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final night = appearance?.isNightFamily == true;
+    final palette = _effectivePrayerPalette(context, prayerId);
     final accent = isCurrent
         ? palette.strong
         : isNext
         ? palette.base
         : palette.muted;
     final isCompleted = status == PrayerStatus.completed;
-    final pillBackgroundTint =
-        Color.lerp(
-          palette.soft,
-          palette.base,
-          isCurrent ? 0.62 : (isNext ? 0.48 : 0.34),
-        ) ??
-        palette.base;
-    final innerCardTop =
-        Color.lerp(palette.soft, Colors.white, isCurrent ? 0.18 : 0.30) ??
-        palette.soft;
-    final innerCardBottom =
-        Color.lerp(
-          palette.soft,
-          palette.base,
-          isCurrent ? 0.26 : (isNext ? 0.20 : 0.14),
-        ) ??
-        palette.base;
-    final innerBorderColor =
-        Color.lerp(
-          Colors.white.withValues(alpha: 0.88),
-          palette.base.withValues(alpha: isCurrent ? 0.42 : 0.30),
-          isCurrent ? 0.52 : (isNext ? 0.40 : 0.28),
-        ) ??
-        Colors.white.withValues(alpha: 0.88);
+    // Night themes keep the tile on the standard dark glass: no white lift,
+    // just a slightly brighter surface for the current/next prayer.
+    final pillBackgroundTint = night
+        ? appearance!.onSurface.withValues(
+            alpha: isCurrent ? 0.16 : (isNext ? 0.12 : 0.08),
+          )
+        : Color.lerp(
+                palette.soft,
+                palette.base,
+                isCurrent ? 0.62 : (isNext ? 0.48 : 0.34),
+              ) ??
+              palette.base;
+    final innerCardTop = night
+        ? appearance!.onSurface.withValues(alpha: isCurrent ? 0.14 : 0.09)
+        : Color.lerp(palette.soft, Colors.white, isCurrent ? 0.18 : 0.30) ??
+              palette.soft;
+    final innerCardBottom = night
+        ? appearance!.onSurface.withValues(alpha: isCurrent ? 0.08 : 0.05)
+        : Color.lerp(
+                palette.soft,
+                palette.base,
+                isCurrent ? 0.26 : (isNext ? 0.20 : 0.14),
+              ) ??
+              palette.base;
+    final innerBorderColor = night
+        ? appearance!.onSurface.withValues(alpha: isCurrent ? 0.30 : 0.16)
+        : Color.lerp(
+                Colors.white.withValues(alpha: 0.88),
+                palette.base.withValues(alpha: isCurrent ? 0.42 : 0.30),
+                isCurrent ? 0.52 : (isNext ? 0.40 : 0.28),
+              ) ??
+              Colors.white.withValues(alpha: 0.88);
     final pillContent = NoorGlassCard(
       padding: const EdgeInsets.all(4),
       surfaceVariant: AppSurfaceVariant.panel,
@@ -924,10 +981,14 @@ class PrayerTimingPill extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              innerCardTop.withValues(alpha: 0.92),
-              innerCardBottom.withValues(alpha: 0.86),
-            ],
+            // Night colors already carry their own low alpha — re-stamping
+            // 0.92 here is what turned the tiles into solid cream slabs.
+            colors: night
+                ? [innerCardTop, innerCardBottom]
+                : [
+                    innerCardTop.withValues(alpha: 0.92),
+                    innerCardBottom.withValues(alpha: 0.86),
+                  ],
           ),
         ),
         child: Column(
@@ -942,11 +1003,11 @@ class PrayerTimingPill extends StatelessWidget {
                     name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12.8,
                       fontWeight: FontWeight.w700,
-                      color: _salahTrackerPrimaryTextColor,
-                      fontFamily: 'serif',
+                      color: _salahTrackerPrimaryText(context),
+                      fontFamily: AppFonts.latinSerif,
                     ),
                   ),
                 ),
@@ -954,28 +1015,51 @@ class PrayerTimingPill extends StatelessWidget {
                 InkWell(
                   onTap: isCompleted ? onToggleOffered : onOpenDetails,
                   borderRadius: BorderRadius.circular(999),
-                  child: Container(
-                    width: 24,
-                    height: 24,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: isCompleted
-                          ? const Color(0xFF5E8A43).withValues(alpha: 0.14)
-                          : (onOpenDetails ?? onToggleOffered) == null
-                          ? const Color(0xFFF1ECE4)
-                          : const Color(0xFFF7F1E8),
-                    ),
-                    child: Icon(
-                      isCompleted
-                          ? Icons.check_circle_rounded
-                          : Icons.check_circle_outline_rounded,
-                      size: 18,
-                      color: isCompleted
-                          ? const Color(0xFF5E8A43)
-                          : (onOpenDetails ?? onToggleOffered) == null
-                          ? const Color(0xFFB4A594)
-                          : const Color(0xFF7D705F),
-                    ),
+                  child: Builder(
+                    builder: (context) {
+                      final appearance = Theme.of(
+                        context,
+                      ).extension<AppAppearanceTheme>();
+                      final night = appearance?.isNightFamily == true;
+                      final doneColor = night
+                          ? appearance!.success
+                          : const Color(0xFF5E8A43);
+                      final idleFill = night
+                          ? appearance!.onSurface.withValues(alpha: 0.10)
+                          : const Color(0xFFF7F1E8);
+                      final inertFill = night
+                          ? appearance!.onSurface.withValues(alpha: 0.06)
+                          : const Color(0xFFF1ECE4);
+                      final idleIcon = night
+                          ? appearance!.onSurfaceSubtle
+                          : const Color(0xFF7D705F);
+                      final inertIcon = night
+                          ? appearance!.onSurfaceMuted
+                          : const Color(0xFFB4A594);
+                      return Container(
+                        width: 24,
+                        height: 24,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: isCompleted
+                              ? doneColor.withValues(alpha: 0.14)
+                              : (onOpenDetails ?? onToggleOffered) == null
+                              ? inertFill
+                              : idleFill,
+                        ),
+                        child: Icon(
+                          isCompleted
+                              ? Icons.check_circle_rounded
+                              : Icons.check_circle_outline_rounded,
+                          size: 18,
+                          color: isCompleted
+                              ? doneColor
+                              : (onOpenDetails ?? onToggleOffered) == null
+                              ? inertIcon
+                              : idleIcon,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -987,39 +1071,39 @@ class PrayerTimingPill extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.right,
               textDirection: textDirectionForContent(arabicName),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 15,
-                color: _salahTrackerPrimaryTextColor,
-                fontFamily: 'serif',
+                color: _salahTrackerPrimaryText(context),
+                fontFamily: AppFonts.latinSerif,
                 height: 1.15,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               time,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: _salahTrackerPrimaryTextColor,
-                fontFamily: 'serif',
+                color: _salahTrackerPrimaryText(context),
+                fontFamily: AppFonts.latinSerif,
               ),
             ),
             if (isCompleted) ...[
               const SizedBox(height: 4),
               Text(
                 completionDetail ?? l10n.homePrayerOfferedStatus,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 11.5,
                   fontWeight: FontWeight.w700,
-                  color: _salahTrackerPrimaryTextColor,
+                  color: _salahTrackerPrimaryText(context),
                 ),
               ),
               const SizedBox(height: 6),
               Text(
                 l10n.homePrayerCompletedTapHintText,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 11,
-                  color: _salahTrackerPrimaryTextColor,
+                  color: _salahTrackerPrimaryText(context),
                 ),
               ),
               const SizedBox(height: 4),
@@ -1043,10 +1127,10 @@ class PrayerTimingPill extends StatelessWidget {
                       hasPostSalahDhikr
                           ? l10n.homePrayerPostSalahDhikrLoggedText
                           : l10n.homePrayerPostSalahDhikrActionText,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 11.5,
                         fontWeight: FontWeight.w600,
-                        color: _salahTrackerPrimaryTextColor,
+                        color: _salahTrackerPrimaryText(context),
                       ),
                     ),
                   ),
@@ -1109,6 +1193,24 @@ IconData iconForPrayerId(String prayerId) {
     default:
       return PrayerName.isha.icon;
   }
+}
+
+/// Night themes flatten the per-prayer pastel identity into the standard
+/// glass: one quiet surface, ivory ink, gold emphasis.
+_PrayerColorPalette _effectivePrayerPalette(
+  BuildContext context,
+  String prayerId,
+) {
+  final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+  if (appearance?.isNightFamily == true) {
+    return _PrayerColorPalette(
+      base: appearance!.accent,
+      strong: appearance.onSurface,
+      muted: appearance.onSurfaceSubtle,
+      soft: appearance.onSurface.withValues(alpha: 0.08),
+    );
+  }
+  return _paletteForPrayerId(prayerId);
 }
 
 _PrayerColorPalette _paletteForPrayerId(String prayerId) {

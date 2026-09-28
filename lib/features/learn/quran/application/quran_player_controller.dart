@@ -421,7 +421,9 @@ class QuranPlayerController {
         0,
         session.ayahNumbers.length - 1,
       );
-      return _playSessionAyahAtIndex(
+      // Awaited, not just returned: an un-awaited future escapes this try, so
+      // a playback failure would reach the caller instead of yielding false.
+      return await _playSessionAyahAtIndex(
         session: session,
         targetIndex: currentIndex,
         playbackReason: QuranPlaybackReason.jump,
@@ -448,7 +450,7 @@ class QuranPlayerController {
         0,
         session.ayahNumbers.length - 1,
       );
-      return _playSessionAyahAtIndex(
+      return await _playSessionAyahAtIndex(
         session: session,
         targetIndex: targetIndex,
         playbackReason: offset == 0

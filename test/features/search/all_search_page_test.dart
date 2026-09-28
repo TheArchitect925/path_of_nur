@@ -69,7 +69,7 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      expect(find.text('All Search'), findsOneWidget);
+      expect(find.text('Search'), findsOneWidget);
       expect(find.text('Suggestions'), findsOneWidget);
       expect(find.text('Recent searches'), findsOneWidget);
       expect(find.text('mercy'), findsWidgets);
@@ -131,12 +131,9 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('No results yet'), findsOneWidget);
+    expect(find.text('No results'), findsOneWidget);
     expect(find.text('Try a shorter or broader phrase.'), findsOneWidget);
-    expect(
-      find.text('You can also jump into a domain search for more depth.'),
-      findsOneWidget,
-    );
+    expect(find.text('Or search inside one section for more.'), findsOneWidget);
   });
 }
 

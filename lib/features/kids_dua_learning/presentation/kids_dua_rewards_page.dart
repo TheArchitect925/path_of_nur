@@ -7,6 +7,7 @@ import '../application/kids_dua_progress_provider.dart';
 import '../application/kids_dua_repository.dart';
 import '../domain/kids_dua_models.dart';
 import 'kids_dua_localized_content.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
 
 class KidsDuaRewardsPage extends ConsumerWidget {
   const KidsDuaRewardsPage({super.key});
@@ -26,140 +27,137 @@ class KidsDuaRewardsPage extends ConsumerWidget {
     final lockedRewards = rewards
         .where((reward) => !state.unlockedRewardIds.contains(reward.id))
         .toList(growable: false);
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.kidsDuaRewardsTitle)),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 96),
-        children: [
+    return AppPageScaffold(
+      title: l10n.kidsDuaRewardsTitle,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: const Color(0xFFFFF8EF),
+            borderRadius: BorderRadius.circular(22),
+            border: Border.all(color: const Color(0xFFE7D7BE)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.kidsDuaRewardsEncouragement,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 10),
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: [
+                  _Pill(
+                    label: l10n.kidsDuaLearnedCountValue(
+                      summary.learnedLessons,
+                    ),
+                  ),
+                  _Pill(
+                    label: l10n.kidsDuaCategoryCountValue(
+                      summary.completedCategories,
+                    ),
+                  ),
+                  _Pill(
+                    label: l10n.kidsDuaRewardsCountValue(
+                      state.unlockedRewardIds.length,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          l10n.kidsDuaStickerCollectionTitle,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+        ),
+        const SizedBox(height: 10),
+        if (unlockedStickers.isEmpty)
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFF8EF),
-              borderRadius: BorderRadius.circular(22),
-              border: Border.all(color: const Color(0xFFE7D7BE)),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(color: const Color(0xFFE8DDD0)),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.kidsDuaRewardsEncouragement,
-                  style: const TextStyle(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 10),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: [
-                    _Pill(
-                      label: l10n.kidsDuaLearnedCountValue(
-                        summary.learnedLessons,
-                      ),
-                    ),
-                    _Pill(
-                      label: l10n.kidsDuaCategoryCountValue(
-                        summary.completedCategories,
-                      ),
-                    ),
-                    _Pill(
-                      label: l10n.kidsDuaRewardsCountValue(
-                        state.unlockedRewardIds.length,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+            child: Text(
+              l10n.kidsDuaStickerCollectionEmpty,
+              style: const TextStyle(color: Color(0xFF675B4E)),
+            ),
+          )
+        else
+          ...unlockedStickers.map(
+            (sticker) => Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: _StickerTile(sticker: sticker, unlocked: true),
             ),
           ),
-          const SizedBox(height: 16),
+        ...lockedStickers.map(
+          (sticker) => Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: _StickerTile(sticker: sticker, unlocked: false),
+          ),
+        ),
+        const SizedBox(height: 16),
+        if (unlockedRewards.isNotEmpty) ...[
           Text(
-            l10n.kidsDuaStickerCollectionTitle,
+            l10n.kidsDuaRewardsTitle,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 10),
-          if (unlockedStickers.isEmpty)
-            Container(
-              padding: const EdgeInsets.all(16),
+          ...unlockedRewards.map(
+            (reward) => Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: _RewardTile(reward: reward, unlocked: true),
+            ),
+          ),
+          const SizedBox(height: 8),
+        ],
+        Text(
+          l10n.kidsDuaCategoriesTitle,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+        ),
+        const SizedBox(height: 10),
+        ...categoryProgress.map(
+          (item) => Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Container(
+              padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(18),
                 border: Border.all(color: const Color(0xFFE8DDD0)),
               ),
-              child: Text(
-                l10n.kidsDuaStickerCollectionEmpty,
-                style: const TextStyle(color: Color(0xFF675B4E)),
-              ),
-            )
-          else
-            ...unlockedStickers.map(
-              (sticker) => Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: _StickerTile(sticker: sticker, unlocked: true),
-              ),
-            ),
-          ...lockedStickers.map(
-            (sticker) => Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: _StickerTile(sticker: sticker, unlocked: false),
-            ),
-          ),
-          const SizedBox(height: 16),
-          if (unlockedRewards.isNotEmpty) ...[
-            Text(
-              l10n.kidsDuaRewardsTitle,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-            ),
-            const SizedBox(height: 10),
-            ...unlockedRewards.map(
-              (reward) => Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: _RewardTile(reward: reward, unlocked: true),
-              ),
-            ),
-            const SizedBox(height: 8),
-          ],
-          Text(
-            l10n.kidsDuaCategoriesTitle,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-          ),
-          const SizedBox(height: 10),
-          ...categoryProgress.map(
-            (item) => Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Container(
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(color: const Color(0xFFE8DDD0)),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        item.category.title,
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      item.category.title,
+                      style: const TextStyle(fontWeight: FontWeight.w700),
                     ),
-                    Text(
-                      l10n.kidsDuaCategoryProgressValue(
-                        item.learnedCount,
-                        item.totalCount,
-                      ),
+                  ),
+                  Text(
+                    l10n.kidsDuaCategoryProgressValue(
+                      item.learnedCount,
+                      item.totalCount,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
-          const SizedBox(height: 8),
-          ...lockedRewards.map(
-            (reward) => Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: _RewardTile(reward: reward, unlocked: false),
-            ),
+        ),
+        const SizedBox(height: 8),
+        ...lockedRewards.map(
+          (reward) => Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: _RewardTile(reward: reward, unlocked: false),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

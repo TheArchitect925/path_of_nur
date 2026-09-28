@@ -4,9 +4,11 @@ import '../../journey/drops/application/journey_drops_providers.dart';
 import '../../journey/xp/application/journey_xp_providers.dart';
 import 'dhikr_anti_rush_detector.dart';
 import '../data/dhikr_repository.dart';
+import '../domain/dhikr_day_total.dart';
 import '../domain/dhikr_preset.dart';
 import '../domain/dhikr_session.dart';
 import '../domain/dhikr_summary.dart';
+import 'dhikr_history_math.dart';
 
 class DhikrSessionState {
   const DhikrSessionState({
@@ -17,6 +19,8 @@ class DhikrSessionState {
     required this.recentSessions,
     this.showAntiRushReminder = false,
     this.antiRushReminderCount = 0,
+    this.dailyTotals = const <String, DhikrDayTotal>{},
+    this.phraseTotals = const <String, int>{},
   });
 
   final DhikrPreset selectedPreset;
@@ -26,6 +30,15 @@ class DhikrSessionState {
   final List<DhikrSession> recentSessions;
   final bool showAntiRushReminder;
   final int antiRushReminderCount;
+
+  /// Every day with remembrance, keyed by `yyyy-MM-dd`. Unlike
+  /// [recentSessions] this is never trimmed.
+  final Map<String, DhikrDayTotal> dailyTotals;
+
+  /// Lifetime count per phrase label.
+  final Map<String, int> phraseTotals;
+
+  DhikrDayTotal? totalForDay(DateTime day) => dailyTotals[dhikrDayKey(day)];
 
   bool get hasTargetReached => currentCount >= target;
 
@@ -85,6 +98,8 @@ class DhikrSessionState {
     List<DhikrSession>? recentSessions,
     bool? showAntiRushReminder,
     int? antiRushReminderCount,
+    Map<String, DhikrDayTotal>? dailyTotals,
+    Map<String, int>? phraseTotals,
   }) {
     return DhikrSessionState(
       selectedPreset: selectedPreset ?? this.selectedPreset,
@@ -97,6 +112,8 @@ class DhikrSessionState {
       showAntiRushReminder: showAntiRushReminder ?? this.showAntiRushReminder,
       antiRushReminderCount:
           antiRushReminderCount ?? this.antiRushReminderCount,
+      dailyTotals: dailyTotals ?? this.dailyTotals,
+      phraseTotals: phraseTotals ?? this.phraseTotals,
     );
   }
 
@@ -219,6 +236,7 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
       showAntiRushReminder: false,
     );
     _save();
+    _recordCompletion(completed);
     _dropController.awardDhikrDrop(
       sourceRef: 'dhikr:${completed.finishedAt.toIso8601String()}',
       occurredAt: completed.finishedAt,
@@ -247,6 +265,7 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
     required String sourceRef,
     required DateTime occurredAt,
     Duration duration = const Duration(seconds: 60),
+    String? routineEntry,
   }) {
     if (count <= 0 || target <= 0) return false;
 
@@ -265,6 +284,7 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
       showAntiRushReminder: false,
     );
     _save();
+    _recordCompletion(completed, routineEntry: routineEntry);
     _dropController.awardDhikrDrop(
       sourceRef: sourceRef,
       occurredAt: occurredAt,
@@ -282,6 +302,50 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
       metadata: <String, Object?>{'target': target, 'phraseLabel': phraseLabel},
     );
     return true;
+  }
+
+  /// A guided routine finished: log it as one session under the routine's
+  /// canonical label and remember which routine (and, after salah, which
+  /// prayer) it was, so the landing can show it as done.
+  bool logRoutineSession({
+    required String routineId,
+    required String phraseLabel,
+    required int count,
+    required DateTime startedAt,
+    required DateTime finishedAt,
+    String? prayerId,
+  }) {
+    final entry = prayerId == null ? routineId : '$routineId:$prayerId';
+    return logLinkedSession(
+      phraseLabel: phraseLabel,
+      count: count,
+      target: count,
+      sourceRef: 'dhikr-routine:$routineId:${finishedAt.toIso8601String()}',
+      occurredAt: finishedAt,
+      duration: finishedAt.difference(startedAt),
+      routineEntry: entry,
+    );
+  }
+
+  void _recordCompletion(DhikrSession session, {String? routineEntry}) {
+    if (session.count <= 0) return;
+    final totals = dhikrTotalsWithSession(
+      state.dailyTotals,
+      finishedAt: session.finishedAt,
+      count: session.count,
+      routineEntry: routineEntry,
+    );
+    final phraseCount =
+        (state.phraseTotals[session.phraseLabel] ?? 0) + session.count;
+    state = state.copyWith(
+      dailyTotals: totals,
+      phraseTotals: <String, int>{
+        ...state.phraseTotals,
+        session.phraseLabel: phraseCount,
+      },
+    );
+    _repository.upsertDayTotal(totals[dhikrDayKey(session.finishedAt)]!);
+    _repository.setPhraseTotal(session.phraseLabel, phraseCount);
   }
 
   DhikrSession? _activeSessionSnapshot({DateTime? finishedAt}) {
@@ -354,6 +418,8 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
       currentCount: data.currentCount,
       currentSessionStartedAt: data.currentSessionStartedAt,
       recentSessions: data.recentSessions,
+      dailyTotals: data.dailyTotals,
+      phraseTotals: data.phraseTotals,
     );
   }
 

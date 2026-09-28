@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 
@@ -39,11 +39,11 @@ class RevelationProphetNode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final lineColor = AppColors.accentGoldSoft.withValues(alpha: 0.48);
+    final lineColor = context.palette.accentSoft.withValues(alpha: 0.48);
     final nodeColor = completed
-        ? const Color(0xFF2D8F58)
+        ? context.palette.successInk
         : current
-        ? AppColors.accentGold
+        ? context.palette.accent
         : const Color(0xFF85796B);
 
     return Row(
@@ -99,7 +99,7 @@ class RevelationProphetNode extends StatelessWidget {
                   Text(
                     arabicName,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -109,10 +109,11 @@ class RevelationProphetNode extends StatelessWidget {
                     spacing: 8,
                     runSpacing: 8,
                     children: [
-                      _chip(l10n.prophetsLessonChip(keyLesson)),
-                      _chip(l10n.prophetsCoreCallChip(coreCall)),
-                      _chip(l10n.prophetsRegionChip(regionLabel)),
-                      if (referenceLabel.isNotEmpty) _chip(referenceLabel),
+                      _chip(context, l10n.prophetsLessonChip(keyLesson)),
+                      _chip(context, l10n.prophetsCoreCallChip(coreCall)),
+                      _chip(context, l10n.prophetsRegionChip(regionLabel)),
+                      if (referenceLabel.isNotEmpty)
+                        _chip(context, referenceLabel),
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -140,14 +141,14 @@ class RevelationProphetNode extends StatelessWidget {
     );
   }
 
-  Widget _chip(String text) {
+  Widget _chip(BuildContext context, String text) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surface.withValues(alpha: 0.28),
+        color: context.palette.surface.withValues(alpha: 0.28),
         border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.34),
+          color: context.palette.accentSoft.withValues(alpha: 0.34),
         ),
       ),
       child: Text(text, style: const TextStyle(fontSize: 11.5)),

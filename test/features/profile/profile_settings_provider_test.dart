@@ -43,5 +43,38 @@ void main() {
       final reloaded = ProfileSettingsNotifier(store);
       expect(reloaded.state.onThisDayReminders, isTrue);
     });
+
+    test('gentle mode is off by default', () async {
+      SharedPreferences.setMockInitialValues(const {});
+      final prefs = await SharedPreferences.getInstance();
+      final notifier = ProfileSettingsNotifier(LocalStore(prefs));
+
+      expect(notifier.state.gentleModeEnabled, isFalse);
+    });
+
+    test(
+      'gentle mode saved under the old default is switched off once',
+      () async {
+        SharedPreferences.setMockInitialValues(const {
+          'settings.profile':
+              '{"gentleModeEnabled":true,"dhikrReminders":false}',
+        });
+        final prefs = await SharedPreferences.getInstance();
+        final store = LocalStore(prefs);
+        final notifier = ProfileSettingsNotifier(store);
+
+        expect(notifier.state.gentleModeEnabled, isFalse);
+        expect(notifier.state.dhikrReminders, isFalse);
+        expect(
+          store.getJsonMap('settings.profile')?['gentleModeEnabled'],
+          false,
+        );
+
+        notifier.setGentleModeEnabled(true);
+
+        final reloaded = ProfileSettingsNotifier(store);
+        expect(reloaded.state.gentleModeEnabled, isTrue);
+      },
+    );
   });
 }

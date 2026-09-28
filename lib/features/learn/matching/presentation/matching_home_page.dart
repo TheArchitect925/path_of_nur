@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
@@ -15,6 +15,8 @@ import '../application/matching_progress_provider.dart';
 import '../application/matching_repository.dart';
 import '../domain/matching_models.dart';
 import 'matching_ui_helpers.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/display/app_skeleton.dart';
 
 class MatchingHomePage extends ConsumerWidget {
   const MatchingHomePage({super.key});
@@ -34,14 +36,12 @@ class MatchingHomePage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.view_week_rounded,
+      headerIcon: AppIcons.matching,
       title: l10n.matchingHomeTitle,
       subtitle: l10n.matchingHomeSubtitle,
       children: [
         catalogAsync.when(
-          loading: () => const PremiumCard(
-            child: Center(child: CircularProgressIndicator()),
-          ),
+          loading: () => const SkeletonCard(),
           error: (_, _) => PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +51,7 @@ class MatchingHomePage extends ConsumerWidget {
                 Text(
                   l10n.matchingLoadErrorSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -176,7 +176,7 @@ class MatchingHomePage extends ConsumerWidget {
                         _chip(
                           context,
                           l10n.matchingDailyStreakLabel(
-                            dailyStreak.currentStreak.toString(),
+                            dailyStreak.currentStreak,
                           ),
                         ),
                     ],

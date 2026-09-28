@@ -7,9 +7,12 @@ import '../../../features/kids/bedtime_stories/presentation/bedtime_story_family
 import '../../../features/kids/bedtime_stories/presentation/bedtime_story_memory_cards_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/bedtime_story_parent_dashboard_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/bedtime_story_quiz_page.dart';
-import '../../../features/kids/bedtime_stories/presentation/bedtime_stories_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/kids_story_library_page.dart';
+import '../../../features/kids/bedtime_stories/presentation/kids_story_reader_page.dart';
+import '../../../features/kids/parents/presentation/kids_parent_gate.dart';
+import '../../../features/kids/play/presentation/kids_play_page.dart';
+import '../../../features/kids/rewards/presentation/kids_sticker_book_page.dart';
 import '../../../features/kids/seerah/presentation/seerah_journey_page.dart';
 import '../../../features/kids/seerah/presentation/seerah_journeys_page.dart';
 import '../../../features/kids/seerah/presentation/seerah_node_page.dart';
@@ -41,8 +44,6 @@ import '../../../features/kids_dua_learning/presentation/kids_dua_story_browse_p
 import '../../../features/kids_dua_learning/presentation/kids_dua_story_player_page.dart';
 import '../../../features/kids_dua_learning/presentation/kids_dua_stories_page.dart';
 import '../../../features/learn/hadith/presentation/kids_hadith_page.dart';
-import '../../../features/learn/presentation/pages/learn_kids_fun_learning_page.dart';
-import '../../../features/learn/presentation/pages/learn_kids_games_page.dart';
 import '../../../features/learn/quran/presentation/kids_quran_page.dart';
 import '../../../features/learn/quran/presentation/kids_quran_surah_page.dart';
 import '../../../features/learn/quran/presentation/quran_guided_passage_readiness_page.dart';
@@ -51,15 +52,16 @@ import '../../../features/learn/quran/presentation/quran_short_surah_readiness_p
 import '../../../features/learn/quran/presentation/quran_kids_ayah_insights_page.dart';
 import '../../../features/progression/presentation/learner_progression_page.dart';
 import '../../../features/arabic/domain/arabic_learning_continuity_models.dart';
-import '../../../features/arabic/presentation/arabic_learning_mini_assessment_page.dart';
 
 List<RouteBase> buildLearnKidsRoutes() {
   return <RouteBase>[
+    // "Kids Games" and "Fun Learning" were two link lists over the same six
+    // destinations; both names now open the one Play page.
     GoRoute(
       path: '/learn/kids/games',
       name: 'learnKidsGames',
       pageBuilder: (context, state) =>
-          const MaterialPage(child: LearnKidsGamesPage()),
+          const MaterialPage(child: KidsPlayPage()),
     ),
     GoRoute(
       path: '/learn/kids/arabic-learning',
@@ -106,7 +108,7 @@ List<RouteBase> buildLearnKidsRoutes() {
       path: '/learn/kids/fun-learning',
       name: 'learnKidsFunLearning',
       pageBuilder: (context, state) =>
-          const MaterialPage(child: LearnKidsFunLearningPage()),
+          const MaterialPage(child: KidsPlayPage()),
     ),
     GoRoute(
       path: '/learn/kids/quran-insights',
@@ -144,11 +146,10 @@ List<RouteBase> buildLearnKidsRoutes() {
     GoRoute(
       path: '/learn/kids/arabic/practice/quick',
       name: 'kidsArabicMiniAssessment',
-      pageBuilder: (context, state) => const MaterialPage(
-        child: ArabicLearningMiniAssessmentPage(
-          audience: ArabicLearningAudience.kids,
-        ),
-      ),
+      // One review engine for children (L3): the quick check opens the
+      // sound-first Letter Review.
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsArabicReviewPage()),
     ),
     GoRoute(
       path: '/learn/kids/arabic/words',
@@ -230,14 +231,16 @@ List<RouteBase> buildLearnKidsRoutes() {
     GoRoute(
       path: '/learn/kids/arabic/parent',
       name: 'kidsArabicParentDashboard',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: KidsArabicParentDashboardPage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: KidsArabicParentDashboardPage()),
+      ),
     ),
     GoRoute(
       path: '/learn/kids/arabic/parent/settings',
       name: 'kidsArabicParentSettings',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: KidsArabicParentSettingsPage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: KidsArabicParentSettingsPage()),
+      ),
     ),
     GoRoute(
       path: '/learn/kids/arabic/coloring',
@@ -254,11 +257,14 @@ List<RouteBase> buildLearnKidsRoutes() {
         ),
       ),
     ),
+    // The bedtime page was a third library over the same stories; it is now
+    // the bedtime shelf of the one library.
     GoRoute(
       path: '/learn/kids/bedtime-stories',
       name: 'kidsBedtimeStories',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: BedtimeStoriesPage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsStoryLibraryPage(initialCollectionId: 'bedtime'),
+      ),
     ),
     GoRoute(
       path: '/learn/kids/seerah',
@@ -297,20 +303,39 @@ List<RouteBase> buildLearnKidsRoutes() {
     GoRoute(
       path: '/learn/kids/bedtime-stories/parents',
       name: 'kidsBedtimeStoriesParentDashboard',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: BedtimeStoryParentDashboardPage()),
+      ),
+    ),
+    // The one parents door (K5): the merged summary behind the grown-up
+    // gate. Every other parent page is reached from here.
+    GoRoute(
+      path: '/learn/kids/parents',
+      name: 'kidsParents',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: BedtimeStoryParentDashboardPage()),
+      ),
+    ),
+    // The one reward world (K4): every sticker a child has earned.
+    GoRoute(
+      path: '/learn/kids/stickers',
+      name: 'kidsStickerBook',
       pageBuilder: (context, state) =>
-          const MaterialPage(child: BedtimeStoryParentDashboardPage()),
+          const MaterialPage(child: KidsStickerBookPage()),
     ),
     GoRoute(
       path: '/learn/kids/progression',
       name: 'kidsLearnerProgression',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: LearnerProgressionPage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: LearnerProgressionPage()),
+      ),
     ),
     GoRoute(
       path: '/learn/kids/bedtime-stories/family',
       name: 'kidsBedtimeStoriesFamilyMode',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: BedtimeStoryFamilyModePage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: BedtimeStoryFamilyModePage()),
+      ),
     ),
     GoRoute(
       path: '/learn/kids/bedtime-stories/companion',
@@ -324,6 +349,7 @@ List<RouteBase> buildLearnKidsRoutes() {
       pageBuilder: (context, state) => MaterialPage(
         child: BedtimeStoryDetailPage(
           storyId: state.pathParameters['storyId'] ?? '',
+          bedtime: _openedAtBedtime(state),
         ),
       ),
     ),
@@ -333,6 +359,7 @@ List<RouteBase> buildLearnKidsRoutes() {
       pageBuilder: (context, state) => MaterialPage(
         child: BedtimeStoryDetailPage(
           storyId: state.pathParameters['storyId'] ?? '',
+          bedtime: _openedAtBedtime(state),
         ),
       ),
     ),
@@ -342,6 +369,7 @@ List<RouteBase> buildLearnKidsRoutes() {
       pageBuilder: (context, state) => MaterialPage(
         child: BedtimeStoryDetailPage(
           storyId: state.pathParameters['storyId'] ?? '',
+          bedtime: _openedAtBedtime(state),
         ),
       ),
     ),
@@ -351,6 +379,18 @@ List<RouteBase> buildLearnKidsRoutes() {
       pageBuilder: (context, state) => MaterialPage(
         child: BedtimeStoryQuizPage(
           storyId: state.pathParameters['storyId'] ?? '',
+        ),
+      ),
+    ),
+    // The storybook (K2): one picture and a few lines per page, a voice for
+    // every line. Both story families read here.
+    GoRoute(
+      path: '/learn/kids/stories/:storyId/read',
+      name: 'kidsStoryReader',
+      pageBuilder: (context, state) => MaterialPage(
+        child: KidsStoryReaderPage(
+          storyId: state.pathParameters['storyId'] ?? '',
+          bedtime: _openedAtBedtime(state),
         ),
       ),
     ),
@@ -474,8 +514,14 @@ List<RouteBase> buildLearnKidsRoutes() {
     GoRoute(
       path: '/learn/kids/dua/parent',
       name: 'kidsDuaParentDashboard',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: KidsDuaParentDashboardPage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: KidsDuaParentDashboardPage()),
+      ),
     ),
   ];
 }
+
+/// The Bedtime shelf opens a story with `?bedtime=1`; the story page then
+/// says "Read tonight" and the reader adds the book's bedtime closing page.
+bool _openedAtBedtime(GoRouterState state) =>
+    state.uri.queryParameters['bedtime'] == '1';

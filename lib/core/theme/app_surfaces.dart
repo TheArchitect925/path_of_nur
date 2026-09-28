@@ -54,7 +54,9 @@ class AppSurfaceMatrix {
     if (appearance.mode == AppThemeMode.noorKids) {
       return AppSurfaceFamily.kids;
     }
-    if (appearance.isMidnightFamily) {
+    if (appearance.isMidnightFamily || appearance.isNightFamily) {
+      // The painted night themes share the midnight family's dark-tuned
+      // glass recipes; their own palettes supply the indigo/umber tones.
       return AppSurfaceFamily.midnight;
     }
     if (appearance.isNoGlassFamily) {
@@ -513,7 +515,9 @@ class AppSurfaceTheme {
     final accent = resolveTintColor(
       appearance: appearance,
       treatment: treatment,
-      tintColor: tintColor,
+      // Night themes use one standard glass: per-surface colored tints are
+      // dropped so tiles never fight the painted atmosphere.
+      tintColor: appearance?.isNightFamily == true ? null : tintColor,
       surface: surface,
       disableColoredGlass: disableColoredGlass,
     );
@@ -686,20 +690,25 @@ class AppSurfaceTheme {
     final resolvedShadowColor = (isDark ? Colors.black : accent).withValues(
       alpha: disableGlass ? 0.08 : 0.16,
     );
-    final resolvedIconBackgroundColor =
-        (Color.lerp(
-                  milkTone,
-                  accent,
-                  treatment == AppSurfaceTreatment.denseSanctuary ? 0.42 : 0.55,
-                ) ??
-                accent)
-            .withValues(
-              alpha: disableGlass
-                  ? 0.18
-                  : treatment == AppSurfaceTreatment.denseSanctuary
-                  ? 0.26
-                  : 0.22,
-            );
+    // Night themes keep icon badges neutral so gold/ivory glyphs stay
+    // legible instead of sitting gold-on-gold.
+    final resolvedIconBackgroundColor = appearance?.isNightFamily == true
+        ? (appearance?.onSurface ?? Colors.white).withValues(alpha: 0.10)
+        : (Color.lerp(
+                    milkTone,
+                    accent,
+                    treatment == AppSurfaceTreatment.denseSanctuary
+                        ? 0.42
+                        : 0.55,
+                  ) ??
+                  accent)
+              .withValues(
+                alpha: disableGlass
+                    ? 0.18
+                    : treatment == AppSurfaceTreatment.denseSanctuary
+                    ? 0.26
+                    : 0.22,
+              );
 
     final gradient = LinearGradient(
       begin: Alignment.topLeft,

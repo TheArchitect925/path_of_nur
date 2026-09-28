@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -61,7 +61,7 @@ class FaqQuestionTile extends StatelessWidget {
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     ),
                   ],
@@ -123,7 +123,7 @@ class FaqQuestionTile extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return ConstrainedBox(
       constraints: BoxConstraints(
@@ -137,7 +137,7 @@ class FaqQuestionTile extends StatelessWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: AppColors.accentGold,
+            color: context.palette.accent,
             fontWeight: FontWeight.w600,
           ),
         ),

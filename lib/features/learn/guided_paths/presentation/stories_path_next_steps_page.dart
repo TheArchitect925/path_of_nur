@@ -3,11 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../analytics/application/learn_analytics_service.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/guided_learning_paths_provider.dart';
 import '../domain/guided_learning_path_icon_registry.dart';
+import '../../../../core/theme/app_palette.dart';
 
 class StoriesPathNextStepsPage extends ConsumerWidget {
   const StoriesPathNextStepsPage({super.key});
@@ -30,7 +32,6 @@ class StoriesPathNextStepsPage extends ConsumerWidget {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
       title: l10n.learnStoriesPathNextStepsTitle,
       subtitle: l10n.learnStoriesPathNextStepsSubtitle,
       showDefaultQuote: false,
@@ -136,7 +137,7 @@ class _NextPathCard extends ConsumerWidget {
     final completedCount = progress.completedStepIds.length;
     final totalCount = localizedPath.path.steps.length;
     final accent = switch (localizedPath.path.id) {
-      'character-starter' => const Color(0xFF8A5A44),
+      'character-starter' => context.palette.error,
       'quran-beginner-starter' => Theme.of(context).colorScheme.primary,
       _ => Theme.of(context).colorScheme.primary,
     };
@@ -196,15 +197,12 @@ class _NextPathCard extends ConsumerWidget {
             ),
             const SizedBox(height: 12),
             if (progress.isStarted) ...[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(
-                  value: totalCount == 0 ? 0 : completedCount / totalCount,
-                  minHeight: 8,
-                  backgroundColor: Theme.of(
-                    context,
-                  ).colorScheme.surfaceContainerHighest,
-                ),
+              ProgressBar(
+                value: totalCount == 0 ? 0 : completedCount / totalCount,
+                height: 8,
+                backgroundColor: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest,
               ),
               const SizedBox(height: 6),
             ],

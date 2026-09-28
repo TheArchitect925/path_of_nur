@@ -286,7 +286,7 @@ class _BedtimeStoryFullPlayerSheet extends ConsumerWidget {
               ...<int>[5, 10, 15].map(
                 (minutes) => ListTile(
                   contentPadding: EdgeInsets.zero,
-                  leading: const Icon(Icons.timer_outlined),
+                  leading: const Icon(Icons.timer_rounded),
                   title: Text(l10n.bedtimeStoriesSleepTimerMinutes(minutes)),
                   onTap: () {
                     controller.setDurationMinutes(minutes);

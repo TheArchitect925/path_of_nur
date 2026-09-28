@@ -10,8 +10,9 @@ import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 import 'package:path_of_nur/shared/widgets/app_scaffold.dart';
+import 'package:path_of_nur/features/salah/presentation/salah_page.dart';
 import 'package:path_of_nur/features/worship/presentation/worship_section_pages.dart';
-import 'package:path_of_nur/features/worship/presentation/widgets/salah_timings_tracker_card.dart';
+import 'package:path_of_nur/features/worship/domain/prayer_name.dart';
 
 void main() {
   testWidgets('Legal support page renders', (WidgetTester tester) async {
@@ -34,27 +35,45 @@ void main() {
     );
     await tester.pumpAndSettle();
 
+    // Pushed pages no longer carry a header icon (header redesign, A1);
+    // the page is identified by its title.
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
     expect(find.byType(LegalInfoPage), findsOneWidget);
-    expect(find.byIcon(Icons.support_agent_rounded), findsOneWidget);
+    expect(find.text(l10n.legalSupportTitle), findsOneWidget);
   });
 
   testWidgets('worship page moon card shows all five prayers with times', (
     WidgetTester tester,
   ) async {
-    // The worship landing became a hub; the daily timings surface now lives
-    // on the prayer section page inside SalahTimingsTrackerCard.
+    // Phase 3b: the Salah Hub's Times tab now embeds the full salah-times
+    // experience (SalahTimesPage) with all five prayers.
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
 
+    // Date-less prayer labels ("today") read prayerLabelClock, which is the
+    // real clock by default — on real Fridays that renames Dhuhr to Jumu'ah
+    // under the test's feet. Pin it to the seeded date.
+    prayerLabelClock = () => DateTime.parse('2026-03-22T12:00:00');
+    addTearDown(() => prayerLabelClock = DateTime.now);
+
+    // Hydrate the seeded clock before the first build; consumers fall back
+    // to the real clock while the stream is still loading, which flips the
+    // Dhuhr slot to Jumu'ah when the suite happens to run on a Friday.
+    final container = ProviderContainer(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(prefs),
+        dailyNowProvider.overrideWith(
+          (ref) =>
+              Stream<DateTime>.value(DateTime.parse('2026-03-22T12:00:00')),
+        ),
+      ],
+    );
+    addTearDown(container.dispose);
+    await container.read(dailyNowProvider.future);
+
     await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          sharedPreferencesProvider.overrideWithValue(prefs),
-          dailyNowProvider.overrideWith(
-            (ref) =>
-                Stream<DateTime>.value(DateTime.parse('2026-03-22T12:00:00')),
-          ),
-        ],
+      UncontrolledProviderScope(
+        container: container,
         child: MaterialApp(
           localizationsDelegates: [
             AppLocalizations.delegate,
@@ -72,12 +91,12 @@ void main() {
     await tester.pump(const Duration(milliseconds: 180));
 
     await tester.scrollUntilVisible(
-      find.byType(SalahTimingsTrackerCard),
+      find.byType(SalahTimesPage),
       400,
       scrollable: find.byType(Scrollable).first,
       maxScrolls: 60,
     );
-    final timingsCard = find.byType(SalahTimingsTrackerCard).first;
+    final timingsCard = find.byType(SalahTimesPage).first;
     expect(timingsCard, findsOneWidget);
 
     const prayerNames = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
@@ -88,13 +107,12 @@ void main() {
       );
     }
 
-    final pills = tester.widgetList<PrayerTimingPill>(
-      find.descendant(of: timingsCard, matching: find.byType(PrayerTimingPill)),
+    // Each prayer card in the merged Times tab carries a real offer time.
+    final offerTimeLabels = find.descendant(
+      of: timingsCard,
+      matching: find.textContaining(':'),
     );
-    expect(pills.length, greaterThanOrEqualTo(5));
-    for (final pill in pills) {
-      expect(pill.time, isNotEmpty);
-    }
+    expect(offerTimeLabels, findsAtLeastNWidgets(5));
   });
 
   testWidgets(

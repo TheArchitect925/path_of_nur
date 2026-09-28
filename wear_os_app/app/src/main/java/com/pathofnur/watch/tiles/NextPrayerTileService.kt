@@ -17,6 +17,7 @@ import androidx.wear.tiles.TileService
 import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
 import com.pathofnur.watch.MainActivity
+import com.pathofnur.watch.R
 import com.pathofnur.watch.glance.GlanceDataProvider
 
 class NextPrayerTileService : TileService() {
@@ -24,13 +25,13 @@ class NextPrayerTileService : TileService() {
         val data = GlanceDataProvider(this).data()
         val deviceParameters = requestParams.deviceParameters!!
         val root = materialTile(
-            title = "Next Prayer",
+            title = getString(R.string.tile_next_prayer),
             main = listOf(
                 text(data.nextPrayerName, 22f, true),
                 text(data.nextPrayerCountdown, 30f, true),
                 text(data.nextPrayerTime, 16f, false)
             ),
-            bottom = listOf(text("Open App", 14f, false)),
+            bottom = listOf(text(getString(R.string.tile_open_app), 14f, false)),
             clickable = launchAction(TileRoutes.SCREEN_TODAY)
         )
 

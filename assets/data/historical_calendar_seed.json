@@ -76,7 +76,7 @@
     "lessons": [
       "Revelation joins knowledge, worship, and responsibility."
     ],
-    "relatedEntities": ["Prophet Muhammad ﷺ", "Jibril عليه السلام"],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Jibril"],
     "relatedContentIds": ["journey-quran", "foundations-of-faith", "seerah-journey"],
     "relatedContentHooks": [
       {
@@ -149,7 +149,7 @@
     "lessons": [
       "After hardship, Allah opens doors of strength and nearness."
     ],
-    "relatedEntities": ["Prophet Muhammad ﷺ", "Jibril عليه السلام"],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Jibril"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 90,
@@ -237,7 +237,7 @@
     "lessons": [
       "Taking the means and trusting Allah belong together."
     ],
-    "relatedEntities": ["Prophet Muhammad ﷺ", "Abu Bakr رضي الله عنه"],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Abu Bakr"],
     "relatedContentIds": ["seerah-journey", "islam-foundations"],
     "relatedContentHooks": [
       {
@@ -302,7 +302,7 @@
       "Migration for Allah can become the beginning of stability and blessing.",
       "A believing society needs worship, service, brotherhood, and covenant."
     ],
-    "relatedEntities": ["Prophet Muhammad ﷺ", "Abu Bakr رضي الله عنه", "The Ansar"],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Abu Bakr", "The Ansar"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 99,
@@ -326,8 +326,8 @@
     "hijri": { "year": 1, "month": 3 },
     "location": { "name": "Madinah, Arabia" },
     "significance": [
-      "It became the central masjid of the Prophet’s city.",
-      "It joined worship, teaching, service, and leadership in one place."
+      "It became the central masjid of the Prophet’s ﷺ city.",
+      "It joined worship, teaching, service, and leadership under one roof."
     ],
     "lessons": [
       "The masjid anchors both personal devotion and communal life."
@@ -361,7 +361,7 @@
     "lessons": [
       "Worship in Islam shapes both the heart and the public rhythm of life."
     ],
-    "relatedEntities": ["Bilal ibn Rabah رضي الله عنه", "Prophet Muhammad ﷺ"],
+    "relatedEntities": ["Bilal ibn Rabah", "Prophet Muhammad ﷺ"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 72,
@@ -489,7 +489,7 @@
     "lessons": [
       "Trials can purify hearts and deepen sincerity."
     ],
-    "relatedEntities": ["Prophet Muhammad ﷺ", "Hamzah ibn Abd al-Muttalib رضي الله عنه"],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Hamzah ibn Abd al-Muttalib"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 95,
@@ -518,7 +518,7 @@
     "lessons": [
       "Patience in a prolonged trial is often different from patience in a single moment."
     ],
-    "relatedEntities": ["Prophet Muhammad ﷺ", "Salman al-Farisi رضي الله عنه"],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Salman al-Farisi"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 92,
@@ -576,7 +576,7 @@
     "lessons": [
       "Periods of calm can be followed by moments that reshape the wider landscape."
     ],
-    "relatedEntities": ["Prophet Muhammad ﷺ", "Ali ibn Abi Talib رضي الله عنه"],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Ali ibn Abi Talib"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 84,
@@ -634,7 +634,7 @@
     "lessons": [
       "Faithful courage can remain steady even when the outward conditions are severe."
     ],
-    "relatedEntities": ["Zayd ibn Harithah رضي الله عنه", "Jaʿfar ibn Abi Talib رضي الله عنه", "Abdullah ibn Rawahah رضي الله عنه"],
+    "relatedEntities": ["Zayd ibn Harithah", "Jaʿfar ibn Abi Talib", "Abdullah ibn Rawahah"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 80,
@@ -652,7 +652,7 @@
     "slug": "conquest-of-makkah",
     "title": "Conquest of Makkah",
     "summaryShort": "The opening of Makkah showed the triumph of tawhid with mercy, restraint, and the clearing of idols from the Sacred Sanctuary.",
-    "summaryLong": "When the Prophet ﷺ entered Makkah with the believers, the moment was not one of revenge but of tawhid, humility, and mercy. Idols were removed from the Kaʿbah, the Sacred City returned to open worship of Allah alone, and many people entered Islam after witnessing the Prophet’s conduct.",
+    "summaryLong": "When the Prophet ﷺ entered Makkah with the believers, the moment was not one of revenge but of tawhid, humility, and mercy. Idols were removed from the Kaʿbah, the Sacred City returned to open worship of Allah alone, and many people entered Islam after witnessing the Prophet’s ﷺ conduct.",
     "categories": ["seerah", "islamic_history", "sacred_places"],
     "tags": ["makkah", "fath", "kaabah", "tawhid"],
     "gregorian": { "year": 630, "month": 1, "day": 11 },
@@ -826,18 +826,18 @@
     "hijri": { "year": 11, "month": 3, "day": 12 },
     "location": { "name": "Madinah, Arabia" },
     "significance": [
-      "It marked the end of prophethood and the completion of the Messenger’s earthly mission.",
+      "It marked the end of prophethood and the completion of the Messenger’s ﷺ earthly mission.",
       "The companions were called to remain firm upon worship of Allah alone."
     ],
     "lessons": [
       "Faith is anchored in Allah, who never dies."
     ],
-    "relatedEntities": ["Prophet Muhammad ﷺ", "Abu Bakr رضي الله عنه"],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Abu Bakr"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 99,
     "sources": [
-      { "label": "Qur’an 3:144", "note": "A verse remembered in the moment of the Prophet’s passing." },
+      { "label": "Qur’an 3:144", "note": "A verse remembered in the moment of the Prophet’s ﷺ passing." },
       { "label": "Sahih al-Bukhari", "note": "Contains reports of the final illness and the community response." }
     ],
     "isPublished": true,
@@ -848,8 +848,8 @@
     "id": "abu_bakr_begins_caliphate_632",
     "slug": "abu-bakr-begins-caliphate",
     "title": "Abu Bakr Begins the Caliphate",
-    "summaryShort": "The leadership of Abu Bakr رضي الله عنه began in a moment of grief and urgent responsibility after the Prophet’s passing.",
-    "summaryLong": "After the passing of the Prophet ﷺ, Abu Bakr رضي الله عنه assumed leadership of the Muslim community. His caliphate began at a moment that demanded calm, clarity, and firm commitment to preserving unity and the obligations of faith.",
+    "summaryShort": "The leadership of Abu Bakr (may Allah be pleased with him) began in a moment of grief and urgent responsibility after the Prophet’s ﷺ passing.",
+    "summaryLong": "After the passing of the Prophet ﷺ, Abu Bakr (may Allah be pleased with him) assumed leadership of the Muslim community. His caliphate began at a moment that demanded calm, clarity, and firm commitment to preserving unity and the obligations of faith.",
     "categories": ["khulafa", "islamic_history"],
     "tags": ["abu bakr", "caliphate", "leadership", "unity"],
     "gregorian": { "year": 632, "month": 6, "day": 8 },
@@ -862,7 +862,7 @@
     "lessons": [
       "Leadership after loss requires calm clarity and service to principle."
     ],
-    "relatedEntities": ["Abu Bakr al-Siddiq رضي الله عنه"],
+    "relatedEntities": ["Abu Bakr al-Siddiq"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 88,
@@ -878,20 +878,20 @@
     "slug": "battle-of-yamama",
     "title": "Battle of Yamamah",
     "summaryShort": "Yamamah became one of the most consequential battles of the early caliphate and shaped later efforts to preserve the Qur’an in written form.",
-    "summaryLong": "The Battle of Yamamah took place during the caliphate of Abu Bakr رضي الله عنه and was one of the defining confrontations of the Ridda wars. The heavy loss of Qur’an memorizers contributed to the later push to collect the Qur’an in a compiled written form.",
+    "summaryLong": "The Battle of Yamamah took place during the caliphate of Abu Bakr (may Allah be pleased with him) and was one of the defining confrontations of the Ridda wars. The heavy loss of Qur’an memorizers contributed to the later push to collect the Qur’an in a compiled written form.",
     "categories": ["battles", "khulafa", "revelation", "islamic_history"],
     "tags": ["yamamah", "ridda", "quran preservation", "abu bakr"],
     "gregorian": { "year": 633 },
     "hijri": { "year": 11, "month": 12 },
     "location": { "name": "Yamamah, Arabia" },
     "significance": [
-      "It was a major battle in stabilizing the Muslim polity after the Prophet’s passing.",
+      "It was a major battle in stabilizing the Muslim polity after the Prophet’s ﷺ passing.",
       "It influenced the decision to compile the Qur’an in written form."
     ],
     "lessons": [
       "Preserving revelation requires both living memorization and careful worldly means."
     ],
-    "relatedEntities": ["Abu Bakr al-Siddiq رضي الله عنه", "Zayd ibn Thabit رضي الله عنه"],
+    "relatedEntities": ["Abu Bakr al-Siddiq", "Zayd ibn Thabit"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 76,
@@ -906,8 +906,8 @@
     "id": "compilation_of_quran_under_abu_bakr_633",
     "slug": "compilation-of-quran-under-abu-bakr",
     "title": "Compilation of the Qur’an Under Abu Bakr",
-    "summaryShort": "The first written compilation of the Qur’an after the Prophet’s passing preserved revelation with great care and verification.",
-    "summaryLong": "After the losses at Yamamah, Abu Bakr رضي الله عنه agreed to a careful written compilation of the Qur’an under the supervision of Zayd ibn Thabit رضي الله عنه. This effort preserved the Qur’an with caution, verification, and deep awareness of its sacred trust.",
+    "summaryShort": "The first written compilation of the Qur’an after the Prophet’s ﷺ passing preserved revelation with great care and verification.",
+    "summaryLong": "After the losses at Yamamah, Abu Bakr (may Allah be pleased with him) agreed to a careful written compilation of the Qur’an under the supervision of Zayd ibn Thabit (may Allah be pleased with him). This effort preserved the Qur’an with caution, verification, and deep awareness of its sacred trust.",
     "categories": ["revelation", "khulafa", "islamic_history"],
     "tags": ["quran", "compilation", "abu bakr", "zayd ibn thabit"],
     "gregorian": { "year": 633 },
@@ -920,7 +920,7 @@
     "lessons": [
       "Sacred trust can require careful administration as well as devotion."
     ],
-    "relatedEntities": ["Abu Bakr al-Siddiq رضي الله عنه", "Umar ibn al-Khattab رضي الله عنه", "Zayd ibn Thabit رضي الله عنه"],
+    "relatedEntities": ["Abu Bakr al-Siddiq", "Umar ibn al-Khattab", "Zayd ibn Thabit"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 86,
@@ -935,8 +935,8 @@
     "id": "umar_begins_caliphate_634",
     "slug": "umar-begins-caliphate",
     "title": "Umar ibn al-Khattab Begins the Caliphate",
-    "summaryShort": "The caliphate of Umar رضي الله عنه opened a period of justice, administrative strength, and major historical expansion.",
-    "summaryLong": "When Umar ibn al-Khattab رضي الله عنه began the caliphate, the Muslim community entered a period remembered for justice, disciplined governance, and major historical growth. His era remains central to Muslim memory of leadership and public accountability.",
+    "summaryShort": "The caliphate of Umar (may Allah be pleased with him) opened a period of justice, administrative strength, and major historical expansion.",
+    "summaryLong": "When Umar ibn al-Khattab (may Allah be pleased with him) began the caliphate, the Muslim community entered a period remembered for justice, disciplined governance, and major historical growth. His era remains central to Muslim memory of leadership and public accountability.",
     "categories": ["khulafa", "islamic_history"],
     "tags": ["umar", "caliphate", "justice", "leadership"],
     "gregorian": { "year": 634, "month": 8, "day": 23 },
@@ -949,7 +949,7 @@
     "lessons": [
       "Strength in leadership must remain tied to taqwa and justice."
     ],
-    "relatedEntities": ["Umar ibn al-Khattab رضي الله عنه"],
+    "relatedEntities": ["Umar ibn al-Khattab"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 84,
@@ -964,8 +964,8 @@
     "id": "formalization_of_hijri_calendar_638",
     "slug": "formalization-of-hijri-calendar",
     "title": "Formalization of the Hijri Calendar",
-    "summaryShort": "The Hijri calendar was formally adopted during the caliphate of Umar رضي الله عنه, anchoring Muslim public life to the Hijrah.",
-    "summaryLong": "During the caliphate of Umar رضي الله عنه, the Muslim community adopted the Hijrah as the epoch of its formal calendar. This choice tied public record-keeping, administration, and historical memory to migration, sacrifice, and the birth of the Muslim community in Madinah.",
+    "summaryShort": "The Hijri calendar was formally adopted during the caliphate of Umar (may Allah be pleased with him), anchoring Muslim public life to the Hijrah.",
+    "summaryLong": "During the caliphate of Umar (may Allah be pleased with him), the Muslim community adopted the Hijrah as the epoch of its formal calendar. This choice tied public record-keeping, administration, and historical memory to migration, sacrifice, and the birth of the Muslim community in Madinah.",
     "categories": ["khulafa", "islamic_history"],
     "tags": ["hijri calendar", "umar", "hijrah", "calendar"],
     "gregorian": { "year": 638 },
@@ -978,7 +978,7 @@
     "lessons": [
       "A community’s calendar reflects what it chooses to remember and honor."
     ],
-    "relatedEntities": ["Umar ibn al-Khattab رضي الله عنه"],
+    "relatedEntities": ["Umar ibn al-Khattab"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 82,
@@ -994,7 +994,7 @@
     "slug": "entry-into-jerusalem-under-umar",
     "title": "Jerusalem Entered During the Caliphate of Umar",
     "summaryShort": "The peaceful receiving of Jerusalem during Umar’s caliphate became one of the most memorable episodes of early Islamic history.",
-    "summaryLong": "The entry into Jerusalem during the caliphate of Umar رضي الله عنه is remembered as a moment of humility, public responsibility, and respect for sacred trust. The event occupies a major place in Islamic historical memory connected to Bayt al-Maqdis and the wider early expansion of Muslim rule.",
+    "summaryLong": "The entry into Jerusalem during the caliphate of Umar (may Allah be pleased with him) is remembered as a moment of humility, public responsibility, and respect for sacred trust. The event occupies a major place in Islamic historical memory connected to Bayt al-Maqdis and the wider early expansion of Muslim rule.",
     "categories": ["khulafa", "islamic_history", "sacred_places"],
     "tags": ["jerusalem", "bayt al-maqdis", "umar", "sacred places"],
     "gregorian": { "year": 638 },
@@ -1007,7 +1007,7 @@
     "lessons": [
       "Great historical victories can still be marked by humility rather than pride."
     ],
-    "relatedEntities": ["Umar ibn al-Khattab رضي الله عنه"],
+    "relatedEntities": ["Umar ibn al-Khattab"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 80,
@@ -1022,8 +1022,8 @@
     "id": "uthman_begins_caliphate_644",
     "slug": "uthman-begins-caliphate",
     "title": "Uthman ibn Affan Begins the Caliphate",
-    "summaryShort": "The caliphate of Uthman رضي الله عنه opened another major phase in early Islamic history and expansion.",
-    "summaryLong": "Uthman ibn Affan رضي الله عنه began the caliphate after Umar. His era would include continued expansion, growing administrative complexity, and one of the most historically significant service efforts to the Qur’an: the standardization of the written codex tradition.",
+    "summaryShort": "The caliphate of Uthman (may Allah be pleased with him) opened another major phase in early Islamic history and expansion.",
+    "summaryLong": "Uthman ibn Affan (may Allah be pleased with him) began the caliphate after Umar. His era would include continued expansion, growing administrative complexity, and one of the most historically significant service efforts to the Qur’an: the standardization of the written codex tradition.",
     "categories": ["khulafa", "islamic_history"],
     "tags": ["uthman", "caliphate", "leadership", "quran history"],
     "gregorian": { "year": 644, "month": 11 },
@@ -1036,7 +1036,7 @@
     "lessons": [
       "Historical responsibility can grow as a community widens in reach and complexity."
     ],
-    "relatedEntities": ["Uthman ibn Affan رضي الله عنه"],
+    "relatedEntities": ["Uthman ibn Affan"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 78,
@@ -1051,8 +1051,8 @@
     "id": "standardization_of_mushaf_650",
     "slug": "standardization-of-the-mushaf",
     "title": "Standardization of the Mushaf Under Uthman",
-    "summaryShort": "The standardization of the mushaf copies under Uthman رضي الله عنه preserved the unity of Qur’anic recitation across a widening Muslim world.",
-    "summaryLong": "As Islam spread into wider lands, Uthman رضي الله عنه oversaw the production of standardized mushaf copies based on the earlier compilation. This service protected the unity of the Qur’anic text and remains one of the most important milestones in Qur’an history.",
+    "summaryShort": "The standardization of the mushaf copies under Uthman (may Allah be pleased with him) preserved the unity of Qur’anic recitation across a widening Muslim world.",
+    "summaryLong": "As Islam spread into wider lands, Uthman (may Allah be pleased with him) oversaw the production of standardized mushaf copies based on the earlier compilation. This service protected the unity of the Qur’anic text and remains one of the most important milestones in Qur’an history.",
     "categories": ["revelation", "khulafa", "islamic_history"],
     "tags": ["quran", "mushaf", "uthman", "standardization"],
     "gregorian": { "year": 650 },
@@ -1065,7 +1065,7 @@
     "lessons": [
       "Preserving revelation can require institutional wisdom as a community expands."
     ],
-    "relatedEntities": ["Uthman ibn Affan رضي الله عنه", "Zayd ibn Thabit رضي الله عنه"],
+    "relatedEntities": ["Uthman ibn Affan", "Zayd ibn Thabit"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 88,
@@ -1080,8 +1080,8 @@
     "id": "ali_begins_caliphate_656",
     "slug": "ali-begins-caliphate",
     "title": "Ali ibn Abi Talib Begins the Caliphate",
-    "summaryShort": "The caliphate of Ali رضي الله عنه began in one of the most difficult political moments of early Islamic history.",
-    "summaryLong": "Ali ibn Abi Talib رضي الله عنه began the caliphate during a period of serious internal strain in the Muslim community. His era remains deeply significant for its lessons on justice, fitnah, loyalty to truth, and the cost of internal division.",
+    "summaryShort": "The caliphate of Ali (may Allah be pleased with him) began in one of the most difficult political moments of early Islamic history.",
+    "summaryLong": "Ali ibn Abi Talib (may Allah be pleased with him) began the caliphate during a period of serious internal strain in the Muslim community. His era remains deeply significant for its lessons on justice, fitnah, loyalty to truth, and the cost of internal division.",
     "categories": ["khulafa", "islamic_history"],
     "tags": ["ali", "caliphate", "fitnah", "justice"],
     "gregorian": { "year": 656, "month": 6 },
@@ -1094,7 +1094,7 @@
     "lessons": [
       "A community can remain tested even after periods of great growth."
     ],
-    "relatedEntities": ["Ali ibn Abi Talib رضي الله عنه"],
+    "relatedEntities": ["Ali ibn Abi Talib"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 76,
@@ -1110,7 +1110,7 @@
     "slug": "year-of-unity",
     "title": "Year of Unity",
     "summaryShort": "The Year of Unity is remembered for the ending of a major political division within the Muslim community.",
-    "summaryLong": "The Year of Unity refers to the year in which al-Hasan ibn Ali رضي الله عنهما yielded the caliphate in order to prevent further bloodshed and division. It remains a major historical moment of peacemaking, sacrifice, and prioritizing the welfare of the Ummah.",
+    "summaryLong": "The Year of Unity refers to the year in which al-Hasan ibn Ali (may Allah be pleased with them) yielded the caliphate in order to prevent further bloodshed and division. It remains a major historical moment of peacemaking, sacrifice, and prioritizing the welfare of the Ummah.",
     "categories": ["islamic_history", "khulafa"],
     "tags": ["year of unity", "hasan ibn ali", "peace", "unity"],
     "gregorian": { "year": 661 },
@@ -1123,7 +1123,7 @@
     "lessons": [
       "Not every victory is found in holding power; some victories lie in preventing greater harm."
     ],
-    "relatedEntities": ["Al-Hasan ibn Ali رضي الله عنهما"],
+    "relatedEntities": ["Al-Hasan ibn Ali"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 74,
@@ -1152,7 +1152,7 @@
     "lessons": [
       "Islamic history includes building cities, institutions, and learning centers."
     ],
-    "relatedEntities": ["Uqbah ibn Nafiʿ رضي الله عنه"],
+    "relatedEntities": ["Uqbah ibn Nafiʿ"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 58,
@@ -1197,7 +1197,7 @@
     "slug": "birth-of-abu-hanifa",
     "title": "Birth of Imam Abu Hanifah",
     "summaryShort": "The birth of Imam Abu Hanifah marks the beginning of one of the greatest legal and scholarly legacies in Islamic history.",
-    "summaryLong": "Imam Abu Hanifah رحمه الله would become one of the most influential jurists in Islam. His birth is remembered as part of the later unfolding of scholarship, fiqh, and disciplined reasoning in service to revelation.",
+    "summaryLong": "Imam Abu Hanifah (may Allah have mercy on him) would become one of the most influential jurists in Islam. His birth is remembered as part of the later unfolding of scholarship, fiqh, and disciplined reasoning in service to revelation.",
     "categories": ["scholars", "births", "islamic_history"],
     "tags": ["abu hanifa", "fiqh", "scholarship", "birth"],
     "gregorian": { "year": 699 },
@@ -1210,7 +1210,7 @@
     "lessons": [
       "Service to revelation can take the form of deep disciplined scholarship."
     ],
-    "relatedEntities": ["Imam Abu Hanifah رحمه الله"],
+    "relatedEntities": ["Imam Abu Hanifah"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 52,
@@ -1226,7 +1226,7 @@
     "slug": "birth-of-imam-malik",
     "title": "Birth of Imam Malik",
     "summaryShort": "The birth of Imam Malik marks the beginning of one of the greatest Madinan scholarly legacies in Islam.",
-    "summaryLong": "Imam Malik رحمه الله would become one of the greatest scholars of Madinah and one of the most influential jurists in Islamic history. His life became closely connected to hadith, fiqh, and the living scholarly tradition of the Prophetic city.",
+    "summaryLong": "Imam Malik (may Allah have mercy on him) would become one of the greatest scholars of Madinah and one of the most influential jurists in Islamic history. His life became closely connected to hadith, fiqh, and the living scholarly tradition of the Prophetic city.",
     "categories": ["scholars", "births", "islamic_history"],
     "tags": ["imam malik", "madinah", "fiqh", "hadith"],
     "gregorian": { "year": 711 },
@@ -1239,7 +1239,7 @@
     "lessons": [
       "Sacred cities can remain sources of living scholarship long after the earliest generations."
     ],
-    "relatedEntities": ["Imam Malik رحمه الله"],
+    "relatedEntities": ["Imam Malik"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 50,
@@ -1255,7 +1255,7 @@
     "slug": "death-of-abu-hanifa",
     "title": "Death of Imam Abu Hanifah",
     "summaryShort": "The passing of Imam Abu Hanifah closed one of the most formative scholarly lives in Islamic legal history.",
-    "summaryLong": "The death of Imam Abu Hanifah رحمه الله marked the passing of one of Islam’s most influential jurists. His legacy in fiqh, reasoning, and legal transmission continued through students and later generations across the Muslim world.",
+    "summaryLong": "The death of Imam Abu Hanifah (may Allah have mercy on him) marked the passing of one of Islam’s most influential jurists. His legacy in fiqh, reasoning, and legal transmission continued through students and later generations across the Muslim world.",
     "categories": ["scholars", "deaths", "islamic_history"],
     "tags": ["abu hanifa", "death", "fiqh", "scholarship"],
     "gregorian": { "year": 767 },
@@ -1268,7 +1268,7 @@
     "lessons": [
       "A scholar’s life can continue bearing fruit long after death."
     ],
-    "relatedEntities": ["Imam Abu Hanifah رحمه الله"],
+    "relatedEntities": ["Imam Abu Hanifah"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 46,
@@ -1284,7 +1284,7 @@
     "slug": "birth-of-imam-shafii",
     "title": "Birth of Imam al-Shafiʿi",
     "summaryShort": "The birth of Imam al-Shafiʿi marks the beginning of one of the greatest syntheses of hadith, fiqh, and legal method in Islam.",
-    "summaryLong": "Imam al-Shafiʿi رحمه الله would become one of the most influential jurists and legal theorists in Islamic history. His life is remembered for scholarship that joined hadith, fiqh, and a disciplined approach to legal principles.",
+    "summaryLong": "Imam al-Shafiʿi (may Allah have mercy on him) would become one of the most influential jurists and legal theorists in Islamic history. His life is remembered for scholarship that joined hadith, fiqh, and a disciplined approach to legal principles.",
     "categories": ["scholars", "births", "islamic_history"],
     "tags": ["shafii", "fiqh", "usul", "birth"],
     "gregorian": { "year": 767 },
@@ -1297,7 +1297,7 @@
     "lessons": [
       "Clear principles help preserve coherence in sacred learning."
     ],
-    "relatedEntities": ["Imam al-Shafiʿi رحمه الله"],
+    "relatedEntities": ["Imam al-Shafiʿi"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 48,
@@ -1342,7 +1342,7 @@
     "slug": "birth-of-ahmad-ibn-hanbal",
     "title": "Birth of Ahmad ibn Hanbal",
     "summaryShort": "The birth of Ahmad ibn Hanbal marks the beginning of one of the most influential lives of hadith devotion, scholarship, and perseverance.",
-    "summaryLong": "Ahmad ibn Hanbal رحمه الله would become one of the great imams of hadith and fiqh. His legacy is remembered not only for knowledge but also for steadfastness under trial and devotion to preserving the transmitted teachings with care.",
+    "summaryLong": "Ahmad ibn Hanbal (may Allah have mercy on him) would become one of the great imams of hadith and fiqh. His legacy is remembered not only for knowledge but also for steadfastness under trial and devotion to preserving the transmitted teachings with care.",
     "categories": ["scholars", "births", "islamic_history"],
     "tags": ["ahmad ibn hanbal", "hadith", "fiqh", "steadfastness"],
     "gregorian": { "year": 780 },
@@ -1355,7 +1355,7 @@
     "lessons": [
       "Knowledge and patience often appear together in the lives of the great scholars."
     ],
-    "relatedEntities": ["Ahmad ibn Hanbal رحمه الله"],
+    "relatedEntities": ["Ahmad ibn Hanbal"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 48,
@@ -1413,7 +1413,7 @@
     "lessons": [
       "Sacred places remain tied to memory, longing, and historical responsibility."
     ],
-    "relatedEntities": ["Salah al-Din al-Ayyubi رحمه الله"],
+    "relatedEntities": ["Salah al-Din al-Ayyubi"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 74,
@@ -1429,7 +1429,7 @@
     "slug": "birth-of-imam-bukhari",
     "title": "Birth of Imam al-Bukhari",
     "summaryShort": "The birth of Imam al-Bukhari reminds the believer that preservation of sacred knowledge is also part of the Ummah’s history.",
-    "summaryLong": "Imam al-Bukhari رحمه الله would later become one of the greatest scholars of hadith preservation in Islamic history. His birth is remembered here as a milestone in the later unfolding of knowledge, scholarship, verification, and service to the Sunnah.",
+    "summaryLong": "Imam al-Bukhari (may Allah have mercy on him) would later become one of the greatest scholars of hadith preservation in Islamic history. His birth is remembered here as a milestone in the later unfolding of knowledge, scholarship, verification, and service to the sunnah.",
     "categories": ["scholars", "births", "islamic_history"],
     "tags": ["bukhari", "hadith", "scholarship", "knowledge"],
     "gregorian": { "year": 810, "month": 7, "day": 20 },
@@ -1442,7 +1442,7 @@
     "lessons": [
       "Great service often begins quietly long before a person becomes widely known."
     ],
-    "relatedEntities": ["Imam al-Bukhari رحمه الله"],
+    "relatedEntities": ["Imam al-Bukhari"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 60,
@@ -1458,7 +1458,7 @@
     "slug": "death-of-imam-shafii",
     "title": "Death of Imam al-Shafiʿi",
     "summaryShort": "The passing of Imam al-Shafiʿi marked the end of one of the greatest scholarly lives in the history of fiqh and legal method.",
-    "summaryLong": "The death of Imam al-Shafiʿi رحمه الله closed a life of profound influence in hadith, fiqh, and legal method. His legacy shaped both scholarly reasoning and the practical transmission of juristic thought across the Muslim world.",
+    "summaryLong": "The death of Imam al-Shafiʿi (may Allah have mercy on him) closed a life of profound influence in hadith, fiqh, and legal method. His legacy shaped both scholarly reasoning and the practical transmission of juristic thought across the Muslim world.",
     "categories": ["scholars", "deaths", "islamic_history"],
     "tags": ["shafii", "death", "fiqh", "usul"],
     "gregorian": { "year": 820, "month": 1, "day": 20 },
@@ -1471,7 +1471,7 @@
     "lessons": [
       "A scholar’s true longevity is often found in transmitted benefit."
     ],
-    "relatedEntities": ["Imam al-Shafiʿi رحمه الله"],
+    "relatedEntities": ["Imam al-Shafiʿi"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 46,
@@ -1487,7 +1487,7 @@
     "slug": "death-of-ahmad-ibn-hanbal",
     "title": "Death of Ahmad ibn Hanbal",
     "summaryShort": "The death of Ahmad ibn Hanbal marked the passing of one of the most revered imams of hadith, law, and steadfastness.",
-    "summaryLong": "The death of Ahmad ibn Hanbal رحمه الله closed a life remembered for immense hadith knowledge, legal influence, and perseverance in times of difficulty. His legacy remained strong through students, transmitted works, and the moral memory of steadfastness.",
+    "summaryLong": "The death of Ahmad ibn Hanbal (may Allah have mercy on him) closed a life remembered for immense hadith knowledge, legal influence, and perseverance in times of difficulty. His legacy remained strong through students, transmitted works, and the moral memory of steadfastness.",
     "categories": ["scholars", "deaths", "islamic_history"],
     "tags": ["ahmad ibn hanbal", "death", "hadith", "steadfastness"],
     "gregorian": { "year": 855, "month": 8, "day": 2 },
@@ -1500,7 +1500,7 @@
     "lessons": [
       "Truthful perseverance can become part of a scholar’s enduring legacy."
     ],
-    "relatedEntities": ["Ahmad ibn Hanbal رحمه الله"],
+    "relatedEntities": ["Ahmad ibn Hanbal"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 44,
@@ -1515,8 +1515,8 @@
     "id": "death_of_imam_bukhari_870",
     "slug": "death-of-imam-bukhari",
     "title": "Death of Imam al-Bukhari",
-    "summaryShort": "The death of Imam al-Bukhari marked the passing of one of the greatest preservers of the Sunnah in Islamic history.",
-    "summaryLong": "The death of Imam al-Bukhari رحمه الله closed a life of immense service to hadith preservation and verification. His work remained one of the most influential parts of Sunni hadith tradition and one of the clearest examples of disciplined sacred scholarship.",
+    "summaryShort": "The death of Imam al-Bukhari marked the passing of one of the greatest preservers of the sunnah in Islamic history.",
+    "summaryLong": "The death of Imam al-Bukhari (may Allah have mercy on him) closed a life of immense service to hadith preservation and verification. His work remained one of the most influential parts of Sunni hadith tradition and one of the clearest examples of disciplined sacred scholarship.",
     "categories": ["scholars", "deaths", "islamic_history"],
     "tags": ["bukhari", "death", "hadith", "verification"],
     "gregorian": { "year": 870, "month": 9, "day": 1 },
@@ -1529,7 +1529,7 @@
     "lessons": [
       "Precision in religion can be a profound act of devotion."
     ],
-    "relatedEntities": ["Imam al-Bukhari رحمه الله"],
+    "relatedEntities": ["Imam al-Bukhari"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 48,
@@ -1545,7 +1545,7 @@
     "slug": "birth-of-imam-nawawi",
     "title": "Birth of Imam al-Nawawi",
     "summaryShort": "The birth of Imam al-Nawawi marks the beginning of one of the most beloved scholarly lives in hadith, fiqh, and spiritual counsel.",
-    "summaryLong": "Imam al-Nawawi رحمه الله became one of the most widely read scholars in Islamic history. His work in hadith, fiqh, and concise beneficial writing made him one of the later scholars whose legacy continues in homes, masajid, and classrooms across the world.",
+    "summaryLong": "Imam al-Nawawi (may Allah have mercy on him) became one of the most widely read scholars in Islamic history. His work in hadith, fiqh, and concise beneficial writing made him one of the later scholars whose legacy continues in homes, masajid, and classrooms across the world.",
     "categories": ["scholars", "births", "islamic_history"],
     "tags": ["nawawi", "hadith", "fiqh", "birth"],
     "gregorian": { "year": 1233 },
@@ -1558,7 +1558,7 @@
     "lessons": [
       "Small books with sincerity can carry benefit across centuries."
     ],
-    "relatedEntities": ["Imam al-Nawawi رحمه الله"],
+    "relatedEntities": ["Imam al-Nawawi"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 42,
@@ -1574,7 +1574,7 @@
     "slug": "death-of-imam-nawawi",
     "title": "Death of Imam al-Nawawi",
     "summaryShort": "The death of Imam al-Nawawi marked the passing of one of the most widely read scholars in later Islamic history.",
-    "summaryLong": "The death of Imam al-Nawawi رحمه الله closed a life of scholarship, worship, and beneficial writing. His works remained among the most beloved and widely read texts in hadith, fiqh, and moral instruction.",
+    "summaryLong": "The death of Imam al-Nawawi (may Allah have mercy on him) closed a life of scholarship, worship, and beneficial writing. His works remained among the most beloved and widely read texts in hadith, fiqh, and moral instruction.",
     "categories": ["scholars", "deaths", "islamic_history"],
     "tags": ["nawawi", "death", "hadith", "beneficial writing"],
     "gregorian": { "year": 1277, "month": 12 },
@@ -1587,7 +1587,7 @@
     "lessons": [
       "A life of sincere beneficial writing can outlive its author by centuries."
     ],
-    "relatedEntities": ["Imam al-Nawawi رحمه الله"],
+    "relatedEntities": ["Imam al-Nawawi"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 42,
@@ -1616,7 +1616,7 @@
     "lessons": [
       "Protecting faith can require sacrifice long before outward strength appears."
     ],
-    "relatedEntities": ["Prophet Muhammad ﷺ", "Jaʿfar ibn Abi Talib رضي الله عنه", "al-Najashi رحمه الله"],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Jaʿfar ibn Abi Talib", "al-Najashi"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 78,
@@ -1630,22 +1630,22 @@
   {
     "id": "death_of_khadijah_619",
     "slug": "death-of-khadijah",
-    "title": "Death of Khadijah bint Khuwaylid رضي الله عنها",
-    "summaryShort": "The passing of Khadijah رضي الله عنها marked one of the heaviest personal losses in the Makkan period.",
-    "summaryLong": "The death of Khadijah رضي الله عنها came after years of steadfast support, sacrifice, and comfort for the Prophet Muhammad ﷺ. Her passing is remembered as one of the defining sorrows of the Makkan period and as a reminder of her unmatched place among the earliest believers.",
+    "title": "Death of Khadijah bint Khuwaylid",
+    "summaryShort": "The passing of Khadijah (may Allah be pleased with her) marked one of the heaviest personal losses in the Makkan period.",
+    "summaryLong": "The death of Khadijah (may Allah be pleased with her) came after years of steadfast support, sacrifice, and comfort for the Prophet Muhammad ﷺ. Her passing is remembered as one of the defining sorrows of the Makkan period and as a reminder of her unmatched place among the earliest believers.",
     "categories": ["seerah", "deaths", "islamic_history"],
     "tags": ["khadijah", "makkah", "year of sorrow", "family"],
     "gregorian": { "year": 619 },
     "hijri": { "month": 10 },
     "location": { "name": "Makkah, Arabia" },
     "significance": [
-      "It marked the loss of the Prophet’s closest household support in the Makkan years.",
-      "It highlights the foundational role Khadijah رضي الله عنها played in the earliest days of Islam."
+      "It marked the loss of the Prophet’s ﷺ closest household support in the Makkan years.",
+      "It highlights the foundational role Khadijah (may Allah be pleased with her) played in the earliest days of Islam."
     ],
     "lessons": [
       "Great support for truth is often quiet, loyal, and deeply sacrificial."
     ],
-    "relatedEntities": ["Khadijah bint Khuwaylid رضي الله عنها", "Prophet Muhammad ﷺ"],
+    "relatedEntities": ["Khadijah bint Khuwaylid", "Prophet Muhammad ﷺ"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 82,
@@ -1806,9 +1806,9 @@
   {
     "id": "hajj_led_by_abu_bakr_631",
     "slug": "hajj-led-by-abu-bakr",
-    "title": "Hajj Led by Abu Bakr رضي الله عنه",
-    "summaryShort": "Abu Bakr رضي الله عنه led the Hajj in the ninth year, marking an important public turning point before the Farewell Hajj.",
-    "summaryLong": "In the ninth Hijri year, Abu Bakr رضي الله عنه led the Hajj on behalf of the Prophet ﷺ. This pilgrimage came in the period in which the public order of Arabia was being clarified after the opening of Makkah, and it formed an important prelude to the Farewell Hajj.",
+    "title": "Hajj Led by Abu Bakr",
+    "summaryShort": "Abu Bakr (may Allah be pleased with him) led the Hajj in the ninth year, marking an important public turning point before the Farewell Hajj.",
+    "summaryLong": "In the ninth Hijri year, Abu Bakr (may Allah be pleased with him) led the Hajj on behalf of the Prophet ﷺ. This pilgrimage came in the period in which the public order of Arabia was being clarified after the opening of Makkah, and it formed an important prelude to the Farewell Hajj.",
     "categories": ["seerah", "islamic_history", "sacred_places"],
     "tags": ["hajj", "abu bakr", "makkah", "baraah"],
     "gregorian": { "year": 631 },
@@ -1821,7 +1821,7 @@
     "lessons": [
       "Leadership in sacred service requires trust, clarity, and responsibility."
     ],
-    "relatedEntities": ["Abu Bakr رضي الله عنه", "Prophet Muhammad ﷺ", "Ali ibn Abi Talib رضي الله عنه"],
+    "relatedEntities": ["Abu Bakr", "Prophet Muhammad ﷺ", "Ali ibn Abi Talib"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 75,
@@ -1851,7 +1851,7 @@
     "lessons": [
       "History can change through moments that require discipline, courage, and endurance."
     ],
-    "relatedEntities": ["Umar ibn al-Khattab رضي الله عنه", "Khalid ibn al-Walid رضي الله عنه"],
+    "relatedEntities": ["Umar ibn al-Khattab", "Khalid ibn al-Walid"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 72,
@@ -1867,7 +1867,7 @@
     "slug": "battle-of-qadisiyyah",
     "title": "Battle of al-Qadisiyyah",
     "summaryShort": "Al-Qadisiyyah marked a major turning point in the Muslim encounter with the Sasanian Empire.",
-    "summaryLong": "The Battle of al-Qadisiyyah stands among the major military turning points of the early caliphate. It opened the way for profound changes in Iraq and the wider eastern lands and remains one of the best known battles of the era of Umar رضي الله عنه.",
+    "summaryLong": "The Battle of al-Qadisiyyah stands among the major military turning points of the early caliphate. It opened the way for profound changes in Iraq and the wider eastern lands and remains one of the best known battles of the era of Umar (may Allah be pleased with him).",
     "categories": ["battles", "khulafa", "islamic_history"],
     "tags": ["qadisiyyah", "iraq", "sasanian", "early caliphate"],
     "gregorian": { "year": 636, "month": 11 },
@@ -1875,12 +1875,12 @@
     "location": { "name": "al-Qadisiyyah, Iraq" },
     "significance": [
       "It reshaped the political future of Iraq and the eastern front of the caliphate.",
-      "It stands among the major battles of the era of Umar رضي الله عنه."
+      "It stands among the major battles of the era of Umar (may Allah be pleased with him)."
     ],
     "lessons": [
       "Large historical shifts can begin from disciplined effort in a single decisive moment."
     ],
-    "relatedEntities": ["Umar ibn al-Khattab رضي الله عنه", "Saʿd ibn Abi Waqqas رضي الله عنه"],
+    "relatedEntities": ["Umar ibn al-Khattab", "Saʿd ibn Abi Waqqas"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 70,
@@ -1896,7 +1896,7 @@
     "slug": "birth-of-imam-muslim",
     "title": "Birth of Imam Muslim",
     "summaryShort": "The birth of Imam Muslim marks the beginning of the life of one of the greatest hadith compilers in Islam.",
-    "summaryLong": "Imam Muslim رحمه الله became one of the most important hadith scholars in Islamic history. His careful method and his celebrated collection placed him among the central preservers of Prophetic narrations for later generations.",
+    "summaryLong": "Imam Muslim (may Allah have mercy on him) became one of the most important hadith scholars in Islamic history. His careful method and his celebrated collection placed him among the central preservers of Prophetic narrations for later generations.",
     "categories": ["scholars", "births", "islamic_history"],
     "tags": ["muslim", "hadith", "birth", "naysabur"],
     "gregorian": { "year": 821 },
@@ -1909,7 +1909,7 @@
     "lessons": [
       "Careful transmission of knowledge is a service to generations not yet born."
     ],
-    "relatedEntities": ["Imam Muslim رحمه الله"],
+    "relatedEntities": ["Imam Muslim"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 44,
@@ -1925,7 +1925,7 @@
     "slug": "death-of-imam-muslim",
     "title": "Death of Imam Muslim",
     "summaryShort": "The death of Imam Muslim marked the passing of one of the greatest preservers of Prophetic hadith.",
-    "summaryLong": "The death of Imam Muslim رحمه الله marked the end of a life devoted to hadith learning, travel, and careful compilation. His legacy continued through one of the most trusted collections in Islam and through the scholarly discipline he helped embody.",
+    "summaryLong": "The death of Imam Muslim (may Allah have mercy on him) marked the end of a life devoted to hadith learning, travel, and careful compilation. His legacy continued through one of the most trusted collections in Islam and through the scholarly discipline he helped embody.",
     "categories": ["scholars", "deaths", "islamic_history"],
     "tags": ["muslim", "hadith", "death", "sahih muslim"],
     "gregorian": { "year": 875, "month": 5, "day": 8 },
@@ -1938,7 +1938,7 @@
     "lessons": [
       "The discipline of preserving knowledge can become a lasting form of worship."
     ],
-    "relatedEntities": ["Imam Muslim رحمه الله"],
+    "relatedEntities": ["Imam Muslim"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 44,
@@ -1954,7 +1954,7 @@
     "slug": "birth-of-abu-dawud",
     "title": "Birth of Abu Dawud",
     "summaryShort": "The birth of Abu Dawud marks the beginning of the life of one of the great compilers of the Sunan tradition.",
-    "summaryLong": "Abu Dawud رحمه الله became one of the great hadith scholars of Islam and one of the major compilers of the Sunan collections. His work played a central role in preserving narrations especially important to law and practice.",
+    "summaryLong": "Abu Dawud (may Allah have mercy on him) became one of the great hadith scholars of Islam and one of the major compilers of the Sunan collections. His work played a central role in preserving narrations especially important to law and practice.",
     "categories": ["scholars", "births", "islamic_history"],
     "tags": ["abu dawud", "hadith", "sunan", "birth"],
     "gregorian": { "year": 817 },
@@ -1965,9 +1965,9 @@
       "His collection remained central to juristic and hadith study."
     ],
     "lessons": [
-      "Careful service to Sunnah can nourish practice across centuries."
+      "Careful service to sunnah can nourish practice across centuries."
     ],
-    "relatedEntities": ["Abu Dawud رحمه الله"],
+    "relatedEntities": ["Abu Dawud"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 43,
@@ -1983,7 +1983,7 @@
     "slug": "death-of-abu-dawud",
     "title": "Death of Abu Dawud",
     "summaryShort": "The death of Abu Dawud marked the passing of one of the leading hadith scholars of the Sunan tradition.",
-    "summaryLong": "The death of Abu Dawud رحمه الله closed a life of hadith scholarship, travel, and preservation. His work remained deeply influential in the study of narrations connected to worship, law, and Prophetic guidance.",
+    "summaryLong": "The death of Abu Dawud (may Allah have mercy on him) closed a life of hadith scholarship, travel, and preservation. His work remained deeply influential in the study of narrations connected to worship, law, and Prophetic guidance.",
     "categories": ["scholars", "deaths", "islamic_history"],
     "tags": ["abu dawud", "death", "sunan", "hadith"],
     "gregorian": { "year": 889, "month": 2, "day": 16 },
@@ -1994,9 +1994,9 @@
       "His Sunan remained a major reference for later jurists and students."
     ],
     "lessons": [
-      "Dedicated preservation of Sunnah becomes a trust carried beyond one lifetime."
+      "Dedicated preservation of sunnah becomes a trust carried beyond one lifetime."
     ],
-    "relatedEntities": ["Abu Dawud رحمه الله"],
+    "relatedEntities": ["Abu Dawud"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 43,
@@ -2012,7 +2012,7 @@
     "slug": "birth-of-al-tirmidhi",
     "title": "Birth of Imam al-Tirmidhi",
     "summaryShort": "The birth of Imam al-Tirmidhi marks the beginning of the life of one of the most influential hadith scholars and compilers.",
-    "summaryLong": "Imam al-Tirmidhi رحمه الله became one of the great hadith scholars whose work served both narration and understanding. His collection is especially valued for pairing hadith transmission with juristic and scholarly commentary.",
+    "summaryLong": "Imam al-Tirmidhi (may Allah have mercy on him) became one of the great hadith scholars whose work served both narration and understanding. His collection is especially valued for pairing hadith transmission with juristic and scholarly commentary.",
     "categories": ["scholars", "births", "islamic_history"],
     "tags": ["tirmidhi", "hadith", "birth", "jami"],
     "gregorian": { "year": 824 },
@@ -2025,7 +2025,7 @@
     "lessons": [
       "Knowledge is strengthened when careful transmission is joined with thoughtful explanation."
     ],
-    "relatedEntities": ["Imam al-Tirmidhi رحمه الله"],
+    "relatedEntities": ["Imam al-Tirmidhi"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 43,
@@ -2041,7 +2041,7 @@
     "slug": "death-of-al-tirmidhi",
     "title": "Death of Imam al-Tirmidhi",
     "summaryShort": "The death of Imam al-Tirmidhi marked the passing of a major hadith scholar whose work joined narration and explanation.",
-    "summaryLong": "The death of Imam al-Tirmidhi رحمه الله marked the passing of one of the major hadith scholars of Islam. His legacy remained through a collection valued not only for its narrations but also for the clarity with which it reflected juristic usage and scholarly assessment.",
+    "summaryLong": "The death of Imam al-Tirmidhi (may Allah have mercy on him) marked the passing of one of the major hadith scholars of Islam. His legacy remained through a collection valued not only for its narrations but also for the clarity with which it reflected juristic usage and scholarly assessment.",
     "categories": ["scholars", "deaths", "islamic_history"],
     "tags": ["tirmidhi", "death", "hadith", "jami"],
     "gregorian": { "year": 892, "month": 10, "day": 9 },
@@ -2054,7 +2054,7 @@
     "lessons": [
       "Useful scholarship often endures because it serves both memory and understanding."
     ],
-    "relatedEntities": ["Imam al-Tirmidhi رحمه الله"],
+    "relatedEntities": ["Imam al-Tirmidhi"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 43,
@@ -2083,7 +2083,7 @@
     "lessons": [
       "Building institutions for knowledge can benefit people far beyond one generation."
     ],
-    "relatedEntities": ["Fatimah al-Fihriyyah رحمه الله"],
+    "relatedEntities": ["Fatimah al-Fihriyyah"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 55,
@@ -2099,7 +2099,7 @@
     "slug": "birth-of-ibn-taymiyyah",
     "title": "Birth of Ibn Taymiyyah",
     "summaryShort": "The birth of Ibn Taymiyyah marks the beginning of one of the most discussed scholarly lives of the later Islamic centuries.",
-    "summaryLong": "Ibn Taymiyyah رحمه الله became one of the most influential and widely discussed scholars of the later centuries. His writings on creed, worship, law, and reform left a deep mark on later scholarly conversations across the Muslim world.",
+    "summaryLong": "Ibn Taymiyyah (may Allah have mercy on him) became one of the most influential and widely discussed scholars of the later centuries. His writings on creed, worship, law, and reform left a deep mark on later scholarly conversations across the Muslim world.",
     "categories": ["scholars", "births", "islamic_history"],
     "tags": ["ibn taymiyyah", "scholar", "birth", "damascus"],
     "gregorian": { "year": 1263, "month": 1, "day": 22 },
@@ -2112,7 +2112,7 @@
     "lessons": [
       "Strong scholarship can leave a long legacy of debate, benefit, and reform."
     ],
-    "relatedEntities": ["Ibn Taymiyyah رحمه الله"],
+    "relatedEntities": ["Ibn Taymiyyah"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 45,
@@ -2128,7 +2128,7 @@
     "slug": "death-of-ibn-taymiyyah",
     "title": "Death of Ibn Taymiyyah",
     "summaryShort": "The death of Ibn Taymiyyah marked the passing of a scholar whose works continued to shape later Islamic discourse.",
-    "summaryLong": "The death of Ibn Taymiyyah رحمه الله closed a life of teaching, writing, debate, and reform. His influence remained strong through his many writings and through the students and later scholars who transmitted and discussed his legacy.",
+    "summaryLong": "The death of Ibn Taymiyyah (may Allah have mercy on him) closed a life of teaching, writing, debate, and reform. His influence remained strong through his many writings and through the students and later scholars who transmitted and discussed his legacy.",
     "categories": ["scholars", "deaths", "islamic_history"],
     "tags": ["ibn taymiyyah", "death", "scholar", "damascus"],
     "gregorian": { "year": 1328, "month": 9, "day": 26 },
@@ -2141,7 +2141,7 @@
     "lessons": [
       "A scholar’s influence can continue long after his voice falls silent."
     ],
-    "relatedEntities": ["Ibn Taymiyyah رحمه الله"],
+    "relatedEntities": ["Ibn Taymiyyah"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 45,
@@ -2157,7 +2157,7 @@
     "slug": "birth-of-ibn-kathir",
     "title": "Birth of Ibn Kathir",
     "summaryShort": "The birth of Ibn Kathir marks the beginning of the life of one of the most widely read later scholars of tafsir and history.",
-    "summaryLong": "Ibn Kathir رحمه الله became one of the most widely read later scholars of tafsir, hadith, and history. His writings, especially in Qur’an commentary and prophetic history, remained standard references for students across generations.",
+    "summaryLong": "Ibn Kathir (may Allah have mercy on him) became one of the most widely read later scholars of tafsir, hadith, and history. His writings, especially in Qur’an commentary and prophetic history, remained standard references for students across generations.",
     "categories": ["scholars", "births", "islamic_history", "revelation"],
     "tags": ["ibn kathir", "tafsir", "history", "birth"],
     "gregorian": { "year": 1301 },
@@ -2170,7 +2170,7 @@
     "lessons": [
       "Careful explanation of revelation can serve generations of readers and students."
     ],
-    "relatedEntities": ["Ibn Kathir رحمه الله"],
+    "relatedEntities": ["Ibn Kathir"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 44,
@@ -2186,7 +2186,7 @@
     "slug": "death-of-ibn-kathir",
     "title": "Death of Ibn Kathir",
     "summaryShort": "The death of Ibn Kathir marked the passing of one of the most influential later scholars of tafsir and sacred history.",
-    "summaryLong": "The death of Ibn Kathir رحمه الله marked the passing of a scholar whose works remained deeply influential in tafsir, hadith, and history. His writings continued to help later Muslims study revelation alongside the Prophetic and historical record.",
+    "summaryLong": "The death of Ibn Kathir (may Allah have mercy on him) marked the passing of a scholar whose works remained deeply influential in tafsir, hadith, and history. His writings continued to help later Muslims study revelation alongside the Prophetic and historical record.",
     "categories": ["scholars", "deaths", "islamic_history", "revelation"],
     "tags": ["ibn kathir", "death", "tafsir", "history"],
     "gregorian": { "year": 1373, "month": 2, "day": 18 },
@@ -2199,7 +2199,7 @@
     "lessons": [
       "Beneficial scholarship can continue teaching long after its author has died."
     ],
-    "relatedEntities": ["Ibn Kathir رحمه الله"],
+    "relatedEntities": ["Ibn Kathir"],
     "relatedContentIds": [],
     "relatedContentHooks": [],
     "featuredPriority": 44,

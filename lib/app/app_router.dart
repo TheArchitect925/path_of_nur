@@ -15,6 +15,7 @@ import '../features/onboarding/application/onboarding_state_provider.dart';
 import '../features/worship/presentation/worship_page.dart';
 import '../l10n/app_localizations.dart';
 import '../shared/widgets/app_scaffold.dart';
+import 'routes/app_shell_page.dart';
 import 'routes/core_support_routes.dart';
 import 'routes/discovery_routes.dart';
 import 'routes/journey_routes.dart';
@@ -132,8 +133,17 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ...buildStartupRoutes(),
       ShellRoute(
         navigatorKey: shellNavigatorKey,
+        // Art flights (an ArtLeadingThumb and the ArtHeaderCard it opens
+        // sharing a heroTag) fly on this navigator, so it carries its own
+        // hero controller.
+        observers: [
+          HeroController(
+            createRectTween: (begin, end) =>
+                MaterialRectArcTween(begin: begin, end: end),
+          ),
+        ],
         pageBuilder: (context, state, child) {
-          return MaterialPage(
+          return AppShellPage(
             child: AppShellScaffold(
               currentLocation: state.uri.toString(),
               child: child,

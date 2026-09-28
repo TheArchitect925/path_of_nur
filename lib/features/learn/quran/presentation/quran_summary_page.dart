@@ -11,6 +11,7 @@ import 'quran_summary_theme.dart';
 import 'widgets/quran_feature_components.dart';
 import 'widgets/quran_feature_header.dart';
 import 'widgets/quran_surah_summary_card_background.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class QuranSummaryPage extends ConsumerStatefulWidget {
   const QuranSummaryPage({super.key});
@@ -50,7 +51,7 @@ class _QuranSummaryPageState extends ConsumerState<QuranSummaryPage> {
         .toList(growable: false);
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
+      headerIcon: AppIcons.summary,
       title: l10n.quranSummaryPageTitle,
       subtitle: l10n.quranSummaryPageSubtitle,
       backgroundOverlayColor: palette.pageOverlay,

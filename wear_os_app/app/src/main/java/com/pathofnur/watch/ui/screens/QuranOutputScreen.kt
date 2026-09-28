@@ -1,7 +1,10 @@
 package com.pathofnur.watch.ui.screens
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.wear.compose.material.Chip
 import androidx.wear.compose.material.Text
+import com.pathofnur.watch.R
 import com.pathofnur.watch.domain.QuranPlaybackSourceType
 import com.pathofnur.watch.domain.WatchAudioAvailabilitySnapshot
 
@@ -13,15 +16,38 @@ fun QuranOutputScreen(
     onSelectWatch: () -> Unit,
     onBack: () -> Unit
 ) {
-    Text("Output")
-    Chip(onClick = onSelectPhone, label = { Text(if (currentSource == QuranPlaybackSourceType.Phone) "Phone / Device ✓" else "Phone / Device") })
+    Text(stringResource(R.string.quran_output))
+    Chip(
+        onClick = onSelectPhone,
+        label = {
+            Text(
+                stringResource(
+                    if (currentSource == QuranPlaybackSourceType.Phone) {
+                        R.string.quran_output_phone_selected
+                    } else {
+                        R.string.quran_output_phone
+                    }
+                )
+            )
+        }
+    )
     Chip(
         onClick = onSelectWatch,
         enabled = availability.watchPlaybackAvailable,
-        label = { Text(if (currentSource == QuranPlaybackSourceType.Watch) "Watch ✓" else "Watch") }
+        label = {
+            Text(
+                stringResource(
+                    if (currentSource == QuranPlaybackSourceType.Watch) {
+                        R.string.quran_output_watch_selected
+                    } else {
+                        R.string.quran_output_watch
+                    }
+                )
+            )
+        }
     )
     if (!availability.watchPlaybackAvailable) {
-        Text("Watch playback requires downloaded audio.")
+        Text(stringResource(R.string.quran_watch_needs_download))
     }
-    Chip(onClick = onBack, label = { Text("Back") })
+    Chip(onClick = onBack, label = { Text(stringResource(R.string.action_back)) })
 }

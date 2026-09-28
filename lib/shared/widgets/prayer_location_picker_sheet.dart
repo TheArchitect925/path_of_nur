@@ -2,9 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../core/theme/app_spacing.dart';
+import '../../core/theme/app_theme.dart';
 import '../../l10n/app_localizations.dart';
 import '../../core/prayer/prayer_location_search_service.dart';
+import 'display/compact_list_tile.dart';
+import 'display/hub_list_group.dart';
 import 'premium_card.dart';
+import '../../core/theme/app_icons.dart';
 
 class PrayerLocationPickerSheet extends StatefulWidget {
   const PrayerLocationPickerSheet({
@@ -90,6 +95,15 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    // Every colour here used to be a light-theme literal, so the whole sheet
+    // stayed cream on Midnight, Ramadan and the other night themes.
+    final theme = Theme.of(context);
+    final appearance = theme.extension<AppAppearanceTheme>();
+    final accent = appearance?.accent ?? theme.colorScheme.primary;
+    final onSurface = theme.colorScheme.onSurface;
+    final subtle =
+        appearance?.onSurfaceSubtle ?? theme.colorScheme.onSurfaceVariant;
+    final divider = theme.dividerColor.withValues(alpha: 0.30);
     return SafeArea(
       child: FractionallySizedBox(
         heightFactor: 0.78,
@@ -101,19 +115,17 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
               children: [
                 Text(
                   l10n.worshipPrayerChooseLocationTitle,
-                  style: TextStyle(
-                    fontSize: 18,
+                  style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF32251D),
+                    color: onSurface,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: AppSpacing.xs),
                 Text(
                   l10n.worshipPrayerUseCurrentLocationTitle,
-                  style: TextStyle(
-                    fontSize: 12,
+                  style: theme.textTheme.labelMedium?.copyWith(
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF7A5A33),
+                    color: accent,
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -131,40 +143,35 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(14),
-                      color: const Color(0xFFF6EFE3),
-                      border: Border.all(color: const Color(0x28BFAE98)),
+                      color: accent.withValues(alpha: 0.10),
+                      border: Border.all(color: accent.withValues(alpha: 0.22)),
                     ),
                     child: Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.my_location_rounded,
                           size: 18,
-                          color: Color(0xFF7A5A33),
+                          color: accent,
                         ),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
                             widget.currentLocationLabel,
-                            style: const TextStyle(
-                              fontSize: 14,
+                            style: theme.textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.w700,
-                              color: Color(0xFF3C2F25),
+                              color: onSurface,
                             ),
                           ),
                         ),
                         const SizedBox(width: 8),
                         Text(
                           l10n.worshipPrayerUseDeviceAction,
-                          style: TextStyle(
-                            fontSize: 12.5,
+                          style: theme.textTheme.labelMedium?.copyWith(
                             fontWeight: FontWeight.w700,
-                            color: Color(0xFF7A5A33),
+                            color: accent,
                           ),
                         ),
-                        const Icon(
-                          Icons.chevron_right_rounded,
-                          color: Color(0xFF7A5A33),
-                        ),
+                        Icon(Icons.chevron_right_rounded, color: accent),
                       ],
                     ),
                   ),
@@ -192,7 +199,9 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                             icon: const Icon(Icons.arrow_forward_rounded),
                           ),
                     filled: true,
-                    fillColor: const Color(0xFFF7F2E8),
+                    fillColor:
+                        appearance?.inputSurface ??
+                        theme.colorScheme.surfaceContainerHighest,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                       borderSide: BorderSide.none,
@@ -204,25 +213,18 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                     _searchController.text.trim().isEmpty) ...[
                   Text(
                     l10n.worshipPrayerRecentPlacesTitle,
-                    style: TextStyle(
-                      fontSize: 12,
+                    style: theme.textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF7A5A33),
+                      color: accent,
                     ),
                   ),
-                  const SizedBox(height: 6),
-                  ...widget.recentLocations.indexed.expand((entry) {
-                    final index = entry.$1;
-                    final recent = entry.$2;
-                    return [
-                      ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        leading: const Icon(
-                          Icons.history_rounded,
-                          color: Color(0xFF7A5A33),
-                        ),
-                        title: Text(recent.label),
-                        trailing: const Icon(Icons.chevron_right_rounded),
+                  const SizedBox(height: AppSpacing.xs),
+                  ...widget.recentLocations.map(
+                    (recent) => Padding(
+                      padding: const EdgeInsets.only(bottom: AppSpacing.xxs),
+                      child: CompactListTile(
+                        title: recent.label,
+                        leading: const HubLeadingIcon(AppIcons.recent),
                         onTap: () => Navigator.of(context).pop(
                           PrayerLocationPickerSelection.manual(
                             label: recent.label,
@@ -231,20 +233,17 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                           ),
                         ),
                       ),
-                      if (index != widget.recentLocations.length - 1)
-                        const Divider(height: 1, color: Color(0x28BFAE98)),
-                    ];
-                  }),
-                  const SizedBox(height: 12),
+                    ),
+                  ),
+                  const SizedBox(height: AppSpacing.s),
                 ],
                 Expanded(
                   child: _error != null
                       ? Center(
                           child: Text(
                             _error!,
-                            style: const TextStyle(
-                              fontSize: 13,
-                              color: Color(0xFFD01919),
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.error,
                             ),
                           ),
                         )
@@ -253,25 +252,21 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                           child: Text(
                             l10n.worshipPrayerStartTypingToSearch,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Color(0xFF6A5A4A),
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: subtle,
                             ),
                           ),
                         )
                       : ListView.separated(
                           physics: const BouncingScrollPhysics(),
                           itemCount: _results.length,
-                          separatorBuilder: (context, index) => const Divider(
-                            height: 1,
-                            color: Color(0x28BFAE98),
-                          ),
+                          separatorBuilder: (context, index) =>
+                              Divider(height: 1, color: divider),
                           itemBuilder: (context, index) {
                             final result = _results[index];
                             return ListTile(
                               contentPadding: EdgeInsets.zero,
                               title: Text(result.label),
-                              trailing: const Icon(Icons.chevron_right_rounded),
                               onTap: () => Navigator.of(context).pop(
                                 PrayerLocationPickerSelection.manual(
                                   label: result.label,

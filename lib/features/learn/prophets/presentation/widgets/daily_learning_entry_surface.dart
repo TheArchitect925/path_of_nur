@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../application/daily_learning_service.dart';
 import '../prophets_daily_copy.dart';
@@ -61,9 +61,9 @@ class DailyLearningEntrySurface extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             bundle.item.subtitle ?? bundle.item.title,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 8),
           Text(bundle.item.body, maxLines: 3, overflow: TextOverflow.ellipsis),

@@ -20,6 +20,12 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
 
   var id: String { rawValue }
 
+  /// The sections this build shows, in rail order. The other six are built
+  /// on sample content and stay out of the rail until each one is real.
+  static let released: [TVRoute] = [.home, .prayer, .quran, .dhikr, .settings]
+
+  var isReleased: Bool { Self.released.contains(self) }
+
   var tab: TVTab {
     switch self {
     case .home:
@@ -54,7 +60,7 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
     case .profiles:
       return "Profiles"
     case .quran:
-      return "Qur'an"
+      return "Qur’an"
     case .favorites:
       return "Saved"
     case .settings:
@@ -77,15 +83,15 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
   var subtitleKey: String {
     switch self {
     case .home:
-      return "Prayer-first daily guidance with quick return into the Qur'an."
+      return "Today’s prayers and verse"
     case .profiles:
       return "Household switching, shared-device safety, and resume continuity rebuilt for television."
     case .quran:
-      return "Reading, browsing, and listening in one calm large-screen flow."
+      return "Read and listen"
     case .favorites:
       return "Bookmarks, saved reflections, playlists, and watch-later continuity rebuilt for calm television return."
     case .settings:
-      return "Television-safe startup, listening, and family-room preferences rebuilt for Apple TV."
+      return "Appearance and listening"
     case .arabic:
       return "Letters, sounds, and beginner Qur'anic Arabic rebuilt for large-screen guided learning."
     case .learn:
@@ -93,9 +99,9 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
     case .games:
       return "Remote-friendly quizzes, matching, and guided challenge play adapted for the family room."
     case .prayer:
-      return "Current, next, and full-day salah guidance rebuilt for calm television viewing."
+      return "Today’s prayer times"
     case .dhikr:
-      return "Guided remembrance and calm phrase-by-phrase dhikr rebuilt for television."
+      return "Remembrance, phrase by phrase"
     case .kids:
       return "Family-safe stories, Qur'an, and beginner learning rebuilt for shared television use."
     }
@@ -128,32 +134,6 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
     }
   }
 
-  var pathLabelKey: String {
-    switch self {
-    case .home:
-      return "/home"
-    case .profiles:
-      return "/accounts-sync/profiles"
-    case .quran:
-      return "/quran"
-    case .favorites:
-      return "/quran/bookmarks"
-    case .settings:
-      return "/settings"
-    case .arabic:
-      return "/quran/arabic"
-    case .learn:
-      return "/learn"
-    case .games:
-      return "/learn/games"
-    case .prayer:
-      return "/worship/prayer"
-    case .dhikr:
-      return "/worship/dhikr"
-    case .kids:
-      return "/learn/kids/fun-learning"
-    }
-  }
 
   var defaultContentSection: String {
     switch self {
@@ -176,7 +156,7 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
     case .prayer:
       return TVFocusSectionId.prayerCurrentNext
     case .dhikr:
-      return TVFocusSectionId.dhikrModes
+      return TVFocusSectionId.dhikrRoutines
     case .kids:
       return TVFocusSectionId.kidsPrimary
     }
@@ -193,7 +173,6 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
       return [
         TVFocusSectionId.profilesPrimary,
         TVFocusSectionId.profilesContinuity,
-        TVFocusSectionId.profilesSupport,
       ]
     case .quran:
       return [
@@ -205,19 +184,18 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
       return [
         TVFocusSectionId.favoritesPrimary,
         TVFocusSectionId.favoritesSaved,
-        TVFocusSectionId.favoritesSupport,
       ]
     case .settings:
       return [
         TVFocusSectionId.settingsStartup,
+        TVFocusSectionId.settingsPrayer,
+        TVFocusSectionId.settingsAppearance,
         TVFocusSectionId.settingsListening,
-        TVFocusSectionId.settingsSupport,
       ]
     case .arabic:
       return [
         TVFocusSectionId.arabicPrimary,
         TVFocusSectionId.arabicLetters,
-        TVFocusSectionId.arabicSupport,
       ]
     case .learn:
       return [
@@ -230,25 +208,21 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
       return [
         TVFocusSectionId.gamesPrimary,
         TVFocusSectionId.gamesChallenge,
-        TVFocusSectionId.gamesSupport,
       ]
     case .prayer:
       return [
         TVFocusSectionId.prayerCurrentNext,
         TVFocusSectionId.prayerSchedule,
-        TVFocusSectionId.prayerCompanion,
       ]
     case .dhikr:
       return [
-        TVFocusSectionId.dhikrModes,
-        TVFocusSectionId.dhikrGuidedFlow,
-        TVFocusSectionId.dhikrCompanion,
+        TVFocusSectionId.dhikrRoutines,
+        TVFocusSectionId.dhikrPhrases,
       ]
     case .kids:
       return [
         TVFocusSectionId.kidsPrimary,
         TVFocusSectionId.kidsStory,
-        TVFocusSectionId.kidsSupport,
       ]
     }
   }
@@ -259,14 +233,12 @@ struct TVNavigationItem: Identifiable, Hashable {
   let titleKey: String
   let subtitleKey: String
   let systemImage: String
-  let pathLabelKey: String
 
   init(route: TVRoute) {
     self.route = route
     titleKey = route.titleKey
     subtitleKey = route.subtitleKey
     systemImage = route.systemImage
-    pathLabelKey = route.pathLabelKey
   }
 
   var id: TVRoute { route }
@@ -277,41 +249,55 @@ enum TVFocusSectionId {
   static let homeVerse = "home.verse"
   static let profilesPrimary = "profiles.primary"
   static let profilesContinuity = "profiles.continuity"
-  static let profilesSupport = "profiles.support"
   static let quranPlayback = "quran.playback"
   static let quranBrowse = "quran.browse"
   static let quranReader = "quran.reader"
   static let favoritesPrimary = "favorites.primary"
   static let favoritesSaved = "favorites.saved"
-  static let favoritesSupport = "favorites.support"
   static let settingsStartup = "settings.startup"
+  static let settingsPrayer = "settings.prayer"
+  static let settingsAppearance = "settings.appearance"
   static let settingsListening = "settings.listening"
-  static let settingsSupport = "settings.support"
   static let arabicPrimary = "arabic.primary"
   static let arabicLetters = "arabic.letters"
-  static let arabicSupport = "arabic.support"
   static let learnPrimary = "learn.primary"
   static let learnShelf = "learn.shelf"
   static let learnStory = "learn.story"
   static let learnVisual = "learn.visual"
   static let gamesPrimary = "games.primary"
   static let gamesChallenge = "games.challenge"
-  static let gamesSupport = "games.support"
   static let prayerCurrentNext = "prayer.currentNext"
   static let prayerSchedule = "prayer.schedule"
-  static let prayerCompanion = "prayer.companion"
-  static let dhikrModes = "dhikr.modes"
-  static let dhikrGuidedFlow = "dhikr.guidedFlow"
-  static let dhikrCompanion = "dhikr.companion"
+  static let dhikrRoutines = "dhikr.routines"
+  static let dhikrPhrases = "dhikr.phrases"
   static let kidsPrimary = "kids.primary"
   static let kidsStory = "kids.story"
-  static let kidsSupport = "kids.support"
 
   static func quranSurahRow(_ surahId: Int) -> String {
     "quran.browse.\(surahId)"
   }
 
+  /// The first part of an ayah, which is the whole of most.
   static func quranAyah(_ ayahId: String) -> String {
     "quran.reader.\(ayahId)"
   }
+
+  /// A part's id is its ayah's id for the first part, and the ayah's id with
+  /// the part's number after it for the rest.
+  static func quranAyahPart(_ partId: String) -> String {
+    "quran.reader.\(partId)"
+  }
+
+  static func quranCollection(_ collectionId: String) -> String {
+    "quran.browse.collection.\(collectionId)"
+  }
+
+  static let quranContinueReading = "quran.browse.shortcut.continue"
+  static let quranTodaysVerse = "quran.browse.shortcut.today"
+  static let quranPlaybackPrevious = "quran.playback.previous"
+  static let quranPlaybackNext = "quran.playback.next"
+  static let quranPlaybackListening = "quran.playback.listening"
+
+  static let quranPlaybackOptions = "quran.playback.options"
+  static let quranGoTo = "quran.browse.shortcut.goto"
 }

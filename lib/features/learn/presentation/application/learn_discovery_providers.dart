@@ -5,6 +5,7 @@ import '../../../../core/localization/locale_provider.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../guided_paths/application/guided_learning_paths_provider.dart';
 import '../../guided_paths/domain/guided_learning_path_models.dart';
+import '../data/learn_discovery_flags.dart';
 import '../data/learn_hub_taxonomy.dart';
 import '../models/learn_discovery_models.dart';
 import '../models/learn_hub_models.dart';
@@ -58,8 +59,14 @@ List<LearnDiscoverySearchResult> searchLearnDiscoveryEntries({
   bool alphabetical = false,
 }) {
   final normalized = _normalizeSearchText(query);
+  if (normalized.isEmpty && query.trim().isNotEmpty) {
+    // Something was typed, but nothing searchable (punctuation, emoji):
+    // that is not a request to browse everything.
+    return <LearnDiscoverySearchResult>[];
+  }
   final queryTokens = _tokenize(normalized);
   final expandedTokens = _expandedTokens(queryTokens);
+  final typedForms = _typedFormsByToken(query);
 
   final filtered = <LearnDiscoverySearchResult>[];
   for (final entry in entries) {
@@ -80,6 +87,7 @@ List<LearnDiscoverySearchResult> searchLearnDiscoveryEntries({
       normalizedQuery: normalized,
       queryTokens: queryTokens,
       expandedTokens: expandedTokens,
+      typedForms: typedForms,
     );
     if (normalized.isNotEmpty && match.score <= 0) {
       continue;
@@ -311,6 +319,7 @@ LearnDiscoverySearchResult _scoreEntry(
   required String normalizedQuery,
   required Set<String> queryTokens,
   required Set<String> expandedTokens,
+  required Map<String, String> typedForms,
 }) {
   if (normalizedQuery.isEmpty) {
     var baseScore = 1;
@@ -332,13 +341,11 @@ LearnDiscoverySearchResult _scoreEntry(
 
   var score = 0;
   final matchedTerms = <String>{};
-  final title = _normalizeSearchText(entry.title);
-  final subtitle = _normalizeSearchText(entry.subtitle);
-  final summary = _normalizeSearchText(entry.summary);
-  final keywords = entry.searchTerms
-      .map(_normalizeSearchText)
-      .toList(growable: false);
-  final keywordText = keywords.join(' ');
+  final text = _entrySearchText[entry] ??= _EntrySearchText(entry);
+  final title = text.title;
+  final subtitle = text.subtitle;
+  final summary = text.summary;
+  final keywordText = text.keywords;
 
   if (title == normalizedQuery) {
     score += 120;
@@ -393,11 +400,29 @@ LearnDiscoverySearchResult _scoreEntry(
     }
   }
 
+  // The Start-here and path boosts rank matches; on their own they are not
+  // a match, or every query (even nonsense) would list them.
+  if (score <= 0) {
+    return LearnDiscoverySearchResult(
+      entry: entry,
+      score: 0,
+      matchedTerms: const <String>{},
+    );
+  }
   if (entry.startHere) {
     score += 8;
   }
   if (entry.contentType == LearnDiscoveryContentType.path) {
     score += 6;
+  }
+
+  // Highlights are drawn on the original copy, where the folded token
+  // ("schopfung", "صلاه") never appears; add what the reader typed.
+  for (final term in matchedTerms.toList(growable: false)) {
+    final typed = typedForms[term];
+    if (typed != null) {
+      matchedTerms.add(typed);
+    }
   }
 
   return LearnDiscoverySearchResult(
@@ -522,7 +547,8 @@ LearnDiscoveryIndexEntry _mapKnowledgeItem(
     LearnHubContentType.story => LearnDiscoveryContentType.story,
     LearnHubContentType.quiz => LearnDiscoveryContentType.quiz,
     LearnHubContentType.challenge => LearnDiscoveryContentType.quiz,
-    LearnHubContentType.tool => _toolLikeContentType(item),
+    LearnHubContentType.tool =>
+      learnDiscoveryToolContentTypes[item.id] ?? LearnDiscoveryContentType.tool,
     LearnHubContentType.note => LearnDiscoveryContentType.note,
     LearnHubContentType.faq => LearnDiscoveryContentType.faq,
     LearnHubContentType.journey => LearnDiscoveryContentType.journey,
@@ -530,13 +556,23 @@ LearnDiscoveryIndexEntry _mapKnowledgeItem(
     LearnHubContentType.category => LearnDiscoveryContentType.hub,
   };
 
+  final startHere = learnDiscoveryStartHereIds.contains(item.id);
+  final beginnerSafe =
+      item.categoryId == LearnHubCategoryId.foundations ||
+      item.categoryId == LearnHubCategoryId.kidsLearning ||
+      learnDiscoveryBeginnerIds.contains(item.id);
+
   final audience = item.categoryId == LearnHubCategoryId.kidsLearning
       ? LearnDiscoveryAudience.kids
-      : _isBeginnerKnowledgeItem(item)
+      : beginnerSafe
       ? LearnDiscoveryAudience.beginner
       : LearnDiscoveryAudience.general;
 
-  final difficulty = _difficultyForKnowledgeItem(item);
+  final difficulty = startHere
+      ? LearnDiscoveryDifficulty.startHere
+      : learnDiscoveryDeeperIds.contains(item.id)
+      ? LearnDiscoveryDifficulty.deeper
+      : LearnDiscoveryDifficulty.growing;
 
   return LearnDiscoveryIndexEntry(
     id: item.id,
@@ -558,84 +594,10 @@ LearnDiscoveryIndexEntry _mapKnowledgeItem(
       ..._categoryKeywords(item.categoryId),
     ],
     relatedPathIds: _relatedPathsForCategory(item.categoryId),
-    startHere: _isStartHereKnowledgeItem(item),
-    beginnerSafe: _isBeginnerKnowledgeItem(item),
+    startHere: startHere,
+    beginnerSafe: beginnerSafe,
     badgeLabel: item.badgeLabel,
   );
-}
-
-LearnDiscoveryContentType _toolLikeContentType(LearnHubKnowledgeItem item) {
-  final keywords = item.searchKeywords.join(' ').toLowerCase();
-  if (keywords.contains('reflection')) {
-    return LearnDiscoveryContentType.reflection;
-  }
-  if (keywords.contains('practice') ||
-      keywords.contains('trainer') ||
-      keywords.contains('guided prayer') ||
-      keywords.contains('review')) {
-    return LearnDiscoveryContentType.practice;
-  }
-  return LearnDiscoveryContentType.tool;
-}
-
-LearnDiscoveryDifficulty _difficultyForKnowledgeItem(
-  LearnHubKnowledgeItem item,
-) {
-  if (_isStartHereKnowledgeItem(item)) {
-    return LearnDiscoveryDifficulty.startHere;
-  }
-  final text = _normalizeSearchText(
-    <String>[
-      item.title,
-      item.subtitle,
-      item.summary,
-      ...item.searchKeywords,
-    ].join(' '),
-  );
-  if (text.contains('deeper') ||
-      text.contains('memorization') ||
-      text.contains('timeline') ||
-      text.contains('advanced')) {
-    return LearnDiscoveryDifficulty.deeper;
-  }
-  return LearnDiscoveryDifficulty.growing;
-}
-
-bool _isStartHereKnowledgeItem(LearnHubKnowledgeItem item) {
-  final text = _normalizeSearchText(
-    <String>[
-      item.title,
-      item.subtitle,
-      item.summary,
-      ...item.searchKeywords,
-    ].join(' '),
-  );
-  return text.contains('start') ||
-      text.contains('beginner') ||
-      text.contains('basics') ||
-      text.contains('foundations') ||
-      text.contains('what is islam') ||
-      text.contains('who is allah');
-}
-
-bool _isBeginnerKnowledgeItem(LearnHubKnowledgeItem item) {
-  if (item.categoryId == LearnHubCategoryId.foundations ||
-      item.categoryId == LearnHubCategoryId.kidsLearning) {
-    return true;
-  }
-  final text = _normalizeSearchText(
-    <String>[
-      item.title,
-      item.subtitle,
-      item.summary,
-      ...item.searchKeywords,
-    ].join(' '),
-  );
-  return text.contains('beginner') ||
-      text.contains('start') ||
-      text.contains('basics') ||
-      text.contains('first') ||
-      text.contains('gentle');
 }
 
 List<String> _categoryKeywords(LearnHubCategoryId categoryId) {
@@ -827,13 +789,129 @@ List<String> _relatedPathsForCategory(LearnHubCategoryId categoryId) {
   };
 }
 
+// Search sees letters and digits of every script, so Arabic, Urdu and
+// accented Latin queries are searched rather than erased. Folding makes the
+// forms a reader may or may not type meet: accents and harakat drop
+// (Schöpfung = schopfung, صَلاة = صلاة), alef and hamza seats, yeh, kaf and
+// heh variants merge across Arabic, Persian and Urdu keyboards (قرآن = قران),
+// and Arabic-Indic digits read as 0-9.
 String _normalizeSearchText(String value) {
   return value
       .toLowerCase()
-      .replaceAll('’', "'")
-      .replaceAll(RegExp(r"[^a-z0-9' ]"), ' ')
-      .replaceAll(RegExp(r'\s+'), ' ')
+      .replaceAll(_searchIgnorableMarks, '')
+      .replaceAllMapped(_searchFoldable, (match) => _searchFolding[match[0]]!)
+      .replaceAll(_searchWordBreak, ' ')
+      .replaceAll(_searchWhitespace, ' ')
       .trim();
+}
+
+// Entries are immutable and searched on every keystroke; normalize each
+// one's text once, not once per search.
+final Expando<_EntrySearchText> _entrySearchText = Expando<_EntrySearchText>();
+
+class _EntrySearchText {
+  _EntrySearchText(LearnDiscoveryIndexEntry entry)
+    : title = _normalizeSearchText(entry.title),
+      subtitle = _normalizeSearchText(entry.subtitle),
+      summary = _normalizeSearchText(entry.summary),
+      keywords = entry.searchTerms.map(_normalizeSearchText).join(' ');
+
+  final String title;
+  final String subtitle;
+  final String summary;
+  final String keywords;
+}
+
+/// Maps each folded query token back to the words as typed, lower-cased.
+Map<String, String> _typedFormsByToken(String query) {
+  final typed = query.toLowerCase().trim();
+  final forms = <String, String>{_normalizeSearchText(typed): typed};
+  for (final word in typed.split(_searchWhitespace)) {
+    final bare = word.replaceAll(_searchEdgePunctuation, '');
+    final token = _normalizeSearchText(bare);
+    if (token.isNotEmpty && !token.contains(' ')) {
+      forms[token] = bare;
+    }
+  }
+  return forms;
+}
+
+// Latin combining accents, Arabic harakat and Qur'anic annotation signs,
+// superscript alef, tatweel, and invisible format characters (ZWNJ, bidi
+// marks) that keyboards and pasted text carry.
+//
+// Both patterns test a Unicode property only once a character is known to
+// be non-ASCII: the property test alone is ~10x slower on English copy, and
+// every entry is normalized when the index is first searched.
+final RegExp _searchIgnorableMarks = RegExp(
+  r'(?![\x00-\x7F])'
+  r'[̀-ͯؐ-ؚـً-ٰٟۖ-ۭ\p{Cf}]',
+  unicode: true,
+);
+// Anything but a letter, mark or digit (of any script), an apostrophe or a
+// space breaks words.
+final RegExp _searchWordBreak = RegExp(
+  r'[\x00-\x1F\x21-\x26\x28-\x2F\x3A-\x40\x5B-\x60\x7B-\x7F]'
+  r'|(?![\x00-\x7F])[^\p{L}\p{M}\p{N}]',
+  unicode: true,
+);
+final RegExp _searchWhitespace = RegExp(r'\s+');
+final RegExp _searchEdgePunctuation = RegExp(
+  r'^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$',
+  unicode: true,
+);
+
+final Map<String, String> _searchFolding = _buildSearchFolding();
+final RegExp _searchFoldable = RegExp(
+  '[${_searchFolding.keys.map(RegExp.escape).join()}]',
+  unicode: true,
+);
+
+Map<String, String> _buildSearchFolding() {
+  const groups = <String, String>{
+    'àáâãäåāăąǎạ': 'a',
+    'ɓ': 'b',
+    'çćĉċč': 'c',
+    'ďđɗḍḏ': 'd',
+    'èéêëēĕėęěẹ': 'e',
+    'ĝğġģ': 'g',
+    'ĥħḥḫẖ': 'h',
+    'ìíîïĩīĭįıǐị': 'i',
+    'ĵ': 'j',
+    'ķƙ': 'k',
+    'ĺļľŀł': 'l',
+    'ñńņňṇ': 'n',
+    'òóôõöøōŏőǒọ': 'o',
+    'ŕŗř': 'r',
+    'śŝşšșṣ': 's',
+    'ţťŧțṭṯ': 't',
+    'ùúûüũūŭůűųǔụ': 'u',
+    'ŵ': 'w',
+    'ýÿŷƴ': 'y',
+    'źżžẓẕ': 'z',
+    'ß': 'ss',
+    'æ': 'ae',
+    'œ': 'oe',
+    '‘’ʼ': "'",
+    'ʾʿ': '',
+    'أإآٱ': 'ا',
+    'ء': '',
+    'ؤ': 'و',
+    'ئىی': 'ي',
+    'ک': 'ك',
+    'ةۃۂہھ': 'ه',
+  };
+  final folding = <String, String>{};
+  groups.forEach((characters, replacement) {
+    for (final rune in characters.runes) {
+      folding[String.fromCharCode(rune)] = replacement;
+    }
+  });
+  for (var digit = 0; digit <= 9; digit++) {
+    folding[String.fromCharCode(0x0660 + digit)] = '$digit'; // Arabic-Indic
+    folding[String.fromCharCode(0x06F0 + digit)] = '$digit'; // Persian, Urdu
+  }
+  return folding;
 }
 
 LearnHubRouteTarget _canonicalRouteTargetForKnowledgeItem(

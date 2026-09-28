@@ -61,7 +61,6 @@ class _QuranReflectionsPageState extends ConsumerState<QuranReflectionsPage> {
         .toList(growable: false);
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_stories_outlined,
       title: l10n.quranReflectionsTitle,
       subtitle: l10n.quranReflectionsSubtitle,
       backgroundOverlayColor: palette.pageOverlay,
@@ -108,7 +107,7 @@ class _QuranReflectionsPageState extends ConsumerState<QuranReflectionsPage> {
                 ? l10n.quranReflectionsEmptySubtitle
                 : l10n.quranReflectionsNoMatchesSubtitle,
             palette: palette,
-            icon: Icons.menu_book_outlined,
+            icon: Icons.menu_book_rounded,
           )
         else
           ...filtered.map(
@@ -198,7 +197,6 @@ class QuranReflectionDetailPage extends ConsumerWidget {
 
     if (item == null) {
       return AppPageScaffold(
-        headerIcon: Icons.auto_stories_outlined,
         title: l10n.quranReflectionsTitle,
         subtitle: l10n.quranReflectionsSubtitle,
         backgroundOverlayColor: palette.pageOverlay,
@@ -221,7 +219,6 @@ class QuranReflectionDetailPage extends ConsumerWidget {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_stories_outlined,
       title: l10n.quranReflectionsTitle,
       subtitle: sourceLabel,
       backgroundOverlayColor: palette.pageOverlay,

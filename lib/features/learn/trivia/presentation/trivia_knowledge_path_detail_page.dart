@@ -3,12 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/trivia_controller.dart';
 import '../domain/trivia_models.dart';
 import 'trivia_metadata_localization.dart';
-import 'trivia_ui_localization.dart';
 import 'widgets/trivia_widgets.dart';
 
 class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
@@ -23,16 +23,19 @@ class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
     final controller = ref.read(triviaControllerProvider.notifier);
     final path = controller.knowledgePathById(pathId);
     if (path == null) {
-      return Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: TriviaEmptyStateCard(
-              title: l10n.triviaKnowledgePathNotFoundTitle,
-              subtitle: l10n.triviaKnowledgePathNotFoundSubtitle,
+      return LearnHubPageScaffold(
+        title: l10n.triviaKnowledgePathsPageTitle,
+        children: [
+          TriviaEmptyStateCard(
+            title: l10n.triviaKnowledgePathsEmptyTitle,
+            subtitle: l10n.triviaKnowledgePathsEmptySubtitle,
+            action: FilledButton.tonalIcon(
+              onPressed: () => context.goNamed('learnQuizzesHub'),
+              icon: const Icon(Icons.arrow_back_rounded),
+              label: Text(l10n.triviaResultsGoHomeAction),
             ),
           ),
-        ),
+        ],
       );
     }
     final progress = controller.pathProgress(path.id);
@@ -52,7 +55,6 @@ class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
           );
 
     return LearnHubPageScaffold(
-      headerIcon: path.icon,
       title: localizedTriviaKnowledgePathTitle(l10n, path),
       subtitle: localizedTriviaKnowledgePathDescription(l10n, path),
       children: [
@@ -80,10 +82,7 @@ class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 14),
-        LinearProgressIndicator(
-          value: controller.pathCompletionRatio(path.id),
-          minHeight: 8,
-        ),
+        ProgressBar(value: controller.pathCompletionRatio(path.id), height: 8),
         const SizedBox(height: 14),
         TriviaSectionHeader(
           title: l10n.triviaStagesTitle,
@@ -102,12 +101,6 @@ class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
               subtitle: l10n.triviaKnowledgeStageSummary(
                 numberFormat.format(stage.questionIds.length),
                 numberFormat.format(stage.xpReward),
-                stage.difficulty.localizedLabel(l10n),
-                numberFormat.format(index + 1),
-                numberFormat.format(stage.questionIds.length),
-                numberFormat.format(stage.questionIds.length),
-                stageState.localizedLabel(l10n),
-                numberFormat.format(path.stages.length),
               ),
               state: stageState,
               difficulty: stage.difficulty,

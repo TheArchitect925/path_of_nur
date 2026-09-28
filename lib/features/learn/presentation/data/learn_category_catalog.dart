@@ -51,8 +51,7 @@ class LearnCategoryCatalog {
       tags: ['quran', 'core', 'hub'],
       sectionType: 'hub',
       categoryGroup: 'core',
-      description:
-          'Reader, reciter, bookmarks, search, and juz browsing in one focused space.',
+      description: 'Reader, reciter, bookmarks, search, and juz browsing.',
     ),
     LearnCategoryItem(
       id: 'quran-learning',
@@ -245,7 +244,7 @@ class LearnCategoryCatalog {
     ),
     LearnCategoryItem(
       id: 'allah-names',
-      title: '99 Names of الله',
+      title: '99 Names of Allah',
       iconKey: 'allah_names',
       routeName: 'quranNamesOfAllah',
       searchKeywords: ['99 names', 'asma ul husna', 'names of allah'],
@@ -553,7 +552,7 @@ class LearnCategoryCatalog {
       ],
       tags: ['search', 'trainer', 'salah'],
       sectionType: 'search-only',
-      description: 'Interactive guided and checklist practice flow.',
+      description: 'Interactive guided practice and checklist mode.',
     ),
   ];
 

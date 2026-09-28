@@ -7,6 +7,7 @@ struct WatchComplicationTimelineEntry: TimelineEntry {
   let hasAutoDhikrPreferences: Bool
   let autoDhikrPreferences: WatchAutoDhikrPreferences
   let autoDhikrSession: WatchAutoDhikrSessionState?
+  let palette: WatchPalette
 }
 
 struct WatchComplicationProvider: TimelineProvider {
@@ -18,7 +19,10 @@ struct WatchComplicationProvider: TimelineProvider {
       snapshot: cacheStore.loadSnapshot(),
       hasAutoDhikrPreferences: cacheStore.hasAutoDhikrPreferences(),
       autoDhikrPreferences: cacheStore.loadAutoDhikrPreferences(),
-      autoDhikrSession: cacheStore.loadAutoDhikrSession()
+      autoDhikrSession: cacheStore.loadAutoDhikrSession(),
+      palette: WatchPalette.palette(
+        forPhoneThemeMode: cacheStore.loadSettings()?.watchThemeMode
+      )
     )
   }
 
@@ -42,6 +46,9 @@ struct WatchComplicationProvider: TimelineProvider {
     let hasAutoDhikrPreferences = cacheStore.hasAutoDhikrPreferences()
     let autoDhikrPreferences = cacheStore.loadAutoDhikrPreferences()
     let autoDhikrSession = cacheStore.loadAutoDhikrSession()
+    let palette = WatchPalette.palette(
+      forPhoneThemeMode: cacheStore.loadSettings()?.watchThemeMode
+    )
     let dates = refreshDates(from: snapshot, now: now)
     let entries = dates.map {
       WatchComplicationTimelineEntry(
@@ -49,7 +56,8 @@ struct WatchComplicationProvider: TimelineProvider {
         snapshot: snapshot,
         hasAutoDhikrPreferences: hasAutoDhikrPreferences,
         autoDhikrPreferences: autoDhikrPreferences,
-        autoDhikrSession: autoDhikrSession
+        autoDhikrSession: autoDhikrSession,
+        palette: palette
       )
     }
     completion(
@@ -127,6 +135,53 @@ struct AutoDhikrComplication: Widget {
   }
 }
 
+struct NameOfDayComplication: Widget {
+  let kind = "PathOfNurWatchNameOfDay"
+
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: kind, provider: WatchComplicationProvider()) { entry in
+      NameOfDayComplicationView(entry: entry)
+    }
+    .configurationDisplayName(WatchStrings.complicationNameOfDayTitle)
+    .description(WatchStrings.complicationNameOfDayDescription)
+    .supportedFamilies([.accessoryInline, .accessoryRectangular])
+  }
+}
+
+struct NameOfDayComplicationView: View {
+  @Environment(\.widgetFamily) private var family
+  let entry: WatchComplicationTimelineEntry
+  private var name: WatchNameOfAllah {
+    WatchNamesOfAllahData.nameOfTheDay(for: entry.date)
+  }
+
+  var body: some View {
+    Group {
+      switch family {
+      case .accessoryInline:
+        Text(name.transliteration)
+      default:
+        VStack(alignment: .leading, spacing: 2) {
+          Text(WatchStrings.complicationNameOfDayTitle)
+            .font(.caption2)
+            .foregroundStyle(.secondary)
+          Text(name.transliteration)
+            .font(.headline)
+            .foregroundStyle(entry.palette.accent)
+            .minimumScaleFactor(0.8)
+            .lineLimit(1)
+          Text(name.meaning)
+            .font(.caption2)
+            .foregroundStyle(.secondary)
+            .minimumScaleFactor(0.75)
+            .lineLimit(1)
+        }
+      }
+    }
+    .widgetURL(URL(string: "pathofnurwatch://names"))
+  }
+}
+
 struct SpiritualPromptComplication: Widget {
   let kind = "PathOfNurWatchSpiritualPrompt"
 
@@ -144,7 +199,7 @@ struct NextPrayerComplicationView: View {
   @Environment(\.widgetFamily) private var family
   let entry: WatchComplicationTimelineEntry
   private var presentation: NextPrayerPresentation {
-    NextPrayerPresentation(snapshot: entry.snapshot, now: entry.date)
+    NextPrayerPresentation(snapshot: entry.snapshot, now: entry.date, palette: entry.palette)
   }
   private var destinationURL: URL? {
     guard let prayerId = presentation.prayerId else {
@@ -179,7 +234,7 @@ struct NextPrayerComplicationView: View {
             .font(.headline)
           Text(presentation.secondaryText)
             .font(.caption)
-            .foregroundStyle(presentation.isStale ? .orange : .secondary)
+            .foregroundStyle(presentation.isStale ? AnyShapeStyle(entry.palette.warning) : AnyShapeStyle(.secondary))
         }
       }
     }
@@ -191,7 +246,7 @@ struct DailyProgressComplicationView: View {
   @Environment(\.widgetFamily) private var family
   let entry: WatchComplicationTimelineEntry
   private var progressSummary: DailyProgressPresentation {
-    DailyProgressPresentation(snapshot: entry.snapshot, now: entry.date)
+    DailyProgressPresentation(snapshot: entry.snapshot, now: entry.date, palette: entry.palette)
   }
 
   var body: some View {
@@ -214,7 +269,7 @@ struct DailyProgressComplicationView: View {
             .font(.headline)
           Text(progressSummary.secondaryText)
             .font(.caption)
-            .foregroundStyle(progressSummary.isStale ? .orange : .secondary)
+            .foregroundStyle(progressSummary.isStale ? AnyShapeStyle(entry.palette.warning) : AnyShapeStyle(.secondary))
         }
       }
     }
@@ -261,7 +316,7 @@ struct SpiritualPromptComplicationView: View {
   @Environment(\.widgetFamily) private var family
   let entry: WatchComplicationTimelineEntry
   private var presentation: SpiritualPromptPresentation {
-    SpiritualPromptPresentation(snapshot: entry.snapshot)
+    SpiritualPromptPresentation(snapshot: entry.snapshot, palette: entry.palette)
   }
 
   var body: some View {
@@ -306,7 +361,7 @@ private struct NextPrayerPresentation {
   let tint: Color
   let isStale: Bool
 
-  init(snapshot: WatchDailySnapshotPayload?, now: Date) {
+  init(snapshot: WatchDailySnapshotPayload?, now: Date, palette: WatchPalette) {
     guard let snapshot else {
       prayerId = nil
       primaryText = WatchStrings.complicationNoData
@@ -344,7 +399,7 @@ private struct NextPrayerPresentation {
       shortName = "ALL"
       circularDetail = "OK"
       progress = 1
-      tint = .green
+      tint = palette.success
       return
     }
 
@@ -356,7 +411,7 @@ private struct NextPrayerPresentation {
       shortName = "?"
       circularDetail = "--"
       progress = 0
-      tint = .orange
+      tint = palette.warning
       return
     }
 
@@ -378,7 +433,7 @@ private struct NextPrayerPresentation {
     shortName = Self.shortPrayerLabel(for: prayer)
     circularDetail = Self.circularTimeText(for: prayer.scheduledTime, now: now)
     progress = min(Double(snapshot.completedPrayerCount) / Double(max(snapshot.totalPrayerCount, 1)), 1)
-    tint = stale ? .orange : .yellow
+    tint = stale ? palette.warning : palette.accent
   }
 
   static func isStale(snapshot: WatchDailySnapshotPayload, now: Date) -> Bool {
@@ -437,7 +492,7 @@ private struct DailyProgressPresentation {
   let tint: Color
   let isStale: Bool
 
-  init(snapshot: WatchDailySnapshotPayload?, now: Date) {
+  init(snapshot: WatchDailySnapshotPayload?, now: Date, palette: WatchPalette) {
     guard let snapshot else {
       summary = "--"
       secondaryText = WatchStrings.complicationNeedsSync
@@ -467,7 +522,7 @@ private struct DailyProgressPresentation {
         : WatchStrings.complicationPrayerProgressCompleted(snapshot.completedPrayerCount, snapshot.totalPrayerCount)
     }
     progress = min(Double(snapshot.completedPrayerCount) / Double(max(snapshot.totalPrayerCount, 1)), 1)
-    tint = snapshot.completedPrayerCount >= snapshot.totalPrayerCount ? .green : .yellow
+    tint = snapshot.completedPrayerCount >= snapshot.totalPrayerCount ? palette.success : palette.accent
   }
 }
 
@@ -516,14 +571,14 @@ private struct SpiritualPromptPresentation {
   let circularText: String
   let tint: Color
 
-  init(snapshot: WatchDailySnapshotPayload?) {
+  init(snapshot: WatchDailySnapshotPayload?, palette: WatchPalette) {
     guard let prompt = snapshot?.spiritualPrompt else {
       title = WatchStrings.complicationSpiritualPromptTitle
       bodyText = WatchStrings.complicationNeedsSync
       secondaryText = WatchStrings.complicationNoData
       inlineText = WatchStrings.complicationSpiritualPromptTitle
       circularText = "S"
-      tint = .teal
+      tint = palette.accent
       return
     }
 
@@ -532,7 +587,7 @@ private struct SpiritualPromptPresentation {
     secondaryText = WatchStrings.complicationOpenApp
     inlineText = prompt.inlineText
     circularText = prompt.circularText
-    tint = .teal
+    tint = palette.accent
   }
 }
 
@@ -542,6 +597,7 @@ struct PathOfNurWatchComplications: WidgetBundle {
     NextPrayerComplication()
     DailyProgressComplication()
     AutoDhikrComplication()
+    NameOfDayComplication()
     SpiritualPromptComplication()
   }
 }

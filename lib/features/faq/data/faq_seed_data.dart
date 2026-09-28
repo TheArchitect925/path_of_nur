@@ -8,15 +8,15 @@ const faqSeedDataset = FaqDataset(
     'This dataset is intended for educational onboarding and beginner-friendly learning.',
     'Answers are concise by design and should be expandable in-app.',
     'Content should go through a final scholarly review before public release.',
-    'Quran references are stored as strings for easy linking to the app\'s Quran module.',
+    'Qur’an references are stored as strings for easy linking to the app’s Qur’an module.',
   ],
   categoryLabels: <String, String>{
     'foundations_of_islam': 'Foundations of Islam',
     'worship_and_practice': 'Worship and Practice',
     'misconceptions_about_islam': 'Misconceptions About Islam',
     'women_in_islam': 'Women in Islam',
-    'science_and_quran': 'Science and the Qur\'an',
-    'quran_and_revelation': 'The Qur\'an and Revelation',
+    'science_and_quran': 'Science and the Qur’an',
+    'quran_and_revelation': 'The Qur’an and Revelation',
     'prophets_and_history': 'Prophets and History',
     'ethics_and_lifestyle': 'Ethics and Lifestyle',
     'afterlife_and_purpose': 'Afterlife and Purpose',
@@ -87,11 +87,11 @@ const faqSeedDataset = FaqDataset(
       shortAnswer:
           'He is the final messenger of Allah, sent to guide humanity.',
       answer:
-          'Muslims believe Muhammad ﷺ is the final prophet and messenger, sent with the Qur\'an and as a model of how to live faithfully.',
+          'Muslims believe Muhammad ﷺ is the final prophet and messenger, sent with the Qur’an and as a model of how to live faithfully.',
       quranRefs: <String>['33:40'],
       hadithRefs: <String>[],
       misconceptionTag: null,
-      relatedTopics: <String>['Why follow the Sunnah?', 'What is revelation?'],
+      relatedTopics: <String>['Why follow the sunnah?', 'What is revelation?'],
       difficulty: FaqDifficulty.beginner,
       isFeatured: true,
     ),
@@ -116,7 +116,7 @@ const faqSeedDataset = FaqDataset(
       shortAnswer:
           'Faith testimony, prayer, charity, fasting Ramadan, and Hajj.',
       answer:
-          'The Five Pillars are the Shahadah, Salah, Zakah, Sawm in Ramadan, and Hajj for those able. They are the core outward foundations of Muslim practice.',
+          'The Five Pillars are the Shahadah, Salah, Zakah, Sawm in Ramadan, and Hajj for those able. They are the core outward foundations of Muslim practice.', // copy-lint: allow prose-term-casing
       quranRefs: <String>['2:43', '2:183', '3:97'],
       hadithRefs: <String>['Sahih al-Bukhari 8', 'Sahih Muslim 16'],
       misconceptionTag: null,
@@ -163,7 +163,7 @@ const faqSeedDataset = FaqDataset(
       question: 'Why do Muslims fast in Ramadan?',
       shortAnswer: 'To grow in taqwa, self-control, gratitude, and compassion.',
       answer:
-          'Ramadan fasting trains the soul through restraint, remembrance, charity, and Qur\'an. Its purpose is taqwa: conscious awareness of Allah.',
+          'Ramadan fasting trains the soul through restraint, remembrance, charity, and Qur’an. Its purpose is taqwa: conscious awareness of Allah.',
       quranRefs: <String>['2:183-185'],
       hadithRefs: <String>[],
       misconceptionTag: null,
@@ -203,16 +203,16 @@ const faqSeedDataset = FaqDataset(
     FaqItem(
       id: 'worship_005',
       category: 'worship_and_practice',
-      question: 'Why is the Qur\'an recited in Arabic during prayer?',
+      question: 'Why is the Qur’an recited in Arabic during prayer?',
       shortAnswer:
-          'Because the Qur\'an was revealed in Arabic and its recited form is preserved that way.',
+          'Because the Qur’an was revealed in Arabic and its recited form is preserved that way.',
       answer:
-          'Translations help with understanding, but the Qur\'an itself is the revealed Arabic text. In salah, Muslims recite the preserved Qur\'anic wording.',
+          'Translations help with understanding, but the Qur’an itself is the revealed Arabic text. In salah, Muslims recite the preserved Qur’anic wording.',
       quranRefs: <String>['12:2', '43:3'],
       hadithRefs: <String>[],
       misconceptionTag: null,
       relatedTopics: <String>[
-        'Why is the Qur\'an in Arabic?',
+        'Why is the Qur’an in Arabic?',
         'Can I read a translation?',
       ],
       difficulty: FaqDifficulty.beginner,
@@ -221,17 +221,17 @@ const faqSeedDataset = FaqDataset(
     FaqItem(
       id: 'quran_001',
       category: 'quran_and_revelation',
-      question: 'What is the Qur\'an?',
+      question: 'What is the Qur’an?',
       shortAnswer:
-          'The Qur\'an is the final revelation from Allah to Prophet Muhammad ﷺ.',
+          'The Qur’an is the final revelation from Allah to Prophet Muhammad ﷺ.',
       answer:
-          'Muslims believe the Qur\'an is the direct revelation of Allah, sent to Prophet Muhammad ﷺ over about twenty-three years as guidance for humanity.',
+          'Muslims believe the Qur’an is the direct revelation of Allah, sent to Prophet Muhammad ﷺ over about twenty-three years as guidance for humanity.',
       quranRefs: <String>['2:185', '15:9'],
       hadithRefs: <String>[],
       misconceptionTag: null,
       relatedTopics: <String>[
-        'How was the Qur\'an preserved?',
-        'Why is the Qur\'an in Arabic?',
+        'How was the Qur’an preserved?',
+        'Why is the Qur’an in Arabic?',
       ],
       difficulty: FaqDifficulty.beginner,
       isFeatured: true,
@@ -239,16 +239,16 @@ const faqSeedDataset = FaqDataset(
     FaqItem(
       id: 'quran_002',
       category: 'quran_and_revelation',
-      question: 'Has the Qur\'an been preserved?',
+      question: 'Has the Qur’an been preserved?',
       shortAnswer:
-          'Muslims believe Allah preserved the Qur\'an and its recitation.',
+          'Muslims believe Allah preserved the Qur’an and its recitation.',
       answer:
-          'Islam teaches that Allah Himself protected the Qur\'an. Its memorization and written transmission became central to Muslim life from the beginning.',
+          'Islam teaches that Allah Himself protected the Qur’an. Its memorization and written transmission became central to Muslim life from the beginning.',
       quranRefs: <String>['15:9'],
       hadithRefs: <String>[],
       misconceptionTag: null,
       relatedTopics: <String>[
-        'What is the Qur\'an?',
+        'What is the Qur’an?',
         'Why is recitation important?',
       ],
       difficulty: FaqDifficulty.beginner,
@@ -257,16 +257,16 @@ const faqSeedDataset = FaqDataset(
     FaqItem(
       id: 'quran_003',
       category: 'quran_and_revelation',
-      question: 'Why is the Qur\'an in Arabic?',
+      question: 'Why is the Qur’an in Arabic?',
       shortAnswer:
           'It was revealed in Arabic to the first audience, and that wording is preserved.',
       answer:
-          'The Qur\'an came in Arabic because that was the language of the first recipients. Translations communicate meaning, but the Qur\'an itself is the Arabic revelation.',
+          'The Qur’an came in Arabic because that was the language of the first recipients. Translations communicate meaning, but the Qur’an itself is the Arabic revelation.',
       quranRefs: <String>['12:2', '43:3'],
       hadithRefs: <String>[],
       misconceptionTag: null,
       relatedTopics: <String>[
-        'What is the Qur\'an?',
+        'What is the Qur’an?',
         'Can I read a translation?',
       ],
       difficulty: FaqDifficulty.beginner,
@@ -275,17 +275,17 @@ const faqSeedDataset = FaqDataset(
     FaqItem(
       id: 'quran_004',
       category: 'quran_and_revelation',
-      question: 'Can a translation be called the Qur\'an?',
+      question: 'Can a translation be called the Qur’an?',
       shortAnswer:
-          'A translation conveys meaning, but the Qur\'an itself is the Arabic revelation.',
+          'A translation conveys meaning, but the Qur’an itself is the Arabic revelation.',
       answer:
-          'A translation can help understanding, but it is an interpretation of meaning. The Qur\'an in the strict sense is the revealed Arabic wording.',
+          'A translation can help understanding, but it is an interpretation of meaning. The Qur’an in the strict sense is the revealed Arabic wording.',
       quranRefs: <String>['26:192-195'],
       hadithRefs: <String>[],
       misconceptionTag: null,
       relatedTopics: <String>[
-        'Why is the Qur\'an in Arabic?',
-        'How should beginners study the Qur\'an?',
+        'Why is the Qur’an in Arabic?',
+        'How should beginners study the Qur’an?',
       ],
       difficulty: FaqDifficulty.intermediate,
       isFeatured: false,
@@ -294,9 +294,9 @@ const faqSeedDataset = FaqDataset(
       id: 'misconceptions_001',
       category: 'misconceptions_about_islam',
       question: 'Does Islam force people to become Muslim?',
-      shortAnswer: 'No. The Qur\'an states there is no compulsion in religion.',
+      shortAnswer: 'No. The Qur’an states there is no compulsion in religion.',
       answer:
-          'Faith has meaning only when it is chosen sincerely. The Qur\'an explicitly says there is no compulsion in religion.',
+          'Faith has meaning only when it is chosen sincerely. The Qur’an explicitly says there is no compulsion in religion.',
       quranRefs: <String>['2:256'],
       hadithRefs: <String>[],
       misconceptionTag: 'no_compulsion_in_religion',
@@ -314,7 +314,7 @@ const faqSeedDataset = FaqDataset(
       shortAnswer:
           'No. Islam forbids aggression and condemns killing innocents.',
       answer:
-          'The Qur\'an permits fighting only within strict limits, such as self-defense, and forbids transgression. Unjust killing is treated as a grave crime.',
+          'The Qur’an permits fighting only within strict limits, such as self-defense, and forbids transgression. Unjust killing is treated as a grave crime.',
       quranRefs: <String>['2:190', '5:32'],
       hadithRefs: <String>[],
       misconceptionTag: 'islam_does_not_promote_violence',
@@ -330,7 +330,7 @@ const faqSeedDataset = FaqDataset(
       category: 'misconceptions_about_islam',
       question: 'What does jihad actually mean?',
       shortAnswer:
-          'Jihad means striving or struggling in a just and disciplined way for Allah\'s sake.',
+          'Jihad means striving or struggling in a just and disciplined way for Allah’s sake.',
       answer:
           'Jihad is broader than warfare. It includes moral struggle, speaking truth, self-discipline, and, in limited cases, armed defense under ethical rules.',
       quranRefs: <String>['22:78', '25:52'],
@@ -368,7 +368,7 @@ const faqSeedDataset = FaqDataset(
       shortAnswer:
           'No. Islam commands justice, honesty, and good conduct with others.',
       answer:
-          'Islam distinguishes between disagreement in belief and injustice in conduct. The Qur\'an commands fairness and good treatment toward those who are not hostile.',
+          'Islam distinguishes between disagreement in belief and injustice in conduct. The Qur’an commands fairness and good treatment toward those who are not hostile.',
       quranRefs: <String>['60:8', '16:90'],
       hadithRefs: <String>[],
       misconceptionTag: 'justice_and_good_conduct_with_others',
@@ -386,7 +386,7 @@ const faqSeedDataset = FaqDataset(
       shortAnswer:
           'Yes. Islam recognizes women as morally equal and gives them legal and financial rights.',
       answer:
-          'The Qur\'an addresses men and women as equal in human worth and accountability before Allah. Women also have rights in marriage, property, inheritance, and learning.',
+          'The Qur’an addresses men and women as equal in human worth and accountability before Allah. Women also have rights in marriage, property, inheritance, and learning.',
       quranRefs: <String>['33:35', '4:7', '2:228'],
       hadithRefs: <String>[],
       misconceptionTag: 'women_have_rights_in_islam',
@@ -421,7 +421,7 @@ const faqSeedDataset = FaqDataset(
       question: 'Do men also have rules of modesty in Islam?',
       shortAnswer: 'Yes. Modesty in Islam applies to both men and women.',
       answer:
-          'The Qur\'an first instructs believing men to lower their gaze and guard their modesty, then gives guidance to believing women as well.',
+          'The Qur’an first instructs believing men to lower their gaze and guard their modesty, then gives guidance to believing women as well.',
       quranRefs: <String>['24:30-31'],
       hadithRefs: <String>[],
       misconceptionTag: 'modesty_applies_to_both_men_and_women',
@@ -439,7 +439,7 @@ const faqSeedDataset = FaqDataset(
       shortAnswer:
           'Yes. A woman can own, manage, inherit, and keep her own property.',
       answer:
-          'Islamic law recognizes a woman\'s independent legal and financial identity. Her wealth remains hers and is not automatically controlled by a husband or male relative.',
+          'Islamic law recognizes a woman’s independent legal and financial identity. Her wealth remains hers and is not automatically controlled by a husband or male relative.',
       quranRefs: <String>['4:7', '4:32'],
       hadithRefs: <String>[],
       misconceptionTag: 'women_can_own_property',
@@ -453,15 +453,15 @@ const faqSeedDataset = FaqDataset(
     FaqItem(
       id: 'science_001',
       category: 'science_and_quran',
-      question: 'Is the Qur\'an a science textbook?',
-      shortAnswer: 'No. The Qur\'an is a book of guidance, not a lab manual.',
+      question: 'Is the Qur’an a science textbook?',
+      shortAnswer: 'No. The Qur’an is a book of guidance, not a lab manual.',
       answer:
-          'The Qur\'an invites reflection on nature as signs of Allah, but its primary purpose is guidance, worship, ethics, and remembrance.',
+          'The Qur’an invites reflection on nature as signs of Allah, but its primary purpose is guidance, worship, ethics, and remembrance.',
       quranRefs: <String>['3:190-191', '41:53'],
       hadithRefs: <String>[],
       misconceptionTag: 'quran_is_guidance_not_science_textbook',
       relatedTopics: <String>[
-        'Does the Qur\'an mention nature?',
+        'Does the Qur’an mention nature?',
         'How should science verses be understood?',
       ],
       difficulty: FaqDifficulty.beginner,
@@ -470,15 +470,15 @@ const faqSeedDataset = FaqDataset(
     FaqItem(
       id: 'science_002',
       category: 'science_and_quran',
-      question: 'Does the Qur\'an encourage reflection on the natural world?',
-      shortAnswer: 'Yes. The Qur\'an repeatedly points to creation as signs.',
+      question: 'Does the Qur’an encourage reflection on the natural world?',
+      shortAnswer: 'Yes. The Qur’an repeatedly points to creation as signs.',
       answer:
-          'The Qur\'an calls people to observe the heavens, earth, life, and history as signs pointing to wisdom, power, and truth.',
+          'The Qur’an calls people to observe the heavens, earth, life, and history as signs pointing to wisdom, power, and truth.',
       quranRefs: <String>['3:190-191', '51:20-21', '41:53'],
       hadithRefs: <String>[],
       misconceptionTag: null,
       relatedTopics: <String>[
-        'Is the Qur\'an a science textbook?',
+        'Is the Qur’an a science textbook?',
         'Why does Islam value knowledge?',
       ],
       difficulty: FaqDifficulty.beginner,
@@ -487,10 +487,10 @@ const faqSeedDataset = FaqDataset(
     FaqItem(
       id: 'prophets_001',
       category: 'prophets_and_history',
-      question: 'How many prophets are mentioned in the Qur\'an?',
-      shortAnswer: 'The Qur\'an names 25 prophets explicitly.',
+      question: 'How many prophets are mentioned in the Qur’an?',
+      shortAnswer: 'The Qur’an names 25 prophets explicitly.',
       answer:
-          'Muslims believe many prophets were sent to humanity, while the Qur\'an explicitly names 25 of them.',
+          'Muslims believe many prophets were sent to humanity, while the Qur’an explicitly names 25 of them.',
       quranRefs: <String>['4:164', '6:83-86'],
       hadithRefs: <String>[],
       misconceptionTag: null,
@@ -504,11 +504,11 @@ const faqSeedDataset = FaqDataset(
     FaqItem(
       id: 'prophets_002',
       category: 'prophets_and_history',
-      question: 'What does Islam say about Jesus (Isa عليه السلام)?',
+      question: 'What does Islam say about Jesus (Isa)?',
       shortAnswer:
           'Jesus is a mighty prophet, Messiah, and miracle-born servant of Allah, not divine.',
       answer:
-          'Muslims deeply honor Jesus عليه السلام. Islam teaches he was born miraculously, performed miracles by Allah\'s permission, and called people to worship Allah.',
+          'Muslims deeply honor Jesus (peace be upon him). Islam teaches he was born miraculously, performed miracles by Allah’s permission, and called people to worship Allah.',
       quranRefs: <String>['3:45-49', '4:171', '5:75'],
       hadithRefs: <String>[],
       misconceptionTag: 'jesus_honored_but_not_divine',
@@ -523,7 +523,7 @@ const faqSeedDataset = FaqDataset(
       id: 'prophets_003',
       category: 'prophets_and_history',
       question: 'Do Muslims believe in Moses and Abraham?',
-      shortAnswer: 'Yes. Muslims must believe in all of Allah\'s messengers.',
+      shortAnswer: 'Yes. Muslims must believe in all of Allah’s messengers.',
       answer:
           'Belief in the prophets is part of Islamic faith. Muslims honor Abraham, Moses, Jesus, and many others as real messengers of Allah.',
       quranRefs: <String>['2:136', '2:285'],
@@ -539,7 +539,7 @@ const faqSeedDataset = FaqDataset(
       question: 'What is the purpose of life in Islam?',
       shortAnswer: 'To worship Allah and live in faithful obedience to Him.',
       answer:
-          'The Qur\'an states that humans and jinn were created to worship Allah. In Islam, worship includes prayer, ethics, service, and every sincere righteous act.',
+          'The Qur’an states that humans and jinn were created to worship Allah. In Islam, worship includes prayer, ethics, service, and every sincere righteous act.',
       quranRefs: <String>['51:56'],
       hadithRefs: <String>[],
       misconceptionTag: null,
@@ -588,7 +588,7 @@ const faqSeedDataset = FaqDataset(
       shortAnswer:
           'Islam teaches resurrection, judgment, and eternal life in the Hereafter.',
       answer:
-          'Every soul will die, be resurrected, judged by Allah with perfect justice, and then enter the Hereafter according to Allah\'s mercy and judgment.',
+          'Every soul will die, be resurrected, judged by Allah with perfect justice, and then enter the Hereafter according to Allah’s mercy and judgment.',
       quranRefs: <String>['3:185', '99:6-8'],
       hadithRefs: <String>[],
       misconceptionTag: null,
@@ -604,7 +604,7 @@ const faqSeedDataset = FaqDataset(
       category: 'afterlife_and_purpose',
       question: 'What is Jannah?',
       shortAnswer:
-          'Jannah is Paradise, the eternal reward prepared for the righteous by Allah\'s mercy.',
+          'Jannah is Paradise, the eternal reward prepared for the righteous by Allah’s mercy.',
       answer:
           'Jannah is described as a place of peace, nearness to Allah, joy, and lasting reward beyond worldly imagination.',
       quranRefs: <String>['9:72', '32:17'],
@@ -621,7 +621,7 @@ const faqSeedDataset = FaqDataset(
       shortAnswer:
           'Jahannam is Hell, a place of punishment and consequence in the Hereafter.',
       answer:
-          'The Qur\'an warns of Jahannam as a reality tied to rejection, injustice, and rebellion against Allah. These warnings are meant to awaken moral seriousness.',
+          'The Qur’an warns of Jahannam as a reality tied to rejection, injustice, and rebellion against Allah. These warnings are meant to awaken moral seriousness.',
       quranRefs: <String>['4:56', '25:65-66'],
       hadithRefs: <String>[],
       misconceptionTag: null,
@@ -656,12 +656,12 @@ const faqSeedDataset = FaqDataset(
       question: 'Does Islam value knowledge and learning?',
       shortAnswer: 'Yes. Seeking knowledge is deeply rooted in Islam.',
       answer:
-          'The Qur\'an repeatedly calls people to think, reflect, remember, and understand. Knowledge is part of faithful living and wise action.',
+          'The Qur’an repeatedly calls people to think, reflect, remember, and understand. Knowledge is part of faithful living and wise action.',
       quranRefs: <String>['20:114', '39:9', '16:43'],
       hadithRefs: <String>[],
       misconceptionTag: null,
       relatedTopics: <String>[
-        'Is the Qur\'an a science textbook?',
+        'Is the Qur’an a science textbook?',
         'What is iman?',
       ],
       difficulty: FaqDifficulty.beginner,
@@ -672,7 +672,7 @@ const faqSeedDataset = FaqDataset(
       category: 'islam_in_the_modern_world',
       question: 'Why do Muslims ask scholars when they do not know?',
       shortAnswer:
-          'Because the Qur\'an instructs people to ask those with knowledge.',
+          'Because the Qur’an instructs people to ask those with knowledge.',
       answer:
           'Islam values learning with humility. When a person does not know, the proper response is to ask qualified people rather than guess about religion.',
       quranRefs: <String>['16:43'],
@@ -690,7 +690,7 @@ const faqSeedDataset = FaqDataset(
       category: 'foundations_of_islam',
       question: 'What is tawhid?',
       shortAnswer:
-          'Tawhid is affirming Allah\'s absolute oneness in lordship, worship, and names and attributes.',
+          'Tawhid is affirming Allah’s absolute oneness in lordship, worship, and names and attributes.',
       answer:
           'Tawhid is the heart of Islam. It means Allah alone created, sustains, deserves worship, and possesses perfect names and attributes without equal.',
       quranRefs: <String>['112:1-4', '2:163'],
@@ -713,7 +713,7 @@ const faqSeedDataset = FaqDataset(
       misconceptionTag: null,
       relatedTopics: <String>[
         'What is tawhid?',
-        'Do Muslims worship Muhammad?',
+        'Do Muslims worship Muhammad ﷺ?',
       ],
       difficulty: FaqDifficulty.intermediate,
       isFeatured: false,
@@ -773,15 +773,15 @@ const faqSeedDataset = FaqDataset(
       category: 'misconceptions_about_islam',
       question: 'Is Islam against reason and reflection?',
       shortAnswer:
-          'No. The Qur\'an repeatedly calls people to think, reflect, and observe.',
+          'No. The Qur’an repeatedly calls people to think, reflect, and observe.',
       answer:
-          'Islam does not ask for blind irrationality. The Qur\'an repeatedly appeals to reflection, understanding, memory, and observation of signs in creation and history.',
+          'Islam does not ask for blind irrationality. The Qur’an repeatedly appeals to reflection, understanding, memory, and observation of signs in creation and history.',
       quranRefs: <String>['3:190-191', '10:101', '39:9'],
       hadithRefs: <String>[],
       misconceptionTag: 'islam_encourages_reflection',
       relatedTopics: <String>[
         'Does Islam value knowledge?',
-        'Science and the Qur\'an',
+        'Science and the Qur’an',
       ],
       difficulty: FaqDifficulty.beginner,
       isFeatured: true,

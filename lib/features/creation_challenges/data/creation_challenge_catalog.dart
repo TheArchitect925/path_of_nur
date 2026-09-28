@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../creation_explorer/domain/creation_explorer_models.dart';
 import '../domain/creation_challenge_models.dart';
+import '../../../core/theme/app_icons.dart';
 
 CreationChallenge _challenge({
   required String id,
@@ -185,7 +186,7 @@ final creationChallengePool = <CreationChallenge>[
     title: 'Notice water today',
     subtitle: 'A source of life',
     description:
-        'Observe a river, lake, rain, stream, or even flowing water with intention.',
+        'Observe a river, lake, rain, stream, or even flowing water closely.',
     type: CreationChallengeType.observe,
     rule: CreationChallengeRuleType.manualConfirm,
     icon: Icons.water_drop_rounded,
@@ -223,7 +224,7 @@ final creationChallengePool = <CreationChallenge>[
   _challenge(
     id: 'sky_open_001',
     title: 'Open Sky Explorer',
-    subtitle: 'Look upward with intention',
+    subtitle: 'Look up at the sky',
     description: 'Open Sky Explorer and spend a moment with the sky dashboard.',
     type: CreationChallengeType.skyEvent,
     rule: CreationChallengeRuleType.openExplorer,
@@ -263,7 +264,7 @@ final creationChallengePool = <CreationChallenge>[
         'Look at the early sky before sunrise and notice its calm change.',
     type: CreationChallengeType.observe,
     rule: CreationChallengeRuleType.manualConfirm,
-    icon: Icons.wb_sunny_outlined,
+    icon: Icons.wb_sunny_rounded,
     category: CreationCategoryId.sky,
     verseId: 'creation_sky_3190',
     difficulty: CreationChallengeDifficulty.steady,
@@ -407,7 +408,7 @@ final creationChallengePool = <CreationChallenge>[
         'Take one undistracted minute to observe any part of creation around you.',
     type: CreationChallengeType.observe,
     rule: CreationChallengeRuleType.manualConfirm,
-    icon: Icons.self_improvement_rounded,
+    icon: AppIcons.reflection,
     verseId: 'creation_sky_3190',
   ),
   _challenge(

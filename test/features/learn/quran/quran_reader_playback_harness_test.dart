@@ -73,27 +73,16 @@ class _ReaderPlaybackHarness extends ConsumerWidget {
             isNowPlaying:
                 state.activeAyahKey == '${ayah.surahNumber}:${ayah.ayahNumber}',
             activeWordIndex: null,
-            isBookmarked: false,
-            isMarkedForMemorization: false,
-            notesCount: 0,
-            onBookmark: () {},
-            onAddNote: () {},
             showArabic: false,
             showTranslation: true,
             showTransliteration: false,
             showWordByWord: false,
-            showActions: false,
+            wordGlossary: const {},
             hifzRevealMode: HifzRevealMode.full,
             arabicFontSize: 24,
             transliterationFontSize: 14,
             translationFontSize: 14,
             harakatColor: null,
-            resolvedExplanation: null,
-            actionRecommendation: null,
-            spiritualMomentBundle: null,
-            personalizedRecommendation: null,
-            contextualLinks: const [],
-            themeTopics: const [],
             readerSearchQuery: '',
             readerSearchMatchField: null,
             readerSearchTranslationHighlights: const [],
@@ -101,10 +90,7 @@ class _ReaderPlaybackHarness extends ConsumerWidget {
             readerSearchArabicHighlights: const [],
             studyMode: QuranReaderStudyMode.reading,
             onTap: () {},
-            onPlayAyah: () {},
-            onToggleMemorization: () {},
             onPlayWord: (_) async {},
-            onMistakeCheckpoint: () {},
           ),
       ],
     );
@@ -191,7 +177,7 @@ void main() {
       await tester.pump();
 
       expect(find.text('1:2'), findsOneWidget);
-      expect(find.textContaining('Verse 1:2'), findsWidgets);
+      expect(find.textContaining('verse 1:2'), findsWidgets);
       expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
 
       feed.update(playing: false, processingState: ProcessingState.ready);
@@ -209,7 +195,7 @@ void main() {
       feed.emitPosition();
       await tester.pump();
       expect(find.text('1:3'), findsOneWidget);
-      expect(find.textContaining('Verse 1:3'), findsWidgets);
+      expect(find.textContaining('verse 1:3'), findsWidgets);
 
       container
           .read(quranAudioSettingsProvider.notifier)

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
@@ -19,6 +19,7 @@ import '../application/quran_providers.dart';
 import '../domain/quran_guided_passage_readiness_models.dart';
 import '../domain/quran_playback_request.dart';
 import '../domain/quran_readiness_bridge_models.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranGuidedPassageReadinessPage extends ConsumerStatefulWidget {
   const QuranGuidedPassageReadinessPage({
@@ -267,7 +268,9 @@ class _QuranGuidedPassageReadinessPageState
                         Text(
                           _passageSubtitle(l10n, activePassage.id),
                           style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(color: AppColors.onSurfaceSubtle),
+                              ?.copyWith(
+                                color: context.palette.onSurfaceSubtle,
+                              ),
                         ),
                         const SizedBox(height: 10),
                         Text(
@@ -373,7 +376,7 @@ class _QuranGuidedPassageReadinessPageState
                 Text(
                   l10n.quranGuidedPassagesFlowHint,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -419,7 +422,6 @@ class _QuranGuidedPassageReadinessPageState
     if (isKids) {
       return LearnHubPageScaffold(
         showDefaultQuote: false,
-        headerIcon: Icons.auto_stories_rounded,
         title: l10n.quranGuidedPassagesKidsPageTitle,
         subtitle: l10n.quranGuidedPassagesKidsPageSubtitle,
         children: content,
@@ -643,7 +645,7 @@ class _GuidedReadinessChoicePill extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: selected ? AppColors.accentGoldSoft : null,
+      tintColor: selected ? context.palette.accentSoft : null,
     );
     return InkWell(
       borderRadius: BorderRadius.circular(999),
@@ -655,7 +657,9 @@ class _GuidedReadinessChoicePill extends StatelessWidget {
           label,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
             fontWeight: FontWeight.w700,
-            color: selected ? const Color(0xFF8A5A1F) : const Color(0xFF5A4A39),
+            color: selected
+                ? context.palette.cautionInk
+                : const Color(0xFF5A4A39),
           ),
         ),
       ),
@@ -672,10 +676,10 @@ class _GuidedPassageAyahCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderColor = highlighted
-        ? AppColors.accentGoldSoft
+        ? context.palette.accentSoft
         : const Color(0xFFE6DDD1);
     final backgroundColor = highlighted
-        ? AppColors.accentGoldSoft.withValues(alpha: 0.18)
+        ? context.palette.accentSoft.withValues(alpha: 0.18)
         : Colors.white;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 180),
@@ -704,13 +708,13 @@ class _GuidedPassageAyahCard extends StatelessWidget {
               ayah.arabic,
               Theme.of(context).textTheme.headlineSmall?.copyWith(
                     height: 1.7,
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                     fontWeight: FontWeight.w700,
                   ) ??
                   const TextStyle(
                     fontSize: 30,
                     height: 1.7,
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                     fontWeight: FontWeight.w700,
                   ),
             ),
@@ -718,9 +722,9 @@ class _GuidedPassageAyahCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             ayah.translation,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
         ],
       ),

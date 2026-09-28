@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../journey/drops/application/journey_drops_providers.dart';
@@ -14,6 +14,8 @@ import '../application/ayah_completion_progress_provider.dart';
 import '../application/ayah_completion_repository.dart';
 import '../domain/ayah_completion_models.dart';
 import 'ayah_completion_ui_helpers.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/display/app_skeleton.dart';
 
 class AyahCompletionHomePage extends ConsumerWidget {
   const AyahCompletionHomePage({super.key});
@@ -33,14 +35,12 @@ class AyahCompletionHomePage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
+      headerIcon: AppIcons.memorize,
       title: l10n.ayahCompletionHomeTitle,
       subtitle: l10n.ayahCompletionHomeSubtitle,
       children: [
         catalogAsync.when(
-          loading: () => const PremiumCard(
-            child: Center(child: CircularProgressIndicator()),
-          ),
+          loading: () => const SkeletonCard(),
           error: (_, _) => PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +50,7 @@ class AyahCompletionHomePage extends ConsumerWidget {
                 Text(
                   l10n.ayahCompletionLoadErrorSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -129,7 +129,7 @@ class AyahCompletionHomePage extends ConsumerWidget {
                         _chip(
                           context,
                           l10n.ayahCompletionDailyStreakLabel(
-                            dailyStreak.currentStreak.toString(),
+                            dailyStreak.currentStreak,
                           ),
                         ),
                     ],

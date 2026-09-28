@@ -641,13 +641,13 @@ List<QuranAyahEnrichmentEntry> _attachCuratedRelatedAyahs(
         ref: QuranQuoteRef(surah: 21, ayah: 83, ayahEnd: 84),
         type: QuranRelatedAyahLinkType.prophetConnection,
         reason:
-            'Ayyub عليه السلام shows patient turning to Allah through trial.',
+            'Ayyub (peace be upon him) shows patient turning to Allah through trial.',
       ),
       QuranRelatedAyahLink(
         ref: QuranQuoteRef(surah: 71, ayah: 5, ayahEnd: 6),
         type: QuranRelatedAyahLinkType.supportingInsight,
         reason:
-            'Nuh عليه السلام reflects perseverance over a long call to truth.',
+            'Nuh (peace be upon him) reflects perseverance over a long call to truth.',
       ),
     ],
   };

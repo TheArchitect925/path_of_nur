@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
@@ -14,6 +16,7 @@ import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/divine_life_lessons_provider.dart';
 import '../data/divine_life_lessons_data.dart';
 import '../domain/divine_life_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 enum DivineLifeTab { lessons, themes, situations, reflection }
 
@@ -24,11 +27,16 @@ class DivineLifeLessonsPage extends ConsumerStatefulWidget {
     super.key,
     this.initialThemeId,
     this.initialSituationId,
+    this.section,
     this.initialTab,
   });
 
   final String? initialThemeId;
   final String? initialSituationId;
+
+  /// Null keeps the lesson list as the landing; the other three tabs are
+  /// destinations reachable from the list under the header.
+  final String? section;
   final DivineLifeTab? initialTab;
 
   @override
@@ -49,7 +57,10 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
     _searchController = TextEditingController();
     _selectedThemeId = widget.initialThemeId;
     _selectedSituationId = widget.initialSituationId;
-    if (widget.initialTab != null) {
+    final sectionTab = _sectionFor(widget.section);
+    if (sectionTab != null) {
+      _tab = sectionTab;
+    } else if (widget.initialTab != null) {
       _tab = widget.initialTab!;
     } else if (widget.initialThemeId != null) {
       _tab = DivineLifeTab.themes;
@@ -157,24 +168,33 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.lightbulb_rounded,
-      title: 'Divine Life Lessons',
-      subtitle:
-          'Qur’an-rooted lessons for reflection, character, and grounded living.',
+      headerIcon: AppIcons.lessons,
+      title: l10n.learnCategoryDivineLifeLessonsTitle,
+      subtitle: l10n.learnCategoryDivineLifeLessonsSubtitle,
       children: [
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SegmentedPillControl<DivineLifeTab>(
-                items: DivineLifeTab.values,
-                selectedItem: _tab,
-                labelBuilder: _tabLabel,
-                onChanged: (tab) => setState(() => _tab = tab),
-              ),
-            ],
+        if (widget.section == null)
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                HubListGroup(
+                  title: l10n.learnLandingBrowseTitle,
+                  children: [
+                    for (final tab in DivineLifeTab.values)
+                      if (tab != DivineLifeTab.lessons)
+                        CompactListTile(
+                          title: _tabLabel(tab),
+                          leading: HubLeadingIcon(_sectionIcon(tab)),
+                          onTap: () => context.pushNamed(
+                            'learnLifeLanding',
+                            queryParameters: {'section': tab.name},
+                          ),
+                        ),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
         const SizedBox(height: 10),
         PremiumCard(
           surfaceVariant: AppSurfaceVariant.panel,
@@ -255,7 +275,6 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
                         contentPadding: EdgeInsets.zero,
                         title: Text(lesson.title),
                         subtitle: Text(lesson.quranReference),
-                        trailing: const Icon(Icons.chevron_right_rounded),
                         onTap: () => _openLesson(context, lesson.id),
                       ),
                     ),
@@ -370,6 +389,26 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
     );
   }
 
+  DivineLifeTab? _sectionFor(String? id) {
+    for (final tab in DivineLifeTab.values) {
+      if (tab.name == id) return tab;
+    }
+    return null;
+  }
+
+  IconData _sectionIcon(DivineLifeTab tab) {
+    switch (tab) {
+      case DivineLifeTab.lessons:
+        return Icons.menu_book_rounded;
+      case DivineLifeTab.themes:
+        return Icons.category_rounded;
+      case DivineLifeTab.situations:
+        return Icons.emoji_people_rounded;
+      case DivineLifeTab.reflection:
+        return AppIcons.reflection;
+    }
+  }
+
   String _tabLabel(DivineLifeTab tab) {
     switch (tab) {
       case DivineLifeTab.lessons:
@@ -402,8 +441,8 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(999),
-          border: Border.all(color: const Color(0xFFCEB07D)),
-          color: const Color(0xFFFAF3E8),
+          border: Border.all(color: context.palette.caution),
+          color: context.palette.surface,
         ),
         child: Text(label, style: const TextStyle(fontSize: 12.5)),
       ),
@@ -415,8 +454,8 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: const Color(0xFFFAF3E8),
-        border: Border.all(color: const Color(0xFFCEB07D)),
+        color: context.palette.surface,
+        border: Border.all(color: context.palette.caution),
       ),
       child: Text('$label: $value'),
     );
@@ -508,7 +547,7 @@ class _CategoryPill extends StatelessWidget {
     final selectedStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     final defaultStyle = AppSurfaceTheme.resolve(
       context,
@@ -596,16 +635,11 @@ class _LessonsTab extends StatelessWidget {
           ...featuredLessons.map(
             (lesson) => Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: PremiumCard(
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(lesson.title),
-                  subtitle: Text(
+              child: CompactListTile(
+                title: lesson.title,
+                subtitle:
                     '${lesson.quranReference} • ${lesson.estimatedReadMinutes} min',
-                  ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
-                  onTap: () => onOpenLesson(lesson.id),
-                ),
+                onTap: () => onOpenLesson(lesson.id),
               ),
             ),
           ),
@@ -636,7 +670,6 @@ class _LessonsTab extends StatelessWidget {
                           subtitle: Text(
                             '${lesson.quranReference} • ${lesson.estimatedReadMinutes} min',
                           ),
-                          trailing: const Icon(Icons.chevron_right_rounded),
                           onTap: () => onOpenLesson(lesson.id),
                         ),
                       ),
@@ -711,7 +744,6 @@ class _ThemesTab extends StatelessWidget {
                         dense: true,
                         title: Text(lesson.title),
                         subtitle: Text(lesson.quranReference),
-                        trailing: const Icon(Icons.chevron_right_rounded),
                         onTap: () => onOpenLesson(lesson.id),
                       );
                     }),
@@ -779,7 +811,6 @@ class _SituationsTab extends StatelessWidget {
                         dense: true,
                         title: Text(lesson.title),
                         subtitle: Text(lesson.quranReference),
-                        trailing: const Icon(Icons.chevron_right_rounded),
                         onTap: () => onOpenLesson(lesson.id),
                       );
                     }),

@@ -1,3 +1,4 @@
+import '../../../kids/shared/domain/kids_age_band.dart';
 import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,6 +41,7 @@ class FamilyLearningNotifier extends StateNotifier<FamilyLearningStoreState> {
     required LearningPathLevel learningLevel,
     required String avatarReference,
     required KidsUiThemeMode kidsUiThemeMode,
+    KidsAgeBand ageBand = KidsAgeBand.core,
     required ChildBrowsingMode browsingMode,
     required ChildLearningPermissions permissions,
   }) async {
@@ -92,6 +94,7 @@ class FamilyLearningNotifier extends StateNotifier<FamilyLearningStoreState> {
       preferredLanguageTag: locale?.toLanguageTag() ?? 'en',
       avatarReference: avatarReference,
       kidsUiThemeMode: kidsUiThemeMode,
+      ageBand: ageBand,
       contentSafetyMode: browsingMode == ChildBrowsingMode.guidedOnly
           ? ChildContentSafetyMode.guided
           : ChildContentSafetyMode.guidedWithExplore,

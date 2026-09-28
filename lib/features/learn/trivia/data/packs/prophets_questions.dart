@@ -460,10 +460,9 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_025',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Muhammad, peace and blessings be upon him, is the final prophet.',
+    prompt: 'Muhammad ﷺ is the final prophet.',
     correct: true,
-    explanation:
-        'Muhammad, peace and blessings be upon him, is the final messenger and prophet.',
+    explanation: 'Muhammad ﷺ is the final messenger and prophet.',
     quranReference: 'Qur’an 33:40',
     tags: const [
       'prophets',
@@ -700,11 +699,9 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_037',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt:
-        'Muhammad, peace and blessings be upon him, is mentioned in the Qur’an by name.',
+    prompt: 'Muhammad ﷺ is mentioned in the Qur’an by name.',
     correct: true,
-    explanation:
-        'The Qur’an mentions Muhammad, peace and blessings be upon him, by name in multiple places.',
+    explanation: 'The Qur’an mentions Muhammad ﷺ by name in multiple places.',
     quranReference: 'Qur’an 3:144; 33:40; 47:2; 48:29',
     tags: const ['prophets', 'muhammad', 'quran', 'beginner'],
     beginnerFriendly: true,
@@ -1289,10 +1286,9 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
     prompt:
-        'The Qur’an links Muhammad, peace and blessings be upon him, with being sent as a mercy to the worlds.',
+        'The Qur’an links Muhammad ﷺ with being sent as a mercy to the worlds.',
     correct: true,
-    explanation:
-        'Allah describes Muhammad, peace and blessings be upon him, as a mercy to the worlds.',
+    explanation: 'Allah describes Muhammad ﷺ as a mercy to the worlds.',
     quranReference: 'Qur’an 21:107',
     tags: const ['prophets', 'muhammad', 'mercy', 'seerah'],
     reflectionFriendly: true,
@@ -1574,7 +1570,7 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     ],
     correctOptionId: 'salih',
     explanation:
-        'Thamud, the people of Salih, were known for carving homes in mountains and were warned against arrogance and فساد.',
+        'Thamud, the people of Salih, were known for carving homes in mountains and were warned against arrogance and fasad (corruption).',
     quranReference: 'Qur’an 7:74',
     tags: const ['prophets', 'salih', 'thamud', 'advanced'],
     packId: _pack,
@@ -1605,7 +1601,7 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
     prompt:
-        'Every prophet mentioned in the Qur’an has a full extended story told in one place.',
+        'Every prophet mentioned in the Qur’an has a full extended story told in one place.', // copy-lint: allow prose-tail
     correct: false,
     explanation:
         'Some prophets have extensive narratives, while others are mentioned briefly and across different passages.',

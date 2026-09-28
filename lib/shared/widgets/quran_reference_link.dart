@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_palette.dart';
 import '../../core/theme/app_surfaces.dart';
 import '../../features/learn/quran/domain/quran_content_refs.dart';
 import 'quran_navigation.dart';
@@ -92,7 +92,7 @@ class QuranReferenceLinkTile extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppSurfaceTheme.adaptiveColor(
               context,
-              AppColors.surface,
+              context.palette.surface,
               alpha: 0.25,
               solidAlphaWhenDisabled: 0.96,
             ),
@@ -100,7 +100,7 @@ class QuranReferenceLinkTile extends StatelessWidget {
             border: Border.all(
               color: AppSurfaceTheme.adaptiveColor(
                 context,
-                AppColors.accentGoldSoft,
+                context.palette.accentSoft,
                 alpha: 0.28,
                 solidAlphaWhenDisabled: 0.40,
               ),

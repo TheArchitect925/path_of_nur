@@ -19,7 +19,6 @@ class GrowthHabitSettingsPage extends ConsumerWidget {
     final categoriesById = ref.watch(growthCustomHabitCategoriesByIdProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.tune_rounded,
       title: l10n.growthHabitSettingsTitle,
       subtitle: l10n.growthHabitSettingsSubtitle,
       children: [

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/wudu_trainer_controller.dart';
 import '../models/wudu_models.dart';
 import 'wudu_cards.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class WuduTrainerModeSelector extends StatelessWidget {
   const WuduTrainerModeSelector({
@@ -94,13 +96,7 @@ class WuduProgressHeader extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              minHeight: 10,
-              value: progress.clamp(0.0, 1.0),
-            ),
-          ),
+          ProgressBar(value: progress.clamp(0.0, 1.0), height: 10),
         ],
       ),
     );
@@ -286,7 +282,7 @@ class WuduGuidedStepCard extends StatelessWidget {
               ),
               _BadgePill(
                 label: l10n.wuduTrainerStepCalmBadge,
-                icon: Icons.spa_outlined,
+                icon: AppIcons.reflection,
               ),
             ],
           ),
@@ -597,11 +593,11 @@ IconData _fallbackIconFor(String key) {
     case 'intention':
       return Icons.favorite_outline_rounded;
     case 'water':
-      return Icons.water_drop_outlined;
+      return Icons.water_drop_rounded;
     case 'bismillah':
       return Icons.record_voice_over_rounded;
     case 'hands':
-      return Icons.front_hand_outlined;
+      return Icons.front_hand_rounded;
     case 'mouth':
       return Icons.mood_rounded;
     case 'nose':
@@ -611,16 +607,16 @@ IconData _fallbackIconFor(String key) {
     case 'arm_right':
       return Icons.accessibility_new_rounded;
     case 'head':
-      return Icons.self_improvement_rounded;
+      return Icons.face_rounded;
     case 'foot_right':
       return Icons.directions_walk_rounded;
     case 'shahada':
-      return Icons.mosque_rounded;
+      return AppIcons.mosque;
     case 'dua':
-      return Icons.volunteer_activism_outlined;
+      return Icons.volunteer_activism_rounded;
     case 'cleanup':
-      return Icons.clean_hands_outlined;
+      return Icons.clean_hands_rounded;
     default:
-      return Icons.water_drop_outlined;
+      return Icons.water_drop_rounded;
   }
 }

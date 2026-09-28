@@ -11,7 +11,7 @@ import 'package:path_of_nur/features/history/presentation/history_archive_page.d
 import 'package:path_of_nur/features/learn/divine_life_lessons/presentation/divine_life_lessons_page.dart';
 import 'package:path_of_nur/features/learn/hadith/presentation/hadith_landing_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_category_page.dart';
-import 'package:path_of_nur/features/learn/presentation/pages/learn_quran_hub_page.dart';
+import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
 import 'package:path_of_nur/features/learn/presentation/application/learn_hub_providers.dart';
 import 'package:path_of_nur/features/learn/presentation/data/learn_category_catalog.dart';
 import 'package:path_of_nur/features/learn/presentation/data/learn_hub_taxonomy.dart';
@@ -116,19 +116,21 @@ void main() {
     router.go('/learn/category/quran-hadith');
     await pumpRouteFrames(tester);
     await tapActionCard(tester, l10n.learnCategoryQuranLearningTitle);
-    expect(find.byType(LearnQuranHubPage), findsOneWidget);
+    expect(find.byType(QuranAppHubPage), findsOneWidget);
 
     router.go('/learn/category/quran-hadith');
     await pumpRouteFrames(tester);
     await tapActionCard(tester, l10n.learnCategoryHadithTitle);
     expect(find.byType(HadithLandingPage), findsOneWidget);
 
-    router.go('/learn/category/quran-hadith');
+    // Phase 4 taxonomy moves: life lessons live under Character, World &
+    // Creation under Foundations.
+    router.go('/learn/category/character-adab');
     await pumpRouteFrames(tester);
     await tapActionCard(tester, l10n.learnCategoryDivineLifeLessonsTitle);
     expect(find.byType(DivineLifeLessonsPage), findsOneWidget);
 
-    router.go('/learn/category/quran-hadith');
+    router.go('/learn/category/foundations');
     await pumpRouteFrames(tester);
     await tapActionCard(tester, l10n.learnCategoryWorldCreationTitle);
     expect(find.byType(WorldLandingPage), findsOneWidget);
@@ -199,11 +201,14 @@ void main() {
     expect(find.byType(DailyWisdomCompanionPage), findsOneWidget);
   });
 
-  test('Character and Adab now routes into the owned companion surface', () {
+  test('Character and Adab routes into its category group page', () {
+    // Phase 4: the Character group page now lists the companion plus the
+    // life-lessons content that moved under it.
     final target = LearnHubTaxonomy.categoryRouteTarget(
       LearnHubCategoryId.characterAdab,
     );
-    expect(target.routeName, 'learnCharacterCompanion');
+    expect(target.routeName, 'learnHubCategory');
+    expect(target.pathParameters, {'categoryId': 'character-adab'});
   });
 
   test('companion surfaces carry stronger taxonomy search metadata', () async {

@@ -21,7 +21,6 @@ class QuranSurahInsightsBrowsePage extends ConsumerWidget {
     final insights = ref.watch(quranSurahInsightsBrowseProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.layers_outlined,
       title: l10n.quranSurahInsightsBrowseTitle,
       subtitle: l10n.quranSurahInsightsBrowseSubtitle,
       children: [
@@ -68,7 +67,6 @@ class QuranSurahInsightPage extends ConsumerWidget {
 
     if (insight == null) {
       return AppPageScaffold(
-        headerIcon: Icons.layers_outlined,
         title: l10n.quranSurahInsightsBrowseTitle,
         subtitle: l10n.quranSurahInsightsBrowseSubtitle,
         children: [PremiumCard(child: Text(l10n.quranSurahInsightsEmpty))],
@@ -76,7 +74,6 @@ class QuranSurahInsightPage extends ConsumerWidget {
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.layers_outlined,
       title:
           '${insight.surah.transliteratedName} • ${insight.surah.arabicName}',
       subtitle: insight.surah.englishName,
@@ -171,7 +168,7 @@ class QuranSurahInsightPage extends ConsumerWidget {
                       children: [
                         const Padding(
                           padding: EdgeInsets.only(top: 6),
-                          child: Icon(Icons.circle, size: 8),
+                          child: Icon(Icons.circle_rounded, size: 8),
                         ),
                         const SizedBox(width: 10),
                         Expanded(
@@ -237,7 +234,7 @@ class QuranSurahInsightPage extends ConsumerWidget {
                     children: [
                       const Padding(
                         padding: EdgeInsets.only(top: 6),
-                        child: Icon(Icons.circle, size: 8),
+                        child: Icon(Icons.circle_rounded, size: 8),
                       ),
                       const SizedBox(width: 10),
                       Expanded(child: Text(lesson)),
@@ -287,7 +284,6 @@ class QuranSurahInsightPage extends ConsumerWidget {
                     contentPadding: EdgeInsets.zero,
                     title: Text(_pathTitle(l10n, path.id)),
                     subtitle: Text(_pathDescription(l10n, path.id)),
-                    trailing: const Icon(Icons.chevron_right_rounded),
                     onTap: () => context.pushNamed(
                       'quranAyahInsightsPathDetail',
                       pathParameters: {'pathId': path.id},
@@ -318,7 +314,6 @@ class QuranSurahInsightPage extends ConsumerWidget {
                     subtitle: Text(
                       localizedQuranTopicRouteSubtitle(l10n, route),
                     ),
-                    trailing: const Icon(Icons.chevron_right_rounded),
                     onTap: () => context.pushNamed(
                       route.routeName,
                       pathParameters: route.pathParameters,
@@ -373,7 +368,6 @@ class _SurahInsightClusterCard extends ConsumerWidget {
                   '${l10n.quranReferenceViewerReferenceLabel(localizedEntry.ref.locationLabel)}\n${localizedEntry.summary}',
                 ),
                 isThreeLine: true,
-                trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () => openQuranReferenceLocation(
                   context,
                   ref: localizedEntry.ref,

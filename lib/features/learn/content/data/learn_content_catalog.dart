@@ -91,7 +91,7 @@ const List<LearnTopicCatalogItem> learnExpansionCatalog = [
     tags: ['hadith', 'practice', 'intention'],
     reflectionPrompts: [
       'Which lesson can become a daily routine?',
-      'What habit can you purify with intention today?',
+      'What habit can you purify for Allah today?',
     ],
     kidsSnippet: 'The Prophet taught us to be truthful and kind every day.',
     relatedHadithRef: 'Hadith reference placeholder',
@@ -135,7 +135,7 @@ const List<LearnTopicCatalogItem> learnExpansionCatalog = [
       'When do comparisons affect your peace most?',
       'How can gratitude redirect envy into growth?',
     ],
-    kidsSnippet: 'Be happy for others and ask الله for your own good too.',
+    kidsSnippet: 'Be happy for others and ask Allah for your own good too.',
     relatedQuranRef: '4:32 thematic reminder',
   ),
   LearnTopicCatalogItem(

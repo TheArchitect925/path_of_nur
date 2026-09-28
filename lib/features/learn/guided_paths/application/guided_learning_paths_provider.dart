@@ -310,9 +310,7 @@ GuidedLearningPathStep? _firstIncompleteStepForProgress(
 
 final localizedGuidedLearningPathsProvider =
     Provider<List<LocalizedGuidedLearningPath>>((ref) {
-      final locale =
-          ref.watch(appLocaleProvider) ??
-          AppLocalizations.supportedLocales.first;
+      final locale = ref.watch(appLocaleProvider) ?? defaultAppLocale;
       final l10n = lookupAppLocalizations(locale);
       return ref
           .watch(guidedLearningPathsProvider)

@@ -1,4 +1,7 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/kids_arabic/application/kids_arabic_starter_tracing.dart';
 import 'package:path_of_nur/features/kids_arabic/application/kids_arabic_vector_tracing.dart';
@@ -199,4 +202,104 @@ void main() {
     expect(latestMetrics.pointCount, greaterThan(0));
     expect(latestMetrics.strokeCount, 1);
   });
+
+  testWidgets(
+    'the pad paints the guide and the child\'s stroke on top of its paper',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(400, 700));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final boundaryKey = GlobalKey();
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: RepaintBoundary(
+              key: boundaryKey,
+              child: SizedBox(
+                width: 340,
+                child: KidsArabicTracingPad(
+                  letterId: 'alif',
+                  clearActionLabel: 'Reset',
+                  traceColorLabel: 'Color',
+                  readyBadgeLabel: 'Ready',
+                  colorOptions: const <KidsArabicTracingColorOption>[
+                    KidsArabicTracingColorOption(
+                      id: 'gold',
+                      color: Color(0xFFB9864E),
+                      label: 'Gold',
+                    ),
+                  ],
+                  onMetricsChanged: (_) {},
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump(const Duration(milliseconds: 50));
+
+      final pad = find.byWidgetPredicate(
+        (widget) =>
+            widget is CustomPaint &&
+            widget.painter != null &&
+            widget.painter.runtimeType.toString().contains('TracingPadPainter'),
+      );
+      expect(pad, findsOneWidget);
+      final rect = tester.getRect(pad);
+
+      // One stroke along the bottom edge, well away from the letter body.
+      final gesture = await tester.startGesture(
+        rect.topLeft + Offset(rect.width * 0.15, rect.height * 0.95),
+      );
+      await gesture.moveTo(
+        rect.topLeft + Offset(rect.width * 0.85, rect.height * 0.95),
+      );
+      await gesture.up();
+      await tester.pump();
+
+      final firstStroke = kidsArabicVectorTraceLetterFor('alif')!.strokes.first;
+      final strokeStart = firstStroke
+          .pathBuilder(rect.size)
+          .computeMetrics()
+          .first
+          .getTangentForOffset(0)!
+          .position;
+
+      await tester.runAsync(() async {
+        final boundary =
+            boundaryKey.currentContext!.findRenderObject()
+                as RenderRepaintBoundary;
+        final image = await boundary.toImage();
+        final bytes = (await image.toByteData(
+          format: ui.ImageByteFormat.rawRgba,
+        ))!;
+        Color pixelAt(Offset local) {
+          final x = (rect.left + local.dx).round();
+          final y = (rect.top + local.dy).round();
+          final i = (y * image.width + x) * 4;
+          return Color.fromARGB(
+            bytes.getUint8(i + 3),
+            bytes.getUint8(i),
+            bytes.getUint8(i + 1),
+            bytes.getUint8(i + 2),
+          );
+        }
+
+        expect(
+          pixelAt(Offset(rect.width * 0.9, rect.height * 0.1)),
+          const Color(0xFFF7EFE2),
+          reason: 'the paper the painter lays down',
+        );
+        expect(
+          pixelAt(strokeStart),
+          const Color(0xFF9E7448),
+          reason: 'the start dot of the first stroke',
+        );
+        expect(
+          pixelAt(Offset(rect.width * 0.25, rect.height * 0.95)),
+          const Color(0xFFB9864E),
+          reason: 'the child\'s stroke in the selected colour',
+        );
+      });
+    },
+  );
 }

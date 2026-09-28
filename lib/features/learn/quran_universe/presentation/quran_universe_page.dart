@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
@@ -14,6 +14,8 @@ import '../../prophets/domain/prophets_tab.dart';
 import '../../prophets/presentation/prophet_detail_page.dart';
 import '../data/seeded_quran_universe_data.dart';
 import '../domain/quran_universe_links.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../l10n/app_localizations.dart';
 
 enum _UniverseMode { prophet, theme, location, lesson }
 
@@ -33,10 +35,9 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
     final prophetById = {for (final p in prophets) p.id: p};
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.hub_rounded,
-      title: 'Qur\'an Universe',
-      subtitle:
-          'Explore connections between verses, prophets, themes, locations, lessons, and growth habits.',
+      headerIcon: AppIcons.universe,
+      title: AppLocalizations.of(context).quranUniverseTitle,
+      subtitle: AppLocalizations.of(context).quranUniverseSubtitle,
       children: [
         PremiumCard(
           child: Column(
@@ -128,7 +129,7 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
                 Text(
                   prophet.arabicName,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -144,7 +145,7 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
                   Text(
                     'Related Prophets: ${relatedNames.join(', ')}',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                 ],
@@ -165,11 +166,11 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: AppColors.surface.withValues(
+                                color: context.palette.surface.withValues(
                                   alpha: 0.24,
                                 ),
                                 border: Border.all(
-                                  color: AppColors.accentGoldSoft.withValues(
+                                  color: context.palette.accentSoft.withValues(
                                     alpha: 0.32,
                                   ),
                                 ),
@@ -475,12 +476,12 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(999),
           color: selected
-              ? AppColors.accentGold.withValues(alpha: 0.22)
-              : AppColors.surface.withValues(alpha: 0.28),
+              ? context.palette.accent.withValues(alpha: 0.22)
+              : context.palette.surface.withValues(alpha: 0.28),
           border: Border.all(
             color: selected
-                ? AppColors.accentGold.withValues(alpha: 0.58)
-                : AppColors.accentGoldSoft.withValues(alpha: 0.35),
+                ? context.palette.accent.withValues(alpha: 0.58)
+                : context.palette.accentSoft.withValues(alpha: 0.35),
           ),
         ),
         child: Text(label, style: const TextStyle(fontSize: 12.2)),
@@ -518,9 +519,9 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
               padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(999),
-                color: AppColors.surface.withValues(alpha: 0.26),
+                color: context.palette.surface.withValues(alpha: 0.26),
                 border: Border.all(
-                  color: AppColors.accentGoldSoft.withValues(alpha: 0.33),
+                  color: context.palette.accentSoft.withValues(alpha: 0.33),
                 ),
               ),
               child: Text(label, style: const TextStyle(fontSize: 11.4)),

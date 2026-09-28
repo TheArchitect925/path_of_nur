@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Launcher name. Matches CFBundleDisplayName on iOS; the brand name is
+         kept as-is in Latin-script locales and transliterated in Arabic script,
+         which is the convention appTitle already follows in the ARB files. -->
+    <string name="app_name">Path of Nūr</string>
+</resources>

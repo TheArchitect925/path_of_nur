@@ -85,7 +85,7 @@ final List<TriviaQuestion> islamicHistoryTriviaQuestions = [
       ('d', 'Masjid Quba'),
     ],
     explanation:
-        'Masjid Quba is closely associated with being the first mosque established in the Prophet’s era after the Hijrah.',
+        'Masjid Quba is closely associated with being the first mosque established in the Prophet’s ﷺ era after the Hijrah.',
     tags: const ['history', 'mosque', 'madinah', 'hijrah'],
     dailyEligible: true,
     beginnerFriendly: true,
@@ -219,7 +219,7 @@ final List<TriviaQuestion> islamicHistoryTriviaQuestions = [
         'Because it marked the formation of a new Muslim community and public order',
       ),
       ('c', 'Because it replaced the Qur’an'),
-      ('d', 'Because it cancelled prayer'),
+      ('d', 'Because it canceled prayer'),
     ],
     explanation:
         'The Hijrah was a social, spiritual, and political turning point for the Muslim ummah, not just a journey.',
@@ -231,7 +231,7 @@ final List<TriviaQuestion> islamicHistoryTriviaQuestions = [
     categoryId: 'history',
     difficulty: TriviaDifficulty.medium,
     prompt:
-        'Which battle is especially associated with a lesson about obeying the Prophet’s command and not abandoning one’s post?',
+        'Which battle is especially associated with a lesson about obeying the Prophet’s ﷺ command and not abandoning one’s post?',
     correctOptionId: 'c',
     options: const [
       ('a', 'Badr'),

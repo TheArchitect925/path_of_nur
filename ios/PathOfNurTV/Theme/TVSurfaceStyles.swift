@@ -1,19 +1,28 @@
 import SwiftUI
 
 enum TVSurfaceStyles {
+  /// The phone's glass-card grammar: a near-opaque surface fill with an
+  /// edge-light border gradient (bright toward the light, settling into the
+  /// palette border), gold-emphasized when the card asks for attention.
   @ViewBuilder
   static func cardBackground(
     elevated: Bool = false,
     emphasized: Bool = false
   ) -> some View {
-    RoundedRectangle(cornerRadius: TVTheme.cardRadius, style: .continuous)
+    let shape = RoundedRectangle(cornerRadius: TVTheme.cardRadius, style: .continuous)
+    shape
       .fill(elevated ? TVTheme.surfaceElevated : TVTheme.surface)
       .overlay(
-        RoundedRectangle(cornerRadius: TVTheme.cardRadius, style: .continuous)
-          .stroke(
-            emphasized ? TVTheme.accentSoft.opacity(0.45) : TVTheme.surfaceStroke,
-            lineWidth: emphasized ? 1.6 : 1
-          )
+        Group {
+          if emphasized {
+            shape.strokeBorder(
+              TVTheme.current.accent.opacity(0.45),
+              lineWidth: 1.6
+            )
+          } else {
+            shape.strokeBorder(TVTheme.current.cardBorderGradient, lineWidth: 1)
+          }
+        }
       )
       .shadow(
         color: TVTheme.surfaceShadow,
@@ -32,4 +41,3 @@ extension View {
     background(TVSurfaceStyles.cardBackground(elevated: elevated, emphasized: emphasized))
   }
 }
-

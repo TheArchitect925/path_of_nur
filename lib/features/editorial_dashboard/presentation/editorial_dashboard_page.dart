@@ -10,6 +10,7 @@ import '../application/editorial_dashboard_providers.dart';
 import '../domain/editorial_dashboard_models.dart';
 import '../domain/editorial_content_version_models.dart';
 import 'editorial_content_browser_page.dart';
+import '../../../core/theme/app_icons.dart';
 
 class EditorialDashboardPage extends ConsumerStatefulWidget {
   const EditorialDashboardPage({super.key});
@@ -72,7 +73,7 @@ class _EditorialDashboardPageState
           ..sort();
 
     return AppPageScaffold(
-      headerIcon: Icons.dashboard_customize_outlined,
+      headerIcon: AppIcons.dashboard,
       title: l10n.editorialDashboardTitle,
       subtitle: version.when(
         data: (value) => l10n.editorialDashboardSubtitle(value),
@@ -630,7 +631,7 @@ class _FiltersCard extends StatelessWidget {
               controller: searchController,
               onChanged: (_) => onChanged(),
               decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search_rounded),
                 hintText: l10n.editorialDashboardSearchHint,
               ),
             ),
@@ -1129,7 +1130,7 @@ class _DashboardItemTile extends StatelessWidget {
                     ),
                   OutlinedButton.icon(
                     onPressed: () => onSaveNote(context, item),
-                    icon: const Icon(Icons.sticky_note_2_outlined),
+                    icon: const Icon(Icons.sticky_note_2_rounded),
                     label: Text(
                       item.hasNote
                           ? l10n.editorialDashboardEditNoteAction
@@ -1188,7 +1189,7 @@ class _ReadinessMenuButton extends StatelessWidget {
       },
       child: OutlinedButton.icon(
         onPressed: null,
-        icon: const Icon(Icons.verified_outlined),
+        icon: const Icon(Icons.verified_rounded),
         label: Text(
           '${l10n.editorialDashboardSetReadinessAction}: '
           '${_readinessLabel(l10n, currentReadiness)}',

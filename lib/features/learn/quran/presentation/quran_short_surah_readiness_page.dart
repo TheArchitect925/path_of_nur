@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:just_audio/just_audio.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
@@ -23,6 +23,7 @@ import '../domain/quran_guided_passage_readiness_models.dart';
 import '../domain/quran_playback_request.dart';
 import '../domain/quran_readiness_bridge_models.dart';
 import '../domain/quran_short_surah_readiness_models.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranShortSurahReadinessPage extends ConsumerStatefulWidget {
   const QuranShortSurahReadinessPage({
@@ -264,7 +265,7 @@ class _QuranShortSurahReadinessPageState
                           textDirection: TextDirection.rtl,
                           style: const TextStyle(
                             fontSize: 34,
-                            fontFamily: 'AmiriQuran',
+                            fontFamily: AppFonts.quranArabic,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -413,7 +414,6 @@ class _QuranShortSurahReadinessPageState
     if (isKids) {
       return LearnHubPageScaffold(
         showDefaultQuote: false,
-        headerIcon: Icons.auto_stories_rounded,
         title: l10n.quranShortSurahsKidsPageTitle,
         subtitle: l10n.quranShortSurahsKidsPageSubtitle,
         children: content,
@@ -678,11 +678,11 @@ class _ReadinessChoicePill extends StatelessWidget {
     return AppLayeredGlassPillButton(
       onPressed: onTap,
       label: label,
-      tintColor: selected ? AppColors.accentGoldSoft : null,
+      tintColor: selected ? context.palette.accentSoft : null,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       foregroundColor: selected
-          ? const Color(0xFF8A5A1F)
-          : AppColors.onSurfaceSubtle,
+          ? context.palette.cautionInk
+          : context.palette.onSurfaceSubtle,
     );
   }
 }
@@ -698,10 +698,14 @@ class _SurahAyahCard extends StatelessWidget {
     final baseStyle =
         Theme.of(context).textTheme.headlineSmall?.copyWith(
           height: 1.7,
-          fontFamily: 'AmiriQuran',
+          fontFamily: AppFonts.quranArabic,
           fontWeight: FontWeight.w700,
         ) ??
-        const TextStyle(fontSize: 30, height: 1.7, fontFamily: 'AmiriQuran');
+        const TextStyle(
+          fontSize: 30,
+          height: 1.7,
+          fontFamily: AppFonts.quranArabic,
+        );
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 220),
@@ -711,7 +715,7 @@ class _SurahAyahCard extends StatelessWidget {
         color: highlighted ? const Color(0xFFFFF1D8) : const Color(0xFFF9F6F1),
         border: Border.all(
           color: highlighted
-              ? AppColors.accentGoldSoft
+              ? context.palette.accentSoft
               : const Color(0xFFE6DDD1),
         ),
       ),
@@ -733,16 +737,16 @@ class _SurahAyahCard extends StatelessWidget {
             text: buildQuranTextWithColoredHarakat(
               ayah.arabic,
               baseStyle.copyWith(
-                color: highlighted ? const Color(0xFF8A5A1F) : null,
+                color: highlighted ? context.palette.cautionInk : null,
               ),
             ),
           ),
           const SizedBox(height: 8),
           Text(
             ayah.translation,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
         ],
       ),

@@ -8,6 +8,7 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../bedtime_stories/presentation/bedtime_story_mini_player.dart';
 import '../application/seerah_journey_progress_service.dart';
 import '../domain/seerah_journey_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class KidsSeerahJourneyPage extends ConsumerStatefulWidget {
   const KidsSeerahJourneyPage({super.key, required this.journeyId});
@@ -31,8 +32,9 @@ class _KidsSeerahJourneyPageState extends ConsumerState<KidsSeerahJourneyPage> {
     if (summary == null) {
       return AppPageScaffold(
         title: l10n.kidsSeerahJourneysTitle,
-        subtitle: l10n.routerNotFoundTitle,
-        children: [Text(l10n.kidsSeerahJourneyUnavailableSubtitle)],
+        children: [
+          PremiumCard(child: Text(l10n.kidsSeerahJourneyUnavailableSubtitle)),
+        ],
       );
     }
 
@@ -51,7 +53,6 @@ class _KidsSeerahJourneyPageState extends ConsumerState<KidsSeerahJourneyPage> {
     return AppPageScaffold(
       title: summary.journey.title,
       subtitle: summary.journey.description,
-      headerIcon: Icons.route_rounded,
       floatingBottom: const BedtimeStoryMiniPlayer(),
       children: [
         PremiumCard(
@@ -227,7 +228,7 @@ class _StageCard extends StatelessWidget {
       case KidsSeerahJourneyNodeType.companionStory:
         return Icons.people_alt_rounded;
       case KidsSeerahJourneyNodeType.reflection:
-        return Icons.self_improvement_rounded;
+        return AppIcons.reflection;
       case KidsSeerahJourneyNodeType.quiz:
         return Icons.quiz_rounded;
       case KidsSeerahJourneyNodeType.milestone:

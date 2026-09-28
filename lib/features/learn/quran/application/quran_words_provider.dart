@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../shared/persistence/local_store.dart';
 import '../application/quran_providers.dart';
+import '../data/quran_word_glossary.dart';
 import '../domain/quran_content_refs.dart';
 import '../domain/quran_core_word.dart';
 
@@ -26,6 +27,30 @@ final quranCoreWordsProvider = FutureProvider<List<QuranCoreWord>>((ref) async {
       .where((item) => item.rank > 0)
       .toList()
     ..sort((a, b) => a.rank.compareTo(b.rank));
+});
+
+/// Reader-facing glossary: the curated top-words dataset keyed by its
+/// normalized form, with the hand-written glossary entries layered on top.
+/// The reader shows a gloss chip only for words this map knows.
+final quranWordGlossaryProvider = FutureProvider<Map<String, QuranWordGloss>>((
+  ref,
+) async {
+  final words = await ref.watch(quranCoreWordsProvider.future);
+  final map = <String, QuranWordGloss>{};
+  for (final word in words) {
+    final key = normalizeQuranWordForGlossary(word.arabic);
+    if (key.isEmpty) continue;
+    map.putIfAbsent(
+      key,
+      () => QuranWordGloss(
+        arabic: word.arabic,
+        gloss: word.meaning,
+        transliteration: word.transliteration,
+      ),
+    );
+  }
+  map.addAll(curatedGlossaryOverrides);
+  return Map.unmodifiable(map);
 });
 
 class QuranWordUsageSummary {

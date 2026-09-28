@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/companion_surfaces_ui_state.dart';
@@ -12,6 +13,8 @@ import '../../journey/domain/learning_journey_models.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../data/learn_companion_content.dart';
 import '../domain/learn_companion_models.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/section_title.dart';
 
 class CharacterCompanionPage extends ConsumerStatefulWidget {
   const CharacterCompanionPage({super.key, this.initialFocus});
@@ -121,7 +124,7 @@ class _CharacterCompanionPageState
     final focus = _selectedTraitId;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.favorite_outline_rounded,
+      headerIcon: AppIcons.character,
       title: l10n.learningJourneyBeautifulCharacterTitle,
       subtitle: l10n.learningJourneyBeautifulCharacterSubtitle,
       children: [
@@ -161,7 +164,7 @@ class _CharacterCompanionPageState
           ),
         ),
         const SizedBox(height: 20),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnCharacterCompanionFocusTitle,
           subtitle: l10n.learnCharacterCompanionFocusSubtitle,
         ),
@@ -212,7 +215,10 @@ class _CharacterCompanionPageState
                 const SizedBox(height: 6),
                 Text(
                   l10n.learnCharacterCompanionPracticeTodaySubtitle,
-                  style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
+                    height: 1.4,
+                  ),
                 ),
                 if (selectedTrait.nextStep != null) ...[
                   const SizedBox(height: 10),
@@ -228,7 +234,7 @@ class _CharacterCompanionPageState
           ),
         ],
         const SizedBox(height: 16),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnContentContinueTitle,
           subtitle: l10n.learnCompanionContinueSubtitle,
         ),
@@ -253,7 +259,7 @@ class _CharacterCompanionPageState
           ),
         ),
         const SizedBox(height: 20),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnCharacterCompanionTraitsTitle,
           subtitle: l10n.learnCharacterCompanionTraitsSubtitle,
         ),
@@ -265,7 +271,7 @@ class _CharacterCompanionPageState
           ),
         ),
         const SizedBox(height: 16),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnCharacterCompanionScenariosTitle,
           subtitle: l10n.learnCharacterCompanionScenariosSubtitle,
         ),
@@ -277,7 +283,7 @@ class _CharacterCompanionPageState
           ),
         ),
         const SizedBox(height: 16),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnCompanionSourcesTitle,
           subtitle: l10n.learnCompanionSourcesSubtitle,
         ),
@@ -353,38 +359,6 @@ class _CharacterCompanionPageState
     final prioritized = items.where((item) => item.id == suggested.id);
     final rest = items.where((item) => item.id != suggested.id);
     return [...prioritized, ...rest];
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w700,
-            height: 1.2,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          subtitle,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            height: 1.45,
-            color: theme.colorScheme.onSurfaceVariant,
-          ),
-        ),
-      ],
-    );
   }
 }
 
@@ -477,7 +451,6 @@ class _LinkCard extends StatelessWidget {
               ],
             ],
           ),
-          trailing: const Icon(Icons.chevron_right_rounded),
           onTap: () => context.pushNamed(
             item.routeTarget.routeName,
             pathParameters: item.routeTarget.pathParameters,

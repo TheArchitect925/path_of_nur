@@ -4,6 +4,11 @@ analyzer:
   exclude:
     - build/**
     - .dart_tool/**
+    - android/**
+    - ios/**
+    - web/**
+    - macos/**
+    - linux/**
 
 linter:
   # Keep the lint layer practical:

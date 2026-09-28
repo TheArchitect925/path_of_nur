@@ -62,4 +62,30 @@ void main() {
     expect(mapAppDeepLink(Uri.parse('https://example.com')), isNull);
     expect(mapAppDeepLink(Uri.parse('pathofnur://unknown/path')), isNull);
   });
+
+  test('host-form links map like path-form links', () {
+    // `pathofnur://learn/games` parses as host "learn" + path "/games"; it
+    // used to fall through to "Route not found" while the triple-slash form
+    // worked. Both shapes are handed out in the app, so both must resolve.
+    expect(
+      mapAppDeepLink(Uri.parse('pathofnur://learn/games')),
+      '/learn/games',
+    );
+    expect(
+      mapAppDeepLink(Uri.parse('pathofnur:///learn/games')),
+      '/learn/games',
+    );
+    expect(
+      mapAppDeepLink(
+        Uri.parse(
+          'pathofnur://learn/quizzes/crossword/puzzle/kids_alif_allah?pack=kids_basics',
+        ),
+      ),
+      '/learn/quizzes/crossword/puzzle/kids_alif_allah?pack=kids_basics',
+    );
+    expect(
+      mapAppDeepLink(Uri.parse('pathofnur://journey/today')),
+      '/journey/today',
+    );
+  });
 }

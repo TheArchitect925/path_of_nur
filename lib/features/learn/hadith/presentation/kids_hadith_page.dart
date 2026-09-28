@@ -5,10 +5,10 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../presentation/kids_learning_localizations.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_hadith_provider.dart';
 import '../domain/hadith_foundation_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class KidsHadithPage extends ConsumerWidget {
   const KidsHadithPage({super.key});
@@ -20,7 +20,7 @@ class KidsHadithPage extends ConsumerWidget {
 
     return LearnHubPageScaffold(
       showDefaultQuote: false,
-      headerIcon: Icons.menu_book_outlined,
+      headerIcon: AppIcons.hadith,
       title: l10n.kidsHadithPageTitleText,
       subtitle: l10n.kidsHadithPageSubtitleText,
       children: [

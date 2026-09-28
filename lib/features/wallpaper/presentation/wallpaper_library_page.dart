@@ -5,6 +5,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/wallpaper_provider.dart';
+import '../../../core/theme/app_icons.dart';
 
 class WallpaperLibraryPage extends ConsumerWidget {
   const WallpaperLibraryPage({super.key});
@@ -20,7 +21,7 @@ class WallpaperLibraryPage extends ConsumerWidget {
     final stories = ref.watch(wallpaperStoryCardsProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.wallpaper_rounded,
+      headerIcon: AppIcons.wallpapers,
       title: l10n.wallpaperLibraryTitle,
       subtitle: l10n.wallpaperLibrarySubtitle,
       children: [
@@ -145,7 +146,7 @@ class WallpaperLibraryPage extends ConsumerWidget {
                               color: Colors.black.withValues(alpha: 0.35),
                               alignment: Alignment.center,
                               child: const Icon(
-                                Icons.lock_outline,
+                                Icons.lock_outline_rounded,
                                 color: Colors.white,
                               ),
                             ),

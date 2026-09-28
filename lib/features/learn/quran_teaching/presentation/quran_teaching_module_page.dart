@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../arabic/data/arabic_alphabet_catalog.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/quran_teaching_controller.dart';
@@ -11,6 +12,7 @@ import '../domain/quran_teaching_models.dart';
 import 'quran_teaching_beginner_words_page.dart';
 import 'quran_teaching_lesson_page.dart';
 import 'quran_teaching_listen_only_page.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranTeachingModulePage extends ConsumerStatefulWidget {
   const QuranTeachingModulePage({super.key, required this.module});
@@ -81,14 +83,13 @@ class _QuranTeachingModulePageState
                 ],
               ),
               const SizedBox(height: 14),
-              LinearProgressIndicator(
+              ProgressBar(
                 value: moduleCompletionPercent(
                   module: widget.module,
                   catalog: catalog,
                   progress: progress,
                 ),
-                minHeight: 8,
-                borderRadius: BorderRadius.circular(999),
+                height: 8,
               ),
               const SizedBox(height: 10),
               Wrap(
@@ -123,7 +124,7 @@ class _QuranTeachingModulePageState
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
-                    color: AppColors.surfaceSoft.withValues(alpha: 0.45),
+                    color: context.palette.surfaceSoft.withValues(alpha: 0.45),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -261,7 +262,9 @@ class _QuranTeachingModulePageState
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: AppColors.surfaceSoft),
+                              border: Border.all(
+                                color: context.palette.surfaceSoft,
+                              ),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,7 +274,7 @@ class _QuranTeachingModulePageState
                                   textDirection: TextDirection.rtl,
                                   style: const TextStyle(
                                     fontSize: 30,
-                                    fontFamily: 'AmiriQuran',
+                                    fontFamily: AppFonts.quranArabic,
                                   ),
                                 ),
                                 Text(
@@ -284,7 +287,7 @@ class _QuranTeachingModulePageState
                                       : word.frequencyLabel,
                                   style: Theme.of(context).textTheme.bodySmall
                                       ?.copyWith(
-                                        color: AppColors.onSurfaceSubtle,
+                                        color: context.palette.onSurfaceSubtle,
                                       ),
                                 ),
                                 if (_showFoundInQuran &&
@@ -307,7 +310,7 @@ class _QuranTeachingModulePageState
                                     textDirection: TextDirection.rtl,
                                     style: const TextStyle(
                                       fontSize: 24,
-                                      fontFamily: 'AmiriQuran',
+                                      fontFamily: AppFonts.quranArabic,
                                     ),
                                   ),
                                 ],
@@ -317,7 +320,8 @@ class _QuranTeachingModulePageState
                                     l10n.quranTeachingBeginnerWordsOpenInlineHint,
                                     style: Theme.of(context).textTheme.bodySmall
                                         ?.copyWith(
-                                          color: AppColors.onSurfaceSubtle,
+                                          color:
+                                              context.palette.onSurfaceSubtle,
                                           fontWeight: FontWeight.w600,
                                         ),
                                   ),
@@ -354,7 +358,7 @@ class _QuranTeachingModulePageState
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: AppColors.surfaceSoft),
+                        border: Border.all(color: context.palette.surfaceSoft),
                       ),
                       child: Row(
                         children: [
@@ -372,7 +376,7 @@ class _QuranTeachingModulePageState
                                   textDirection: TextDirection.rtl,
                                   style: const TextStyle(
                                     fontSize: 28,
-                                    fontFamily: 'AmiriQuran',
+                                    fontFamily: AppFonts.quranArabic,
                                   ),
                                 ),
                                 Text(
@@ -456,7 +460,9 @@ class _QuranTeachingModulePageState
                           Text(
                             '${lesson.estimatedSeconds}s • ${completed ? 'Completed' : (unlocked ? 'Ready now' : 'Locked for guided path')}',
                             style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(color: AppColors.onSurfaceSubtle),
+                                ?.copyWith(
+                                  color: context.palette.onSurfaceSubtle,
+                                ),
                           ),
                         ],
                       ),
@@ -483,7 +489,7 @@ class _InfoChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surfaceSoft.withValues(alpha: 0.75),
+        color: context.palette.surfaceSoft.withValues(alpha: 0.75),
       ),
       child: Text(label),
     );

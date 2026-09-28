@@ -50,7 +50,7 @@ seededQuranSurahEnrichments77To114 = <QuranSurahEnrichmentSeed>[
     reflections: <QuranSurahReflectionPrompt>[
       QuranSurahReflectionPrompt(
         prompt:
-            'Where do I need to remember Allah\'s care more than I need to replay my fears?',
+            'Where do I need to remember Allah’s care more than I need to replay my fears?',
       ),
     ],
   ),
@@ -86,7 +86,7 @@ seededQuranSurahEnrichments77To114 = <QuranSurahEnrichmentSeed>[
         endAyahNumber: 5,
         label: 'The night of divine decree',
         whyItMatters:
-            'The whole surah anchors the greatness of the Quran\'s sending down and the blessedness of Laylat al-Qadr.',
+            'The whole surah anchors the greatness of the Qur’an’s sending down and the blessedness of Laylat al-Qadr.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
     ],
@@ -103,7 +103,7 @@ seededQuranSurahEnrichments77To114 = <QuranSurahEnrichmentSeed>[
         surahNumber: 99,
         ayahNumber: 7,
         endAyahNumber: 8,
-        label: 'Every atom\'s weight will be seen',
+        label: 'Every atom’s weight will be seen',
         whyItMatters:
             'These verses sharpen moral awareness by reminding us that no deed is truly lost.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
@@ -159,7 +159,7 @@ seededQuranSurahEnrichments77To114 = <QuranSurahEnrichmentSeed>[
         endAyahNumber: 4,
         label: 'The whole surah as a declaration of tawhid',
         whyItMatters:
-            'A short and direct declaration of Allah\'s oneness, self-sufficiency, and incomparability.',
+            'A short and direct declaration of Allah’s oneness, self-sufficiency, and incomparability.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
     ],
@@ -185,7 +185,7 @@ seededQuranSurahEnrichments77To114 = <QuranSurahEnrichmentSeed>[
         endAyahNumber: 5,
         label: 'Seeking refuge with the Lord of daybreak',
         whyItMatters:
-            'The surah trains the believer to seek Allah\'s protection from outward harms and hidden envy.',
+            'The surah trains the believer to seek Allah’s protection from outward harms and hidden envy.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
     ],
@@ -210,7 +210,7 @@ seededQuranSurahEnrichments77To114 = <QuranSurahEnrichmentSeed>[
         endAyahNumber: 6,
         label: 'Seeking refuge from whispering',
         whyItMatters:
-            'The surah teaches the believer to seek Allah\'s protection from inward whispering and subtle spiritual harm.',
+            'The surah teaches the believer to seek Allah’s protection from inward whispering and subtle spiritual harm.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
     ],
@@ -218,7 +218,7 @@ seededQuranSurahEnrichments77To114 = <QuranSurahEnrichmentSeed>[
       QuranSurahVirtueNote(
         title: 'A familiar daily protection surah',
         description:
-            'Many Muslims recite Surah An-Nas regularly with Al-Falaq and Al-Ikhlas as part of seeking Allah\'s protection.',
+            'Many Muslims recite Surah An-Nas regularly with Al-Falaq and Al-Ikhlas as part of seeking Allah’s protection.',
       ),
     ],
   ),

@@ -614,7 +614,7 @@ class KidsArabicParentPreferences {
         guidedProgressionEnabled: true,
         prioritizeReview: false,
         showTransliteration: true,
-        audioAutoplay: false,
+        audioAutoplay: true,
         allowParentAssignedFocus: false,
         parentAssignedLetterId: null,
         parentAssignedReviewLetterId: null,
@@ -631,7 +631,7 @@ class KidsArabicParentPreferences {
       guidedProgressionEnabled: json['guidedProgressionEnabled'] != false,
       prioritizeReview: json['prioritizeReview'] == true,
       showTransliteration: json['showTransliteration'] != false,
-      audioAutoplay: json['audioAutoplay'] == true,
+      audioAutoplay: json['audioAutoplay'] != false,
       allowParentAssignedFocus: json['allowParentAssignedFocus'] == true,
       parentAssignedLetterId: json['parentAssignedLetterId']?.toString(),
       parentAssignedReviewLetterId: json['parentAssignedReviewLetterId']

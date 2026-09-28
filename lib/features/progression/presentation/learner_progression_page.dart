@@ -10,6 +10,7 @@ import '../../kids/bedtime_stories/application/bedtime_active_learner_service.da
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/learner_progression_service.dart';
 import '../domain/learner_progression_models.dart';
+import '../../../core/theme/app_icons.dart';
 
 class LearnerProgressionPage extends ConsumerWidget {
   const LearnerProgressionPage({super.key});
@@ -27,7 +28,7 @@ class LearnerProgressionPage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.stars_rounded,
+      headerIcon: AppIcons.badges,
       title: l10n.progressionPageTitle,
       subtitle: l10n.progressionPageSubtitle,
       children: [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/theme/islamic_icons.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearnIconRegistry {
   const LearnIconRegistry._();
@@ -10,37 +10,37 @@ class LearnIconRegistry {
   };
 
   static const Map<String, IconData> _iconByKey = {
-    'quran': IslamicIcons.quran,
-    'quran_arabic': Icons.translate_rounded,
-    'islamic_trivia': Icons.quiz_rounded,
-    'hadith': IslamicIcons.allahText,
-    'life': IslamicIcons.prayingPerson,
-    'world': IslamicIcons.locationMuslim,
-    'prophets': IslamicIcons.muslim,
-    'baby_names': IslamicIcons.family,
-    'allah_names': IslamicIcons.allahText,
-    'quizzes': Icons.quiz_rounded,
-    'notes': Icons.sticky_note_2_rounded,
-    'duas': IslamicIcons.tasbih,
-    'lessons_library': Icons.library_books_rounded,
-    'salah': IslamicIcons.prayer,
-    'wudu': IslamicIcons.wudhu,
-    'other': Icons.dashboard_customize_rounded,
-    'search': Icons.search_rounded,
-    'bookmarks': Icons.bookmark_border_rounded,
-    'word_review': Icons.spellcheck_rounded,
-    'top_words': Icons.translate_rounded,
-    'quran_universe': Icons.hub_rounded,
-    'history': Icons.history_edu_rounded,
-    'ramadan': Icons.nightlight_round_rounded,
-    'dua': Icons.volunteer_activism_rounded,
-    'seerah': Icons.route_rounded,
+    'quran': AppIcons.quran,
+    'quran_arabic': AppIcons.arabic,
+    'islamic_trivia': AppIcons.quiz,
+    'hadith': AppIcons.namesOfAllah,
+    'life': AppIcons.family,
+    'world': AppIcons.world,
+    'prophets': AppIcons.prophets,
+    'baby_names': AppIcons.babyNames,
+    'allah_names': AppIcons.namesOfAllah,
+    'quizzes': AppIcons.quiz,
+    'notes': AppIcons.notes,
+    'duas': AppIcons.dua,
+    'lessons_library': AppIcons.lesson,
+    'salah': AppIcons.salah,
+    'wudu': AppIcons.wudu,
+    'other': AppIcons.browseAll,
+    'search': AppIcons.search,
+    'bookmarks': AppIcons.bookmarkOff,
+    'word_review': AppIcons.wordDeck,
+    'top_words': AppIcons.arabic,
+    'quran_universe': AppIcons.universe,
+    'history': AppIcons.history,
+    'ramadan': AppIcons.ramadan,
+    'dua': AppIcons.dua,
+    'seerah': AppIcons.seerah,
     'women_in_islam': Icons.groups_2_rounded,
-    'akhlaq': Icons.favorite_border_rounded,
+    'akhlaq': AppIcons.character,
   };
 
   static IconData iconFor(String key) {
-    return _iconByKey[key] ?? Icons.circle_outlined;
+    return _iconByKey[key] ?? AppIcons.dotHollow;
   }
 
   static String? assetFor(String key) {

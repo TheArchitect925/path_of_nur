@@ -1,28 +1,60 @@
 import SwiftUI
 
+/// The phone's typographic voice on the big screen: Lora (serif) carries
+/// display and titles, Figtree (sans) carries body and labels, and Amiri
+/// Quran carries ayah text — the same bundled faces the Flutter app uses
+/// (`AppFonts.latinSerif/latinSans`).
 enum TVTypography {
-  static let heroEyebrow = Font.system(size: 17, weight: .semibold, design: .rounded)
-  static let heroTitle = Font.system(size: 68, weight: .bold, design: .serif)
-  static let heroSubtitle = Font.system(size: 28, weight: .medium, design: .rounded)
-  static let heroSupporting = Font.system(size: 20, weight: .medium, design: .rounded)
+  private static func lora(_ size: CGFloat, semibold: Bool = true) -> Font {
+    .custom(semibold ? "Lora-SemiBold" : "Lora-Medium", size: size)
+  }
 
-  static let sectionTitle = Font.system(size: 34, weight: .bold, design: .rounded)
-  static let sectionSubtitle = Font.system(size: 19, weight: .medium, design: .rounded)
+  private static func figtree(_ size: CGFloat) -> Font {
+    .custom("Figtree-Medium", size: size)
+  }
 
-  static let featureTitle = Font.system(size: 30, weight: .bold, design: .serif)
-  static let featureSubtitle = Font.system(size: 18, weight: .medium, design: .rounded)
-  static let summaryTitle = Font.system(size: 34, weight: .bold, design: .serif)
-  static let summaryLine = Font.system(size: 20, weight: .semibold, design: .rounded)
-  static let body = Font.system(size: 20, weight: .medium, design: .rounded)
-  static let bodySecondary = Font.system(size: 18, weight: .medium, design: .rounded)
-  static let detail = Font.system(size: 16, weight: .semibold, design: .rounded)
+  private static func figtreeSemibold(_ size: CGFloat) -> Font {
+    .custom("Figtree-SemiBold", size: size)
+  }
 
-  static let arabicHero = Font.system(size: 34, weight: .medium, design: .serif)
-  static let arabicAyah = Font.system(size: 30, weight: .medium, design: .serif)
-  static let arabicSupport = Font.system(size: 24, weight: .semibold, design: .serif)
-  static let arabicBody = Font.system(size: 28, weight: .medium, design: .serif)
+  /// The faces an ayah is set in, at the size the room allows
+  /// (see `TVQuranAyahMetrics`).
+  static func amiriQuran(_ size: CGFloat) -> Font {
+    .custom("AmiriQuran-Regular", size: size)
+  }
 
-  static let chip = Font.system(size: 17, weight: .semibold, design: .rounded)
-  static let badge = Font.system(size: 14, weight: .bold, design: .rounded)
-  static let caption = Font.system(size: 15, weight: .semibold, design: .rounded)
+  static func figtreeMedium(_ size: CGFloat) -> Font {
+    figtree(size)
+  }
+
+  static let heroEyebrow = figtreeSemibold(17)
+  static let heroTitle = lora(64)
+  static let heroSubtitle = figtree(28)
+  static let heroSupporting = figtree(20)
+
+  static let sectionTitle = lora(34)
+  static let sectionSubtitle = figtree(19)
+
+  static let featureTitle = lora(29)
+  /// A row of a long list, and the title of a screen that keeps its height
+  /// for what is read below it.
+  static let listTitle = lora(25)
+  static let compactHeroTitle = lora(40)
+  static let featureSubtitle = figtree(18)
+  static let summaryTitle = lora(32)
+  static let summaryLine = figtreeSemibold(20)
+  static let body = figtree(20)
+  static let bodySecondary = figtree(18)
+  static let detail = figtreeSemibold(16)
+
+  static let arabicListening = Font.custom("AmiriQuran-Regular", size: 56)
+  static let arabicHero = Font.custom("AmiriQuran-Regular", size: 40)
+  static let arabicAyah = Font.custom("AmiriQuran-Regular", size: 34)
+  static let arabicSupport = Font.custom("AmiriQuran-Regular", size: 26)
+  static let arabicBody = Font.custom("AmiriQuran-Regular", size: 30)
+
+  static let numeralLarge = figtreeSemibold(36)
+  static let chip = figtreeSemibold(17)
+  static let badge = figtreeSemibold(14)
+  static let caption = figtreeSemibold(15)
 }

@@ -43,7 +43,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetLesson(
         title: 'Knowledge is a Divine Gift',
         description:
-            'Adam\'s story begins with knowledge, showing that learning is central to human dignity and responsibility.',
+            'Adam’s story begins with knowledge, showing that learning is central to human dignity and responsibility.',
       ),
       ProphetLesson(
         title: 'Arrogance Destroys',
@@ -117,12 +117,12 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A truthful and patient prophet remembered for righteousness and being raised to a high station.',
     overview:
-        'Idris is among the early prophets mentioned in the Qur\'an with honor and brevity. Though the Qur\'anic narrative about him is concise, he is praised for truthfulness, patience, and righteousness. His story reminds the reader that some of Allah\'s most honored servants are known not through lengthy narrative detail, but through the clarity of their character.',
+        'Idris is among the early prophets mentioned in the Qur’an with honor and brevity. Though the Qur’anic narrative about him is concise, he is praised for truthfulness, patience, and righteousness. His story reminds the reader that some of Allah’s most honored servants are known not through lengthy narrative detail, but through the clarity of their character.',
     storySections: [
       ProphetStorySection(
         title: 'A Truthful Servant',
         content:
-            'The Qur\'an describes Idris as truthful, which marks him as a prophet of sincerity and reliability in speech and faith.',
+            'The Qur’an describes Idris as truthful, which marks him as a prophet of sincerity and reliability in speech and faith.',
       ),
       ProphetStorySection(
         title: 'Patience and Righteousness',
@@ -132,7 +132,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Raised to a High Station',
         content:
-            'The Qur\'an states that Allah raised Idris to a high station, a phrase that conveys honor and special rank.',
+            'The Qur’an states that Allah raised Idris to a high station, a phrase that conveys honor and special rank.',
       ),
     ],
     keyLessons: [
@@ -171,7 +171,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     reflectionPrompts: [
       'How much do I value truthfulness in daily life?',
       'What forms of quiet righteousness go unnoticed by people but are seen by Allah?',
-      'How does patience shape a person\'s spiritual rank?',
+      'How does patience shape a person’s spiritual rank?',
     ],
     relatedProphetIds: ['adam', 'nuh', 'alyasa'],
     relatedLifeLessonIds: [
@@ -197,7 +197,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A prophet of extraordinary patience who called his people to Allah for many years despite rejection and mockery.',
     overview:
-        'Nuh was sent to a people who had fallen deeply into shirk and idol worship. He called them to worship Allah alone with persistence, wisdom, and compassion. His story is one of patience, rejection, warning, the ark, and ultimate trust in Allah\'s command.',
+        'Nuh was sent to a people who had fallen deeply into shirk and idol worship. He called them to worship Allah alone with persistence, wisdom, and compassion. His story is one of patience, rejection, warning, the ark, and ultimate trust in Allah’s command.',
     storySections: [
       ProphetStorySection(
         title: 'The Call to His People',
@@ -217,12 +217,12 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'The Flood',
         content:
-            'When Allah\'s command came, the flood overwhelmed the land. Those who believed were saved in the ark, while the rejectors were destroyed.',
+            'When Allah’s command came, the flood overwhelmed the land. Those who believed were saved in the ark, while the rejectors were destroyed.',
       ),
       ProphetStorySection(
         title: 'A Personal Test',
         content:
-            'Nuh\'s story includes the painful reality that even his own son did not believe. This teaches that guidance cannot be forced, even by the most sincere of callers.',
+            'Nuh’s story includes the painful reality that even his own son did not believe. This teaches that guidance cannot be forced, even by the most sincere of callers.',
       ),
     ],
     keyLessons: [
@@ -268,7 +268,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
         surahName: 'Ash-Shu\'ara',
         surahNumber: 26,
         verseRange: '105-122',
-        label: 'Rejection of Nuh\'s message',
+        label: 'Rejection of Nuh’s message',
         startAyah: 105,
       ),
       QuranReferenceItem(
@@ -315,7 +315,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A model of faith, courage, and surrender who challenged falsehood and trusted Allah through great tests.',
     overview:
-        'Ibrahim is one of the greatest prophets in Islam and a central figure in the history of tawhid. He rejected idol worship, reasoned with his people, endured persecution, and showed complete submission to Allah. His life is tied to the Ka\'bah, sacrifice, family legacy, and the pure path of monotheism.',
+        'Ibrahim is one of the greatest prophets in Islam and a central figure in the history of tawhid. He rejected idol worship, reasoned with his people, endured persecution, and showed complete submission to Allah. His life is tied to the Ka’bah, sacrifice, family legacy, and the pure path of monotheism.',
     storySections: [
       ProphetStorySection(
         title: 'Questioning False Worship',
@@ -335,12 +335,12 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'The Test of Sacrifice',
         content:
-            'Ibrahim saw in a dream that he must sacrifice his son. He and his son both submitted to Allah\'s command, and Allah replaced the sacrifice with a ram, honoring their surrender.',
+            'Ibrahim saw in a dream that he must sacrifice his son. He and his son both submitted to Allah’s command, and Allah replaced the sacrifice with a ram, honoring their surrender.',
       ),
       ProphetStorySection(
         title: 'Building the Ka\'bah',
         content:
-            'Ibrahim and Ismail raised the foundations of the Ka\'bah and prayed that their work be accepted. This tied his mission directly to the sacred center of worship.',
+            'Ibrahim and Ismail raised the foundations of the Ka’bah and prayed that their work be accepted. This tied his mission directly to the sacred center of worship.',
       ),
     ],
     keyLessons: [
@@ -365,7 +365,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
         surahName: 'Al-Baqarah',
         surahNumber: 2,
         verseRange: '124-141',
-        label: 'Tests, Ka\'bah, and legacy',
+        label: 'Tests, Ka’bah, and legacy',
         startAyah: 124,
       ),
       QuranReferenceItem(
@@ -442,7 +442,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A prophet whose life moved from jealousy and betrayal to dignity, wisdom, and forgiveness.',
     overview:
-        'Yusuf, the son of Yaqub, is the center of one of the most detailed stories in the Qur\'an. His life includes dreams, jealousy, betrayal, temptation, prison, political responsibility, and reunion. His story is a deep lesson in patience, purity, trust, and forgiveness.',
+        'Yusuf, the son of Yaqub, is the center of one of the most detailed stories in the Qur’an. His life includes dreams, jealousy, betrayal, temptation, prison, political responsibility, and reunion. His story is a deep lesson in patience, purity, trust, and forgiveness.',
     storySections: [
       ProphetStorySection(
         title: 'The Dream and Jealousy',
@@ -452,7 +452,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'The Well and Separation',
         content:
-            'His brothers cast him into a well and he was later taken away into Egypt. This began a chain of hardship that seemed dark on the surface but was unfolding under Allah\'s plan.',
+            'His brothers cast him into a well and he was later taken away into Egypt. This began a chain of hardship that seemed dark on the surface but was unfolding under Allah’s plan.',
       ),
       ProphetStorySection(
         title: 'Temptation and Integrity',
@@ -525,12 +525,12 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A prophet of courage, leadership, and reliance on Allah who confronted tyranny and guided a people through trial.',
     overview:
-        'Musa is the most mentioned prophet in the Qur\'an. His life includes rescue in infancy, confrontation with Pharaoh, revelation at Mount Sinai, miracles, struggle, leadership, and repeated lessons in trust and responsibility. His story is one of courage before power and dependence on Allah through intense trials.',
+        'Musa is the most mentioned prophet in the Qur’an. His life includes rescue in infancy, confrontation with Pharaoh, revelation at Mount Sinai, miracles, struggle, leadership, and repeated lessons in trust and responsibility. His story is one of courage before power and dependence on Allah through intense trials.',
     storySections: [
       ProphetStorySection(
         title: 'Birth Under Tyranny',
         content:
-            'Musa was born in a time when Pharaoh was slaughtering the sons of the Israelites. Allah inspired his mother to place him in the river, and he was raised in Pharaoh\'s own household.',
+            'Musa was born in a time when Pharaoh was slaughtering the sons of the Israelites. Allah inspired his mother to place him in the river, and he was raised in Pharaoh’s own household.',
       ),
       ProphetStorySection(
         title: 'Leaving Egypt',
@@ -545,7 +545,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Confronting Pharaoh',
         content:
-            'Musa and Harun stood before one of history\'s great tyrants and called him to truth. Allah supported Musa with clear signs, yet Pharaoh persisted in arrogance.',
+            'Musa and Harun stood before one of history’s great tyrants and called him to truth. Allah supported Musa with clear signs, yet Pharaoh persisted in arrogance.',
       ),
       ProphetStorySection(
         title: 'Deliverance and Ongoing Trial',
@@ -645,7 +645,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A prophet who called his people to honesty, justice, and fairness, especially in trade and public dealings.',
     overview:
-        'Shu\'ayb was sent to the people of Madyan, who were known for corruption in trade, dishonesty in measure, and social wrongdoing. His message highlights moral economics, fairness, justice, and integrity in dealing with others. His story is especially powerful because it connects worship of Allah with honesty in society.',
+        'Shu’ayb was sent to the people of Madyan, who were known for corruption in trade, dishonesty in measure, and social wrongdoing. His message highlights moral economics, fairness, justice, and integrity in dealing with others. His story is especially powerful because it connects worship of Allah with honesty in society.',
     storySections: [
       ProphetStorySection(
         title: 'A People Corrupted in Dealings',
@@ -655,7 +655,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Call to Justice and Honesty',
         content:
-            'Shu\'ayb called them to worship Allah and to give full measure and weight fairly. His message joined faith and ethics inseparably.',
+            'Shu’ayb called them to worship Allah and to give full measure and weight fairly. His message joined faith and ethics inseparably.',
       ),
       ProphetStorySection(
         title: 'Mockery and Resistance',
@@ -672,7 +672,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetLesson(
         title: 'Faith and Ethics Cannot Be Separated',
         description:
-            'Shu\'ayb teaches that worship is not real if dishonesty rules business and public conduct.',
+            'Shu’ayb teaches that worship is not real if dishonesty rules business and public conduct.',
       ),
       ProphetLesson(
         title: 'Corruption Often Hides in Everyday Transactions',
@@ -751,7 +751,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'The Guests and the Final Warning',
         content:
-            'When the angels came in the form of guests, the corruption of Lut\'s people became fully exposed. The moment of judgment was near.',
+            'When the angels came in the form of guests, the corruption of Lut’s people became fully exposed. The moment of judgment was near.',
       ),
       ProphetStorySection(
         title: 'Rescue and Destruction',
@@ -802,7 +802,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
         surahName: 'Ash-Shu\'ara',
         surahNumber: 26,
         verseRange: '160-175',
-        label: 'Lut\'s warning to his people',
+        label: 'Lut’s warning to his people',
         startAyah: 160,
       ),
       QuranReferenceItem(
@@ -840,9 +840,9 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     eraTitle: 'Age of Ibrahim',
     regionLabel: 'Arabia / Makkah (Traditional)',
     shortSummary:
-        'A prophet of obedience, patience, and devotion whose life is closely tied to sacrifice and the Ka\'bah.',
+        'A prophet of obedience, patience, and devotion whose life is closely tied to sacrifice and the Ka’bah.',
     overview:
-        'Ismail, the son of Ibrahim, is remembered for his patience, truthfulness, and willingness to submit to Allah. His story is tied to some of the most sacred moments in Islamic history, including the test of sacrifice and the raising of the foundations of the Ka\'bah.',
+        'Ismail, the son of Ibrahim, is remembered for his patience, truthfulness, and willingness to submit to Allah. His story is tied to some of the most sacred moments in Islamic history, including the test of sacrifice and the raising of the foundations of the Ka’bah.',
     storySections: [
       ProphetStorySection(
         title: 'A Blessed Son',
@@ -862,19 +862,19 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Building the Ka\'bah',
         content:
-            'Ibrahim and Ismail raised the foundations of the Ka\'bah together, praying that their deed be accepted and that guidance continue through future generations.',
+            'Ibrahim and Ismail raised the foundations of the Ka’bah together, praying that their deed be accepted and that guidance continue through future generations.',
       ),
       ProphetStorySection(
         title: 'Truthfulness and Prayer',
         content:
-            'The Qur\'an praises Ismail for being true to his promise and for encouraging prayer and devotion among his people.',
+            'The Qur’an praises Ismail for being true to his promise and for encouraging prayer and devotion among his people.',
       ),
     ],
     keyLessons: [
       ProphetLesson(
         title: 'Submission Brings Honor',
         description:
-            'Ismail\'s greatness lies in his willing obedience to Allah.',
+            'Ismail’s greatness lies in his willing obedience to Allah.',
       ),
       ProphetLesson(
         title: 'Patience is Strength',
@@ -884,7 +884,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetLesson(
         title: 'Legacy is Built Through Worship',
         description:
-            'His role in the Ka\'bah shows that sacred legacy is built through obedience and service.',
+            'His role in the Ka’bah shows that sacred legacy is built through obedience and service.',
       ),
     ],
     quranReferences: [
@@ -892,7 +892,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
         surahName: 'Al-Baqarah',
         surahNumber: 2,
         verseRange: '125-129',
-        label: 'Ka\'bah and supplication of Ibrahim and Ismail',
+        label: 'Ka’bah and supplication of Ibrahim and Ismail',
         startAyah: 125,
       ),
       QuranReferenceItem(
@@ -939,7 +939,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A prophet from the blessed family of Ibrahim whose life reflects divine promise, continuity, and mercy.',
     overview:
-        'Ishaq was granted to Ibrahim and Sarah as glad tidings in old age. His story is less detailed in the Qur\'an than some other prophets, but he stands as an important link in the blessed chain of prophecy and the continuation of Ibrahim\'s legacy.',
+        'Ishaq was granted to Ibrahim and Sarah as glad tidings in old age. His story is less detailed in the Qur’an than some other prophets, but he stands as an important link in the blessed chain of prophecy and the continuation of Ibrahim’s legacy.',
     storySections: [
       ProphetStorySection(
         title: 'Glad Tidings',
@@ -949,7 +949,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'A Sign of Divine Promise',
         content:
-            'His birth demonstrated that Allah\'s decree is not constrained by age, weakness, or human assumption.',
+            'His birth demonstrated that Allah’s decree is not constrained by age, weakness, or human assumption.',
       ),
       ProphetStorySection(
         title: 'Continuation of the Lineage',
@@ -959,14 +959,14 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Honor Within a Blessed House',
         content:
-            'The Qur\'an mentions Ishaq among the honored prophets and righteous servants of Allah.',
+            'The Qur’an mentions Ishaq among the honored prophets and righteous servants of Allah.',
       ),
     ],
     keyLessons: [
       ProphetLesson(
         title: 'Allah Gives Beyond Expectation',
         description:
-            'Ishaq\'s story reminds believers not to reduce divine possibility to human limits.',
+            'Ishaq’s story reminds believers not to reduce divine possibility to human limits.',
       ),
       ProphetLesson(
         title: 'A Family Can Carry Faith Across Generations',
@@ -1029,9 +1029,9 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     eraTitle: 'Children of Israel',
     regionLabel: 'Canaan Region (Traditional / Approximate)',
     shortSummary:
-        'A prophet of deep patience and trust whose fatherhood, grief, and hope are among the most moving in the Qur\'an.',
+        'A prophet of deep patience and trust whose fatherhood, grief, and hope are among the most moving in the Qur’an.',
     overview:
-        'Yaqub, also known as Israel, was a prophet and the father of Yusuf and his brothers. His story in the Qur\'an highlights patient grief, trust in Allah, wise fatherhood, and the endurance of hope through long trials.',
+        'Yaqub, also known as Israel, was a prophet and the father of Yusuf and his brothers. His story in the Qur’an highlights patient grief, trust in Allah, wise fatherhood, and the endurance of hope through long trials.',
     storySections: [
       ProphetStorySection(
         title: 'A Father of a Household',
@@ -1051,24 +1051,24 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Hope Through Separation',
         content:
-            'Even after years of pain and uncertainty, Yaqub continued to believe that Allah\'s mercy was near and that reunion was possible.',
+            'Even after years of pain and uncertainty, Yaqub continued to believe that Allah’s mercy was near and that reunion was possible.',
       ),
       ProphetStorySection(
         title: 'A Legacy of Faith',
         content:
-            'The Qur\'an also presents Yaqub as a father who cared deeply about the faith of his children and what they would worship after him.',
+            'The Qur’an also presents Yaqub as a father who cared deeply about the faith of his children and what they would worship after him.',
       ),
     ],
     keyLessons: [
       ProphetLesson(
         title: 'Beautiful Patience is Active Faith',
         description:
-            'Yaqub\'s patience did not erase pain, but it kept pain tied to trust in Allah.',
+            'Yaqub’s patience did not erase pain, but it kept pain tied to trust in Allah.',
       ),
       ProphetLesson(
         title: 'Grief and Faith Can Coexist',
         description:
-            'His sorrow was deep, yet it never turned into despair of Allah\'s mercy.',
+            'His sorrow was deep, yet it never turned into despair of Allah’s mercy.',
       ),
       ProphetLesson(
         title: 'Family is a Trust',
@@ -1127,7 +1127,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Rise Through Courage',
         content:
-            'Dawud is associated in the Qur\'an with courage and victory, including the slaying of Jalut. He rose not merely through strength, but through Allah\'s support.',
+            'Dawud is associated in the Qur’an with courage and victory, including the slaying of Jalut. He rose not merely through strength, but through Allah’s support.',
       ),
       ProphetStorySection(
         title: 'Prophethood and Kingship',
@@ -1142,7 +1142,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Justice and Judgment',
         content:
-            'The Qur\'an presents Dawud as a judge who was entrusted to rule with justice and not follow desire.',
+            'The Qur’an presents Dawud as a judge who was entrusted to rule with justice and not follow desire.',
       ),
       ProphetStorySection(
         title: 'Repentance and Nearness',
@@ -1221,7 +1221,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A prophet-king of remarkable wisdom and vast authority who remained grateful to Allah for every gift.',
     overview:
-        'Sulayman, the son of Dawud, was granted a kingdom of extraordinary reach, wisdom, and unique blessings. His story in the Qur\'an includes authority, judgment, gratitude, communication with creation, and humility before Allah despite immense worldly power.',
+        'Sulayman, the son of Dawud, was granted a kingdom of extraordinary reach, wisdom, and unique blessings. His story in the Qur’an includes authority, judgment, gratitude, communication with creation, and humility before Allah despite immense worldly power.',
     storySections: [
       ProphetStorySection(
         title: 'Inheritance of Wisdom',
@@ -1229,7 +1229,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
             'Sulayman inherited not only kingship but also prophetic wisdom. He recognized his blessings as gifts from Allah, not proofs of his own greatness.',
       ),
       ProphetStorySection(
-        title: 'Power Over Creation by Allah\'s Leave',
+        title: 'Power Over Creation by Allah’s Leave',
         content:
             'Allah granted Sulayman unusual favors, including command over winds and jinn by divine permission. These gifts were tests of gratitude as much as signs of power.',
       ),
@@ -1246,7 +1246,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'A Kingdom as a Test',
         content:
-            'Sulayman\'s life demonstrates that abundance can be as great a test as hardship, and that gratitude is the right response to power.',
+            'Sulayman’s life demonstrates that abundance can be as great a test as hardship, and that gratitude is the right response to power.',
       ),
     ],
     keyLessons: [
@@ -1285,7 +1285,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
         surahName: 'Sad',
         surahNumber: 38,
         verseRange: '30-40',
-        label: 'Sulayman\'s devotion and kingdom',
+        label: 'Sulayman’s devotion and kingdom',
         startAyah: 30,
       ),
     ],
@@ -1313,7 +1313,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A prophet whose story is a profound lesson in turning back to Allah, humility, and the mercy that follows sincere return.',
     overview:
-        'Yunus was sent to a people who initially resisted guidance. His story is remembered for his departure, the trial of the great fish, his prayer in darkness, and Allah\'s mercy in restoring him. It is one of the Qur\'an\'s clearest lessons in repentance, humility, and divine rescue.',
+        'Yunus was sent to a people who initially resisted guidance. His story is remembered for his departure, the trial of the great fish, his prayer in darkness, and Allah’s mercy in restoring him. It is one of the Qur’an’s clearest lessons in repentance, humility, and divine rescue.',
     storySections: [
       ProphetStorySection(
         title: 'Mission to His People',
@@ -1328,12 +1328,12 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Darkness and the Great Fish',
         content:
-            'He was swallowed by the great fish and found himself surrounded by darkness - the darkness of night, sea, and his condition. There he turned back to Allah with one of the most famous supplications in the Qur\'an.',
+            'He was swallowed by the great fish and found himself surrounded by darkness - the darkness of night, sea, and his condition. There he turned back to Allah with one of the most famous supplications in the Qur’an.',
       ),
       ProphetStorySection(
         title: 'The Prayer of Return',
         content:
-            'Yunus called out, acknowledging Allah\'s perfection and his own wrongdoing. This prayer became a model for repentance in moments of distress.',
+            'Yunus called out, acknowledging Allah’s perfection and his own wrongdoing. This prayer became a model for repentance in moments of distress.',
       ),
       ProphetStorySection(
         title: 'Mercy and Restoration',
@@ -1412,7 +1412,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A prophet remembered for extraordinary patience in suffering and unwavering return to Allah in hardship.',
     overview:
-        'Ayyub is one of the clearest Qur\'anic models of patience under severe trial. His story centers on hardship, endurance, supplication, and divine mercy. He did not deny his pain, but he remained turned toward Allah through it. For that, his story has become one of the greatest lessons in sabr and trust.',
+        'Ayyub is one of the clearest Qur’anic models of patience under severe trial. His story centers on hardship, endurance, supplication, and divine mercy. He did not deny his pain, but he remained turned toward Allah through it. For that, his story has become one of the greatest lessons in sabr and trust.',
     storySections: [
       ProphetStorySection(
         title: 'A Life Touched by Trial',
@@ -1422,7 +1422,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'A Prayer Without Rebellion',
         content:
-            'He called upon Allah with humility, acknowledging his suffering while still honoring Allah\'s mercy.',
+            'He called upon Allah with humility, acknowledging his suffering while still honoring Allah’s mercy.',
       ),
       ProphetStorySection(
         title: 'Mercy After Hardship',
@@ -1486,17 +1486,17 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A prophet or righteous servant mentioned among the patient and honored, remembered for steadfastness and goodness.',
     overview:
-        'Dhul-Kifl is mentioned briefly in the Qur\'an among the righteous and patient. The Qur\'anic presentation is concise, but the honor of being named among the steadfast servants of Allah is itself significant. His story teaches that not all greatness comes with long narrative detail; some lives are honored through constancy, patience, and righteousness.',
+        'Dhul-Kifl is mentioned briefly in the Qur’an among the righteous and patient. The Qur’anic presentation is concise, but the honor of being named among the steadfast servants of Allah is itself significant. His story teaches that not all greatness comes with long narrative detail; some lives are honored through constancy, patience, and righteousness.',
     storySections: [
       ProphetStorySection(
         title: 'Mentioned Among the Patient',
         content:
-            'The Qur\'an includes Dhul-Kifl among those marked by patience, which is one of the most repeated qualities of honored servants.',
+            'The Qur’an includes Dhul-Kifl among those marked by patience, which is one of the most repeated qualities of honored servants.',
       ),
       ProphetStorySection(
         title: 'Included Among the Righteous',
         content:
-            'His mention in the Qur\'an ties him to goodness, endurance, and closeness to Allah.',
+            'His mention in the Qur’an ties him to goodness, endurance, and closeness to Allah.',
       ),
       ProphetStorySection(
         title: 'Honor in Brevity',
@@ -1517,7 +1517,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetLesson(
         title: 'Righteousness Can Be Quiet',
         description:
-            'Some of Allah\'s honored servants are remembered through character more than dramatic events.',
+            'Some of Allah’s honored servants are remembered through character more than dramatic events.',
       ),
     ],
     quranReferences: [
@@ -1597,7 +1597,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetLesson(
         title: 'Strength Without Humility Becomes Ruin',
         description:
-            'Hud\'s people show how power can corrupt when it is not anchored in gratitude and obedience.',
+            'Hud’s people show how power can corrupt when it is not anchored in gratitude and obedience.',
       ),
       ProphetLesson(
         title: 'Arrogance Blinds',
@@ -1607,7 +1607,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetLesson(
         title: 'Worldly Power is Temporary',
         description:
-            'What seems unshakable can vanish quickly when Allah\'s decree arrives.',
+            'What seems unshakable can vanish quickly when Allah’s decree arrives.',
       ),
     ],
     quranReferences: [
@@ -1629,7 +1629,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
         surahName: 'Ash-Shu\'ara',
         surahNumber: 26,
         verseRange: '123-140',
-        label: 'Hud\'s warning to his people',
+        label: 'Hud’s warning to his people',
         startAyah: 123,
       ),
       QuranReferenceItem(
@@ -1689,7 +1689,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Defiance Against the Sign',
         content:
-            'Rather than submit, they harmed the she-camel and openly defied Allah\'s warning. Their sin was deliberate rejection after clarity.',
+            'Rather than submit, they harmed the she-camel and openly defied Allah’s warning. Their sin was deliberate rejection after clarity.',
       ),
       ProphetStorySection(
         title: 'The Final Punishment',
@@ -1771,9 +1771,9 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     eraTitle: 'Children of Israel',
     regionLabel: 'Egypt and Sinai',
     shortSummary:
-        'A prophet of support, gentleness, and shared mission who stood beside Musa in one of history\'s greatest confrontations with tyranny.',
+        'A prophet of support, gentleness, and shared mission who stood beside Musa in one of history’s greatest confrontations with tyranny.',
     overview:
-        'Harun, the brother of Musa, was chosen by Allah to assist him in the prophetic mission to Pharaoh. His story highlights the importance of partnership in da\'wah, patient leadership, and responsibility during moments of pressure and confusion.',
+        'Harun, the brother of Musa, was chosen by Allah to assist him in the prophetic mission to Pharaoh. His story highlights the importance of partnership in da’wah, patient leadership, and responsibility during moments of pressure and confusion.',
     storySections: [
       ProphetStorySection(
         title: 'Chosen as a Support',
@@ -1793,7 +1793,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Gentleness Under Pressure',
         content:
-            'Harun\'s conduct reflects wisdom, restraint, and concern for unity even during difficult moments.',
+            'Harun’s conduct reflects wisdom, restraint, and concern for unity even during difficult moments.',
       ),
     ],
     keyLessons: [
@@ -1860,7 +1860,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A prophet who called his people away from false worship and back to devotion to Allah alone.',
     overview:
-        'Ilyas was sent to people who had turned toward false worship and neglected their duty to Allah. Though the Qur\'an mentions him briefly, it presents him as one of the righteous and honored prophets who stood firmly for tawhid.',
+        'Ilyas was sent to people who had turned toward false worship and neglected their duty to Allah. Though the Qur’an mentions him briefly, it presents him as one of the righteous and honored prophets who stood firmly for tawhid.',
     storySections: [
       ProphetStorySection(
         title: 'A Call Against False Worship',
@@ -1870,12 +1870,12 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'A Brief but Powerful Reminder',
         content:
-            'Though his story is concise in the Qur\'an, its focus is sharp: worship Allah alone and reject all partners beside Him.',
+            'Though his story is concise in the Qur’an, its focus is sharp: worship Allah alone and reject all partners beside Him.',
       ),
       ProphetStorySection(
         title: 'Honor Among the Righteous',
         content:
-            'The Qur\'an counts Ilyas among the righteous and leaves his story as a distilled lesson in tawhid and steadfastness.',
+            'The Qur’an counts Ilyas among the righteous and leaves his story as a distilled lesson in tawhid and steadfastness.',
       ),
     ],
     keyLessons: [
@@ -1900,7 +1900,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ),
     ],
     reflectionPrompts: [
-      'What modern distractions behave like idols in people\'s lives?',
+      'What modern distractions behave like idols in people’s lives?',
       'How can a believer keep worship centered on Allah alone?',
       'What truths in life are simple, even if people complicate them?',
     ],
@@ -1923,17 +1923,17 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A righteous prophet mentioned among the honored servants of Allah, remembered for steadfastness and goodness.',
     overview:
-        'Alyasa is mentioned briefly in the Qur\'an among the guided and righteous prophets. Though fewer narrative details are given, his inclusion among the honored servants of Allah highlights the quiet greatness of steadfast righteousness.',
+        'Alyasa is mentioned briefly in the Qur’an among the guided and righteous prophets. Though fewer narrative details are given, his inclusion among the honored servants of Allah highlights the quiet greatness of steadfast righteousness.',
     storySections: [
       ProphetStorySection(
         title: 'Mentioned Among the Chosen',
         content:
-            'The Qur\'an names Alyasa among the prophets who were favored and guided by Allah.',
+            'The Qur’an names Alyasa among the prophets who were favored and guided by Allah.',
       ),
       ProphetStorySection(
         title: 'Quiet Greatness',
         content:
-            'Not every prophet\'s story is narrated in long detail. Alyasa\'s brief mention reminds us that honor with Allah does not depend on how much public attention a person receives.',
+            'Not every prophet’s story is narrated in long detail. Alyasa’s brief mention reminds us that honor with Allah does not depend on how much public attention a person receives.',
       ),
       ProphetStorySection(
         title: 'Steadfast Righteousness',
@@ -1993,12 +1993,12 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A prophet of gentle devotion and hopeful prayer who turned to Allah even when worldly expectations seemed closed.',
     overview:
-        'Zakariya is remembered in the Qur\'an for his quiet sincerity, care for Maryam, and his heartfelt prayer for a child despite old age. His story teaches hope, private supplication, and trust in Allah beyond what seems possible.',
+        'Zakariya is remembered in the Qur’an for his quiet sincerity, care for Maryam, and his heartfelt prayer for a child despite old age. His story teaches hope, private supplication, and trust in Allah beyond what seems possible.',
     storySections: [
       ProphetStorySection(
         title: 'A Caretaker of Worship',
         content:
-            'Zakariya cared for Maryam and witnessed signs of Allah\'s provision in her life, which strengthened his hope and longing in prayer.',
+            'Zakariya cared for Maryam and witnessed signs of Allah’s provision in her life, which strengthened his hope and longing in prayer.',
       ),
       ProphetStorySection(
         title: 'A Prayer in Old Age',
@@ -2008,7 +2008,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Glad Tidings of Yahya',
         content:
-            'Allah answered Zakariya\'s prayer with the glad tidings of Yahya, showing that divine mercy is not limited by human expectation.',
+            'Allah answered Zakariya’s prayer with the glad tidings of Yahya, showing that divine mercy is not limited by human expectation.',
       ),
       ProphetStorySection(
         title: 'A Sign and a Mercy',
@@ -2072,17 +2072,17 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     shortSummary:
         'A prophet marked by purity, wisdom, and devotion from an early age, remembered for gentleness and righteousness.',
     overview:
-        'Yahya, the son of Zakariya, was granted wisdom and purity while still young. The Qur\'an presents him as noble, dutiful, and deeply devoted to Allah. His story is a reminder that spiritual maturity can begin early and that purity of heart is a great honor.',
+        'Yahya, the son of Zakariya, was granted wisdom and purity while still young. The Qur’an presents him as noble, dutiful, and deeply devoted to Allah. His story is a reminder that spiritual maturity can begin early and that purity of heart is a great honor.',
     storySections: [
       ProphetStorySection(
         title: 'A Child of Answered Prayer',
         content:
-            'Yahya came as the answer to Zakariya\'s long and hopeful supplication, showing Allah\'s mercy across generations.',
+            'Yahya came as the answer to Zakariya’s long and hopeful supplication, showing Allah’s mercy across generations.',
       ),
       ProphetStorySection(
         title: 'Wisdom from a Young Age',
         content:
-            'The Qur\'an describes Yahya as being given wisdom while still a child, highlighting early devotion and seriousness in faith.',
+            'The Qur’an describes Yahya as being given wisdom while still a child, highlighting early devotion and seriousness in faith.',
       ),
       ProphetStorySection(
         title: 'Purity and Dutifulness',
@@ -2123,7 +2123,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ),
     ],
     reflectionPrompts: [
-      'How early should spiritual discipline begin in a person\'s life?',
+      'How early should spiritual discipline begin in a person’s life?',
       'What does purity of heart look like in practice?',
       'How can faith shape the way a person treats parents and others?',
     ],
@@ -2151,12 +2151,12 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Miraculous Birth',
         content:
-            'Isa was born to Maryam by Allah\'s command without a father. His birth was a sign of divine power, not a break from divine oneness.',
+            'Isa was born to Maryam by Allah’s command without a father. His birth was a sign of divine power, not a break from divine oneness.',
       ),
       ProphetStorySection(
         title: 'Speech in the Cradle',
         content:
-            'Even as an infant, Isa spoke by Allah\'s permission to defend his mother and declare himself a servant of Allah.',
+            'Even as an infant, Isa spoke by Allah’s permission to defend his mother and declare himself a servant of Allah.',
       ),
       ProphetStorySection(
         title: 'Signs and Miracles',
@@ -2166,19 +2166,19 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
       ProphetStorySection(
         title: 'Call to Faith',
         content:
-            'Isa called his people back to obedience, sincerity, and recognition of Allah\'s authority.',
+            'Isa called his people back to obedience, sincerity, and recognition of Allah’s authority.',
       ),
       ProphetStorySection(
         title: 'Honor and Protection',
         content:
-            'The Qur\'an honors Isa greatly while correcting false beliefs about him. He remains one of the great messengers of Allah.',
+            'The Qur’an honors Isa greatly while correcting false beliefs about him. He remains one of the great messengers of Allah.',
       ),
     ],
     keyLessons: [
       ProphetLesson(
         title: 'Miracles Point to Allah, Not Themselves',
         description:
-            'Isa\'s signs were proofs of Allah\'s power and his prophethood.',
+            'Isa’s signs were proofs of Allah’s power and his prophethood.',
       ),
       ProphetLesson(
         title: 'Purity and Truth Matter',
@@ -2222,7 +2222,7 @@ const List<ProphetDetailContent> seededProphetDetailContent = [
     ],
     reflectionPrompts: [
       'How can great honor exist without crossing into exaggeration?',
-      'What does Isa\'s story teach about truth and purity?',
+      'What does Isa’s story teach about truth and purity?',
       'How do miracles deepen faith in Allah rather than distract from Him?',
     ],
     relatedProphetIds: ['zakariya', 'yahya', 'muhammad'],

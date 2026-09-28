@@ -2,6 +2,7 @@ import SwiftUI
 
 struct TVRootView: View {
   @EnvironmentObject private var appViewModel: TVAppViewModel
+  @EnvironmentObject private var themeController: TVThemeController
 
   var body: some View {
     ZStack {
@@ -13,7 +14,10 @@ struct TVRootView: View {
         Group {
           switch appViewModel.selectedRoute {
           case .home:
-            TVHomeScreen(viewModel: appViewModel.homeViewModel)
+            TVHomeScreen(
+              viewModel: appViewModel.homeViewModel,
+              quran: appViewModel.quranViewModel
+            )
           case .profiles:
             TVProfilesScreen(viewModel: appViewModel.profilesViewModel)
           case .quran:
@@ -21,7 +25,10 @@ struct TVRootView: View {
           case .favorites:
             TVFavoritesScreen(viewModel: appViewModel.favoritesViewModel)
           case .settings:
-            TVSettingsScreen(viewModel: appViewModel.settingsViewModel)
+            TVSettingsScreen(
+              viewModel: appViewModel.settingsViewModel,
+              prayerService: appViewModel.prayerService
+            )
           case .arabic:
             TVArabicScreen(viewModel: appViewModel.arabicViewModel)
           case .learn:
@@ -37,9 +44,37 @@ struct TVRootView: View {
           }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        // The rail and the section beside it are two parts of one screen.
+        // The system moves the focus from the edge of one into the other,
+        // whichever side the rail is on, and no screen has to send it.
+        .focusSection()
+        // Menu steps back to the rail. From the rail it leaves the app, as
+        // it does anywhere there is nothing further back.
+        .onExitCommand {
+          appViewModel.focusNavigation()
+        }
       }
       .padding(28)
     }
     .tint(TVTheme.accentStrong)
+    .onAppear {
+      // The sky turns by the prayer times of the place, as the phone's does.
+      guard themeController.prayerTimes == nil else { return }
+      let prayers = appViewModel.prayerService
+      themeController.prayerTimes = { [weak prayers] now in
+        prayers?.skyTimes(at: now)
+      }
+      themeController.refresh()
+    }
+    .onReceive(appViewModel.prayerService.objectWillChange) { _ in
+      // A new place is a new dawn and dusk.
+      DispatchQueue.main.async {
+        themeController.refresh()
+      }
+    }
+    // Theme turnover (dawn, dusk, Friday, a Settings choice) is rare;
+    // rebuilding the tree by identity is how the static token facade
+    // repaints everywhere at once.
+    .id(themeController.renderToken)
   }
 }

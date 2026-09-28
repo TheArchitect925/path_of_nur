@@ -161,6 +161,8 @@ void main() {
     );
 
     expect(find.text('Listen and repeat'), findsOneWidget);
+    // Autoplay is on for a child by default (L1); count from there.
+    final baseline = audio.speakCount;
 
     await tester.scrollUntilVisible(
       find.text('Listen').first,
@@ -170,7 +172,7 @@ void main() {
     await tester.tap(find.text('Listen').first);
     await tester.pump();
 
-    expect(audio.speakCount, 1);
+    expect(audio.speakCount, baseline + 1);
     expect(find.text('Now say it softly with me.'), findsOneWidget);
   });
 
@@ -198,6 +200,12 @@ void main() {
       scrollable: find.byType(Scrollable).first,
     );
     await tester.tap(find.text('Continue'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 600));
+    // The first completion of a letter earns a sticker (K4): the celebration
+    // shows before the completion sheet and "Alhamdulillah!" dismisses it.
+    expect(find.text('You earned a sticker!'), findsOneWidget);
+    await tester.tap(find.text('Alhamdulillah!'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 600));
 

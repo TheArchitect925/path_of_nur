@@ -7,7 +7,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_watch_placeholder"
-        android:label="Path of Nūr Watch"
+        android:label="@string/watch_app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
         <activity
@@ -27,7 +27,7 @@
         <service
             android:name=".tiles.NextPrayerTileService"
             android:exported="true"
-            android:label="Next Prayer"
+            android:label="@string/tile_next_prayer"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
             <intent-filter>
                 <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
@@ -36,7 +36,7 @@
         <service
             android:name=".tiles.PrayerProgressTileService"
             android:exported="true"
-            android:label="Prayer Progress"
+            android:label="@string/tile_prayer_progress"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
             <intent-filter>
                 <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
@@ -45,7 +45,7 @@
         <service
             android:name=".tiles.DhikrTileService"
             android:exported="true"
-            android:label="Dhikr"
+            android:label="@string/tile_dhikr"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
             <intent-filter>
                 <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />

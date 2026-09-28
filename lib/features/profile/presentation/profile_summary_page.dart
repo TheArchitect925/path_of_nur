@@ -39,7 +39,6 @@ class ProfileSummaryPage extends ConsumerWidget {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.summarize_outlined,
       title: l10n.homeOverviewHeroTitle,
       subtitle: l10n.homeOverviewHeroSubtitle,
       children: [
@@ -82,7 +81,6 @@ class ProfileSummaryPage extends ConsumerWidget {
                     child: _ValueTile(
                       title: l10n.homeXpLevelTitle,
                       value: l10n.homeLevelValue(
-                        _formatCount(context, journey.level),
                         _formatCount(context, journey.level),
                       ),
                     ),
@@ -141,8 +139,6 @@ class ProfileSummaryPage extends ConsumerWidget {
                 value: l10n.homeContinueQuranValue(
                   learn.continueSurahName,
                   _formatCount(context, learn.continueAyah),
-                  learn.continueSurahName,
-                  _formatCount(context, learn.continueAyah),
                 ),
                 onTap: () => context.pushNamed('quranExplorer'),
               ),
@@ -179,17 +175,13 @@ class ProfileSummaryPage extends ConsumerWidget {
                 label: l10n.homeXpLevelTitle,
                 value: l10n.homeLevelValue(
                   _formatCount(context, journey.level),
-                  _formatCount(context, journey.level),
                 ),
                 onTap: () => goToTab(context, NavTab.journey),
               ),
               const Divider(height: 10),
               _SummaryRow(
                 label: l10n.homeJourneyXpProgressTitle,
-                value: l10n.homeXpValue(
-                  _formatCount(context, journey.xp),
-                  _formatCount(context, journey.xp),
-                ),
+                value: l10n.homeXpValue(_formatCount(context, journey.xp)),
                 onTap: () => goToTab(context, NavTab.journey),
               ),
               if (mode != AppSpecialMode.gentle) ...[

@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/world_progress_provider.dart';
@@ -20,9 +22,7 @@ class WorldThemePage extends ConsumerWidget {
     final theme = worldThemeById(themeId);
     if (theme == null) {
       return AppPageScaffold(
-        headerIcon: Icons.public_rounded,
         title: l10n.learnWorldSectionTitle,
-        subtitle: l10n.learnContentNotFound,
         children: [PremiumCard(child: Text(l10n.learnContentNotFound))],
       );
     }
@@ -40,7 +40,6 @@ class WorldThemePage extends ConsumerWidget {
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
       title: theme.title,
       subtitle: theme.summary,
       children: [
@@ -62,28 +61,18 @@ class WorldThemePage extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(
-                  value: progress.ratio,
-                  minHeight: 8,
-                ),
-              ),
+              ProgressBar(value: progress.ratio, height: 8),
             ],
           ),
         ),
         const SizedBox(height: 12),
         if (nextSubcategory != null)
-          PremiumCard(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.worldThemeNextSubcategoryTitle),
-              subtitle: Text(nextSubcategory.title),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => context.pushNamed(
-                'worldSubcategoryDetail',
-                pathParameters: {'subcategoryId': nextSubcategory!.id},
-              ),
+          CompactListTile(
+            title: l10n.worldThemeNextSubcategoryTitle,
+            subtitle: nextSubcategory.title,
+            onTap: () => context.pushNamed(
+              'worldSubcategoryDetail',
+              pathParameters: {'subcategoryId': nextSubcategory!.id},
             ),
           ),
         if (nextSubcategory != null) const SizedBox(height: 12),
@@ -106,7 +95,6 @@ class WorldThemePage extends ConsumerWidget {
                     subtitle: Text(
                       '${sub.summary}\n${l10n.worldSubcategoryProgress(p.completedLessons, p.totalLessons)}',
                     ),
-                    trailing: const Icon(Icons.chevron_right),
                     onTap: () => context.pushNamed(
                       'worldSubcategoryDetail',
                       pathParameters: {'subcategoryId': sub.id},

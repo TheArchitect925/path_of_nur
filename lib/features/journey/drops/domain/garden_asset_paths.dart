@@ -1,23 +1,33 @@
+/// Milestone scenes for the drops gallery, rendered by
+/// tooling/art_src/garden_art/generate_garden_art.mjs from the same layers as
+/// the living vista — so a milestone thumbnail and the garden itself can
+/// never drift apart. Ten scenes for ten milestones; no reuse, no gaps.
 const _gardenLevelArt = <int, String>{
-  1: 'assets/images/backgrounds/glv1.webp',
-  3: 'assets/images/backgrounds/glv3.webp',
-  4: 'assets/images/backgrounds/glv4.webp',
-  5: 'assets/images/backgrounds/glv5.webp',
-  6: 'assets/images/backgrounds/glv6.webp',
-  7: 'assets/images/backgrounds/glv7.webp',
+  1: 'assets/images/garden_art/garden_milestone_m01.webp',
+  2: 'assets/images/garden_art/garden_milestone_m02.webp',
+  3: 'assets/images/garden_art/garden_milestone_m03.webp',
+  4: 'assets/images/garden_art/garden_milestone_m04.webp',
+  5: 'assets/images/garden_art/garden_milestone_m05.webp',
+  6: 'assets/images/garden_art/garden_milestone_m06.webp',
+  7: 'assets/images/garden_art/garden_milestone_m07.webp',
+  8: 'assets/images/garden_art/garden_milestone_m08.webp',
+  9: 'assets/images/garden_art/garden_milestone_m09.webp',
+  10: 'assets/images/garden_art/garden_milestone_m10.webp',
 };
 
 const Map<String, String> gardenImageAssetPaths = <String, String>{
-  'garden/first_seed': 'assets/images/backgrounds/glv1.webp',
-  'garden/gentle_rain': 'assets/images/backgrounds/glv1.webp',
-  'garden/olive_shoot': 'assets/images/backgrounds/glv3.webp',
-  'garden/morning_path': 'assets/images/backgrounds/glv4.webp',
-  'garden/quiet_fountain': 'assets/images/backgrounds/glv5.webp',
-  'garden/olive_courtyard': 'assets/images/backgrounds/glv6.webp',
-  'garden/lamp_walk': 'assets/images/backgrounds/glv7.webp',
-  'garden/mercy_rain': 'assets/images/backgrounds/glv7.webp',
-  'garden/star_reflection': 'assets/images/backgrounds/glv7.webp',
-  'garden/path_of_nur': 'assets/images/backgrounds/glv7.webp',
+  'garden/first_seed': 'assets/images/garden_art/garden_milestone_m01.webp',
+  'garden/gentle_rain': 'assets/images/garden_art/garden_milestone_m02.webp',
+  'garden/olive_shoot': 'assets/images/garden_art/garden_milestone_m03.webp',
+  'garden/morning_path': 'assets/images/garden_art/garden_milestone_m04.webp',
+  'garden/quiet_fountain': 'assets/images/garden_art/garden_milestone_m05.webp',
+  'garden/olive_courtyard':
+      'assets/images/garden_art/garden_milestone_m06.webp',
+  'garden/lamp_walk': 'assets/images/garden_art/garden_milestone_m07.webp',
+  'garden/mercy_rain': 'assets/images/garden_art/garden_milestone_m08.webp',
+  'garden/star_reflection':
+      'assets/images/garden_art/garden_milestone_m09.webp',
+  'garden/path_of_nur': 'assets/images/garden_art/garden_milestone_m10.webp',
 };
 
 String gardenImageAssetPath(String imageAsset) {

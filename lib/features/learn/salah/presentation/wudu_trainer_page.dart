@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
-import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/wudu_trainer_controller.dart';
@@ -22,7 +21,6 @@ class WuduTrainerPage extends ConsumerWidget {
     final controller = ref.read(wuduTrainerControllerProvider.notifier);
 
     return LearnHubPageScaffold(
-      headerIcon: IslamicIcons.wudhu,
       title: content.heroTitle,
       subtitle: content.heroSubtitle,
       children: [

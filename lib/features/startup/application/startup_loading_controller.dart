@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/theme/app_motion.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../accounts_sync/application/accounts_sync_controller.dart';
 
@@ -13,6 +14,10 @@ enum StartupLoadingStage {
   finalizing,
   complete,
 }
+
+/// One unit of real start-up work. The light-line on the loading card
+/// advances as each one completes, in the order the stages are listed.
+typedef StartupCheckpoint = Future<void> Function();
 
 @immutable
 class StartupGreeting {
@@ -44,53 +49,78 @@ class StartupLoadingState {
   }
 }
 
+/// Walks the loading card through its stages on real work.
+///
+/// Each stage waits for its [StartupCheckpoint] (restoring, syncing,
+/// finalizing) but stays on screen at least [AppMotion.checkpointMinimum] so
+/// the light-line reads, and never longer than [AppMotion.checkpointCeiling]
+/// — a slow or failing checkpoint moves the reader on rather than holding
+/// them. The whole card stays at least [AppMotion.startupMinimum] so the
+/// kindle can finish, and completes as soon as the work is done after that.
 class StartupLoadingController extends StateNotifier<StartupLoadingState> {
   StartupLoadingController() : super(const StartupLoadingState.initial());
 
-  final List<Timer> _timers = <Timer>[];
+  int _generation = 0;
+
+  static const List<StartupLoadingStage> _stages = [
+    StartupLoadingStage.restoring,
+    StartupLoadingStage.syncing,
+    StartupLoadingStage.finalizing,
+  ];
 
   void start({
     required bool onboardingCompleted,
     required AccountsSyncState accountsSyncState,
+    List<StartupCheckpoint> checkpoints = const [],
   }) {
-    _clearTimers();
+    final generation = ++_generation;
     state = const StartupLoadingState.initial();
     final targetLocation = _resolveTargetLocation(
       onboardingCompleted: onboardingCompleted,
       accountsSyncState: accountsSyncState,
     );
-
-    _schedule(const Duration(milliseconds: 220), () {
-      state = state.copyWith(stage: StartupLoadingStage.restoring);
-    });
-    _schedule(const Duration(milliseconds: 520), () {
-      state = state.copyWith(stage: StartupLoadingStage.syncing);
-    });
-    _schedule(const Duration(milliseconds: 860), () {
-      state = state.copyWith(stage: StartupLoadingStage.finalizing);
-    });
-    _schedule(const Duration(milliseconds: 1180), () {
-      state = StartupLoadingState(
-        stage: StartupLoadingStage.complete,
-        targetLocation: targetLocation,
-      );
-    });
+    unawaited(_run(generation, targetLocation, checkpoints));
   }
 
-  void _schedule(Duration delay, VoidCallback callback) {
-    _timers.add(Timer(delay, callback));
-  }
+  Future<void> _run(
+    int generation,
+    String targetLocation,
+    List<StartupCheckpoint> checkpoints,
+  ) async {
+    // Timer-based, not clock-based, so the hold is honest under fake time.
+    final minimumHold = Future<void>.delayed(AppMotion.startupMinimum);
+    bool stale() => generation != _generation || !mounted;
 
-  void _clearTimers() {
-    for (final timer in _timers) {
-      timer.cancel();
+    for (var i = 0; i < _stages.length; i++) {
+      final checkpoint = i < checkpoints.length ? checkpoints[i] : null;
+      await Future.wait<void>([
+        if (checkpoint != null) _guarded(checkpoint),
+        Future<void>.delayed(AppMotion.checkpointMinimum),
+      ]);
+      if (stale()) return;
+      state = state.copyWith(stage: _stages[i]);
     }
-    _timers.clear();
+
+    await minimumHold;
+    if (stale()) return;
+    state = StartupLoadingState(
+      stage: StartupLoadingStage.complete,
+      targetLocation: targetLocation,
+    );
+  }
+
+  /// A checkpoint may be slow or may fail; neither holds the reader.
+  Future<void> _guarded(StartupCheckpoint checkpoint) async {
+    try {
+      await checkpoint().timeout(AppMotion.checkpointCeiling);
+    } catch (_) {
+      // Start-up work that fails is retried by its own feature later.
+    }
   }
 
   @override
   void dispose() {
-    _clearTimers();
+    _generation++;
     super.dispose();
   }
 }
@@ -114,6 +144,22 @@ String resolveStartupStatusLabel(
     case StartupLoadingStage.finalizing:
     case StartupLoadingStage.complete:
       return l10n.loadingStatusFinalizing;
+  }
+}
+
+/// How far along the light-line is for a stage, 0..1.
+double startupLightLineProgress(StartupLoadingStage stage) {
+  switch (stage) {
+    case StartupLoadingStage.initializing:
+      return 0.18;
+    case StartupLoadingStage.restoring:
+      return 0.45;
+    case StartupLoadingStage.syncing:
+      return 0.72;
+    case StartupLoadingStage.finalizing:
+      return 0.9;
+    case StartupLoadingStage.complete:
+      return 1;
   }
 }
 

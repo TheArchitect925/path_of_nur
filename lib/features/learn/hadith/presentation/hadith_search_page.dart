@@ -133,7 +133,6 @@ class _HadithSearchPageState extends ConsumerState<HadithSearchPage> {
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.search_rounded,
       title: l10n.hadithSearchTitle,
       subtitle: l10n.hadithSearchSubtitle,
       children: [
@@ -548,7 +547,7 @@ class _HadithSearchResultCard extends StatelessWidget {
                   IconButton(
                     onPressed: onShare,
                     tooltip: l10n.hadithActionShare,
-                    icon: const Icon(Icons.share_outlined),
+                    icon: const Icon(Icons.share_rounded),
                   ),
                 ],
               ),

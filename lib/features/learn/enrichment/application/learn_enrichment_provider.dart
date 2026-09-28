@@ -178,9 +178,7 @@ final pendingLearningMilestoneProvider = Provider<LearningMemoryRecord?>((ref) {
 
 final localizedPendingLearningMilestoneProvider =
     Provider<LocalizedLearningMilestoneMoment?>((ref) {
-      final locale =
-          ref.watch(appLocaleProvider) ??
-          AppLocalizations.supportedLocales.first;
+      final locale = ref.watch(appLocaleProvider) ?? defaultAppLocale;
       final l10n = lookupAppLocalizations(locale);
       final record = ref.watch(pendingLearningMilestoneProvider);
       if (record == null) return null;
@@ -194,9 +192,7 @@ final localizedPendingLearningMilestoneProvider =
 
 final localizedLearningMemoriesProvider =
     Provider<List<LocalizedLearningMemoryCard>>((ref) {
-      final locale =
-          ref.watch(appLocaleProvider) ??
-          AppLocalizations.supportedLocales.first;
+      final locale = ref.watch(appLocaleProvider) ?? defaultAppLocale;
       final l10n = lookupAppLocalizations(locale);
       final state = ref.watch(learnEnrichmentControllerProvider);
       return state.memories
@@ -213,8 +209,7 @@ final localizedLearningMemoriesProvider =
     });
 
 final localizedLearningEncouragementProvider = Provider<String?>((ref) {
-  final locale =
-      ref.watch(appLocaleProvider) ?? AppLocalizations.supportedLocales.first;
+  final locale = ref.watch(appLocaleProvider) ?? defaultAppLocale;
   final l10n = lookupAppLocalizations(locale);
   final pending = ref.watch(localizedPendingLearningMilestoneProvider);
   if (pending != null) return pending.encouragement;
@@ -236,9 +231,7 @@ final localizedPathCompletionEnrichmentProvider =
       ref,
       pathId,
     ) {
-      final locale =
-          ref.watch(appLocaleProvider) ??
-          AppLocalizations.supportedLocales.first;
+      final locale = ref.watch(appLocaleProvider) ?? defaultAppLocale;
       final l10n = lookupAppLocalizations(locale);
       final path = ref.watch(localizedGuidedLearningPathByIdProvider(pathId));
       if (path == null) return null;

@@ -56,13 +56,15 @@ void main() {
 
       final l10n = await AppLocalizations.delegate.load(const Locale('en'));
 
+      // Manual stepped scroll: scrollUntilVisible with BouncingScrollPhysics
+      // can fling past a short section header between its sparse finder
+      // evaluations; settling after each small drag keeps this deterministic.
       Future<void> expectSectionVisible(String text) async {
-        await tester.scrollUntilVisible(
-          find.text(text),
-          400,
-          scrollable: find.byType(Scrollable).first,
-          maxScrolls: 60,
-        );
+        final scrollable = find.byType(Scrollable).first;
+        for (var i = 0; i < 80 && find.text(text).evaluate().isEmpty; i++) {
+          await tester.drag(scrollable, const Offset(0, -200));
+          await tester.pumpAndSettle();
+        }
         expect(find.text(text), findsOneWidget);
       }
 

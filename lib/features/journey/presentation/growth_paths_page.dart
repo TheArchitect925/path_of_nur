@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/growth_providers.dart';
@@ -149,8 +149,8 @@ class _GrowthPathsPageState extends ConsumerState<GrowthPathsPage> {
                                 const SizedBox(height: 2),
                                 Text(
                                   progress.path.subtitle,
-                                  style: const TextStyle(
-                                    color: AppColors.onSurfaceSubtle,
+                                  style: TextStyle(
+                                    color: context.palette.onSurfaceSubtle,
                                   ),
                                 ),
                               ],

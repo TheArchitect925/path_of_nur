@@ -9,6 +9,7 @@ import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/growth_providers.dart';
 import '../xp/presentation/widgets/journey_xp_progress_card.dart';
+import '../../../core/theme/app_icons.dart';
 
 class GrowthHabitDashboardPage extends ConsumerWidget {
   const GrowthHabitDashboardPage({super.key});
@@ -25,7 +26,7 @@ class GrowthHabitDashboardPage extends ConsumerWidget {
     final categories = ref.watch(growthCustomHabitCategoriesProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.checklist_rtl_rounded,
+      headerIcon: AppIcons.habits,
       title: l10n.growthHabitDashboardTitle,
       subtitle: l10n.growthHabitDashboardSubtitle,
       children: [

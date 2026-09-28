@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
 
@@ -13,7 +14,7 @@ class QuranLiveActivityService {
   );
 
   Future<bool> isSupported() async {
-    if (!Platform.isIOS) return false;
+    if (kIsWeb || !Platform.isIOS) return false;
     try {
       final value = await _channel.invokeMethod<bool>('isSupported');
       return value ?? false;
@@ -32,7 +33,7 @@ class QuranLiveActivityService {
     required int elapsedSeconds,
     required int totalSeconds,
   }) async {
-    if (!Platform.isIOS) return;
+    if (kIsWeb || !Platform.isIOS) return;
     try {
       await _channel.invokeMethod<void>('updateQuranPlayback', {
         'surahNumber': surahNumber,
@@ -50,7 +51,7 @@ class QuranLiveActivityService {
   }
 
   Future<void> endPlaybackCard() async {
-    if (!Platform.isIOS) return;
+    if (kIsWeb || !Platform.isIOS) return;
     try {
       await _channel.invokeMethod<void>('endQuranPlayback');
     } catch (_) {

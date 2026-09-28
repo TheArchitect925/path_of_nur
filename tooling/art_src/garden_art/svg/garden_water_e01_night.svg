@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="1040 560 960 640"><defs><filter id="rough52" x="-12%" y="-12%" width="124%" height="124%"><feTurbulence type="fractalNoise" baseFrequency="0.030 0.045" numOctaves="2" seed="8" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="11"/></filter><linearGradient id="lg53" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#31456A"/><stop offset="1" stop-color="#141F38"/></linearGradient></defs><g filter="url(#rough52)">
+      <ellipse cx="1350" cy="1082" rx="86" ry="24" fill="#22334F"/>
+      <ellipse cx="1350" cy="1078" rx="62" ry="15" fill="url(#lg53)"/></g>
+      <ellipse cx="1338" cy="1078" rx="30" ry="4" fill="#F0E4C0" opacity="0.2"/>
+      <path d="M 1275 1094 q 30 10 74 8" stroke="#162216" stroke-width="5" opacity="0.5" fill="none"/></svg>

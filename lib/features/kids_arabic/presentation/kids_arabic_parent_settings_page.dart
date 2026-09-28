@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../arabic/presentation/widgets/arabic_learning_playback_speed_toggle.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_parent_provider.dart';
 import '../domain/kids_arabic_models.dart';
+import '../../../core/theme/app_palette.dart';
 
 class KidsArabicParentSettingsPage extends ConsumerWidget {
   const KidsArabicParentSettingsPage({super.key});
@@ -22,7 +24,6 @@ class KidsArabicParentSettingsPage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.tune_rounded,
       title: l10n.kidsArabicParentSettingsTitle,
       subtitle: l10n.kidsArabicParentSettingsSubtitle,
       children: [
@@ -49,6 +50,13 @@ class KidsArabicParentSettingsPage extends ConsumerWidget {
           subtitle: l10n.kidsArabicParentAudioAutoplaySubtitle,
           value: preferences.audioAutoplay,
           onChanged: notifier.setAudioAutoplay,
+        ),
+        // Normal / slow playback moved here from the child's lesson (L1).
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 4),
+          child: ArabicLearningPlaybackSpeedToggle(
+            variant: ArabicLearningPlaybackToggleVariant.kids,
+          ),
         ),
         _SettingToggle(
           title: l10n.kidsArabicParentAllowAssignedFocusTitle,
@@ -187,9 +195,9 @@ class _SettingToggle extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFF8F2E8),
+          color: context.palette.surface,
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFE5D5C1)),
+          border: Border.all(color: context.palette.surfaceSoft),
         ),
         child: Row(
           children: [
@@ -199,16 +207,16 @@ class _SettingToggle extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF2E261F),
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
                     subtitle,
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                     ),
                   ),
@@ -244,24 +252,27 @@ class _DropdownCard<T> extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF8F2E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFE5D5C1)),
+        border: Border.all(color: context.palette.surfaceSoft),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
           Text(
             subtitle,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           const SizedBox(height: 12),
           DropdownButtonFormField<T>(
@@ -272,11 +283,11 @@ class _DropdownCard<T> extends StatelessWidget {
               fillColor: Colors.white,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
-                borderSide: const BorderSide(color: Color(0xFFE5D5C1)),
+                borderSide: BorderSide(color: context.palette.surfaceSoft),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
-                borderSide: const BorderSide(color: Color(0xFFE5D5C1)),
+                borderSide: BorderSide(color: context.palette.surfaceSoft),
               ),
             ),
             items: items,

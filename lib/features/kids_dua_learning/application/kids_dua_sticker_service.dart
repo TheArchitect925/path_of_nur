@@ -22,7 +22,7 @@ const kidsDuaCategoryStickers = <KidsDuaSticker>[
     id: 'sleep_sticker',
     categoryId: 'sleep',
     titleKey: 'kidsDuaStickerSleep',
-    icon: Icons.nightlight_round,
+    icon: Icons.nightlight_round_rounded,
     color: Color(0xFF6B7FD7),
   ),
   KidsDuaSticker(

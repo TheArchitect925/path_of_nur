@@ -628,4 +628,70 @@ void main() {
       expect(fakeLiveActivity.endCount, 1);
     },
   );
+  testWidgets('shell playback pill can be dismissed', (tester) async {
+    late _FakeMiniPlayerController controller;
+    SharedPreferences.setMockInitialValues(const <String, Object>{});
+    final prefs = await SharedPreferences.getInstance();
+    final router = GoRouter(
+      initialLocation: '/home',
+      routes: [
+        GoRoute(
+          path: '/home',
+          name: 'home',
+          builder: (context, state) => const AppShellScaffold(
+            currentLocation: '/home',
+            child: Center(child: Text('Home')),
+          ),
+        ),
+        GoRoute(
+          path: '/quran/surah/:surahNumber',
+          name: 'quranReader',
+          builder: (context, state) => const SizedBox.shrink(),
+        ),
+      ],
+    );
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          quranPlayerControllerProvider.overrideWith(
+            (ref) => controller = _FakeMiniPlayerController(ref, AudioPlayer()),
+          ),
+          quranGlobalPlaybackStateProvider.overrideWithValue(
+            const QuranReaderPlaybackState(
+              pageSurahNumber: 1,
+              reciterId: 'husary',
+              reciterName: 'Husary',
+              activeSurahNumber: 1,
+              activeAyahNumber: 6,
+              hasPlayback: true,
+              status: QuranReaderPlaybackStatus.playing,
+              canPause: true,
+              canPlay: false,
+            ),
+          ),
+        ],
+        child: MaterialApp.router(
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          routerConfig: router,
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 200));
+
+    final dismiss = find.byKey(const ValueKey('quran-shell-player-dismiss'));
+    expect(dismiss, findsOneWidget);
+
+    await tester.tap(dismiss);
+    await tester.pump();
+    expect(controller.stopped, isTrue);
+  });
 }

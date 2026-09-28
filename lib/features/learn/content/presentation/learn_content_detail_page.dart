@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
@@ -56,9 +55,7 @@ class _LearnContentDetailPageState
     final topic = topicById(widget.category, widget.topicId);
     if (topic == null) {
       return AppPageScaffold(
-        headerIcon: Icons.article_outlined,
         title: l10n.learnContentTopicLabel,
-        subtitle: l10n.learnContentUnavailableSubtitle,
         children: [PremiumCard(child: Text(l10n.learnContentNotFound))],
       );
     }
@@ -98,10 +95,8 @@ class _LearnContentDetailPageState
     const referenceItems = <LearningReferenceItem>[];
 
     return LearningDetailPage(
-      headerIcon: _headerIcon(widget.category),
       title: topic.title,
       subtitle: topic.subtitle,
-      quote: buildLearningCompactQuote(),
       onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
       sections: [
         LearningSection(
@@ -256,16 +251,5 @@ String _categoryParam(LearnTopicCategory category) {
       return 'world';
     case LearnTopicCategory.hadith:
       return 'hadith';
-  }
-}
-
-IconData _headerIcon(LearnTopicCategory category) {
-  switch (category) {
-    case LearnTopicCategory.life:
-      return Icons.family_restroom_rounded;
-    case LearnTopicCategory.world:
-      return Icons.public_rounded;
-    case LearnTopicCategory.hadith:
-      return Icons.menu_book_rounded;
   }
 }

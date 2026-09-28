@@ -1162,7 +1162,11 @@ kBedtimeStoryMemoryDecks = <BedtimeStoryMemoryDeckSeed>[
       _pair('muhammad3_pair_1', 'Journey name', 'Hijrah'),
       _pair('muhammad3_pair_2', 'Close friend', 'Abu Bakr'),
       _pair('muhammad3_pair_3', 'New city', 'Madinah'),
-      _pair('muhammad3_pair_4', 'What the Prophet built', 'A caring community'),
+      _pair(
+        'muhammad3_pair_4',
+        'What the Prophet ﷺ built',
+        'A caring community',
+      ),
     ],
     reward: _memoryReward,
     relatedStoryIds: <String>['story_prophet_muhammad_part4_bedtime_v1'],

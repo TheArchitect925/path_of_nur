@@ -84,7 +84,7 @@ const List<DailyLearningItem> seededDailyLearningItems = [
     title: 'One lesson for today',
     subtitle: 'Hope beyond limits',
     body:
-        'Ishaq came as glad tidings beyond normal expectation. Never reduce Allah\'s mercy to what seems likely.',
+        'Ishaq came as glad tidings beyond normal expectation. Never reduce Allah’s mercy to what seems likely.',
     linkedProphetId: 'ishaq',
     linkedLessonId: 'hope',
     linkedGrowthHabitId: 'practice_gratitude',
@@ -117,7 +117,7 @@ const List<DailyLearningItem> seededDailyLearningItems = [
     title: 'Today\'s Lesson',
     subtitle: 'Honesty in dealings',
     body:
-        'Shu\'ayb links worship with fairness in transactions. Faith and ethics should move together.',
+        'Shu’ayb links worship with fairness in transactions. Faith and ethics should move together.',
     linkedProphetId: 'shuayb',
     linkedLessonId: 'integrity',
     linkedGrowthHabitId: 'help_someone',
@@ -247,7 +247,7 @@ const List<DailyLearningItem> seededDailyLearningItems = [
     title: 'Today\'s Core Call',
     subtitle: 'Miracles point to Allah',
     body:
-        'Isa was given clear signs by Allah\'s permission. Signs should deepen tawhid, not distract from it.',
+        'Isa was given clear signs by Allah’s permission. Signs should deepen tawhid, not distract from it.',
     linkedProphetId: 'isa',
     linkedLessonId: 'tawhid',
     linkedGrowthHabitId: 'study_islamic_knowledge',
@@ -329,7 +329,7 @@ const List<DailyLearningItem> seededDailyLearningItems = [
     title: 'One lesson for today',
     subtitle: 'Justice and fairness',
     body:
-        'Shu\'ayb and Dawud remind us that justice belongs in both public leadership and everyday dealings.',
+        'Shu’ayb and Dawud remind us that justice belongs in both public leadership and everyday dealings.',
     linkedLessonId: 'justice',
     linkedGrowthHabitId: 'help_someone',
   ),
@@ -364,7 +364,7 @@ const List<DailyLearningItem> seededFridayDailyLearningItems = [
     id: 'seasonal_friday_salawat',
     type: DailyLearningItemType.lesson,
     title: 'Friday Reminder',
-    subtitle: 'Send salawat with presence',
+    subtitle: 'Send salawat on the Prophet ﷺ',
     body:
         'Friday is a weekly renewal. Keep your tongue moist with salawat and your heart attentive.',
     linkedProphetId: 'muhammad',

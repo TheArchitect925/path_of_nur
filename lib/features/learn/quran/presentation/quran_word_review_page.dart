@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../core/theme/app_text_styles.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
@@ -28,7 +29,6 @@ class _QuranWordReviewPageState extends ConsumerState<QuranWordReviewPage> {
 
     if (deck.isEmpty) {
       return AppPageScaffold(
-        headerIcon: Icons.style_outlined,
         title: l10n.quranWordReviewTitle,
         subtitle: l10n.quranWordReviewSubtitle,
         children: [PremiumCard(child: Text(l10n.quranWordReviewEmpty))],
@@ -39,7 +39,6 @@ class _QuranWordReviewPageState extends ConsumerState<QuranWordReviewPage> {
     final word = deck[safeIndex];
 
     return AppPageScaffold(
-      headerIcon: Icons.style_outlined,
       title: l10n.quranWordReviewTitle,
       subtitle: l10n.quranWordReviewProgressLabel(safeIndex + 1, deck.length),
       children: [
@@ -71,7 +70,7 @@ class _QuranWordReviewPageState extends ConsumerState<QuranWordReviewPage> {
               ] else
                 Text(
                   l10n.quranWordReviewRevealHint,
-                  style: TextStyle(color: Color(0xFF6A5A4A)),
+                  style: TextStyle(color: context.palette.onSurfaceSubtle),
                 ),
               const SizedBox(height: 16),
               Row(

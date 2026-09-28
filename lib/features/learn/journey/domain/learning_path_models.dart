@@ -25,6 +25,8 @@ class LearningPathPhase {
     required this.description,
     required this.order,
     required this.journeyIds,
+    this.guidedPathIds = const <String>[],
+    this.triviaPathId,
   });
 
   final String id;
@@ -32,6 +34,13 @@ class LearningPathPhase {
   final String description;
   final int order;
   final List<String> journeyIds;
+
+  /// Guided learning paths that walk this phase step by step — the "one
+  /// spine" merge: guided paths render as steps inside the leveled path.
+  final List<String> guidedPathIds;
+
+  /// End-of-phase "test yourself" trivia path, when one fits the material.
+  final String? triviaPathId;
 }
 
 class UserLearningPathState {

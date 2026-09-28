@@ -4,6 +4,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../domain/arabic_learning_lesson_pack_models.dart';
 import '../arabic_learning_lesson_pack_localizations.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 enum ArabicLearningLessonPacksVariant { kids, adult }
 
@@ -139,7 +140,7 @@ class _PackCard extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 style: const TextStyle(
                   fontSize: 24,
-                  fontFamily: 'AmiriQuran',
+                  fontFamily: AppFonts.quranArabic,
                   fontWeight: FontWeight.w700,
                 ),
               ),

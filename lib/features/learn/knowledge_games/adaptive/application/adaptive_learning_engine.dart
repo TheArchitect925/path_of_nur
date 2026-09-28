@@ -106,13 +106,28 @@ class AdaptiveLearningEngine {
   }
 
   AdaptiveLearningInsight buildInsight(UserLearningProfile profile) {
-    final hasAdaptiveData =
-        profile.categoryStrength.isNotEmpty ||
-        profile.gameTypeStrength.isNotEmpty;
+    // Guidance needs two games with a real gap between them. A flat map (the
+    // stored default is 0.3 everywhere) used to pick the same game as both
+    // "extra support" and "slight stretch", because lowest and highest key
+    // both resolve to the first entry when every value ties.
+    final strengths = profile.gameTypeStrength;
+    String? supportGameType;
+    String? challengeGameType;
+    if (strengths.length >= 2) {
+      final lowest = _lowestKey(strengths);
+      final highest = _highestKey(strengths);
+      if (lowest != null &&
+          highest != null &&
+          lowest != highest &&
+          strengths[highest]! - strengths[lowest]! >= _insightSpreadThreshold) {
+        supportGameType = lowest;
+        challengeGameType = highest;
+      }
+    }
     return AdaptiveLearningInsight(
-      hasAdaptiveData: hasAdaptiveData,
-      supportGameType: profile.supportGameType,
-      challengeGameType: profile.challengeGameType,
+      hasAdaptiveData: supportGameType != null && challengeGameType != null,
+      supportGameType: supportGameType,
+      challengeGameType: challengeGameType,
       focusCategory: profile.focusCategory,
     );
   }
@@ -407,6 +422,9 @@ double _average(Iterable<double> values) {
   }
   return count == 0 ? 0.5 : sum / count;
 }
+
+/// Smallest strength gap that is worth telling the player about.
+const double _insightSpreadThreshold = 0.1;
 
 String? _lowestKey(Map<String, double> values) {
   String? bestKey;

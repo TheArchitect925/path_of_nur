@@ -174,7 +174,6 @@ class QuranCompactSearchResultsSection extends ConsumerWidget {
                 contentPadding: EdgeInsets.zero,
                 title: Text(l10n.quranSearchMoreResultsAction),
                 subtitle: Text(l10n.quranSearchResultCountLabel(totalResults)),
-                trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () => context.pushNamed(
                   'quranSearch',
                   queryParameters: {'q': trimmedQuery},

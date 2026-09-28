@@ -17,11 +17,17 @@ class SceneDelegate: FlutterSceneDelegate {
     registerSceneLifeCycle(with: engine)
 
     let window = UIWindow(windowScene: windowScene)
-    window.rootViewController = FlutterViewController(
+    let flutterViewController = FlutterViewController(
       engine: engine,
       nibName: nil,
       bundle: nil
     )
+    // Until Flutter draws its first frame the view shows its own background.
+    // The launch storyboard's ground, not black, so the dawn sequence starts
+    // from the colour the launch screen already painted.
+    flutterViewController.view.backgroundColor =
+      UIColor(named: "LaunchBackground") ?? flutterViewController.view.backgroundColor
+    window.rootViewController = flutterViewController
     self.window = window
     window.makeKeyAndVisible()
 

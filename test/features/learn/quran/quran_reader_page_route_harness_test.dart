@@ -384,7 +384,7 @@ void main() {
         find.byKey(const ValueKey('quran-reader-now-reciting-label')),
         findsOneWidget,
       );
-      expect(find.textContaining('Verse 1:2'), findsOneWidget);
+      expect(find.textContaining('verse 1:2'), findsOneWidget);
       expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
 
       feed.update(playing: false, processingState: ProcessingState.ready);
@@ -451,17 +451,22 @@ void main() {
       expect(feed.playing, isFalse);
       expect(feed.hasPlaybackSource, isFalse);
 
-      final ayahPlayButton = find.byKey(
-        const ValueKey('quran-reader-play-ayah-1:2'),
+      final ayahCardForPlay = find.byKey(
+        const ValueKey('quran-ayah-card-1:2'),
         skipOffstage: false,
       );
       await tester.scrollUntilVisible(
-        ayahPlayButton,
+        ayahCardForPlay,
         300,
         scrollable: find.byType(Scrollable).first,
       );
       await tester.pumpAndSettle();
-      await tester.tap(ayahPlayButton);
+      // Play moved into the tap-an-ayah details sheet in phase 7b.
+      await tester.tap(ayahCardForPlay);
+      await tester.pumpAndSettle();
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-play-ayah-1:2')),
+      );
       await tester.pumpAndSettle();
 
       expect(
@@ -536,7 +541,7 @@ void main() {
         find.byKey(const ValueKey('quran-reader-now-reciting-label')),
         findsOneWidget,
       );
-      expect(find.textContaining('Verse 1:2'), findsOneWidget);
+      expect(find.textContaining('verse 1:2'), findsOneWidget);
 
       container
           .read(quranActivePlaybackSessionProvider.notifier)
@@ -564,7 +569,7 @@ void main() {
         find.byKey(const ValueKey('quran-reader-now-reciting-label')),
         findsOneWidget,
       );
-      expect(find.textContaining('Verse 1:1'), findsOneWidget);
+      expect(find.textContaining('verse 1:1'), findsOneWidget);
 
       await disposeReaderHarness(tester);
     },
@@ -600,7 +605,10 @@ void main() {
         scrollable: find.byType(Scrollable).first,
       );
       await tester.pumpAndSettle();
+      // Tapping the card now opens the details sheet; play lives inside it.
       await tester.tap(ayahCard);
+      await tester.pumpAndSettle();
+      await tester.tap(ayahPlayButton);
       await tester.pumpAndSettle();
 
       expect(feed.hasPlaybackSource, isTrue);
@@ -623,10 +631,12 @@ void main() {
       await tester.pumpAndSettle();
 
       await tester.scrollUntilVisible(
-        ayahPlayButton,
+        ayahCard,
         300,
         scrollable: find.byType(Scrollable).first,
       );
+      await tester.pumpAndSettle();
+      await tester.tap(ayahCard);
       await tester.pumpAndSettle();
       await tester.tap(ayahPlayButton);
       await tester.pumpAndSettle();
@@ -693,17 +703,21 @@ void main() {
         isTrue,
       );
 
-      final ayahThreePlayButton = find.byKey(
-        const ValueKey('quran-reader-play-ayah-1:3'),
+      final ayahThreeCard = find.byKey(
+        const ValueKey('quran-ayah-card-1:3'),
         skipOffstage: false,
       );
       await tester.scrollUntilVisible(
-        ayahThreePlayButton,
+        ayahThreeCard,
         300,
         scrollable: find.byType(Scrollable).first,
       );
       await tester.pumpAndSettle();
-      await tester.tap(ayahThreePlayButton);
+      await tester.tap(ayahThreeCard);
+      await tester.pumpAndSettle();
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-play-ayah-1:3')),
+      );
       await tester.pumpAndSettle();
 
       expect(feed.currentIndex, 2);
@@ -809,7 +823,7 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      expect(find.text('Reading & Display'), findsOneWidget);
+      expect(find.text('Reading & display'), findsOneWidget);
 
       await tester.tap(
         find.byKey(const ValueKey('quran-reader-setting-show-translation')),
@@ -821,36 +835,36 @@ void main() {
       );
 
       await tester.scrollUntilVisible(
-        find.text('Audio & Playback'),
+        find.text('Audio & playback'),
         300,
         scrollable: scrollable,
       );
       await tester.pumpAndSettle();
-      expect(find.text('Audio & Playback'), findsOneWidget);
+      expect(find.text('Audio & playback'), findsOneWidget);
 
       await tester.scrollUntilVisible(
-        find.text('Downloads & Offline'),
+        find.text('Downloads & offline'),
         300,
         scrollable: scrollable,
       );
       await tester.pumpAndSettle();
-      expect(find.text('Downloads & Offline'), findsOneWidget);
+      expect(find.text('Downloads & offline'), findsOneWidget);
 
       await tester.scrollUntilVisible(
-        find.text('Study Tools'),
+        find.text('Study tools'),
         300,
         scrollable: scrollable,
       );
       await tester.pumpAndSettle();
-      expect(find.text('Study Tools'), findsOneWidget);
+      expect(find.text('Study tools'), findsOneWidget);
 
       await tester.scrollUntilVisible(
-        find.text('Memorization & Review'),
+        find.text('Memorization & review'),
         300,
         scrollable: scrollable,
       );
       await tester.pumpAndSettle();
-      expect(find.text('Memorization & Review'), findsOneWidget);
+      expect(find.text('Memorization & review'), findsOneWidget);
 
       await tester.scrollUntilVisible(
         find.byKey(const ValueKey('quran-reader-settings-toggle')),
@@ -862,13 +876,13 @@ void main() {
         find.byKey(const ValueKey('quran-reader-settings-toggle')),
       );
       await tester.pumpAndSettle();
-      expect(find.text('Reading & Display'), findsNothing);
+      expect(find.text('Reading & display'), findsNothing);
 
       await tester.tap(
         find.byKey(const ValueKey('quran-reader-settings-toggle')),
       );
       await tester.pumpAndSettle();
-      expect(find.text('Reading & Display'), findsOneWidget);
+      expect(find.text('Reading & display'), findsOneWidget);
 
       await disposeReaderHarness(tester);
     },

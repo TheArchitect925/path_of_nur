@@ -67,6 +67,12 @@ String _pathWithQuery(String path, Uri uri) {
 
 String _normalizedPath(Uri uri) {
   if (uri.path.isNotEmpty) {
+    // `pathofnur://learn/games` arrives as host "learn" + path "/games". The
+    // host is the first segment unless a section resolves it itself above.
+    final host = uri.host.toLowerCase();
+    if (host.isNotEmpty && host != 'quran' && host != 'growth') {
+      return '/$host${uri.path}';
+    }
     return uri.path;
   }
   if (uri.host.isNotEmpty) {

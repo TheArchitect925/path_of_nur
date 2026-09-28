@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../domain/arabic_learning_quick_resume_models.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 enum ArabicLearningQuickResumeSectionVariant { kids, adult }
 
@@ -75,7 +76,7 @@ class ArabicLearningQuickResumeSection extends StatelessWidget {
                     arabicText,
                     textDirection: TextDirection.rtl,
                     style: const TextStyle(
-                      fontFamily: 'AmiriQuran',
+                      fontFamily: AppFonts.quranArabic,
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
                     ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../arabic/application/arabic_learning_asset_bundle.dart';
 import '../../../arabic/domain/arabic_learning_continuity_models.dart';
 import '../../../arabic/domain/arabic_learning_search_models.dart';
@@ -22,6 +22,7 @@ import '../../quran/application/quran_short_surah_readiness_provider.dart';
 import '../../quran/domain/quran_guided_passage_readiness_models.dart';
 import '../../quran/domain/quran_short_surah_readiness_models.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/quran_teaching_adult_overview_provider.dart';
@@ -36,6 +37,8 @@ import 'quran_teaching_module_page.dart';
 import 'quran_teaching_review_page.dart';
 import 'widgets/quran_teaching_adult_overview_card.dart';
 import 'widgets/quran_teaching_review_widgets.dart';
+import '../../../../core/theme/app_fonts.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class QuranTeachingSectionPage extends ConsumerStatefulWidget {
   const QuranTeachingSectionPage({super.key});
@@ -197,7 +200,7 @@ class _QuranTeachingSectionPageState
     final completedLessons = progress.completedLessonIds.length;
     final percent = totalLessons == 0 ? 0.0 : completedLessons / totalLessons;
     return LearnHubPageScaffold(
-      headerIcon: Icons.school_rounded,
+      headerIcon: AppIcons.arabic,
       title: l10n.quranTeachingSectionTitle,
       subtitle: l10n.quranTeachingSectionSubtitle,
       children: [
@@ -271,7 +274,7 @@ class _QuranTeachingSectionPageState
               const SizedBox(height: 12),
               FilledButton.tonalIcon(
                 onPressed: () => context.pushNamed('quranArabicMiniAssessment'),
-                icon: const Icon(Icons.self_improvement_rounded),
+                icon: const Icon(AppIcons.practice),
                 label: Text(l10n.quranTeachingMiniAssessmentCardAction),
               ),
             ],
@@ -336,7 +339,7 @@ class _QuranTeachingSectionPageState
                   textDirection: TextDirection.rtl,
                   style: const TextStyle(
                     fontSize: 26,
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -391,7 +394,7 @@ class _QuranTeachingSectionPageState
                 textDirection: TextDirection.rtl,
                 style: const TextStyle(
                   fontSize: 30,
-                  fontFamily: 'AmiriQuran',
+                  fontFamily: AppFonts.quranArabic,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -399,7 +402,7 @@ class _QuranTeachingSectionPageState
               Text(
                 '${quranReadiness.snippet.surahName} • ${quranReadiness.snippet.ref.locationLabel}',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 12),
@@ -448,7 +451,7 @@ class _QuranTeachingSectionPageState
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
-                  color: AppColors.surfaceSoft.withValues(alpha: 0.45),
+                  color: context.palette.surfaceSoft.withValues(alpha: 0.45),
                 ),
                 child: Text(
                   arabicAlphabetCatalog
@@ -459,7 +462,7 @@ class _QuranTeachingSectionPageState
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 28,
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                   ),
                 ),
               ),
@@ -537,11 +540,7 @@ class _QuranTeachingSectionPageState
                 ],
               ),
               const SizedBox(height: 14),
-              LinearProgressIndicator(
-                value: percent,
-                minHeight: 10,
-                borderRadius: BorderRadius.circular(999),
-              ),
+              ProgressBar(value: percent, height: 10),
               const SizedBox(height: 10),
               Text(
                 l10n.quranTeachingProgressSummary(
@@ -979,7 +978,7 @@ class _QuranTeachingSectionPageState
                                   module.description,
                                   style: Theme.of(context).textTheme.bodySmall
                                       ?.copyWith(
-                                        color: AppColors.onSurfaceSubtle,
+                                        color: context.palette.onSurfaceSubtle,
                                       ),
                                 ),
                               ],
@@ -988,11 +987,7 @@ class _QuranTeachingSectionPageState
                         ],
                       ),
                       const SizedBox(height: 12),
-                      LinearProgressIndicator(
-                        value: completion,
-                        minHeight: 8,
-                        borderRadius: BorderRadius.circular(999),
-                      ),
+                      ProgressBar(value: completion, height: 8),
                       const SizedBox(height: 8),
                       Text(
                         unlocked
@@ -1054,7 +1049,7 @@ class _QuranTeachingSectionPageState
                         border: Border.all(
                           color: current == level
                               ? Theme.of(context).colorScheme.primary
-                              : AppColors.surfaceSoft,
+                              : context.palette.surfaceSoft,
                         ),
                       ),
                       child: Column(
@@ -1114,7 +1109,7 @@ class _ShortSurahsAdultCard extends StatelessWidget {
             textDirection: TextDirection.rtl,
             style: const TextStyle(
               fontSize: 30,
-              fontFamily: 'AmiriQuran',
+              fontFamily: AppFonts.quranArabic,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -1124,9 +1119,9 @@ class _ShortSurahsAdultCard extends StatelessWidget {
               summary.surah.surahTransliteratedName,
               summary.surah.ayahCount,
             ),
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 12),
           FilledButton.tonalIcon(
@@ -1253,7 +1248,7 @@ class _ModeChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surfaceSoft.withValues(alpha: 0.75),
+        color: context.palette.surfaceSoft.withValues(alpha: 0.75),
       ),
       child: Text(label),
     );

@@ -7,6 +7,7 @@ import '../../../../../../shared/widgets/premium_card.dart';
 import '../application/baby_names_controller.dart';
 import '../data/baby_names_repository.dart';
 import '../domain/baby_name_models.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class BabyNamesFinderPage extends ConsumerStatefulWidget {
   const BabyNamesFinderPage({super.key});
@@ -72,10 +73,8 @@ class _BabyNamesFinderPageState extends ConsumerState<BabyNamesFinderPage> {
         (!hasFatherMatch || !hasMotherMatch);
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_awesome_rounded,
-      title: 'Parent-inspired Name Tool',
-      subtitle:
-          'Get ranked suggestions based on family inputs and meaning themes',
+      title: AppLocalizations.of(context).babyNamesSmartFinderTitle,
+      subtitle: AppLocalizations.of(context).babyNamesSmartFinderSubtitle,
       children: [
         PremiumCard(
           child: Column(
@@ -230,7 +229,7 @@ class _BabyNamesFinderPageState extends ConsumerState<BabyNamesFinderPage> {
         if (suggestions.isEmpty)
           const PremiumCard(
             child: Text(
-              'No suggestions yet. Try choosing a meaning theme, changing gender, or disabling Quranic-only to broaden matches.',
+              'No suggestions yet. Try choosing a meaning theme, changing gender, or disabling Qur’anic-only to broaden matches.',
             ),
           ),
         ...suggestions.map(

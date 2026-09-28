@@ -12,10 +12,12 @@ struct TVPrayerTimeCard: View {
             .foregroundColor(TVTheme.textPrimary)
             .tvReadableTitle()
 
-          Text(prayer.arabicTitle)
-            .font(TVTypography.arabicSupport)
-            .foregroundColor(TVTheme.textSecondary)
-            .tvReadableArabic()
+          if prayer.arabicTitle != prayer.title {
+            Text(prayer.arabicTitle)
+              .font(TVTypography.arabicSupport)
+              .foregroundColor(TVTheme.textSecondary)
+              .tvReadableArabic()
+          }
         }
 
         Spacer()
@@ -38,7 +40,7 @@ struct TVPrayerTimeCard: View {
       }
 
       Text(prayer.timeLabel)
-        .font(.system(size: 36, weight: .heavy, design: .rounded))
+        .font(TVTypography.numeralLarge)
         .foregroundColor(TVTheme.textPrimary)
         .tvReadableTitle()
 

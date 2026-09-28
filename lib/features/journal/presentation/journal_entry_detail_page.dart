@@ -63,9 +63,7 @@ class _JournalEntryDetailPageState
     final entry = ref.watch(journalEntryByIdProvider(widget.entryId));
     if (entry == null) {
       return AppPageScaffold(
-        headerIcon: Icons.auto_stories_outlined,
-        title: l10n.journalDetailMissingTitle,
-        subtitle: l10n.journalDetailMissingSubtitle,
+        title: l10n.journalTitle,
         children: [PremiumCard(child: Text(l10n.journalDetailMissingBody))],
       );
     }
@@ -76,7 +74,6 @@ class _JournalEntryDetailPageState
         : entry.title;
 
     return AppPageScaffold(
-      headerIcon: Icons.menu_book_outlined,
       title: pageTitle,
       subtitle: l10n.journalDetailPageSubtitle,
       children: [
@@ -166,7 +163,7 @@ class _JournalEntryDetailPageState
               FilledButton.tonalIcon(
                 onPressed: () => setState(() => _isEditing = !_isEditing),
                 icon: Icon(
-                  _isEditing ? Icons.visibility_outlined : Icons.edit_outlined,
+                  _isEditing ? Icons.visibility_rounded : Icons.edit_rounded,
                 ),
                 label: Text(
                   _isEditing
@@ -176,12 +173,12 @@ class _JournalEntryDetailPageState
               ),
               OutlinedButton.icon(
                 onPressed: () => context.pushNamed('learnNotesLanding'),
-                icon: const Icon(Icons.sticky_note_2_outlined),
+                icon: const Icon(Icons.sticky_note_2_rounded),
                 label: Text(l10n.learnNotesSectionTitle),
               ),
               OutlinedButton.icon(
                 onPressed: () => context.pushNamed('quranReflections'),
-                icon: const Icon(Icons.bookmark_added_outlined),
+                icon: const Icon(Icons.bookmark_added_rounded),
                 label: Text(l10n.quranReflectionsTitle),
               ),
             ],
@@ -296,7 +293,7 @@ class _JournalEntryDetailPageState
                   );
                 }
               },
-              icon: const Icon(Icons.save_outlined),
+              icon: const Icon(Icons.save_rounded),
               label: Text(l10n.journalDetailSaveAction),
             ),
           ),

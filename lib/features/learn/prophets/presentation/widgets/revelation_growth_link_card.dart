@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 
@@ -31,9 +31,9 @@ class RevelationGrowthLinkCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             l10n.prophetsJourneyPracticeThisEraSubtitle,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 8),
           Wrap(
@@ -41,7 +41,11 @@ class RevelationGrowthLinkCard extends StatelessWidget {
             runSpacing: 8,
             children: [
               for (var index = 0; index < habitLabels.length; index++)
-                _chip(habitLabels[index], onTap: () => onTapHabit?.call(index)),
+                _chip(
+                  context,
+                  habitLabels[index],
+                  onTap: () => onTapHabit?.call(index),
+                ),
             ],
           ),
         ],
@@ -49,12 +53,14 @@ class RevelationGrowthLinkCard extends StatelessWidget {
     );
   }
 
-  Widget _chip(String label, {VoidCallback? onTap}) {
+  Widget _chip(BuildContext context, String label, {VoidCallback? onTap}) {
     return ActionChip(
       label: Text(label, style: const TextStyle(fontSize: 11.5)),
       onPressed: onTap,
-      backgroundColor: AppColors.surface.withValues(alpha: 0.28),
-      side: BorderSide(color: AppColors.accentGoldSoft.withValues(alpha: 0.34)),
+      backgroundColor: context.palette.surface.withValues(alpha: 0.28),
+      side: BorderSide(
+        color: context.palette.accentSoft.withValues(alpha: 0.34),
+      ),
     );
   }
 }

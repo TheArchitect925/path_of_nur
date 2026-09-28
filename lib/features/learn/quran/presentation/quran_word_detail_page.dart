@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
@@ -64,7 +65,6 @@ class QuranWordDetailPage extends ConsumerWidget {
     final mastered = progress.masteredRanks.contains(word.rank);
 
     return AppPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
       title: l10n.batch9QuranWordsStudyPageTitle,
       subtitle: word.transliteration,
       children: [
@@ -254,7 +254,7 @@ class QuranWordDetailPage extends ConsumerWidget {
                       transliterationScale: transliterationScale,
                       translationScale: translationScale,
                     ),
-                    icon: const Icon(Icons.menu_book_outlined),
+                    icon: const Icon(Icons.menu_book_rounded),
                     label: Text(
                       l10n.batch9QuranWordsViewOccurrences(
                         usageSummary.ayahCount,
@@ -265,7 +265,10 @@ class QuranWordDetailPage extends ConsumerWidget {
               else
                 Text(
                   l10n.batch9QuranWordsNoUsageAvailable,
-                  style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.3),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
+                    height: 1.3,
+                  ),
                 ),
             ],
           ),

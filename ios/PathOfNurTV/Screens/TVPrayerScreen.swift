@@ -17,78 +17,48 @@ struct TVPrayerScreen: View {
 
         TVSectionHeader(
           title: viewModel.currentNextTitle,
-          subtitle: viewModel.currentNextSubtitle
+          subtitle: ""
         )
 
-        HStack(alignment: .top, spacing: TVTheme.columnSpacing) {
-          VStack(alignment: .leading, spacing: 18) {
-            Text(viewModel.summaryLine)
-              .font(TVTypography.summaryTitle)
-              .foregroundColor(TVTheme.textPrimary)
-
-            Text(viewModel.detailLine)
-              .font(TVTypography.featureSubtitle)
-              .foregroundColor(TVTheme.textSecondary)
+        if viewModel.prayerTimes.isEmpty {
+          Button {
+            appViewModel.markContentSectionFocused(TVFocusSectionId.settingsPrayer, for: .settings)
+            appViewModel.navigate(to: .settings, preferredColumn: .content)
+          } label: {
+            summaryCard
           }
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .padding(TVTheme.cardPadding)
-          .tvSurfaceCard(elevated: true, emphasized: true)
-          .tvFocusableCard()
-          .focused($focusedSection, equals: TVFocusSectionId.prayerCurrentNext)
+          .buttonStyle(TVCardButtonStyle())
+          .tvFocusID($focusedSection, TVFocusSectionId.prayerCurrentNext)
+        } else {
+          summaryCard
+            .tvFocusableCard()
+            .tvFocusID($focusedSection, TVFocusSectionId.prayerCurrentNext)
 
-          VStack(alignment: .leading, spacing: 14) {
-            Text(tvLocalized("Prayer route note"))
-              .font(TVTypography.summaryTitle)
-              .foregroundColor(TVTheme.textPrimary)
+          TVSectionHeader(
+            title: viewModel.scheduleTitle,
+            subtitle: ""
+          )
 
-            Text(tvLocalized("Prayer on TV should lead with clarity and presence: current, next, then the day without burying the room in settings or calculations."))
-              .font(TVTypography.detail)
-              .foregroundColor(TVTheme.textSecondary)
-          }
-          .frame(width: 380, alignment: .leading)
-          .padding(TVTheme.cardPadding)
-          .tvSurfaceCard(elevated: true, emphasized: false)
-        }
-
-        TVSectionHeader(
-          title: viewModel.scheduleTitle,
-          subtitle: viewModel.scheduleSubtitle
-        )
-
-        ScrollView(.horizontal, showsIndicators: false) {
-          HStack(spacing: TVTheme.railSpacing) {
-            ForEach(Array(viewModel.prayerTimes.enumerated()), id: \.element.id) { index, prayer in
-              TVPrayerTimeCard(prayer: prayer)
-                .frame(width: 320)
-                .focused(
-                  $focusedSection,
-                  equals: index == 0 ? TVFocusSectionId.prayerSchedule : "prayer.schedule.\(prayer.id)"
-                )
+          ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: TVTheme.railSpacing) {
+              ForEach(Array(viewModel.prayerTimes.enumerated()), id: \.element.id) { index, prayer in
+                TVPrayerTimeCard(prayer: prayer)
+                  .frame(width: 320)
+                  .tvFocusID($focusedSection, scheduleFocusID(prayer, at: index))
+              }
             }
+            .padding(TVTheme.railBleed)
           }
-          .padding(.vertical, 8)
-        }
-
-        TVSectionHeader(
-          title: viewModel.companionTitle,
-          subtitle: viewModel.companionSubtitle
-        )
-
-        ScrollView(.horizontal, showsIndicators: false) {
-          HStack(spacing: TVTheme.railSpacing) {
-            ForEach(Array(viewModel.focusCards.enumerated()), id: \.element.id) { index, item in
-              TVPrayerFocusCardView(item: item)
-                .focused(
-                  $focusedSection,
-                  equals: index == 0 ? TVFocusSectionId.prayerCompanion : "prayer.companion.\(item.id)"
-                )
-            }
-          }
-          .padding(.vertical, 8)
+          .focusSection()
+          // The day is entered at the prayer the card above speaks of, not
+          // at whichever card is under the middle of the screen.
+          .tvPreferredFocus($focusedSection, prayerInHandFocusID)
+          .tvRail()
         }
       }
       .padding(TVTheme.outerPadding)
     }
+    .tvPreferredFocus($focusedSection, appViewModel.preferredContentSection(for: .prayer))
     .onAppear {
       restorePreferredFocus()
     }
@@ -96,19 +66,45 @@ struct TVPrayerScreen: View {
       restorePreferredFocus()
     }
     .onChange(of: focusedSection) { section in
-      guard let section else { return }
-      if section.hasPrefix("prayer.currentNext") {
-        appViewModel.markContentSectionFocused(TVFocusSectionId.prayerCurrentNext, for: .prayer)
-      } else if section.hasPrefix("prayer.schedule") {
-        appViewModel.markContentSectionFocused(TVFocusSectionId.prayerSchedule, for: .prayer)
-      } else if section.hasPrefix("prayer.companion") {
-        appViewModel.markContentSectionFocused(TVFocusSectionId.prayerCompanion, for: .prayer)
+      guard let section, section.hasPrefix("prayer.") else { return }
+      // The control itself, so that the focus returns to it and not to the
+      // first of its row.
+      appViewModel.markContentSectionFocused(section, for: .prayer)
+    }
+  }
+
+  private func scheduleFocusID(_ prayer: TVPrayerTime, at index: Int) -> String {
+    index == 0 ? TVFocusSectionId.prayerSchedule : "prayer.schedule.\(prayer.id)"
+  }
+
+  /// The prayer the card above speaks of: the one whose time it is, or the
+  /// one that is next when it is no prayer's time.
+  private var prayerInHandFocusID: String? {
+    let times = viewModel.prayerTimes
+    guard let index = times.firstIndex(where: \.isCurrent) ?? times.firstIndex(where: \.isNext) else {
+      return times.isEmpty ? nil : TVFocusSectionId.prayerSchedule
+    }
+    return scheduleFocusID(times[index], at: index)
+  }
+
+  private var summaryCard: some View {
+    VStack(alignment: .leading, spacing: 18) {
+      Text(viewModel.summaryLine)
+        .font(TVTypography.summaryTitle)
+        .foregroundColor(TVTheme.textPrimary)
+        .tvReadableTitle()
+
+      if !viewModel.detailLine.isEmpty {
+        Text(viewModel.detailLine)
+          .font(TVTypography.featureSubtitle)
+          .foregroundColor(TVTheme.textSecondary)
+          .tvReadableBody()
       }
     }
-    .onMoveCommand { direction in
-      guard direction == .left else { return }
-      appViewModel.focusNavigation()
-    }
+    .frame(maxWidth: .infinity, alignment: .leading)
+    .padding(TVTheme.cardPadding)
+    .tvSurfaceCard(elevated: true, emphasized: true)
+    .tvCombinedAccessibility(label: viewModel.summaryLine, hint: viewModel.detailLine)
   }
 
   private func restorePreferredFocus() {

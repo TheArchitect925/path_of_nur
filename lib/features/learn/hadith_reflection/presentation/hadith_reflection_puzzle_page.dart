@@ -13,6 +13,7 @@ import '../../hadith/application/hadith_foundation_repository.dart';
 import '../../hadith/presentation/widgets/hadith_content_block.dart';
 import '../../journey/application/family_learning_provider.dart';
 import '../../knowledge_games/adaptive/application/user_learning_profile_provider.dart';
+import '../../knowledge_games/presentation/knowledge_game_screen.dart';
 import '../../knowledge_games/application/knowledge_game_variation_engine.dart';
 import '../../knowledge_games/daily/domain/daily_knowledge_challenge_models.dart';
 import '../../knowledge_games/domain/knowledge_game_variations.dart';
@@ -69,7 +70,6 @@ class _HadithReflectionPuzzlePageState
   Widget _buildLoading(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).hadithReflectionHomeTitle,
-      subtitle: AppLocalizations.of(context).hadithReflectionLoadingSubtitle,
       children: const [Center(child: CircularProgressIndicator())],
     );
   }
@@ -77,7 +77,6 @@ class _HadithReflectionPuzzlePageState
   Widget _buildLoadError(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).hadithReflectionHomeTitle,
-      subtitle: AppLocalizations.of(context).hadithReflectionLoadErrorSubtitle,
       children: [
         PremiumCard(
           child: Text(
@@ -91,7 +90,6 @@ class _HadithReflectionPuzzlePageState
   Widget _buildNotFound(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).hadithReflectionHomeTitle,
-      subtitle: AppLocalizations.of(context).hadithReflectionNotFoundSubtitle,
       children: [
         PremiumCard(
           child: Text(
@@ -116,7 +114,6 @@ class _HadithReflectionPuzzlePageState
     if (isChildProfile && puzzle.mode != HadithReflectionMode.kids) {
       return AppPageScaffold(
         title: l10n.hadithReflectionHomeTitle,
-        subtitle: l10n.hadithReflectionNotFoundSubtitle,
         children: [
           PremiumCard(child: Text(l10n.hadithReflectionKidsOnlyTitle)),
         ],
@@ -164,8 +161,7 @@ class _HadithReflectionPuzzlePageState
             hadithReflectionLocalizedCategory(l10n, puzzle.category),
           );
 
-    return adapter.buildScreen(
-      context: context,
+    return KnowledgeGameScreen(
       title: hadithReflectionPuzzleTitle(l10n, puzzle),
       subtitle: subtitle,
       game: game,
@@ -196,7 +192,7 @@ class _HadithReflectionPuzzlePageState
                 _chip(
                   context,
                   l10n.hadithReflectionDailyStreakLabel(
-                    dailyStreak.currentStreak.toString(),
+                    dailyStreak.currentStreak,
                   ),
                 ),
               if (progress.isBestChoice)
@@ -420,7 +416,7 @@ class _HadithReflectionPuzzlePageState
                     FilledButton.tonalIcon(
                       onPressed: () =>
                           context.goNamed('learnHadithReflectionHome'),
-                      icon: const Icon(Icons.home_outlined),
+                      icon: const Icon(Icons.home_rounded),
                       label: Text(l10n.hadithReflectionBackHomeAction),
                     ),
                   ],
@@ -440,19 +436,22 @@ class _HadithReflectionPuzzlePageState
     if (_boundPuzzle?.id == puzzle.id) return;
     _boundPuzzle = puzzle;
     final now = DateTime.now();
-    ref
-        .read(hadithReflectionProgressProvider.notifier)
-        .markPuzzlePlayed(puzzleId: puzzle.id, occurredAt: now);
-    if (daily != null) {
-      ref
-          .read(hadithReflectionProgressProvider.notifier)
-          .markDailyStarted(
-            dateKey: daily.dateKey,
-            puzzleId: puzzle.id,
-            weekdayTheme: daily.weekdayTheme,
-            occurredAt: now,
-          );
-    }
+    // Runs from build, so the progress write has to wait for the frame like
+    // the other four puzzle families do. Writing synchronously here tripped
+    // Riverpod's "modified a provider while building" guard on every open.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final notifier = ref.read(hadithReflectionProgressProvider.notifier);
+      notifier.markPuzzlePlayed(puzzleId: puzzle.id, occurredAt: now);
+      if (daily != null) {
+        notifier.markDailyStarted(
+          dateKey: daily.dateKey,
+          puzzleId: puzzle.id,
+          weekdayTheme: daily.weekdayTheme,
+          occurredAt: now,
+        );
+      }
+    });
   }
 
   void _showHelp(BuildContext context, HadithReflectionPuzzle puzzle) {
@@ -623,7 +622,9 @@ class _ChoiceCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Icon(
-                selected ? Icons.radio_button_checked : Icons.circle_outlined,
+                selected
+                    ? Icons.radio_button_checked_rounded
+                    : Icons.radio_button_unchecked_rounded,
                 size: 20,
               ),
               const SizedBox(width: 10),

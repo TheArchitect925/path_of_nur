@@ -17,7 +17,6 @@ class AccountabilityGroupsPage extends ConsumerWidget {
     final notifier = ref.read(circlesProvider.notifier);
 
     return AppPageScaffold(
-      headerIcon: Icons.groups_2_outlined,
       title: l10n.circlesAccountabilityTitle,
       subtitle: l10n.circlesAccountabilitySubtitle,
       children: [

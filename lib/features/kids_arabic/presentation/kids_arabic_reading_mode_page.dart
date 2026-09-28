@@ -11,6 +11,7 @@ import '../application/kids_arabic_parent_provider.dart';
 import '../application/kids_arabic_words_provider.dart';
 import '../domain/kids_arabic_word_models.dart';
 import 'kids_arabic_localized_content.dart';
+import '../../../core/theme/app_palette.dart';
 
 class KidsArabicReadingModePage extends ConsumerStatefulWidget {
   const KidsArabicReadingModePage({super.key, this.initialWordId});
@@ -100,33 +101,32 @@ class _KidsArabicReadingModePageState
 
     if (activeWord == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.menu_book_rounded,
         title: l10n.kidsArabicReadingModeTitle,
         subtitle: l10n.kidsArabicReadingModeSubtitle,
         children: [
           Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-              color: const Color(0xFFF8F2E8),
+              color: context.palette.surface,
               borderRadius: BorderRadius.circular(22),
-              border: Border.all(color: const Color(0xFFE5D5C1)),
+              border: Border.all(color: context.palette.surfaceSoft),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   l10n.kidsArabicReadingModeLockedTitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF2E261F),
+                    color: context.palette.onSurface,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   l10n.kidsArabicReadingModeLockedBody,
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -164,7 +164,6 @@ class _KidsArabicReadingModePageState
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
       title: l10n.kidsArabicReadingModeTitle,
       subtitle: l10n.kidsArabicReadingModeSubtitle,
       children: [
@@ -196,12 +195,12 @@ class _KidsArabicReadingModePageState
           decoration: BoxDecoration(
             color: _isPlaying
                 ? const Color(0xFFF6F0FF)
-                : const Color(0xFFF8F2E8),
+                : context.palette.surface,
             borderRadius: BorderRadius.circular(26),
             border: Border.all(
               color: _isPlaying
                   ? const Color(0xFFCDBAF3)
-                  : const Color(0xFFE5D5C1),
+                  : context.palette.surfaceSoft,
             ),
             boxShadow: _isPlaying
                 ? const [
@@ -238,28 +237,28 @@ class _KidsArabicReadingModePageState
                   const SizedBox(height: 10),
                   Text(
                     activeWord.transliteration,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF8A6C49),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
                     localizedKidsArabicWordMeaning(l10n, activeWord.id),
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF5D4A36),
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     localizedKidsArabicWordSummary(l10n, activeWord.id),
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.4,
                     ),
                   ),
@@ -286,8 +285,8 @@ class _KidsArabicReadingModePageState
                         ? l10n.kidsArabicRepeatAfterMePrompt
                         : l10n.kidsArabicReadingModeTapHint,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Color(0xFF5A6A4A),
+                    style: TextStyle(
+                      color: context.palette.successInk,
                       fontWeight: FontWeight.w600,
                       height: 1.35,
                     ),
@@ -392,7 +391,7 @@ class _WordLetterChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFFBF5),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
         border: Border.all(color: const Color(0xFFE8DCCF)),
       ),
@@ -402,20 +401,20 @@ class _WordLetterChip extends StatelessWidget {
           Text(
             joinedGlyph,
             textDirection: TextDirection.rtl,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 24,
               fontFamily: 'Noto Naskh Arabic',
               fontWeight: FontWeight.w700,
-              color: Color(0xFF5E462A),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 4),
           Text(
             name,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF8A6C49),
+              color: context.palette.onSurfaceSubtle,
             ),
           ),
         ],

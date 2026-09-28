@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/arabic_learning_continuity_models.dart';
 import '../../domain/arabic_learning_progress_models.dart';
+import '../../../../core/theme/app_palette.dart';
 
 enum ArabicLearningProgressDashboardVariant { kids, adult }
 
@@ -31,11 +32,9 @@ class ArabicLearningProgressDashboardCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: _isKids ? const Color(0xFFFFF4E8) : const Color(0xFFF7F4EE),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: _isKids ? const Color(0xFFE7D8BE) : const Color(0xFFDDD5C8),
-        ),
+        border: Border.all(color: context.palette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,9 +50,9 @@ class ArabicLearningProgressDashboardCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             _subtitle(l10n),
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF66594C)),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 14),
           LinearProgressIndicator(
@@ -76,9 +75,9 @@ class ArabicLearningProgressDashboardCard extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               _recentLabel(l10n, summary.recentActivity!),
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF53483E)),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: context.palette.onSurface,
+              ),
             ),
           ],
           const SizedBox(height: 10),
@@ -86,7 +85,7 @@ class ArabicLearningProgressDashboardCard extends StatelessWidget {
             _nextStepLabel(l10n),
             style: Theme.of(
               context,
-            ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF53483E)),
+            ).textTheme.bodyMedium?.copyWith(color: context.palette.onSurface),
           ),
           const SizedBox(height: 14),
           Row(
@@ -231,9 +230,9 @@ class _DashboardChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.palette.surfaceSoft,
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFE5D8C7)),
+        border: Border.all(color: context.palette.border),
       ),
       child: Text(
         label,

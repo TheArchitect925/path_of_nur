@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_surfaces.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -18,7 +19,6 @@ class HelpGuideDetailPage extends StatelessWidget {
     final guide = findHelpGuideEntry(l10n, guideId);
     if (guide == null) {
       return AppPageScaffold(
-        headerIcon: Icons.help_center_outlined,
         title: l10n.settingsHelpGuideTitle,
         subtitle: l10n.settingsHelpGuideSubtitle,
         children: [
@@ -42,7 +42,6 @@ class HelpGuideDetailPage extends StatelessWidget {
     }
 
     return AppPageScaffold(
-      headerIcon: guide.icon,
       title: guide.title,
       subtitle: guide.description,
       children: [
@@ -62,11 +61,7 @@ class HelpGuideDetailPage extends StatelessWidget {
             children: [
               for (var index = 0; index < guide.steps.length; index++) ...[
                 if (index > 0) const Divider(height: 24),
-                _GuideStepRow(
-                  index: index + 1,
-                  text: guide.steps[index],
-                  accentColor: guide.accentColor,
-                ),
+                _GuideStepRow(index: index + 1, text: guide.steps[index]),
               ],
             ],
           ),
@@ -77,18 +72,17 @@ class HelpGuideDetailPage extends StatelessWidget {
 }
 
 class _GuideStepRow extends StatelessWidget {
-  const _GuideStepRow({
-    required this.index,
-    required this.text,
-    required this.accentColor,
-  });
+  const _GuideStepRow({required this.index, required this.text});
 
   final int index;
   final String text;
-  final Color accentColor;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final accentColor =
+        theme.extension<AppAppearanceTheme>()?.accent ??
+        theme.colorScheme.primary;
     final badgeStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,

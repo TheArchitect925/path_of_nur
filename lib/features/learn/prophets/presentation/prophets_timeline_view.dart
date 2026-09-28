@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../domain/prophet_entry.dart';
@@ -75,7 +75,7 @@ class _ProphetsTimelineViewState extends State<ProphetsTimelineView> {
                     Text(
                       localizedProphetEraSubtitle(l10n, era),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -124,8 +124,8 @@ class _TimelineNodeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final lineColor = AppColors.accentGold.withValues(alpha: 0.36);
-    final nodeColor = focused ? AppColors.accentGold : prophet.eraGroup.tint;
+    final lineColor = context.palette.accent.withValues(alpha: 0.36);
+    final nodeColor = focused ? context.palette.accent : prophet.eraGroup.tint;
 
     return InkWell(
       borderRadius: BorderRadius.circular(16),
@@ -153,7 +153,7 @@ class _TimelineNodeCard extends StatelessWidget {
                       boxShadow: focused
                           ? [
                               BoxShadow(
-                                color: AppColors.accentGold.withValues(
+                                color: context.palette.accent.withValues(
                                   alpha: 0.42,
                                 ),
                                 blurRadius: 12,
@@ -178,12 +178,12 @@ class _TimelineNodeCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   color: focused
-                      ? AppColors.accentGold.withValues(alpha: 0.12)
-                      : AppColors.surface.withValues(alpha: 0.25),
+                      ? context.palette.accent.withValues(alpha: 0.12)
+                      : context.palette.surface.withValues(alpha: 0.25),
                   border: Border.all(
                     color: focused
-                        ? AppColors.accentGold.withValues(alpha: 0.55)
-                        : AppColors.accentGoldSoft.withValues(alpha: 0.28),
+                        ? context.palette.accent.withValues(alpha: 0.55)
+                        : context.palette.accentSoft.withValues(alpha: 0.28),
                   ),
                 ),
                 child: Column(
@@ -198,7 +198,7 @@ class _TimelineNodeCard extends StatelessWidget {
                     Text(
                       prophet.honoredArabicName,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -213,7 +213,7 @@ class _TimelineNodeCard extends StatelessWidget {
                     Text(
                       prophet.shortSummary,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     ),
                   ],

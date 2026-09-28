@@ -1,8 +1,11 @@
 package com.pathofnur.watch.ui.screens
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.Chip
 import androidx.wear.compose.material.Text
+import com.pathofnur.watch.R
 import com.pathofnur.watch.domain.QuranPlaybackCommand
 import com.pathofnur.watch.domain.QuranPlaybackSnapshot
 import com.pathofnur.watch.quran.WearListeningModeController
@@ -17,13 +20,13 @@ fun WearListeningModeScreen(
     Text(snapshot.surahName)
     Text(snapshot.reciterName)
     snapshot.currentAyah?.let {
-        Text("Ayah $it")
+        Text(stringResource(R.string.quran_ayah, it))
     }
     Button(
         onClick = { onCommand(if (snapshot.isPlaying) QuranPlaybackCommand.Pause else QuranPlaybackCommand.Play) },
         enabled = WearListeningModeController.remoteCommandsEnabled(snapshot, phoneReachable)
     ) {
-        Text(if (snapshot.isPlaying) "Pause" else "Play")
+        Text(stringResource(if (snapshot.isPlaying) R.string.action_pause else R.string.action_play))
     }
     Chip(
         onClick = { onCommand(QuranPlaybackCommand.Previous) },
@@ -35,6 +38,6 @@ fun WearListeningModeScreen(
         enabled = WearListeningModeController.remoteCommandsEnabled(snapshot, phoneReachable),
         label = { Text(">>") }
     )
-    Text(WearListeningModeController.statusText(snapshot, phoneReachable))
-    Chip(onClick = onPlayer, label = { Text("Return to Player") })
+    Text(stringResource(WearListeningModeController.statusTextRes(snapshot, phoneReachable)))
+    Chip(onClick = onPlayer, label = { Text(stringResource(R.string.quran_return_to_player)) })
 }

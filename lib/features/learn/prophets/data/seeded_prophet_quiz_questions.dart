@@ -16,7 +16,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     id: 'q2',
     mode: ProphetQuizMode.storyMatching,
     difficulty: ProphetQuizDifficulty.easy,
-    questionText: 'Which prophet built the ark by Allah\'s command?',
+    questionText: 'Which prophet built the ark by Allah’s command?',
     options: ['Nuh', 'Hud', 'Yunus', 'Dawud'],
     correctAnswerIndex: 0,
     explanation: 'Nuh built the ark as a sign of trust before the flood came.',
@@ -39,7 +39,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     questionText: 'Which prophet is closely featured in Surah Yusuf?',
     options: ['Musa', 'Yusuf', 'Zakariya', 'Harun'],
     correctAnswerIndex: 1,
-    explanation: 'Surah Yusuf narrates Prophet Yusuf\'s story in detail.',
+    explanation: 'Surah Yusuf narrates Prophet Yusuf’s story in detail.',
     relatedProphetId: 'yusuf',
   ),
   ProphetQuizQuestion(
@@ -72,7 +72,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     id: 'q7',
     mode: ProphetQuizMode.storyMatching,
     difficulty: ProphetQuizDifficulty.easy,
-    questionText: 'Which prophet spoke in the cradle by Allah\'s permission?',
+    questionText: 'Which prophet spoke in the cradle by Allah’s permission?',
     options: ['Yahya', 'Isa', 'Yusuf', 'Harun'],
     correctAnswerIndex: 1,
     explanation: 'Isa spoke in the cradle as a sign and defense of his mother.',
@@ -82,10 +82,10 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     id: 'q8',
     mode: ProphetQuizMode.quranReference,
     difficulty: ProphetQuizDifficulty.hard,
-    questionText: 'Surah Nuh is primarily about which prophet\'s call?',
+    questionText: 'Surah Nuh is primarily about which prophet’s call?',
     options: ['Hud', 'Nuh', 'Salih', 'Lut'],
     correctAnswerIndex: 1,
-    explanation: 'Surah Nuh centers on Prophet Nuh\'s long call to his people.',
+    explanation: 'Surah Nuh centers on Prophet Nuh’s long call to his people.',
     relatedProphetId: 'nuh',
   ),
   ProphetQuizQuestion(
@@ -97,7 +97,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     options: ['Yusuf', 'Dawud', 'Hud', 'Salih'],
     correctAnswerIndex: 0,
     explanation:
-        'Yusuf\'s story highlights chastity, honesty, and patience under pressure.',
+        'Yusuf’s story highlights chastity, honesty, and patience under pressure.',
     relatedProphetId: 'yusuf',
   ),
   ProphetQuizQuestion(
@@ -146,7 +146,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     id: 'q14',
     mode: ProphetQuizMode.lessonRecognition,
     difficulty: ProphetQuizDifficulty.medium,
-    questionText: 'Which prophet\'s story strongly teaches gratitude in power?',
+    questionText: 'Which prophet’s story strongly teaches gratitude in power?',
     options: ['Sulayman', 'Harun', 'Lut', 'Zakariya'],
     correctAnswerIndex: 0,
     explanation:
@@ -167,8 +167,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     id: 'q16',
     mode: ProphetQuizMode.storyMatching,
     difficulty: ProphetQuizDifficulty.easy,
-    questionText:
-        'Which prophet\'s people were tested with the she-camel sign?',
+    questionText: 'Which prophet’s people were tested with the she-camel sign?',
     options: ['Hud', 'Salih', 'Lut', 'Nuh'],
     correctAnswerIndex: 1,
     explanation: 'The she-camel sign was given with Prophet Salih to Thamud.',
@@ -191,7 +190,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     questionText: 'Which prophet is central to Surah Yusuf?',
     options: ['Yaqub', 'Yusuf', 'Ibrahim', 'Isa'],
     correctAnswerIndex: 1,
-    explanation: 'Surah Yusuf follows Yusuf\'s journey with detailed lessons.',
+    explanation: 'Surah Yusuf follows Yusuf’s journey with detailed lessons.',
     relatedProphetId: 'yusuf',
   ),
   ProphetQuizQuestion(
@@ -221,10 +220,10 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     mode: ProphetQuizMode.storyMatching,
     difficulty: ProphetQuizDifficulty.medium,
     questionText:
-        'Which prophet is linked to the Ka\'bah foundation with Ibrahim?',
+        'Which prophet is linked to the Ka’bah foundation with Ibrahim?',
     options: ['Ismail', 'Ishaq', 'Yaqub', 'Muhammad ﷺ'],
     correctAnswerIndex: 0,
-    explanation: 'Ibrahim and Ismail raised the Ka\'bah foundations together.',
+    explanation: 'Ibrahim and Ismail raised the Ka’bah foundations together.',
     relatedProphetId: 'ismail',
   ),
   ProphetQuizQuestion(
@@ -244,8 +243,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     questionText: 'Which prophet is tied to Surah Sad 38:17-26?',
     options: ['Dawud', 'Sulayman', 'Musa', 'Nuh'],
     correctAnswerIndex: 0,
-    explanation:
-        'These verses include Dawud\'s worship, judgment, and justice.',
+    explanation: 'These verses include Dawud’s worship, judgment, and justice.',
     relatedProphetId: 'dawud',
   ),
   ProphetQuizQuestion(
@@ -253,11 +251,11 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     mode: ProphetQuizMode.lessonRecognition,
     difficulty: ProphetQuizDifficulty.easy,
     questionText:
-        'Which prophet\'s story most clearly teaches trust after mistakes?',
+        'Which prophet’s story most clearly teaches trust after mistakes?',
     options: ['Adam', 'Hud', 'Ilyas', 'Salih'],
     correctAnswerIndex: 0,
     explanation:
-        'Adam\'s story teaches repentance and returning to Allah after error.',
+        'Adam’s story teaches repentance and returning to Allah after error.',
     relatedProphetId: 'adam',
   ),
   ProphetQuizQuestion(
@@ -302,7 +300,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     options: ['Nuh', 'Hud', 'Salih', 'Harun'],
     correctAnswerIndex: 0,
     explanation:
-        'Surah Nuh preserves Nuh\'s call and responses from his people.',
+        'Surah Nuh preserves Nuh’s call and responses from his people.',
     relatedProphetId: 'nuh',
   ),
   ProphetQuizQuestion(
@@ -310,7 +308,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     mode: ProphetQuizMode.lessonRecognition,
     difficulty: ProphetQuizDifficulty.hard,
     questionText:
-        'Which prophet\'s story strongly warns against arrogance in power?',
+        'Which prophet’s story strongly warns against arrogance in power?',
     options: ['Hud', 'Yahya', 'Zakariya', 'Yunus'],
     correctAnswerIndex: 0,
     explanation:
@@ -356,7 +354,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     questionText: 'Which prophet is heavily present in Ta-Ha 20:9-98?',
     options: ['Musa', 'Harun', 'Muhammad ﷺ', 'Yusuf'],
     correctAnswerIndex: 0,
-    explanation: 'These verses include key events from Musa\'s mission.',
+    explanation: 'These verses include key events from Musa’s mission.',
     relatedProphetId: 'musa',
   ),
   ProphetQuizQuestion(
@@ -391,7 +389,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     options: ['Zakariya', 'Yaqub', 'Ilyas', 'Lut'],
     correctAnswerIndex: 0,
     explanation:
-        'Zakariya\'s sincere prayer was answered with the birth of Yahya.',
+        'Zakariya’s sincere prayer was answered with the birth of Yahya.',
     relatedProphetId: 'zakariya',
   ),
   ProphetQuizQuestion(
@@ -411,7 +409,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     mode: ProphetQuizMode.lessonRecognition,
     difficulty: ProphetQuizDifficulty.easy,
     questionText:
-        'Which prophet\'s story most clearly teaches support and shared mission?',
+        'Which prophet’s story most clearly teaches support and shared mission?',
     options: ['Harun', 'Yunus', 'Ilyas', 'Alyasa'],
     correctAnswerIndex: 0,
     explanation: 'Harun supported Musa through a difficult mission.',
@@ -425,7 +423,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
         'Which prophet is known for extraordinary kingdom and gratitude?',
     options: ['Sulayman', 'Dawud', 'Hud', 'Nuh'],
     correctAnswerIndex: 0,
-    explanation: 'Sulayman\'s story pairs authority with gratitude.',
+    explanation: 'Sulayman’s story pairs authority with gratitude.',
     relatedProphetId: 'sulayman',
   ),
   ProphetQuizQuestion(
@@ -435,8 +433,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     questionText: 'Which prophet is highlighted in Maryam 19:12-15?',
     options: ['Yahya', 'Zakariya', 'Isa', 'Ishaq'],
     correctAnswerIndex: 0,
-    explanation:
-        'These verses describe Yahya\'s wisdom, purity, and character.',
+    explanation: 'These verses describe Yahya’s wisdom, purity, and character.',
     relatedProphetId: 'yahya',
   ),
   ProphetQuizQuestion(
@@ -444,7 +441,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     mode: ProphetQuizMode.prophetIdentification,
     difficulty: ProphetQuizDifficulty.easy,
     questionText:
-        'Which prophet is described in the Qur\'an as truthful and raised to a high station?',
+        'Which prophet is described in the Qur’an as truthful and raised to a high station?',
     options: ['Idris', 'Alyasa', 'Yunus', 'Harun'],
     correctAnswerIndex: 0,
     explanation:
@@ -456,7 +453,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     mode: ProphetQuizMode.lessonRecognition,
     difficulty: ProphetQuizDifficulty.medium,
     questionText:
-        'Which prophet is a clear Qur\'anic model of patience during severe hardship?',
+        'Which prophet is a clear Qur’anic model of patience during severe hardship?',
     options: ['Ayyub', 'Shu\'ayb', 'Dawud', 'Lut'],
     correctAnswerIndex: 0,
     explanation:
@@ -472,7 +469,7 @@ const List<ProphetQuizQuestion> seededProphetQuizQuestions = [
     options: ['Shu\'ayb', 'Hud', 'Salih', 'Zakariya'],
     correctAnswerIndex: 0,
     explanation:
-        'Shu\'ayb called Madyan to fair dealing, justice, and ethical public conduct.',
+        'Shu’ayb called Madyan to fair dealing, justice, and ethical public conduct.',
     relatedProphetId: 'shuayb',
   ),
   ProphetQuizQuestion(

@@ -1,0 +1,227 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+		B10000000000000000000001 /* TVFocusHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000001 /* TVFocusHost.swift */; };
+		B10000000000000000000002 /* QuranFocusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000002 /* QuranFocusTests.swift */; };
+		B10000000000000000000003 /* ShellFocusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000005 /* ShellFocusTests.swift */; };
+		B10000000000000000000004 /* TVFocusTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000006 /* TVFocusTestCase.swift */; };
+		B30000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B90000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B50000000000000000000001;
+			remoteInfo = TVFocusHost;
+		};
+		B20000000000000000000001 /* TVFocusHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFocusHost.swift; sourceTree = "<group>"; };
+		B20000000000000000000002 /* QuranFocusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranFocusTests.swift; sourceTree = "<group>"; };
+		B20000000000000000000005 /* ShellFocusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellFocusTests.swift; sourceTree = "<group>"; };
+		B20000000000000000000006 /* TVFocusTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFocusTestCase.swift; sourceTree = "<group>"; };
+		B20000000000000000000003 /* TVFocusHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVFocusHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B20000000000000000000004 /* TVFocusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVFocusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B40000000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B60000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				B60000000000000000000002 /* Host */,
+				B60000000000000000000003 /* UITests */,
+				B60000000000000000000004 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B60000000000000000000002 /* Host */ = {
+			isa = PBXGroup;
+			children = (
+				B20000000000000000000001 /* TVFocusHost.swift */,
+			);
+			path = Host;
+			sourceTree = "<group>";
+		};
+		B60000000000000000000003 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				B20000000000000000000002 /* QuranFocusTests.swift */,
+				B20000000000000000000005 /* ShellFocusTests.swift */,
+				B20000000000000000000006 /* TVFocusTestCase.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		B60000000000000000000004 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B20000000000000000000003 /* TVFocusHost.app */,
+				B20000000000000000000004 /* TVFocusTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B50000000000000000000001 /* TVFocusHost */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B80000000000000000000002 /* Build configuration list for PBXNativeTarget "TVFocusHost" */;
+			buildPhases = (
+				B70000000000000000000001 /* Sources */,
+				B40000000000000000000001 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TVFocusHost;
+			productName = TVFocusHost;
+			productReference = B20000000000000000000003 /* TVFocusHost.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B50000000000000000000002 /* TVFocusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B80000000000000000000003 /* Build configuration list for PBXNativeTarget "TVFocusTests" */;
+			buildPhases = (
+				B70000000000000000000002 /* Sources */,
+				B40000000000000000000002 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B30000000000000000000002 /* PBXTargetDependency */,
+			);
+			name = TVFocusTests;
+			productName = TVFocusTests;
+			productReference = B20000000000000000000004 /* TVFocusTests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		B90000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					B50000000000000000000001 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					B50000000000000000000002 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = B50000000000000000000001;
+					};
+				};
+			};
+			buildConfigurationList = B80000000000000000000001 /* Build configuration list for PBXProject "TVFocusHarness" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B60000000000000000000001;
+			productRefGroup = B60000000000000000000004 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B50000000000000000000001 /* TVFocusHost */,
+				B50000000000000000000002 /* TVFocusTests */,
+			);
+		};
+		B70000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000000000000000000001 /* TVFocusHost.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B70000000000000000000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000000000000000000002 /* QuranFocusTests.swift in Sources */,
+				B10000000000000000000003 /* ShellFocusTests.swift in Sources */,
+				B10000000000000000000004 /* TVFocusTestCase.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B30000000000000000000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B50000000000000000000001 /* TVFocusHost */;
+			targetProxy = B30000000000000000000001 /* PBXContainerItemProxy */;
+		};
+		B80000000000000000000011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+		B80000000000000000000012 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur.focusharness;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+		B80000000000000000000013 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur.focusharness.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = TVFocusHost;
+			};
+			name = Debug;
+		};
+		B80000000000000000000001 /* Build configuration list for PBXProject "TVFocusHarness" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B80000000000000000000011 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B80000000000000000000002 /* Build configuration list for PBXNativeTarget "TVFocusHost" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B80000000000000000000012 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B80000000000000000000003 /* Build configuration list for PBXNativeTarget "TVFocusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B80000000000000000000013 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+	};
+	rootObject = B90000000000000000000001 /* Project object */;
+}

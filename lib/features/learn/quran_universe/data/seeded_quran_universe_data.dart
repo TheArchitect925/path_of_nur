@@ -155,7 +155,7 @@ const List<QuranUniverseProphetLens> seededUniverseProphetLenses = [
   ),
   QuranUniverseProphetLens(
     prophetId: 'nuh',
-    summary: 'Long patience in da\'wah despite rejection and mockery.',
+    summary: 'Long patience in da’wah despite rejection and mockery.',
     relatedProphetIds: ['hud', 'musa'],
     locationIds: ['mesopotamia'],
     themeIds: ['patience', 'tawhid', 'arrogance'],
@@ -197,7 +197,7 @@ const List<QuranUniverseProphetLens> seededUniverseProphetLenses = [
   ),
   QuranUniverseProphetLens(
     prophetId: 'musa',
-    summary: 'Confronting tyranny and leading through trials by Allah\'s help.',
+    summary: 'Confronting tyranny and leading through trials by Allah’s help.',
     relatedProphetIds: ['harun', 'ibrahim', 'muhammad'],
     locationIds: ['egypt', 'sinai'],
     themeIds: ['justice', 'trust_allah', 'patience'],

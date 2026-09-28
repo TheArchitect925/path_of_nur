@@ -6,50 +6,37 @@ struct TVNavigationSidebar: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 24) {
-      VStack(alignment: .leading, spacing: 10) {
-        Text("Path of Nūr")
-          .font(TVTypography.heroEyebrow)
-          .foregroundColor(TVTheme.focus)
+      Text("Path of Nūr")
+        .font(TVTypography.sectionTitle)
+        .foregroundColor(TVTheme.focus)
+        .tvReadableTitle()
+        .padding(.horizontal, 20)
+        .accessibilityAddTraits(.isHeader)
 
-        Text(tvLocalized("Shared tvOS shell"))
-          .font(TVTypography.sectionTitle)
-          .foregroundColor(TVTheme.textPrimary)
-          .tvReadableTitle()
-
-        Text(tvLocalized("Built for remote-first navigation and curated Home, Profiles, Qur'an, Saved, Settings, Arabic, Learn, Games, Prayer, Dhikr, and Kids parity."))
-          .font(TVTypography.sectionSubtitle)
-          .foregroundColor(TVTheme.textMuted)
-          .tvReadableBody()
-      }
-
-      VStack(alignment: .leading, spacing: 16) {
-        ForEach(appViewModel.navigationItems) { item in
-          Button {
-            appViewModel.navigate(to: item.route, preferredColumn: .content)
-          } label: {
-            _itemLabel(for: item)
+      // The nav list scrolls inside the rail so the shell itself never
+      // exceeds the screen — otherwise tvOS pans the whole root (and the
+      // fixed atmosphere along with it) to chase focus.
+      ScrollView(.vertical, showsIndicators: false) {
+        VStack(alignment: .leading, spacing: 16) {
+          ForEach(appViewModel.navigationItems) { item in
+            Button {
+              appViewModel.navigate(to: item.route, preferredColumn: .content)
+            } label: {
+              _itemLabel(for: item)
+            }
+            .buttonStyle(TVCardButtonStyle())
+            .focused($focusedRoute, equals: item.route)
+            .accessibilityIdentifier("nav.\(item.route.rawValue)")
           }
-          .buttonStyle(.plain)
-          .focused($focusedRoute, equals: item.route)
         }
+        .padding(TVTheme.railBleed)
       }
-
-      Spacer()
-
-      VStack(alignment: .leading, spacing: 8) {
-        Text(tvLocalized("Current route"))
-          .font(TVTypography.detail)
-          .foregroundColor(TVTheme.textMuted)
-          .tvReadableBody()
-
-        Text(tvLocalized(appViewModel.selectedNavigationItem.pathLabelKey))
-          .font(TVTypography.summaryLine)
-          .foregroundColor(TVTheme.accentStrong)
-          .tvReadableBody()
-      }
-
-      TVSystemStatusCard(snapshot: appViewModel.systemStatusSnapshot)
+      .tvRail()
+      .frame(maxHeight: .infinity)
     }
+    .focusSection()
+    // Entered at the section that is open, wherever the focus came from.
+    .tvPreferredFocus($focusedRoute, appViewModel.selectedRoute)
     .frame(width: 360, alignment: .leading)
     .padding(.horizontal, 24)
     .padding(.vertical, 36)

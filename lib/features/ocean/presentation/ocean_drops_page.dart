@@ -10,6 +10,7 @@ import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/community_ocean.dart';
 import '../application/ocean_drops_provider.dart';
+import '../../../core/theme/app_icons.dart';
 
 class OceanDropsPage extends ConsumerWidget {
   const OceanDropsPage({super.key});
@@ -35,12 +36,16 @@ class OceanDropsPage extends ConsumerWidget {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.water_drop_rounded,
+      headerIcon: AppIcons.drops,
       title: l10n.oceanCommunityTitle,
       subtitle: l10n.oceanCommunitySubtitle,
       children: [
         CommunityOceanHero(
-          name: profile.name,
+          name: profile.name.isNotEmpty
+              ? profile.name
+              : profile.sex == UserSex.brother
+              ? l10n.profileBrother
+              : l10n.profileSister,
           personal: personal,
           community: community,
           personalStage: personalStage,
@@ -195,7 +200,7 @@ class CommunityOceanHero extends StatelessWidget {
                     value: NumberFormat.decimalPattern(
                       locale,
                     ).format(personal.personalDropsToday),
-                    icon: Icons.water_drop_outlined,
+                    icon: AppIcons.drops,
                   ),
                   _HeroMetricChip(
                     label: l10n.oceanMetricCommunityTotal,

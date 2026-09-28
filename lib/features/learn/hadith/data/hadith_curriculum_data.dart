@@ -1528,7 +1528,7 @@ const hadithCurriculum = HadithCurriculum(
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
           themeSummary:
-              'Qur’anic warnings against فساد (corruption/harm) support responsibility for shared social and natural spaces.',
+              'Qur’anic warnings against fasad (corruption/harm) support responsibility for shared social and natural spaces.',
         ),
         HadithComparativeInsight(
           tradition: 'Shared moral wisdom',

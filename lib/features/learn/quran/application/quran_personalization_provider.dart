@@ -418,6 +418,24 @@ QuranRecommendationBundle? _buildBundle(
   final continuePath = ref.watch(quranGuidedContinuePathProvider);
   final suggestedPath = ref.watch(quranUserIntentSummaryProvider).suggestedPath;
 
+  // Stability pin: once a primary has been presented on this surface today,
+  // keep showing it. Without this, recording a presentation applies the
+  // cooldown penalty to the ayah just shown, the ranking flips, the card
+  // re-presents a different ayah, and the cycle repeats — the card churns
+  // and a dismiss can target an ayah the user never saw. Dismissed ayahs
+  // are filtered before ranking, so dismissing the pin falls through to the
+  // next best candidate (which then pins itself).
+  final lastPresentedKey = ref.watch(
+    quranPersonalizationStateProvider.select(
+      (state) => state.lastPresentedBundleKeyBySurface[context.surface.name],
+    ),
+  );
+  final todayPrefix = '${profile.dateKey}:';
+  final pinnedAyahKey =
+      lastPresentedKey != null && lastPresentedKey.startsWith(todayPrefix)
+      ? lastPresentedKey.substring(todayPrefix.length)
+      : null;
+
   final ranked =
       explanationRepository
           .getAll()
@@ -430,6 +448,7 @@ QuranRecommendationBundle? _buildBundle(
               actionRepository: actionRepository,
               continuePath: continuePath,
               suggestedPath: suggestedPath,
+              pinnedAyahKey: pinnedAyahKey,
             ),
           )
           .whereType<QuranRecommendedAyah>()
@@ -441,13 +460,21 @@ QuranRecommendationBundle? _buildBundle(
         });
 
   if (ranked.isEmpty) return null;
-  final primary = ranked.first;
-  final secondary = ranked
-      .skip(1)
-      .firstWhere(
-        (item) => item.ayahKey != primary.ayahKey,
-        orElse: () => primary,
-      );
+
+  var primary = ranked.first;
+  if (pinnedAyahKey != null) {
+    for (final item in ranked) {
+      if (item.ayahKey == pinnedAyahKey) {
+        primary = item;
+        break;
+      }
+    }
+  }
+  final pinnedPrimary = primary;
+  final secondary = ranked.firstWhere(
+    (item) => item.ayahKey != pinnedPrimary.ayahKey,
+    orElse: () => pinnedPrimary,
+  );
 
   return QuranRecommendationBundle(
     surface: context.surface,
@@ -467,6 +494,7 @@ QuranRecommendedAyah? _scoreEntry(
   required QuranAyahActionRepository actionRepository,
   required QuranGuidedLearningPath? continuePath,
   required QuranGuidedLearningPath? suggestedPath,
+  String? pinnedAyahKey,
 }) {
   final ayahKey = entry.ayahKey;
   if (profile.dismissedAyahKeysToday.contains(ayahKey)) {
@@ -784,7 +812,12 @@ QuranRecommendedAyah? _scoreEntry(
 
   final recentPrimaryIndex = profile.recentPrimaryAyahKeys.indexOf(ayahKey);
   var freshnessPenaltyApplied = false;
-  if (recentPrimaryIndex >= 0 && !isContinuationCandidate) {
+  // The ayah a surface is currently presenting is exempt from its own
+  // cooldown — penalizing it would score it out of the candidate pool and
+  // defeat the stability pin.
+  if (recentPrimaryIndex >= 0 &&
+      !isContinuationCandidate &&
+      ayahKey != pinnedAyahKey) {
     final penalty = 22 - (recentPrimaryIndex * 4);
     if (penalty > 0) {
       contributions.add(

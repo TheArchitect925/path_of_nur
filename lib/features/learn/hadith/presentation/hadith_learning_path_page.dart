@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../shared/presentation/learning_section.dart';
 import '../application/hadith_learning_paths_service.dart';
@@ -25,9 +26,7 @@ class HadithLearningPathPage extends ConsumerWidget {
     final path = ref.watch(hadithLearningPathByIdProvider(pathId));
     if (path == null) {
       return AppPageScaffold(
-        headerIcon: Icons.route_rounded,
         title: l10n.hadithPathPageTitle,
-        subtitle: l10n.hadithPathNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.hadithPathNotFoundBody))],
       );
     }
@@ -38,9 +37,7 @@ class HadithLearningPathPage extends ConsumerWidget {
     final milestones = ref.watch(hadithPathMilestonesProvider(path.id));
 
     return AppPageScaffold(
-      headerIcon: Icons.route_rounded,
       title: path.title,
-      subtitle: path.subtitle ?? l10n.hadithPathDefaultSubtitle,
       children: [
         LearningSection(
           title: l10n.hadithPathProgressTitle,
@@ -54,17 +51,7 @@ class HadithLearningPathPage extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(
-                  minHeight: 8,
-                  value: summary?.ratio ?? 0,
-                  backgroundColor: AppColors.surface.withValues(alpha: 0.4),
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    AppColors.onSurface.withValues(alpha: 0.72),
-                  ),
-                ),
-              ),
+              ProgressBar(value: summary?.ratio ?? 0, height: 8),
             ],
           ),
         ),
@@ -85,20 +72,24 @@ class HadithLearningPathPage extends ConsumerWidget {
                           AppSurfaceTheme.resolve(
                                 context,
                                 variant: AppSurfaceVariant.pill,
-                                tintColor: AppColors.accentGold,
+                                tintColor: context.palette.accent,
                               )
                               .decoration(radius: 999, includeShadow: false)
                               .copyWith(
                                 color: item.unlocked
-                                    ? AppColors.surface.withValues(alpha: 0.32)
-                                    : AppColors.surface.withValues(alpha: 0.18),
+                                    ? context.palette.surface.withValues(
+                                        alpha: 0.32,
+                                      )
+                                    : context.palette.surface.withValues(
+                                        alpha: 0.18,
+                                      ),
                                 gradient: null,
                                 border: Border.all(
                                   color: item.unlocked
-                                      ? AppColors.accentGoldSoft.withValues(
+                                      ? context.palette.accentSoft.withValues(
                                           alpha: 0.5,
                                         )
-                                      : AppColors.accentGoldSoft.withValues(
+                                      : context.palette.accentSoft.withValues(
                                           alpha: 0.24,
                                         ),
                                 ),
@@ -107,8 +98,8 @@ class HadithLearningPathPage extends ConsumerWidget {
                         item.label,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: item.unlocked
-                              ? AppColors.onSurface
-                              : AppColors.onSurfaceSubtle,
+                              ? context.palette.onSurface
+                              : context.palette.onSurfaceSubtle,
                           fontWeight: item.unlocked
                               ? FontWeight.w700
                               : FontWeight.w500,
@@ -196,8 +187,8 @@ class HadithLearningPathPage extends ConsumerWidget {
                               ? Icons.check_circle_rounded
                               : Icons.radio_button_unchecked_rounded,
                           color: chapterDone
-                              ? AppColors.onSurface
-                              : AppColors.onSurfaceSubtle,
+                              ? context.palette.onSurface
+                              : context.palette.onSurfaceSubtle,
                         ),
                       ],
                     ),
@@ -210,25 +201,15 @@ class HadithLearningPathPage extends ConsumerWidget {
                         chapter.lessonIds.length,
                       ),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     ),
                     const SizedBox(height: 6),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(999),
-                      child: LinearProgressIndicator(
-                        minHeight: 6,
-                        value: chapter.lessonIds.isEmpty
-                            ? 0
-                            : (completedInChapter / chapter.lessonIds.length)
-                                  .clamp(0.0, 1.0),
-                        backgroundColor: AppColors.surface.withValues(
-                          alpha: 0.4,
-                        ),
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          AppColors.onSurface.withValues(alpha: 0.72),
-                        ),
-                      ),
+                    ProgressBar(
+                      value: chapter.lessonIds.isEmpty
+                          ? 0
+                          : completedInChapter / chapter.lessonIds.length,
+                      height: 6,
                     ),
                     const SizedBox(height: 10),
                     ...chapterEntries.asMap().entries.map((pair) {
@@ -392,8 +373,8 @@ class HadithLearningPathPage extends ConsumerWidget {
                     ? Icons.check_circle_rounded
                     : Icons.lock_outline_rounded,
                 color: completed
-                    ? AppColors.onSurface
-                    : AppColors.onSurfaceSubtle,
+                    ? context.palette.onSurface
+                    : context.palette.onSurfaceSubtle,
               )
             : null,
         onTap: unlocked

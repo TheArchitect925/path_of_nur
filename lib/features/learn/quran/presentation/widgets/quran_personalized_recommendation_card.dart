@@ -12,6 +12,7 @@ import '../../application/quran_guided_learning_paths_provider.dart';
 import '../../application/quran_personalization_provider.dart';
 import '../../domain/quran_personalization_models.dart';
 import '../quran_learning_path_copy.dart';
+import '../../../../../core/theme/app_palette.dart';
 
 class QuranPersonalizedRecommendationCard extends ConsumerStatefulWidget {
   const QuranPersonalizedRecommendationCard({
@@ -219,7 +220,7 @@ class _QuranPersonalizedRecommendationCardState
     if (widget.useHeroGlassShell) {
       return AppHeroGlassShell(
         padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
-        tintColor: const Color(0xFFE7C98C),
+        tintColor: context.palette.accent,
         surfaceAlphaOverride: 0.2,
         radius: 36,
         borderColor: const Color(0x42FFFFFF),

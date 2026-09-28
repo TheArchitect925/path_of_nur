@@ -11,7 +11,6 @@ class AttributionsLicensesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return AppPageScaffold(
-      headerIcon: Icons.verified_outlined,
       title: l10n.settingsAttributionsLicensesTitle,
       subtitle: l10n.legalAttributionsSubtitle,
       children: [
@@ -60,7 +59,10 @@ class _AttributionCard extends StatelessWidget {
           const SizedBox(height: 6),
           SelectableText(
             body,
-            style: const TextStyle(height: 1.35, color: Color(0xFF4A4036)),
+            style: TextStyle(
+              height: 1.35,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
           ),
         ],
       ),

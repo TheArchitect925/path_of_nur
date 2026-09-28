@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -10,6 +10,7 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
 import '../../../../shared/widgets/quran_text_span.dart';
+import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/dua_progress_provider.dart';
 import '../application/dua_repository.dart';
 import '../domain/dua_models.dart';
@@ -25,7 +26,6 @@ class DuaDetailPage extends ConsumerStatefulWidget {
 }
 
 class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
-  static const double _bottomContentPadding = 136;
   bool _opened = false;
 
   @override
@@ -48,60 +48,57 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
         .savedIds
         .contains(widget.duaId);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.duaDetailAppBarTitle),
-        actions: [
-          IconButton(
-            onPressed: () => ref
-                .read(duaLearningProvider.notifier)
-                .toggleSaved(widget.duaId),
-            icon: Icon(
-              saved ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
-            ),
+    return LearnHubPageScaffold(
+      title: l10n.duaDetailAppBarTitle,
+      headerActions: [
+        IconButton(
+          onPressed: () =>
+              ref.read(duaLearningProvider.notifier).toggleSaved(widget.duaId),
+          icon: Icon(
+            saved ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
           ),
-        ],
-      ),
-      body: itemAsync.when(
+        ),
+      ],
+      children: itemAsync.when(
         data: (item) {
           if (item == null) {
-            return Center(child: Text(l10n.duaDetailNotFound));
+            return [PremiumCard(child: Text(l10n.duaDetailNotFound))];
           }
           if (item.completionStatus == DuaCompletionStatus.stub ||
               !item.hasContent) {
             return _plannedState(context, item);
           }
           final quranRef = item.isQuran ? _quranRef(item.sourceRef) : null;
-          return ListView(
-            padding: const EdgeInsets.fromLTRB(
-              16,
-              12,
-              16,
-              _bottomContentPadding,
-            ),
-            children: [
-              _heroCard(context, item),
-              const SizedBox(height: 12),
-              if (quranRef != null) ...[
-                QuranReferenceBlock(
-                  surahNumber: quranRef.$1,
-                  ayahStart: quranRef.$2,
-                  ayahEnd: quranRef.$3,
-                  title: item.title,
-                ),
-              ] else ...[
-                _duaTextCard(context, item),
-              ],
-              const SizedBox(height: 12),
-              _guidanceCard(context, item, quranRef),
-              const SizedBox(height: 12),
-              _tagsCard(context, item),
+          return [
+            _heroCard(context, item),
+            const SizedBox(height: 12),
+            if (quranRef != null) ...[
+              QuranReferenceBlock(
+                surahNumber: quranRef.$1,
+                ayahStart: quranRef.$2,
+                ayahEnd: quranRef.$3,
+                title: item.title,
+              ),
+            ] else ...[
+              _duaTextCard(context, item),
             ],
-          );
+            const SizedBox(height: 12),
+            _guidanceCard(context, item, quranRef),
+            const SizedBox(height: 12),
+            _tagsCard(context, item),
+          ];
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, _) =>
-            Center(child: Text(l10n.duaDetailLoadError(error.toString()))),
+        loading: () => const [
+          Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 32),
+              child: CircularProgressIndicator(),
+            ),
+          ),
+        ],
+        error: (error, _) => [
+          PremiumCard(child: Text(l10n.duaDetailLoadError(error.toString()))),
+        ],
       ),
     );
   }
@@ -150,7 +147,7 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
                       Text(
                         item.sourceRef,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.onSurfaceSubtle,
+                          color: context.palette.onSurfaceSubtle,
                         ),
                       ),
                     ],
@@ -295,30 +292,27 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
     );
   }
 
-  Widget _plannedState(BuildContext context, DuaItem item) {
+  List<Widget> _plannedState(BuildContext context, DuaItem item) {
     final l10n = AppLocalizations.of(context);
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, _bottomContentPadding),
-      children: [
-        _heroCard(context, item),
-        const SizedBox(height: 12),
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.duaDetailPlannedTitle,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 8),
-              Text(l10n.duaDetailPlannedBody),
-            ],
-          ),
+    return [
+      _heroCard(context, item),
+      const SizedBox(height: 12),
+      PremiumCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.duaDetailPlannedTitle,
+              style: Theme.of(
+                context,
+              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 8),
+            Text(l10n.duaDetailPlannedBody),
+          ],
         ),
-      ],
-    );
+      ),
+    ];
   }
 
   Widget _pill(String label, DuaCategoryThemeData colors) {

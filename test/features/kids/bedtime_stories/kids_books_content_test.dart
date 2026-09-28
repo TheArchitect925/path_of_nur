@@ -1,0 +1,370 @@
+import 'dart:io';
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/data/bedtime_story_seed.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/data/books/kids_picture_book.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/data/books/kids_picture_books.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/data/kids_islamic_story_seed.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/domain/bedtime_story_models.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/domain/kids_story_pages.dart';
+import 'package:path_of_nur/features/kids/seerah/data/companion_story_seed.dart';
+import 'package:path_of_nur/features/learn/quran/domain/quran_content_refs.dart';
+
+/// C0: the picture-book contract. A book keeps the rules a child's book
+/// needs, and the pager turns one spread into one page. The rules ratchet
+/// the content, not the code: a book that breaks them fails here before a
+/// child sees it.
+void main() {
+  final everyStory = <BedtimeStorySeed>[
+    ...kBedtimeProphetStories,
+    ...kKidsIslamicStories,
+    ...kKidsSeerahCompanionStories,
+    ...kKidsPictureBooks,
+  ];
+  final books = [
+    ...everyStory.where((story) => story.isPictureBook),
+    _fixtureBook(),
+  ];
+
+  test('the atlas scenes every spread may borrow are real files', () {
+    for (final scene in KidsBookAtlasScene.values) {
+      expect(
+        File(scene.assetPath).existsSync(),
+        isTrue,
+        reason: '${scene.name} points at a missing file: ${scene.assetPath}',
+      );
+    }
+  });
+
+  test('story ids stay unique across every list', () {
+    final ids = everyStory.map((story) => story.id).toList();
+    expect(ids.toSet().length, ids.length);
+  });
+
+  group('every picture book', () {
+    test('is a run of short spreads', () {
+      for (final book in books) {
+        expect(
+          book.spreads.length,
+          inInclusiveRange(kKidsBookMinSpreads, kKidsBookMaxSpreads),
+          reason: '${book.id} has ${book.spreads.length} spreads',
+        );
+        for (var i = 0; i < book.spreads.length; i++) {
+          final spread = book.spreads[i];
+          expect(
+            spread.lines.length,
+            inInclusiveRange(1, kKidsBookSpreadMaxLines),
+            reason:
+                '${book.id} spread ${i + 1} has ${spread.lines.length} lines',
+          );
+          expect(
+            spread.wordCount,
+            lessThanOrEqualTo(kKidsBookSpreadMaxWords),
+            reason:
+                '${book.id} spread ${i + 1} is ${spread.wordCount} words: '
+                '"${spread.text}"',
+          );
+          for (final line in spread.lines) {
+            expect(line.trim(), isNotEmpty, reason: '${book.id} blank line');
+            expect(
+              line.trimRight().endsWith('…') ||
+                  line.trimRight().endsWith('...'),
+              isFalse,
+              reason: '${book.id} spread ${i + 1} trails off: "$line"',
+            );
+            expect(
+              line.toLowerCase().contains('good night'),
+              isFalse,
+              reason:
+                  '${book.id} bakes bedtime into the story; use bedtimeClosing',
+            );
+          }
+        }
+      }
+    });
+
+    test('has a refrain that comes back', () {
+      for (final book in books) {
+        expect(book.refrain.trim(), isNotEmpty, reason: '${book.id} refrain');
+        final core = kidsBookRefrainCore(book.refrain);
+        final refrains = book.spreads.where((s) => s.isRefrain).toList();
+        expect(
+          refrains.length,
+          greaterThanOrEqualTo(kKidsBookRefrainMinCount),
+          reason: '${book.id} marks ${refrains.length} refrain spreads',
+        );
+        for (final spread in refrains) {
+          expect(
+            spread.lines.any(
+              (line) => line.toLowerCase().contains(core.toLowerCase()),
+            ),
+            isTrue,
+            reason:
+                '${book.id} refrain spread "${spread.text}" does not carry '
+                '"$core"',
+          );
+        }
+      }
+    });
+
+    test('says what it is and where it comes from', () {
+      for (final book in books) {
+        expect(book.summary.trim(), isNotEmpty, reason: '${book.id} summary');
+        expect(book.lesson.trim(), isNotEmpty, reason: '${book.id} lesson');
+        expect(
+          book.bedtimeClosing.trim(),
+          isNotEmpty,
+          reason: '${book.id} has no bedtime closing',
+        );
+        expect(
+          book.hasQuranReference || book.hasHadithReference,
+          isTrue,
+          reason: '${book.id} rests on no ayah and no hadith',
+        );
+        expect(
+          book.title.contains('Bedtime Story'),
+          isFalse,
+          reason: '${book.id} is titled like a narration track',
+        );
+      }
+    });
+
+    test('reads aloud exactly its spreads, in order', () {
+      for (final book in books) {
+        expect(book.ttsText, kidsBookReadAloudText(book.spreads));
+      }
+    });
+
+    test('shows a real picture on every page', () {
+      for (final book in books) {
+        expect(
+          File(book.coverAssetPath).existsSync(),
+          isTrue,
+          reason: '${book.id} cover missing: ${book.coverAssetPath}',
+        );
+        final pages = kidsStoryPagesFor(book);
+        expect(pages.length, book.spreads.length, reason: book.id);
+        for (final page in pages) {
+          expect(page.spread, same(book.spreads[page.index]));
+          expect(page.lines, book.spreads[page.index].lines);
+          expect(
+            page.illustrationAsset,
+            isNotNull,
+            reason: '${book.id} page ${page.index} has no picture',
+          );
+          expect(
+            File(page.illustrationAsset!).existsSync(),
+            isTrue,
+            reason:
+                '${book.id} page ${page.index} picture missing: '
+                '${page.illustrationAsset}',
+          );
+        }
+      }
+    });
+  });
+
+  group('a book built from spreads', () {
+    final book = _fixtureBook();
+
+    test('borrows atlas art until its own picture is drawn', () {
+      final pages = kidsStoryPagesFor(book);
+      // Spread 1 has no scene: the cover opens the book.
+      expect(pages[0].illustrationAsset, book.coverAssetPath);
+      // Spread 2 borrows the night sky from the atlas.
+      expect(pages[1].illustrationAsset, KidsBookAtlasScene.nightSky.assetPath);
+      // Spread 3 has its own picture.
+      expect(pages[2].illustrationAsset, _ownScene);
+      // A later spread with nothing shows the backdrop, never a blank.
+      expect(pages[3].illustrationAsset, book.backdropAssetPath);
+    });
+
+    test('adds its bedtime closing only at bedtime, and knows its refrain', () {
+      final byDay = kidsStoryPagesFor(book);
+      final atBedtime = kidsStoryPagesFor(book, bedtime: true);
+      expect(byDay.length, book.spreads.length);
+      expect(byDay.any((page) => page.isBedtimeClosing), isFalse);
+      expect(atBedtime.length, book.spreads.length + 1);
+      expect(atBedtime.last.isBedtimeClosing, isTrue);
+      expect(atBedtime.last.lines, [book.bedtimeClosing]);
+      expect(atBedtime.last.illustrationAsset, isNotNull);
+      expect(kidsBookRefrainCore(book.refrain), 'Allah always hears');
+    });
+
+    test('lists only its own pictures in the scene manifest', () {
+      expect(book.sceneIllustrations.length, 1);
+      expect(book.sceneIllustrations.single.imageAssetPath, _ownScene);
+      expect(book.sceneIllustrations.single.sortOrder, 3);
+    });
+
+    test('times itself by its words and pictures', () {
+      final words = book.spreads.fold<int>(0, (n, s) => n + s.wordCount);
+      expect(book.estimatedDurationSeconds, (words / 2).round() + 8 * 3);
+      expect(book.isMultipart, isFalse);
+      expect(book.backdropAssetPath, book.coverAssetPath);
+    });
+  });
+
+  // C6: a book's German is checked against the same rules, spread for
+  // spread, and the localized seed keeps every picture and ref.
+  group('every German translation', () {
+    final translated = [
+      for (final book in books)
+        if (book.translations['de'] != null) book,
+    ];
+
+    test('every book on the shelves carries German', () {
+      final missing = [
+        for (final story in everyStory)
+          if (story.isPictureBook && story.translations['de'] == null) story.id,
+      ];
+      expect(missing, isEmpty, reason: 'no German: $missing');
+    });
+
+    test('matches its book spread for spread and keeps the rules', () {
+      for (final book in translated) {
+        final de = book.translations['de']!;
+        expect(
+          de.spreads.length,
+          book.spreads.length,
+          reason: '${book.id}: German has ${de.spreads.length} spreads',
+        );
+        for (final field in [
+          de.title,
+          de.shortTitle,
+          de.summary,
+          de.lesson,
+          de.refrain,
+          de.bedtimeClosing,
+        ]) {
+          expect(field.trim(), isNotEmpty, reason: '${book.id} German field');
+        }
+        final core = kidsBookRefrainCore(de.refrain).toLowerCase();
+        var refrains = 0;
+        for (var i = 0; i < de.spreads.length; i++) {
+          final lines = de.spreads[i];
+          expect(
+            lines.length,
+            inInclusiveRange(1, kKidsBookSpreadMaxLines),
+            reason: '${book.id} German spread ${i + 1} lines',
+          );
+          final words = lines.fold<int>(
+            0,
+            (n, l) => n + l.trim().split(RegExp(r'\s+')).length,
+          );
+          expect(
+            words,
+            lessThanOrEqualTo(kKidsBookTranslatedSpreadMaxWords),
+            reason: '${book.id} German spread ${i + 1} is $words words',
+          );
+          for (final line in lines) {
+            expect(line.trim(), isNotEmpty);
+            expect(
+              line.trimRight().endsWith('…') ||
+                  line.trimRight().endsWith('...'),
+              isFalse,
+              reason: '${book.id} German spread ${i + 1} trails off',
+            );
+            expect(
+              line.toLowerCase().contains('gute nacht'),
+              isFalse,
+              reason: '${book.id} German spread ${i + 1} says good night',
+            );
+          }
+          if (lines.join(' ').toLowerCase().contains(core)) refrains++;
+        }
+        expect(
+          refrains,
+          greaterThanOrEqualTo(kKidsBookRefrainMinCount),
+          reason:
+              '${book.id}: German refrain "${de.refrain}" returns $refrains times',
+        );
+      }
+    });
+
+    test('localized swaps the text and keeps the pictures', () {
+      for (final book in translated) {
+        final de = book.translations['de']!;
+        final localized = book.localized('de');
+        expect(localized.contentLanguage, 'de');
+        expect(localized.readAloudLanguageCode, 'de-DE');
+        expect(localized.id, book.id);
+        expect(localized.title, de.title);
+        expect(localized.refrain, de.refrain);
+        expect(localized.bedtimeClosing, de.bedtimeClosing);
+        expect(localized.spreads.length, book.spreads.length);
+        for (var i = 0; i < book.spreads.length; i++) {
+          expect(localized.spreads[i].lines, de.spreads[i]);
+          expect(
+            localized.spreads[i].illustrationAsset,
+            book.spreads[i].illustrationAsset,
+          );
+          expect(localized.spreads[i].atlasScene, book.spreads[i].atlasScene);
+          expect(localized.spreads[i].quranRef, book.spreads[i].quranRef);
+          expect(localized.spreads[i].arabicLine, book.spreads[i].arabicLine);
+          expect(localized.spreads[i].isRefrain, book.spreads[i].isRefrain);
+        }
+        expect(localized.ttsText, kidsBookReadAloudText(localized.spreads));
+        expect(localized.sceneIllustrations, book.sceneIllustrations);
+        // A language the book does not carry reads as written.
+        expect(identical(book.localized('fr'), book), isTrue);
+        expect(identical(localized.localized('de'), localized), isTrue);
+      }
+    });
+  });
+}
+
+const _cover = 'assets/images/prophets/bedtime_stories/covers/yunus_cover.webp';
+const _ownScene =
+    'assets/images/kids_stories/scenes/bismillah_before_eating_scene_1.webp';
+
+BedtimeStorySeed _fixtureBook() {
+  return kidsPictureBook(
+    id: 'story_fixture_book_v1',
+    title: 'The Little Lamp',
+    shortTitle: 'The Little Lamp',
+    summary: 'A fixture book that keeps every rule of the format.',
+    category: BedtimeStoryCategory.foundations,
+    collectionType: KidsIslamicStoryCollectionType.foundations,
+    storyType: KidsIslamicStoryType.foundations,
+    refrain: 'Allah always hears.',
+    lesson: 'Allah always hears.',
+    bedtimeClosing: 'Now close your eyes. Allah hears you in your bed too.',
+    coverAssetPath: _cover,
+    sortOrder: 9999,
+    quranQuote: 'And your Lord says, "Call upon Me; I will respond to you."',
+    quranReference: 'Qur’an 40:60',
+    quranQuoteRef: const QuranQuoteRef(surah: 40, ayah: 60),
+    spreads: const [
+      KidsBookSpread(['Safa could not sleep.', 'The room was dark.']),
+      KidsBookSpread([
+        'She looked out of the window.',
+        'The stars were out.',
+      ], atlasScene: KidsBookAtlasScene.nightSky),
+      KidsBookSpread(
+        ['"Allah always hears," said Mama.'],
+        illustrationAsset: _ownScene,
+        isRefrain: true,
+      ),
+      KidsBookSpread(['Safa whispered a duʿā.', 'Nobody else could hear it.']),
+      KidsBookSpread(
+        ['But Allah could.', 'Allah always hears.'],
+        isRefrain: true,
+        atlasScene: KidsBookAtlasScene.bedroom,
+      ),
+      KidsBookSpread([
+        'She pulled the blanket up.',
+        'The dark did not feel so dark.',
+      ], atlasScene: KidsBookAtlasScene.bedroom),
+      KidsBookSpread([
+        'In the morning the sun came up.',
+        'Safa said Alhamdulillah.',
+      ], atlasScene: KidsBookAtlasScene.daySky),
+      KidsBookSpread(
+        ['When it is dark, call on Allah.', 'Allah always hears.'],
+        isRefrain: true,
+        atlasScene: KidsBookAtlasScene.home,
+      ),
+    ],
+  );
+}

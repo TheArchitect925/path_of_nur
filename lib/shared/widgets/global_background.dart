@@ -1,13 +1,37 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/prayer/prayer_preferences.dart';
 import '../../core/theme/app_backgrounds.dart';
-import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_palette.dart';
 import '../../core/theme/app_theme.dart';
+import '../../core/theme/living_atmosphere.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
 import '../../features/wallpaper/application/wallpaper_provider.dart';
+import '../application/daily_clock_provider.dart';
+import '../motion/ambient_motion.dart';
+import 'night_sky.dart';
 
 const double _backgroundDecodeScale = 1.1;
+
+/// Where the night-theme moon sits, expressed for left-to-right reading:
+/// header height on the trailing side, clear of the status-bar icons above
+/// and of the page title beside it.
+const Offset kMoonFractionDefault = Offset(0.735, 0.105);
+
+/// Home centres its greeting and puts its controls on the trailing side, so
+/// the moon takes the leading side there to stay out of both.
+const Offset kMoonFractionHome = Offset(0.12, 0.105);
+
+/// Mirrors a moon position for right-to-left layouts, where titles and
+/// controls swap sides and a fixed x would land right back under them.
+Offset resolveMoonFraction(Offset fraction, TextDirection direction) {
+  return direction == TextDirection.rtl
+      ? Offset(1 - fraction.dx, fraction.dy)
+      : fraction;
+}
 
 class GlobalBackground extends ConsumerWidget {
   const GlobalBackground({
@@ -15,18 +39,24 @@ class GlobalBackground extends ConsumerWidget {
     this.assetPath,
     this.overlayColor,
     this.atmosphere = AppBackgroundAtmosphere.standard,
+    this.moonFraction = kMoonFractionDefault,
   });
 
   final String? assetPath;
   final Color? overlayColor;
   final AppBackgroundAtmosphere atmosphere;
+  final Offset moonFraction;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final moonFraction = resolveMoonFraction(
+      this.moonFraction,
+      Directionality.of(context),
+    );
     final wallpaper = ref.watch(selectedWallpaperProvider);
     final settings = ref.watch(profileSettingsProvider);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final fallbackColor = appearance?.background ?? AppColors.background;
+    final fallbackColor = appearance?.background ?? context.palette.background;
     final backgroundSpec = AppBackgroundTheme.resolve(
       appearance: appearance,
       disableGlassTransparency: settings.disableGlassTransparency,
@@ -35,6 +65,138 @@ class GlobalBackground extends ConsumerWidget {
 
     if (settings.disableBackground || appearance?.disableBackground == true) {
       return Positioned.fill(child: ColoredBox(color: fallbackColor));
+    }
+
+    // Night themes paint their atmosphere instead of a wallpaper photo:
+    // Midnight gets the starry sky with the true-phase moon, Candlelight the
+    // ember ground with its glow crown (carried by the spec's gradients).
+    if (appearance?.isNightFamily == true) {
+      final isMidnight = appearance!.mode == AppThemeMode.midnight;
+      final isRamadan = appearance.mode == AppThemeMode.ramadan;
+      final isQadr = appearance.mode == AppThemeMode.laylatAlQadr;
+      final now = isMidnight || isRamadan || isQadr
+          ? (ref.watch(dailyNowProvider).value ?? DateTime.now())
+          : null;
+      return Positioned.fill(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(gradient: backgroundSpec.baseGradient),
+            ),
+            if (isMidnight)
+              CustomPaint(
+                painter: MidnightSkyPainter(
+                  now: now!,
+                  // Position comes from the surface: see the constants above.
+                  moonFraction: moonFraction,
+                ),
+              )
+            else if (isRamadan) ...[
+              CustomPaint(
+                painter: MidnightSkyPainter(
+                  now: now!,
+                  moonFraction: moonFraction,
+                  // Violet unlit limb so the crescent sits in the Layali sky.
+                  moonShadowColor: const Color(0xFF352B54),
+                ),
+              ),
+              _BreathingFanoos(now: now),
+            ] else if (isQadr) ...[
+              CustomPaint(
+                painter: MidnightSkyPainter(
+                  now: now!,
+                  moonFraction: moonFraction,
+                  // Near-black violet limb for the Night of Power sky.
+                  moonShadowColor: const Color(0xFF241D3F),
+                ),
+              ),
+              CustomPaint(painter: QadrDescentPainter()),
+            ] else if (appearance.mode == AppThemeMode.jummah)
+              CustomPaint(painter: MihrabArchPainter()),
+            // The painted moon breathes on the ambient cycle: the night's
+            // counterpart of the lantern, and the shell's only ambient life.
+            if (isMidnight || isRamadan || isQadr)
+              _MoonBreath(
+                key: const Key('shell-moon-breath'),
+                moonFraction: moonFraction,
+              ),
+            IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: backgroundSpec.foregroundGlowGradient,
+                ),
+              ),
+            ),
+            if (overlayColor != null) ColoredBox(color: overlayColor!),
+          ],
+        ),
+      );
+    }
+
+    // Eid dresses the cream ground with painted bunting instead of a photo.
+    if (appearance?.mode == AppThemeMode.eid) {
+      return Positioned.fill(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(gradient: backgroundSpec.baseGradient),
+            ),
+            CustomPaint(painter: EidBuntingPainter()),
+            IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: backgroundSpec.foregroundGlowGradient,
+                ),
+              ),
+            ),
+            if (overlayColor != null) ColoredBox(color: overlayColor!),
+          ],
+        ),
+      );
+    }
+
+    // Living Atmosphere: on Noor Glass the wallpaper photo gives way to a
+    // painted sky that follows the prayer clock — rose-gold dawn, clear
+    // day, amber Maghrib. (After dark the app resolves to Midnight before
+    // reaching here, so night never paints on this branch.)
+    if (assetPath == null &&
+        appearance?.mode == AppThemeMode.noorGlass &&
+        settings.livingAtmosphere) {
+      final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
+      final schedule = ref.watch(prayerScheduleContextProvider);
+      DateTime? scheduleStart(String id) {
+        for (final item in schedule.items) {
+          if (item.id == id) return item.windowStartDateTime;
+        }
+        return null;
+      }
+
+      final phase = noorSkyPhaseAt(
+        now: now,
+        fajrStart: scheduleStart('fajr'),
+        maghribStart: scheduleStart('maghrib'),
+        ishaStart: scheduleStart('isha'),
+      );
+      return Positioned.fill(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(gradient: noorSkyGradientFor(phase)),
+            ),
+            IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: backgroundSpec.foregroundGlowGradient,
+                ),
+              ),
+            ),
+            if (overlayColor != null) ColoredBox(color: overlayColor!),
+          ],
+        ),
+      );
     }
 
     final effectiveAsset = assetPath ?? wallpaper.assetPath;
@@ -74,6 +236,114 @@ class GlobalBackground extends ConsumerWidget {
           ),
           if (overlayColor != null) ColoredBox(color: overlayColor!),
         ],
+      ),
+    );
+  }
+}
+
+/// The Ramadan fanoos, breathing on the ambient cycle. It hangs left of the
+/// page titles, opposite the crescent, and paints in its own layer so the
+/// sky behind it never repaints with it.
+class _BreathingFanoos extends StatelessWidget {
+  const _BreathingFanoos({required this.now});
+
+  final DateTime now;
+
+  static const Offset _lanternFraction = Offset(0.14, 0.0);
+
+  @override
+  Widget build(BuildContext context) {
+    final base = fanoosGlowStrengthFor(now);
+    final animation = AmbientMotion.maybeOf(context);
+    Widget paint(double breath) => CustomPaint(
+      painter: FanoosLanternPainter(
+        glowStrength: (base * (0.82 + 0.18 * breath)).clamp(0.0, 1.0),
+        lanternFraction: _lanternFraction,
+      ),
+    );
+    return RepaintBoundary(
+      child: AnimatedBuilder(
+        animation: animation ?? kAlwaysCompleteAnimation,
+        builder: (context, _) => paint(
+          animation == null ? 0.35 : AmbientMotion.breath(animation.value),
+        ),
+      ),
+    );
+  }
+}
+
+/// A soft halo behind the painted moon that swells and settles on the
+/// ambient cycle. It covers only the disc's surroundings, takes no taps, and
+/// paints in its own layer so the sky never repaints with it. Off (Reduce
+/// Motion, background, tests) it holds a quiet resting glow.
+class _MoonBreath extends StatelessWidget {
+  const _MoonBreath({super.key, required this.moonFraction});
+
+  /// The resolved fraction the sky painter uses, so the halo sits on the disc.
+  final Offset moonFraction;
+
+  static const Color _moonLight = Color(0xFFEDE5CE);
+  static const double _restingBreath = 0.35;
+
+  /// The disc the sky painter draws: the same radius and centre as
+  /// [MidnightSkyPainter], so the halo sits exactly on it.
+  Rect _moonBounds(Size size) {
+    final r = math.min(size.width, size.height) * 0.052;
+    final center = Offset(
+      size.width * moonFraction.dx,
+      size.height * moonFraction.dy,
+    );
+    return Rect.fromCircle(center: center, radius: r);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final animation = AmbientMotion.maybeOf(context);
+    return Positioned.fill(
+      child: IgnorePointer(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final moon = _moonBounds(constraints.biggest);
+            final halo = Rect.fromCircle(
+              center: moon.center,
+              radius: moon.width * 1.6,
+            );
+            return Stack(
+              children: [
+                Positioned.fromRect(
+                  rect: halo,
+                  child: RepaintBoundary(
+                    child: AnimatedBuilder(
+                      animation: animation ?? kAlwaysCompleteAnimation,
+                      builder: (context, _) {
+                        final breath = animation == null
+                            ? _restingBreath
+                            : AmbientMotion.breath(animation.value);
+                        return Transform.scale(
+                          scale: 0.92 + 0.12 * breath,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: RadialGradient(
+                                colors: [
+                                  _moonLight.withValues(
+                                    alpha: 0.10 + 0.14 * breath,
+                                  ),
+                                  _moonLight.withValues(alpha: 0),
+                                ],
+                                stops: const [0.2, 1.0],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

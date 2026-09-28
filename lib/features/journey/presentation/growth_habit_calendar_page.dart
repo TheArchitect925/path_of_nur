@@ -38,7 +38,6 @@ class _GrowthHabitCalendarPageState
     final days = _buildMonthDays(_visibleMonth);
 
     return AppPageScaffold(
-      headerIcon: Icons.calendar_month_rounded,
       title: l10n.growthTrackingCalendarTitle,
       subtitle: l10n.growthTrackingCalendarSubtitle,
       children: [

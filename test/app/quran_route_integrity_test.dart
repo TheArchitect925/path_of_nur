@@ -6,10 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/learn/quran/data/quran_repository.dart';
-import 'package:path_of_nur/features/learn/presentation/pages/learn_quran_hub_page.dart';
-import 'package:path_of_nur/features/learn/quran/application/quran_search_support.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
-import 'package:path_of_nur/features/learn/quran/presentation/quran_knowledge_search_page.dart';
+import 'package:path_of_nur/features/learn/quran/application/quran_search_support.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_search_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_daily_companion_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_memorization_review_page.dart';
@@ -22,7 +20,6 @@ import 'package:path_of_nur/features/learn/quran/presentation/quran_surah_insigh
 import 'package:path_of_nur/features/learn/quran/presentation/quran_topic_explorer_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_word_review_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_words_page.dart';
-import 'package:path_of_nur/shared/widgets/main_page_search_launcher.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 
@@ -85,27 +82,6 @@ void main() {
     );
   }
 
-  Future<void> tapReflectionsAction(
-    WidgetTester tester,
-    Finder hostPageFinder,
-  ) async {
-    final context = tester.element(hostPageFinder);
-    final l10n = AppLocalizations.of(context);
-    await tester.scrollUntilVisible(
-      find.text(l10n.quranHubRelatedToolsTitle),
-      240,
-      scrollable: find.byType(Scrollable).first,
-    );
-    final labelFinder = find.text(l10n.quranReflectionsHubEntryTitle);
-    final chipFinder = find.ancestor(
-      of: labelFinder,
-      matching: find.byType(InkWell),
-    );
-    final chip = tester.widget<InkWell>(chipFinder.first);
-    chip.onTap?.call();
-    await pumpRouteFrames(tester);
-  }
-
   testWidgets('canonical and compatibility quran reflections routes resolve', (
     tester,
   ) async {
@@ -126,24 +102,22 @@ void main() {
     }
   });
 
-  testWidgets('quran app hub reflections action navigates successfully', (
-    tester,
-  ) async {
-    final container = await makeContainer();
-    final router = container.read(appRouterProvider);
+  testWidgets(
+    'quran reflections stays reachable by name after the hub rebuild',
+    (tester) async {
+      final container = await makeContainer();
+      final router = container.read(appRouterProvider);
 
-    await tester.pumpWidget(buildRouterTestApp(container));
-    await pumpRouteFrames(tester);
+      await tester.pumpWidget(buildRouterTestApp(container));
+      await pumpRouteFrames(tester);
 
-    router.go('/quran');
-    await pumpRouteFrames(tester);
-    expect(find.byType(QuranAppHubPage), findsOneWidget);
+      router.goNamed('quranReflections');
+      await pumpRouteFrames(tester);
 
-    await tapReflectionsAction(tester, find.byType(QuranAppHubPage));
-
-    expect(find.byType(QuranReflectionsPage), findsOneWidget);
-    expect(tester.takeException(), isNull);
-  });
+      expect(find.byType(QuranReflectionsPage), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   testWidgets('quran learning study hub routes load without exceptions', (
     tester,
@@ -160,7 +134,7 @@ void main() {
     ]) {
       router.go(path);
       await pumpRouteFrames(tester);
-      expect(find.byType(LearnQuranHubPage), findsOneWidget, reason: path);
+      expect(find.byType(QuranAppHubPage), findsOneWidget, reason: path);
       expect(tester.takeException(), isNull, reason: path);
     }
   });
@@ -175,7 +149,8 @@ void main() {
     await pumpRouteFrames(tester);
 
     final cases = <(String, Type)>[
-      ('/quran/knowledge-search', QuranKnowledgeSearchPage),
+      // knowledge-search folded into the one Qur'an search (Phase 7a).
+      ('/quran/knowledge-search', QuranSearchPage),
       ('/quran/daily', QuranDailyCompanionPage),
       (
         '/quran/insights/paths/character-adab-starter',
@@ -608,6 +583,13 @@ void main() {
 
       expect(find.text(l10n.quranSavedSearches), findsOneWidget);
       expect(find.text(l10n.quranRecentSearches), findsOneWidget);
+      // The header's navigation row pushes the third section below the
+      // 600 px test viewport; the list builds it lazily, so scroll to it.
+      await tester.scrollUntilVisible(
+        find.text(l10n.quranSuggestedSearches),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
       expect(find.text(l10n.quranSuggestedSearches), findsOneWidget);
       expect(find.text('rahman'), findsWidgets);
       expect(find.text('father'), findsWidgets);
@@ -790,22 +772,9 @@ void main() {
       router.go('/quran');
       await pumpRouteFrames(tester);
 
-      final searchLauncherFinder = find.byType(MainPageSearchLauncher);
-      await tester.scrollUntilVisible(
-        searchLauncherFinder,
-        400,
-        scrollable: find.byType(Scrollable).first,
-        maxScrolls: 60,
-      );
-      final launcher = tester.widget<InkWell>(
-        find
-            .descendant(
-              of: searchLauncherFinder,
-              matching: find.byType(InkWell),
-            )
-            .first,
-      );
-      launcher.onTap?.call();
+      // Phase 7a: the hub's search launcher card retired; search opens from
+      // the title-row icon.
+      await tester.tap(find.byIcon(Icons.search_rounded).first);
       await pumpRouteFrames(tester);
 
       await tester.enterText(find.byType(EditableText).first, 'recompense');
@@ -839,22 +808,9 @@ void main() {
       router.go('/quran');
       await pumpRouteFrames(tester);
 
-      final searchLauncherFinder = find.byType(MainPageSearchLauncher);
-      await tester.scrollUntilVisible(
-        searchLauncherFinder,
-        400,
-        scrollable: find.byType(Scrollable).first,
-        maxScrolls: 60,
-      );
-      final launcher = tester.widget<InkWell>(
-        find
-            .descendant(
-              of: searchLauncherFinder,
-              matching: find.byType(InkWell),
-            )
-            .first,
-      );
-      launcher.onTap?.call();
+      // Phase 7a: the hub's search launcher card retired; search opens from
+      // the title-row icon.
+      await tester.tap(find.byIcon(Icons.search_rounded).first);
       await pumpRouteFrames(tester);
 
       await tester.enterText(find.byType(EditableText).first, 'naabudu');
@@ -881,22 +837,9 @@ void main() {
       router.go('/quran');
       await pumpRouteFrames(tester);
 
-      final searchLauncherFinder = find.byType(MainPageSearchLauncher);
-      await tester.scrollUntilVisible(
-        searchLauncherFinder,
-        400,
-        scrollable: find.byType(Scrollable).first,
-        maxScrolls: 60,
-      );
-      final launcher = tester.widget<InkWell>(
-        find
-            .descendant(
-              of: searchLauncherFinder,
-              matching: find.byType(InkWell),
-            )
-            .first,
-      );
-      launcher.onTap?.call();
+      // Phase 7a: the hub's search launcher card retired; search opens from
+      // the title-row icon.
+      await tester.tap(find.byIcon(Icons.search_rounded).first);
       await pumpRouteFrames(tester);
 
       await tester.enterText(find.byType(EditableText).first, 'اهدنا');

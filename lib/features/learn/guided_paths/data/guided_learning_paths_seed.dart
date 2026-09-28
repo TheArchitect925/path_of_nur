@@ -29,6 +29,12 @@ const List<GuidedLearningPath> kGuidedLearningPaths = <GuidedLearningPath>[
           oceanSourceModule: oceanSourceLearn,
         ),
       ),
+      // NOTE: step ids below predate a content re-target and no longer
+      // describe their destinations ("daily-duas" → Who is Allah?,
+      // "salah-basics" → five pillars, "hadith-essentials" → next steps).
+      // They are persisted in learn.guided_paths.state.v1, so renaming them
+      // would orphan saved progress — labels and rewards follow the content
+      // instead.
       GuidedLearningPathStep(
         id: 'foundations-daily-duas',
         pathId: 'foundations-starter',
@@ -44,8 +50,8 @@ const List<GuidedLearningPath> kGuidedLearningPaths = <GuidedLearningPath>[
         estimatedMinutes: 6,
         reward: GuidedLearningPathStepReward(
           learningXp: 6,
-          oceanActionType: oceanActionDuaLessonCompleted,
-          oceanSourceModule: oceanSourceDua,
+          oceanActionType: oceanActionLessonCompleted,
+          oceanSourceModule: oceanSourceLearn,
         ),
       ),
       GuidedLearningPathStep(
@@ -78,7 +84,7 @@ const List<GuidedLearningPath> kGuidedLearningPaths = <GuidedLearningPath>[
         estimatedMinutes: 8,
         reward: GuidedLearningPathStepReward(
           learningXp: 8,
-          oceanActionType: oceanActionHadithLessonCompleted,
+          oceanActionType: oceanActionLearningSegmentCompleted,
           oceanSourceModule: oceanSourceLearn,
         ),
       ),

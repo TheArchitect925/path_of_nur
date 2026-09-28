@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -26,17 +26,15 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
     final repository = ref.read(triviaRepositoryProvider);
     final result = state.lastResult;
     if (result == null) {
-      return const Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: TriviaEmptyStateCard(
-              title: 'No recent result',
-              subtitle:
-                  'Complete a trivia session and the result will appear here.',
-            ),
+      return LearnHubPageScaffold(
+        title: l10n.triviaResultsTitle,
+        subtitle: l10n.triviaResultsSubtitle,
+        children: [
+          TriviaEmptyStateCard(
+            title: l10n.triviaSessionNoActiveTitle,
+            subtitle: l10n.triviaSessionNoActiveSubtitle,
           ),
-        ),
+        ],
       );
     }
 
@@ -52,7 +50,6 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
         result.knowledgeStageTitle ?? result.mode.localizedLabel(l10n);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.emoji_events_rounded,
       title: l10n.triviaResultsTitle,
       subtitle: l10n.triviaResultsSubtitle,
       children: [
@@ -89,12 +86,9 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
                 l10n.triviaResultsCompletedSummary(
                   numberFormat.format(result.durationSeconds),
                   numberFormat.format(result.incorrectCount),
-                  numberFormat.format(result.totalAnswered),
-                  numberFormat.format(result.correctCount),
-                  numberFormat.format(result.totalAnswered),
                 ),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 8),
@@ -105,7 +99,7 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
                   drops: result.oceanDropsEarned,
                 ),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               if (result.mode == TriviaMode.survival) ...[

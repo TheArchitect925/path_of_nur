@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sqlite3/sqlite3.dart';
+import 'package:sqlite3/common.dart';
+
+import 'sqlite_opener.dart';
 
 const String defaultStructuredDataScopeId = '__default__';
 
@@ -17,14 +19,14 @@ class AppDatabase {
   }
 
   factory AppDatabase.openFile(String path) {
-    return AppDatabase._(sqlite3.open(path));
+    return AppDatabase._(openSqliteFile(path));
   }
 
   factory AppDatabase.inMemory() {
-    return AppDatabase._(sqlite3.openInMemory());
+    return AppDatabase._(openSqliteInMemory());
   }
 
-  final Database _db;
+  final CommonDatabase _db;
 
   void _ensureColumn({
     required String table,
@@ -93,6 +95,25 @@ class AppDatabase {
         target INTEGER NOT NULL,
         started_at_iso TEXT NOT NULL,
         finished_at_iso TEXT NOT NULL
+      );
+    ''');
+    _db.execute('''
+      CREATE TABLE IF NOT EXISTS dhikr_daily_totals(
+        scope_id TEXT NOT NULL,
+        date_key TEXT NOT NULL,
+        count INTEGER NOT NULL,
+        sessions INTEGER NOT NULL,
+        routines_json TEXT NOT NULL DEFAULT '[]',
+        updated_at_iso TEXT NOT NULL,
+        PRIMARY KEY(scope_id, date_key)
+      );
+    ''');
+    _db.execute('''
+      CREATE TABLE IF NOT EXISTS dhikr_phrase_totals(
+        scope_id TEXT NOT NULL,
+        phrase_label TEXT NOT NULL,
+        count INTEGER NOT NULL,
+        PRIMARY KEY(scope_id, phrase_label)
       );
     ''');
     _db.execute('''
@@ -297,6 +318,12 @@ class AppDatabase {
     ]);
     execute('DELETE FROM dhikr_state WHERE scope_id = ?;', <Object?>[scopeId]);
     execute('DELETE FROM dhikr_sessions WHERE scope_id = ?;', <Object?>[
+      scopeId,
+    ]);
+    execute('DELETE FROM dhikr_daily_totals WHERE scope_id = ?;', <Object?>[
+      scopeId,
+    ]);
+    execute('DELETE FROM dhikr_phrase_totals WHERE scope_id = ?;', <Object?>[
       scopeId,
     ]);
     execute('DELETE FROM ocean_events WHERE scope_id = ?;', <Object?>[scopeId]);

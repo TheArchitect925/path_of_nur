@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:quran/quran.dart' as q;
 
@@ -22,9 +23,12 @@ class QuranReciter {
 }
 
 class QuranAudioRepository {
-  QuranAudioRepository({HttpClient? client}) : _client = client ?? HttpClient();
+  QuranAudioRepository({HttpClient? client}) : _injectedClient = client;
 
-  final HttpClient _client;
+  final HttpClient? _injectedClient;
+  // Created on first download: dart:io has no HttpClient on the web, where
+  // recitations stream and nothing is downloaded.
+  late final HttpClient _client = _injectedClient ?? HttpClient();
   static const String defaultReciterId = 'alafasy';
 
   static const List<QuranReciter> reciters = [
@@ -101,6 +105,7 @@ class QuranAudioRepository {
     required int surahNumber,
     required int ayahNumber,
   }) async {
+    if (kIsWeb) return null;
     final file = await _audioFile(
       reciterId: reciterId,
       surahNumber: surahNumber,
@@ -118,6 +123,38 @@ class QuranAudioRepository {
     return file.path;
   }
 
+  /// The app ships Husary recitation for Al-Fatihah and the short surahs
+  /// (105–114) inside the bundle — the salah trainer's clips, in everyayah's
+  /// naming — so a brand-new reader can follow their first surahs offline
+  /// before anything is downloaded.
+  static const Set<int> bundledHusarySurahs = {
+    1,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+  };
+
+  static const String _bundledHusaryReciterId = 'husary';
+
+  String? bundledAssetUriForAyah({
+    required String reciterId,
+    required int surahNumber,
+    required int ayahNumber,
+  }) {
+    if (reciterId != _bundledHusaryReciterId) return null;
+    if (!bundledHusarySurahs.contains(surahNumber)) return null;
+    final code =
+        '${surahNumber.toString().padLeft(3, '0')}${ayahNumber.toString().padLeft(3, '0')}';
+    return 'asset:///assets/audio/salah/husary/$code.mp3';
+  }
+
   Future<String> resolveAyahSource({
     required String reciterId,
     required int surahNumber,
@@ -129,6 +166,12 @@ class QuranAudioRepository {
       ayahNumber: ayahNumber,
     );
     if (local != null) return local;
+    final bundled = bundledAssetUriForAyah(
+      reciterId: reciterId,
+      surahNumber: surahNumber,
+      ayahNumber: ayahNumber,
+    );
+    if (bundled != null) return bundled;
     return verseUri(
       reciterId: reciterId,
       surahNumber: surahNumber,
@@ -143,11 +186,20 @@ class QuranAudioRepository {
     QuranPlaybackSourceType? preferredSourceType,
   }) async {
     final collection = collectionMetadata(reciterId);
-    final localSource = await localAyahPath(
+    final downloadedSource = await localAyahPath(
       reciterId: reciterId,
       surahNumber: surahNumber,
       ayahNumber: ayahNumber,
     );
+    // A bundled asset is on-device audio just like a download, so it rides
+    // the localDownload tier for resilience purposes.
+    final localSource =
+        downloadedSource ??
+        bundledAssetUriForAyah(
+          reciterId: reciterId,
+          surahNumber: surahNumber,
+          ayahNumber: ayahNumber,
+        );
     final remoteSource = verseUri(
       reciterId: reciterId,
       surahNumber: surahNumber,
@@ -268,6 +320,7 @@ class QuranAudioRepository {
     required String reciterId,
     required int surahNumber,
   }) async {
+    if (kIsWeb) return;
     final total = q.getVerseCount(surahNumber);
     for (var ayah = 1; ayah <= total; ayah += 1) {
       final file = await _audioFile(
@@ -285,6 +338,7 @@ class QuranAudioRepository {
     required String reciterId,
     required int surahNumber,
   }) async {
+    if (kIsWeb) return false;
     final total = q.getVerseCount(surahNumber);
     for (var ayah = 1; ayah <= total; ayah += 1) {
       final file = await _audioFile(

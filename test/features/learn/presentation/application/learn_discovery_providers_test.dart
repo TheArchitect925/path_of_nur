@@ -1,19 +1,49 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path_of_nur/core/localization/locale_provider.dart';
 import 'package:path_of_nur/features/learn/presentation/application/learn_discovery_providers.dart';
+import 'package:path_of_nur/features/learn/presentation/data/learn_discovery_flags.dart';
 import 'package:path_of_nur/features/learn/presentation/models/learn_discovery_models.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  Future<ProviderContainer> makeContainer() async {
+  Future<ProviderContainer> makeContainer({Locale? locale}) async {
     SharedPreferences.setMockInitialValues(const <String, Object>{});
     final prefs = await SharedPreferences.getInstance();
     final container = ProviderContainer(
       overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
     );
     addTearDown(container.dispose);
+    if (locale != null) {
+      container.read(appLocaleProvider.notifier).setLocale(locale);
+    }
     return container;
+  }
+
+  Map<String, String> flagsById(List<LearnDiscoveryIndexEntry> entries) {
+    return <String, String>{
+      for (final entry in entries)
+        entry.id: [
+          entry.startHere,
+          entry.beginnerSafe,
+          entry.difficulty.name,
+          entry.contentType.name,
+          entry.audience.name,
+        ].join(' '),
+    };
+  }
+
+  List<String> topIds(
+    List<LearnDiscoveryIndexEntry> entries,
+    String query, {
+    int count = 1,
+  }) {
+    return searchLearnDiscoveryEntries(
+      entries: entries,
+      query: query,
+    ).take(count).map((result) => result.entry.id).toList(growable: false);
   }
 
   test(
@@ -79,6 +109,8 @@ void main() {
           'quranExplorer',
           'quranLearningPaths',
           'quranDailyCompanion',
+          // Arabic learning folded into Qur'an & Sunnah in Phase 4.
+          'quranArabic',
         ),
       );
     },
@@ -137,4 +169,130 @@ void main() {
       expect(ids.toSet().length, ids.length);
     },
   );
+
+  test('flags come from data, so every language gets the same ones', () async {
+    final english = flagsById(
+      (await makeContainer()).read(learnDiscoveryIndexProvider),
+    );
+    for (final tag in const <String>['de', 'fr', 'ar', 'ur']) {
+      final container = await makeContainer(locale: Locale(tag));
+      expect(container.read(appLocaleProvider)?.languageCode, tag);
+      expect(
+        flagsById(container.read(learnDiscoveryIndexProvider)),
+        english,
+        reason: 'Learn discovery flags differ in $tag',
+      );
+    }
+  });
+
+  test('every flagged id names a discovery entry', () async {
+    final container = await makeContainer();
+    final ids = container
+        .read(learnDiscoveryIndexProvider)
+        .map((entry) => entry.id)
+        .toSet();
+    final flagged = <String>{
+      ...learnDiscoveryStartHereIds,
+      ...learnDiscoveryBeginnerIds,
+      ...learnDiscoveryDeeperIds,
+      ...learnDiscoveryToolContentTypes.keys,
+    };
+
+    expect(flagged.difference(ids), isEmpty);
+  });
+
+  test(
+    'flags describe the entry, not a word that happens to be in it',
+    () async {
+      final container = await makeContainer();
+      final entries = container.read(learnDiscoveryIndexProvider);
+
+      // A narration that says "he started reciting", or a du'a said "at the
+      // start of the day", is not where someone new to Islam starts.
+      expect(
+        entries
+            .where(
+              (entry) =>
+                  entry.startHere &&
+                  (entry.id.startsWith('dua:') ||
+                      entry.id.startsWith('hadith:lesson:riyadussalihin_')),
+            )
+            .map((entry) => entry.id),
+        isEmpty,
+      );
+      // The surahs taught for salah are the first ones a Muslim learns.
+      expect(
+        entries
+            .where(
+              (entry) =>
+                  entry.id.startsWith('salah:surah:') &&
+                  entry.difficulty == LearnDiscoveryDifficulty.deeper,
+            )
+            .map((entry) => entry.id),
+        isEmpty,
+      );
+    },
+  );
+
+  test('an Arabic query finds the Arabic-titled entry first', () async {
+    final container = await makeContainer(locale: const Locale('ar'));
+    final entries = container.read(learnDiscoveryIndexProvider);
+
+    // Title: العالم والخلق
+    expect(topIds(entries, 'العالم والخلق'), <String>[
+      'subcategory:world-creation',
+    ]);
+    // Title: تعلم القرآن, typed without the madda.
+    expect(topIds(entries, 'قران'), <String>['subcategory:quran-learning']);
+    // Title: مدرّب الصلاة (with shadda), typed without it.
+    expect(topIds(entries, 'مدرب الصلاة'), <String>[
+      'subcategory:salah-trainer',
+    ]);
+  });
+
+  test('an Urdu query finds the Urdu-titled entry first', () async {
+    final container = await makeContainer(locale: const Locale('ur'));
+    final entries = container.read(learnDiscoveryIndexProvider);
+
+    // Title: نماز رہنمائی
+    expect(topIds(entries, 'نماز'), <String>['subcategory:salah-trainer']);
+    // Title: تخلیق اور دنیا, typed with an Arabic-keyboard yeh.
+    expect(topIds(entries, 'تخليق'), <String>['subcategory:world-creation']);
+  });
+
+  test('a query that matches nothing returns nothing', () async {
+    final container = await makeContainer(locale: const Locale('ar'));
+    final entries = container.read(learnDiscoveryIndexProvider);
+
+    for (final query in <String>['غغظظضض', 'xyzzyqq', '?!']) {
+      expect(
+        searchLearnDiscoveryEntries(entries: entries, query: query),
+        isEmpty,
+        reason: query,
+      );
+    }
+  });
+
+  test('German finds World & Creation with or without the umlaut', () async {
+    final container = await makeContainer(locale: const Locale('de'));
+    final entries = container.read(learnDiscoveryIndexProvider);
+
+    for (final query in <String>['Schöpfung', 'schopfung']) {
+      expect(topIds(entries, query), <String>[
+        'subcategory:world-creation',
+      ], reason: query);
+    }
+  });
+
+  test('matched terms keep the typed form for highlighting', () async {
+    final container = await makeContainer(locale: const Locale('ar'));
+    final entries = container.read(learnDiscoveryIndexProvider);
+
+    final results = searchLearnDiscoveryEntries(
+      entries: entries,
+      query: 'صلاة',
+    );
+
+    expect(results.first.matchedTerms, contains('صلاة'));
+  });
 }

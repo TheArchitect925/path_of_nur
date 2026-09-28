@@ -9,6 +9,8 @@ import '../../bedtime_stories/application/bedtime_story_repository.dart';
 import '../../bedtime_stories/presentation/bedtime_story_mini_player.dart';
 import '../application/seerah_journey_progress_service.dart';
 import '../application/seerah_journey_repository.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/section_title.dart';
 
 class KidsSeerahJourneysPage extends ConsumerWidget {
   const KidsSeerahJourneysPage({super.key});
@@ -23,7 +25,7 @@ class KidsSeerahJourneysPage extends ConsumerWidget {
     final muhammadSeries = ref.watch(bedtimeStorySeriesProvider('muhammad'));
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.route_rounded,
+      headerIcon: AppIcons.seerah,
       title: l10n.kidsSeerahJourneysTitle,
       subtitle: l10n.kidsSeerahJourneysSubtitle,
       floatingBottom: const BedtimeStoryMiniPlayer(),
@@ -60,7 +62,7 @@ class KidsSeerahJourneysPage extends ConsumerWidget {
           ),
           const SizedBox(height: 18),
         ],
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsSeerahStagesPreviewTitle,
           subtitle: l10n.kidsSeerahStagesPreviewSubtitle(muhammadSeries.length),
         ),
@@ -79,7 +81,7 @@ class KidsSeerahJourneysPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsSeerahCompanionStoriesTitle,
           subtitle: l10n.kidsSeerahCompanionStoriesSubtitle,
         ),
@@ -98,7 +100,7 @@ class KidsSeerahJourneysPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsSeerahJourneysAllTitle,
           subtitle: l10n.kidsSeerahJourneysAllSubtitle,
         ),
@@ -168,30 +170,6 @@ class _JourneyHighlightCard extends ConsumerWidget {
   }
 }
 
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
-        ),
-        const SizedBox(height: 4),
-        Text(subtitle),
-      ],
-    );
-  }
-}
-
 class _SimpleStoryCard extends StatelessWidget {
   const _SimpleStoryCard({
     required this.title,
@@ -210,7 +188,6 @@ class _SimpleStoryCard extends StatelessWidget {
         contentPadding: EdgeInsets.zero,
         title: Text(title),
         subtitle: Text(subtitle),
-        trailing: const Icon(Icons.chevron_right_rounded),
         onTap: onTap,
       ),
     );

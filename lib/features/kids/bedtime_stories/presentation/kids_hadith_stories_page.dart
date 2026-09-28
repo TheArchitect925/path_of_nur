@@ -5,11 +5,11 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../../learn/presentation/kids_learning_localizations.dart';
 import '../../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/bedtime_story_progress_service.dart';
 import '../application/bedtime_story_repository.dart';
 import '../domain/bedtime_story_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class KidsHadithStoriesPage extends ConsumerWidget {
   const KidsHadithStoriesPage({super.key});
@@ -21,7 +21,7 @@ class KidsHadithStoriesPage extends ConsumerWidget {
 
     return LearnHubPageScaffold(
       showDefaultQuote: false,
-      headerIcon: Icons.menu_book_rounded,
+      headerIcon: AppIcons.hadith,
       title: l10n.kidsHadithStoriesPageTitleText,
       subtitle: l10n.kidsHadithStoriesPageSubtitleText,
       children: [

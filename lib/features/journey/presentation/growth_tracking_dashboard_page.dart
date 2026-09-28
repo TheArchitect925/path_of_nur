@@ -4,10 +4,13 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../app/nav_tabs.dart';
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
+import '../../../shared/widgets/display/activity_heatmap.dart';
+import '../../../shared/widgets/display/sparkline.dart';
+import '../../../shared/widgets/display/stat_ring.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../ocean/application/ocean_drops_provider.dart';
 import '../application/growth_statistics_provider.dart';
@@ -15,6 +18,7 @@ import '../application/growth_statistics_share_service.dart';
 import '../application/journey_stats_provider.dart';
 import '../drops/application/journey_drops_providers.dart';
 import 'growth_statistics_localizations.dart';
+import '../../../core/theme/app_icons.dart';
 
 class GrowthTrackingDashboardPage extends ConsumerWidget {
   const GrowthTrackingDashboardPage({super.key});
@@ -64,10 +68,37 @@ class GrowthTrackingDashboardPage extends ConsumerWidget {
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.query_stats_rounded,
+      headerIcon: AppIcons.statistics,
       title: l10n.growthStatisticsTitleText,
       subtitle: l10n.growthStatisticsSubtitleText,
       children: [
+        PremiumCard(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              StatRing(
+                value: dashboard.weeklySummary.prayersCompleted / 35,
+                label:
+                    '${countFormat.format(dashboard.weeklySummary.prayersCompleted)}/${countFormat.format(35)}',
+                caption: l10n.growthStatisticsPrayersLabelText,
+              ),
+              StatRing(
+                value: dashboard.weeklySummary.activeDays / 7,
+                label:
+                    '${countFormat.format(dashboard.weeklySummary.activeDays)}/${countFormat.format(7)}',
+                caption: l10n.growthStatisticsActiveDaysLabelText,
+              ),
+              StatRing(
+                value: dashboard.weeklySummary.averageDayScore.clamp(0, 1),
+                label: percentFormat.format(
+                  dashboard.weeklySummary.averageDayScore.clamp(0, 1),
+                ),
+                caption: l10n.growthStatisticsConsistencyLabelText,
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
         Wrap(
           spacing: 10,
           runSpacing: 10,
@@ -185,6 +216,26 @@ class GrowthTrackingDashboardPage extends ConsumerWidget {
           ],
         ),
         const SizedBox(height: 14),
+        PremiumCard(
+          leading: const Icon(Icons.calendar_view_month_rounded),
+          title: Text(l10n.growthActivityHeatmapTitle),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.growthActivityHeatmapSubtitle,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 10),
+              ActivityHeatmap(
+                values: dashboard.recentDailyRollups
+                    .map((rollup) => rollup.dayScore)
+                    .toList(growable: false),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
         _SectionIntro(
           title: l10n.growthStatisticsInsightsTitleText,
           subtitle: l10n.growthStatisticsInsightsSubtitleText,
@@ -281,7 +332,7 @@ class GrowthTrackingDashboardPage extends ConsumerWidget {
                   ),
                   FilledButton.tonalIcon(
                     onPressed: shareMonthly,
-                    icon: const Icon(Icons.share_outlined),
+                    icon: const Icon(Icons.share_rounded),
                     label: Text(l10n.growthStatisticsShareMonthlyActionText),
                   ),
                   OutlinedButton.icon(
@@ -793,10 +844,7 @@ class _TrendChartCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasData = points.any((point) => point.value > 0);
-    final maxValue = points.fold<double>(
-      0,
-      (max, point) => point.value > max ? point.value : max,
-    );
+    final peakPoint = peak;
 
     return Container(
       constraints: const BoxConstraints(minWidth: 280, maxWidth: 420),
@@ -813,96 +861,48 @@ class _TrendChartCard extends StatelessWidget {
             const SizedBox(height: 12),
             if (!hasData)
               Text(emptyLabel, style: const TextStyle(color: Color(0xFF6A5A4A)))
-            else
-              _SimpleBarChart(
-                points: points,
-                maxValue: maxValue,
-                labelBuilder: labelBuilder,
-                detailBuilder: detailBuilder,
+            else ...[
+              Sparkline(
+                values: points
+                    .map((point) => point.value)
+                    .toList(growable: false),
+                height: 72,
               ),
+              const SizedBox(height: 6),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  for (final point in points)
+                    Text(
+                      labelBuilder(point),
+                      textAlign: TextAlign.center,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(fontSize: 10.5),
+                    ),
+                ],
+              ),
+              if (peakPoint != null) ...[
+                const SizedBox(height: 8),
+                Text(
+                  detailBuilder(peakPoint),
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+            ],
           ],
         ),
       ),
     );
   }
-}
 
-class _SimpleBarChart extends StatelessWidget {
-  const _SimpleBarChart({
-    required this.points,
-    required this.maxValue,
-    required this.labelBuilder,
-    required this.detailBuilder,
-  });
-
-  final List<GrowthStatsChartPoint> points;
-  final double maxValue;
-  final String Function(GrowthStatsChartPoint point) labelBuilder;
-  final String Function(GrowthStatsChartPoint point) detailBuilder;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 190,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          for (final point in points)
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    if (point.value > 0)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 6),
-                        child: Text(
-                          detailBuilder(point),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 10,
-                            color: Color(0xFF6A5A4A),
-                          ),
-                        ),
-                      )
-                    else
-                      const SizedBox(height: 28),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 220),
-                          curve: Curves.easeOutCubic,
-                          width: 24,
-                          height: maxValue <= 0
-                              ? 0
-                              : ((point.value / maxValue) * 120).clamp(8, 120),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFC98E44),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      labelBuilder(point),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 11,
-                        color: Color(0xFF6A5A4A),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-        ],
-      ),
-    );
+  GrowthStatsChartPoint? get peak {
+    GrowthStatsChartPoint? best;
+    for (final point in points) {
+      if (point.value <= 0) continue;
+      if (best == null || point.value > best.value) best = point;
+    }
+    return best;
   }
 }
 
@@ -1030,7 +1030,7 @@ class _HighlightMetricCard extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.panel,
-      tintColor: AppColors.accentGoldSoft,
+      tintColor: context.palette.accentSoft,
     );
     return Container(
       constraints: const BoxConstraints(minWidth: 170, maxWidth: 240),

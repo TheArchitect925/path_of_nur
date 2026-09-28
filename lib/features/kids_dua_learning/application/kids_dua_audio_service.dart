@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
@@ -217,12 +215,14 @@ class KidsDuaAudioResolver {
   }
 
   static Future<Set<String>> _loadAssetKeys() async {
-    final raw = await rootBundle.loadString('AssetManifest.json');
-    final decoded = json.decode(raw);
-    if (decoded is! Map<String, dynamic>) {
+    try {
+      // Flutter no longer ships AssetManifest.json — AssetManifest.bin is the
+      // bundled form, and this API reads it regardless of encoding.
+      final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+      return manifest.listAssets().toSet();
+    } catch (_) {
       return <String>{};
     }
-    return decoded.keys.toSet();
   }
 
   static Future<KidsDuaResolvedAudio> resolveVariant(

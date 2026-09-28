@@ -7,6 +7,7 @@ import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/trivia_controller.dart';
 import 'trivia_metadata_localization.dart';
 import 'widgets/trivia_widgets.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class IslamicTriviaKnowledgePathsPage extends ConsumerWidget {
   const IslamicTriviaKnowledgePathsPage({super.key});
@@ -18,7 +19,7 @@ class IslamicTriviaKnowledgePathsPage extends ConsumerWidget {
     final paths = controller.knowledgePaths;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.route_rounded,
+      headerIcon: AppIcons.path,
       title: l10n.triviaKnowledgePathsPageTitle,
       subtitle: l10n.triviaKnowledgePathsPageSubtitle,
       children: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../domain/trivia_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 const List<TriviaKnowledgePath> triviaKnowledgePaths = [
   TriviaKnowledgePath(
@@ -14,7 +15,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         id: 'what_is_islam',
         title: 'What Is Islam?',
         learningText:
-            'Islam is a path of worship, guidance, and surrender to Allah. Foundational knowledge starts with knowing the Book, the Messenger, and the acts of worship that shape daily life.',
+            'Islam is a path of worship, guidance, and surrender to Allah. Foundational knowledge starts with knowing the Book, the Messenger ﷺ, and the acts of worship that shape daily life.',
         reference: 'Qur’an 2:2',
         questionIds: ['quran_easy_001', 'dua_easy_001', 'ramadan_easy_001'],
         difficulty: TriviaDifficulty.easy,
@@ -131,7 +132,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
       ),
       TriviaKnowledgeStage(
         id: 'isa_and_final_messenger',
-        title: 'Isa and the Final Messenger',
+        title: 'Isa and the Final Messenger ﷺ',
         learningText:
             'The chain of prophethood leads to Prophet Muhammad ﷺ, whose mission completed and confirmed the message.',
         reference: 'Qur’an 33:40',
@@ -201,7 +202,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
     title: 'Learning Salah',
     description:
         'Build a steady understanding of prayer through preparation, structure, congregational practice, and spiritual focus.',
-    icon: Icons.self_improvement_rounded,
+    icon: AppIcons.salah,
     stages: [
       TriviaKnowledgeStage(
         id: 'five_daily_prayers',

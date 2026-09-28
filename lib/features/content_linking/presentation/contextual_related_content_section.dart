@@ -22,7 +22,6 @@ class ContextualRelatedContentSection extends StatelessWidget {
             contentPadding: EdgeInsets.zero,
             title: Text(_title(context, items[index])),
             subtitle: Text(_subtitle(context, items[index])),
-            trailing: const Icon(Icons.chevron_right_rounded),
             onTap: () => context.pushNamed(
               items[index].node.routeName,
               pathParameters: items[index].node.pathParameters,

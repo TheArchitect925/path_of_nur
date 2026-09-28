@@ -12,6 +12,7 @@ import 'package:timezone/timezone.dart' as tz;
 import '../navigation/platform_route_dispatcher.dart';
 import '../../core/localization/locale_provider.dart';
 import '../../l10n/app_localizations.dart';
+import '../../features/celestial/domain/moon_ephemeris.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
 import '../../features/watch_companion/application/watch_sync_contract.dart';
 import '../../features/worship/application/prayer_controller.dart';
@@ -126,6 +127,29 @@ class ReminderNotificationPayload {
     }
     return null;
   }
+}
+
+/// The moon notification's text: its phase and how much of it is lit at
+/// [when], then the rise or the set.
+String moonReminderBody(
+  AppLocalizations l10n, {
+  required DateTime when,
+  required bool rising,
+}) {
+  final moon = const MoonEphemeris().phaseAt(when);
+  final phase = switch (moon.phase) {
+    MoonPhase.newMoon => l10n.worshipPrayerMoonPhaseNewMoon,
+    MoonPhase.waxingCrescent => l10n.worshipPrayerMoonPhaseWaxingCrescent,
+    MoonPhase.firstQuarter => l10n.worshipPrayerMoonPhaseFirstQuarter,
+    MoonPhase.waxingGibbous => l10n.worshipPrayerMoonPhaseWaxingGibbous,
+    MoonPhase.fullMoon => l10n.worshipPrayerMoonPhaseFullMoon,
+    MoonPhase.waningGibbous => l10n.worshipPrayerMoonPhaseWaningGibbous,
+    MoonPhase.lastQuarter => l10n.worshipPrayerMoonPhaseLastQuarter,
+    MoonPhase.waningCrescent => l10n.worshipPrayerMoonPhaseWaningCrescent,
+  };
+  return rising
+      ? l10n.notificationsMoonriseBody(phase, moon.illuminationPercent)
+      : l10n.notificationsMoonsetBody(phase, moon.illuminationPercent);
 }
 
 class LocalNotificationService {
@@ -349,8 +373,15 @@ class LocalNotificationService {
     AdhanSettings adhanSettings,
   ) {
     final l10n = _l10n;
-    final profileSettings = _ref.read(profileSettingsProvider);
+    final gentleMode = _ref.read(profileSettingsProvider).gentleModeEnabled;
+    final isPrayerReminder =
+        item.kind == ReminderKind.prayerAtTime ||
+        item.kind == ReminderKind.prayerFollowUp ||
+        item.kind == ReminderKind.prayerBeforeQaza;
+    // Gentle mode silences the adhan as well: iOS plays a named sound even
+    // when presentSound is false.
     final useAdhanSound =
+        !gentleMode &&
         item.kind == ReminderKind.prayerAtTime &&
         item.notificationMode == PrayerNotificationMode.adhanWithSound &&
         adhanSettings.enabled;
@@ -406,6 +437,24 @@ class LocalNotificationService {
       actions: _androidPrayerActions(l10n, allowSnooze: _canSnoozeItem(item)),
     );
 
+    // Android fixes a channel's sound and importance when it is first
+    // created, so gentle mode needs a channel of its own rather than
+    // playSound: false on the channels above.
+    final prayerGentleChannel = AndroidNotificationDetails(
+      'prayer_reminders_gentle',
+      l10n.notificationsPrayerGentleChannelName,
+      channelDescription: l10n.notificationsPrayerGentleChannelDescription,
+      importance: Importance.defaultImportance,
+      priority: Priority.defaultPriority,
+      icon: _launcherIcon,
+      color: _notificationAccent,
+      colorized: true,
+      styleInformation: const BigTextStyleInformation(''),
+      playSound: false,
+      enableVibration: false,
+      actions: _androidPrayerActions(l10n, allowSnooze: _canSnoozeItem(item)),
+    );
+
     final genericChannel = AndroidNotificationDetails(
       'daily_reminders',
       l10n.notificationsDailyRemindersChannelName,
@@ -431,43 +480,43 @@ class LocalNotificationService {
       actions: _androidReflectionActions(l10n),
     );
 
-    final useDefaultPrayerSound =
-        item.kind == ReminderKind.prayerAtTime ||
-        item.kind == ReminderKind.prayerFollowUp ||
-        item.kind == ReminderKind.prayerBeforeQaza;
-
     final ios = DarwinNotificationDetails(
       presentAlert: true,
       presentBadge: true,
-      presentSound: useDefaultPrayerSound && !profileSettings.gentleModeEnabled,
+      presentSound: isPrayerReminder && !gentleMode,
       sound: useAdhanSound ? resolvedAdhan.iosSoundFileName : null,
       presentBanner: true,
       presentList: true,
       categoryIdentifier: _categoryIdentifierFor(item),
-      interruptionLevel:
-          item.kind == ReminderKind.prayerAtTime ||
-              item.kind == ReminderKind.prayerFollowUp ||
-              item.kind == ReminderKind.prayerBeforeQaza
-          ? (profileSettings.gentleModeEnabled
-                ? InterruptionLevel.active
-                : InterruptionLevel.timeSensitive)
+      interruptionLevel: isPrayerReminder && !gentleMode
+          ? InterruptionLevel.timeSensitive
           : InterruptionLevel.active,
       threadIdentifier: item.prayerId ?? item.kind.name,
       subtitle: l10n.appTitle,
     );
 
     return NotificationDetails(
-      android: switch (item.kind) {
-        ReminderKind.prayerAtTime =>
-          useAdhanSound ? prayerAtTimeAdhanChannel : prayerAtTimeSilentChannel,
-        ReminderKind.prayerFollowUp => prayerAtTimeSilentChannel,
-        ReminderKind.prayerBeforeQaza => prayerBeforeQazaChannel,
-        ReminderKind.reflection => reflectionChannel,
-        _ => genericChannel,
-      },
+      android: isPrayerReminder && gentleMode
+          ? prayerGentleChannel
+          : switch (item.kind) {
+              ReminderKind.prayerAtTime =>
+                useAdhanSound
+                    ? prayerAtTimeAdhanChannel
+                    : prayerAtTimeSilentChannel,
+              ReminderKind.prayerFollowUp => prayerAtTimeSilentChannel,
+              ReminderKind.prayerBeforeQaza => prayerBeforeQazaChannel,
+              ReminderKind.reflection => reflectionChannel,
+              _ => genericChannel,
+            },
       iOS: ios,
     );
   }
+
+  @visibleForTesting
+  NotificationDetails notificationDetailsFor(
+    ReminderPlanItem item,
+    AdhanSettings adhanSettings,
+  ) => _notificationDetails(item, adhanSettings);
 
   String _titleFor(ReminderPlanItem item) {
     final l10n = _l10n;
@@ -482,7 +531,6 @@ class LocalNotificationService {
         );
       case ReminderKind.prayerBeforeQaza:
         return l10n.notificationsPrayerBeforeQazaTitle(
-          _prayerName(l10n, item.prayerId),
           _prayerName(l10n, item.prayerId),
         );
       case ReminderKind.dhikr:
@@ -501,6 +549,8 @@ class LocalNotificationService {
         return l10n.notificationsMoonriseTitle;
       case ReminderKind.moonset:
         return l10n.notificationsMoonsetTitle;
+      case ReminderKind.jumuahLeave:
+        return l10n.notificationsJumuahLeaveTitle;
     }
   }
 
@@ -513,7 +563,6 @@ class LocalNotificationService {
         return _prayerBodyFor(l10n, item.prayerId);
       case ReminderKind.prayerBeforeQaza:
         return l10n.notificationsPrayerBeforeQazaBody(
-          _prayerName(l10n, item.prayerId),
           _prayerName(l10n, item.prayerId),
         );
       case ReminderKind.dhikr:
@@ -529,9 +578,11 @@ class LocalNotificationService {
       case ReminderKind.cycleCheck:
         return l10n.notificationsCycleCheckBody;
       case ReminderKind.moonrise:
-        return l10n.notificationsMoonriseBody;
+        return moonReminderBody(l10n, when: item.when, rising: true);
       case ReminderKind.moonset:
-        return l10n.notificationsMoonsetBody;
+        return moonReminderBody(l10n, when: item.when, rising: false);
+      case ReminderKind.jumuahLeave:
+        return l10n.notificationsJumuahLeaveBody;
     }
   }
 
@@ -768,6 +819,9 @@ class LocalNotificationService {
       ).encode(),
       ReminderKind.dhikr => ReminderNotificationPayload.routeOnly(
         '/worship',
+      ).encode(),
+      ReminderKind.jumuahLeave => ReminderNotificationPayload.routeOnly(
+        '/salah-times',
       ).encode(),
       ReminderKind.quran => ReminderNotificationPayload.routeOnly(
         '/quran',

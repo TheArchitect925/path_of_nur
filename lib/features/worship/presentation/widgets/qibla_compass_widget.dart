@@ -12,6 +12,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/theme/islamic_icons.dart';
 import 'qibla_compass_painter.dart';
 import 'qibla_direction_math.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class QiblaCompassWidget extends StatefulWidget {
   const QiblaCompassWidget({
@@ -731,7 +732,7 @@ class _PrayerMatOverlay extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 18),
-                  Icon(IslamicIcons.mosque, color: accent, size: 28),
+                  Icon(AppIcons.kaaba, color: accent, size: 28),
                   const Spacer(),
                   Container(
                     height: 34,
@@ -794,11 +795,7 @@ class _QiblaArUnavailablePanel extends StatelessWidget {
                   child: CircularProgressIndicator(strokeWidth: 2.4),
                 )
               else
-                const Icon(
-                  Icons.view_in_ar_outlined,
-                  color: Colors.white,
-                  size: 42,
-                ),
+                const Icon(AppIcons.arOff, color: Colors.white, size: 42),
               const SizedBox(height: 14),
               Text(
                 l10n.worshipQiblaArCameraUnavailableTitle,

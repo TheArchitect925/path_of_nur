@@ -12,7 +12,8 @@ void main() {
       'lib/features/salah/presentation/salah_page.dart',
       'lib/features/learn/prophets/presentation/prophet_detail_page.dart',
       'lib/features/learn/presentation/pages/quran_app_hub_page.dart',
-      'lib/features/quran/presentation/quran_verse_page.dart',
+      // quran_verse_page.dart was an orphan route with no callers and was
+      // deleted in calm-navigation Phase 7a.
     ];
     final arabicRegex = RegExp(r'[\u0600-\u06FF]');
 

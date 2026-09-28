@@ -16,6 +16,7 @@ import '../models/learn_discovery_models.dart';
 import '../models/learn_hub_models.dart';
 import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearnExploreAllKnowledgePage extends ConsumerStatefulWidget {
   const LearnExploreAllKnowledgePage({
@@ -92,7 +93,7 @@ class _LearnExploreAllKnowledgePageState
         : curatedLearnDiscoverySections(entries: discoveryIndex);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.travel_explore_rounded,
+      headerIcon: AppIcons.explore,
       title: l10n.learnDiscoveryExploreTitle,
       subtitle: l10n.learnDiscoveryExploreSubtitle,
       children: [

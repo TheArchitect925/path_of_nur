@@ -90,8 +90,8 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('Next unlock'), findsOneWidget);
-    expect(find.text('Quiet Fountain'), findsOneWidget);
+    expect(find.text('Next milestone'), findsOneWidget);
+    expect(find.text('Fountain'), findsOneWidget);
     expect(find.text('Unlocks at 100 drops'), findsOneWidget);
     expect(find.text('25 drops remaining'), findsOneWidget);
   });
@@ -125,5 +125,40 @@ void main() {
     expect(find.text('Morning Path'), findsOneWidget);
     expect(find.text('Unlocks at 50 drops'), findsOneWidget);
     expect(find.text('30 / 50 Drops'), findsOneWidget);
+  });
+  testWidgets('a locked tile never previews the milestone artwork', (
+    tester,
+  ) async {
+    Widget tile({required bool unlocked}) => MaterialApp(
+      localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+      home: Scaffold(
+        body: GardenGalleryTile(
+          milestone: gardenMilestones[3],
+          unlocked: unlocked,
+          title: 'Morning Path',
+          requiredDropsLabel: '50',
+          progressLabel: '30 / 50 Drops',
+          onTap: unlocked ? () {} : null,
+        ),
+      ),
+    );
+
+    // Locked: the art is withheld entirely, not blurred behind a scrim.
+    await tester.pumpWidget(tile(unlocked: false));
+    await tester.pumpAndSettle();
+    expect(find.byType(Image), findsNothing);
+    expect(find.byType(BackdropFilter), findsNothing);
+    expect(find.byIcon(Icons.lock_rounded), findsOneWidget);
+
+    // Earned: the artwork is shown.
+    await tester.pumpWidget(tile(unlocked: true));
+    await tester.pumpAndSettle();
+    expect(find.byType(Image), findsOneWidget);
   });
 }

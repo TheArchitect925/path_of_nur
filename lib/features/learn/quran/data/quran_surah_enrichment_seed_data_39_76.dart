@@ -13,9 +13,9 @@ seededQuranSurahEnrichments39To76 = <QuranSurahEnrichmentSeed>[
       QuranSurahNotableAyah(
         surahNumber: 39,
         ayahNumber: 53,
-        label: 'Do not despair of Allah\'s mercy',
+        label: 'Do not despair of Allah’s mercy',
         whyItMatters:
-            'One of the best-known Quranic calls to hope, repentance, and return to Allah.',
+            'One of the best-known Qur’anic calls to hope, repentance, and return to Allah.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
       QuranSurahNotableAyah(
@@ -141,9 +141,9 @@ seededQuranSurahEnrichments39To76 = <QuranSurahEnrichmentSeed>[
       QuranSurahNotableAyah(
         surahNumber: 55,
         ayahNumber: 13,
-        label: 'Which of your Lord\'s favors will you deny?',
+        label: 'Which of your Lord’s favors will you deny?',
         whyItMatters:
-            'The repeated refrain trains the heart to notice and admit Allah\'s gifts.',
+            'The repeated refrain trains the heart to notice and admit Allah’s gifts.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
     ],
@@ -220,7 +220,7 @@ seededQuranSurahEnrichments39To76 = <QuranSurahEnrichmentSeed>[
         endAyahNumber: 10,
         label: 'Responding to the Friday call',
         whyItMatters:
-            'The verses establish the priority of Jumu\'ah worship and remembrance over trade at that moment.',
+            'The verses establish the priority of Jumu’ah worship and remembrance over trade at that moment.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
     ],
@@ -240,7 +240,7 @@ seededQuranSurahEnrichments39To76 = <QuranSurahEnrichmentSeed>[
         endAyahNumber: 2,
         label: 'Life and death as a test',
         whyItMatters:
-            'The opening ties Allah\'s dominion to purposeful testing and the call to excellent deeds.',
+            'The opening ties Allah’s dominion to purposeful testing and the call to excellent deeds.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
       QuranSurahNotableAyah(
@@ -248,7 +248,7 @@ seededQuranSurahEnrichments39To76 = <QuranSurahEnrichmentSeed>[
         ayahNumber: 15,
         label: 'Walk its paths and eat from His provision',
         whyItMatters:
-            'A reminder that human movement and provision remain within Allah\'s kingdom.',
+            'A reminder that human movement and provision remain within Allah’s kingdom.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
     ],

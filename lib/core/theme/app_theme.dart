@@ -16,6 +16,12 @@ enum AppThemeMode {
   midnightManuscript,
   noorMidnightManuscript,
   noorKids,
+  midnight,
+  candlelight,
+  jummah,
+  ramadan,
+  laylatAlQadr,
+  eid,
 }
 
 enum AppPageTransitionStyle { defaultSystem, gentleFade, iosStyle, noAnimation }
@@ -87,7 +93,18 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
       mode == AppThemeMode.noorGlassDark ||
       mode == AppThemeMode.noGlassDark ||
       mode == AppThemeMode.midnightManuscript ||
-      mode == AppThemeMode.noorMidnightManuscript;
+      mode == AppThemeMode.noorMidnightManuscript ||
+      isNightFamily;
+
+  /// The painted-atmosphere night themes: starry Midnight and warm
+  /// Candlelight. Glass stays translucent so the sky shows through cards;
+  /// gold is reserved for wayfinding (active tab, selected chips).
+  bool get isNightFamily =>
+      mode == AppThemeMode.midnight ||
+      mode == AppThemeMode.candlelight ||
+      mode == AppThemeMode.jummah ||
+      mode == AppThemeMode.ramadan ||
+      mode == AppThemeMode.laylatAlQadr;
 
   bool get isMidnightFamily =>
       mode == AppThemeMode.midnightManuscript ||
@@ -97,7 +114,8 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
       mode == AppThemeMode.noorGlass ||
       mode == AppThemeMode.noorGlassDark ||
       mode == AppThemeMode.noorMidnightManuscript ||
-      mode == AppThemeMode.noorKids;
+      mode == AppThemeMode.noorKids ||
+      mode == AppThemeMode.eid;
 
   bool get isNoorGlassPrimaryFamily =>
       mode == AppThemeMode.noorGlass || mode == AppThemeMode.noorGlassDark;
@@ -139,14 +157,18 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
   );
 
   Color get backgroundForeground => isDark && !disableBackground
-      ? (isMidnightFamily ? const Color(0xFFE1D0AB) : const Color(0xFF2A231C))
+      ? (isMidnightFamily ? const Color(0xFFE1D0AB) : onSurface)
       : onSurface;
 
   Color get backgroundForegroundSubtle => isDark && !disableBackground
-      ? (isMidnightFamily ? const Color(0xFF9D8860) : const Color(0xFF4F4438))
+      ? (isMidnightFamily ? const Color(0xFF9D8860) : onSurfaceSubtle)
       : onSurfaceSubtle;
 
-  Color get navLabelActive => isMidnightFamily
+  // Lantern Glow: on the night themes the active tab and selected chips
+  // carry the gold accent; everything inactive stays quiet ivory.
+  Color get navLabelActive => isNightFamily
+      ? accent
+      : isMidnightFamily
       ? quranArabicEmphasis
       : isNoorGlassFamily
       ? quranArabicEmphasis
@@ -154,41 +176,54 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
 
   Color get navLabelInactive => isMidnightFamily
       ? onSurfaceMuted
-      : isNoorGlassFamily
+      : isNightFamily || isNoorGlassFamily
       ? onSurfaceSubtle
       : glassOnSurfaceSubtle;
 
-  Color get navActiveFill => isMidnightFamily
+  Color get navActiveFill => isNightFamily
+      ? accent.withValues(alpha: 0.20)
+      : isMidnightFamily
       ? Color.alphaBlend(accent.withValues(alpha: 0.18), surfaceSoft)
       : isNoorGlassFamily
       ? Color.alphaBlend(accent.withValues(alpha: 0.14), surfaceSoft)
       : accent.withValues(alpha: isDark ? 0.22 : 0.16);
 
-  Color get inputFocus =>
-      isMidnightFamily || isNoorGlassFamily ? accent : accentSoft;
+  Color get inputFocus => isNightFamily || isMidnightFamily || isNoorGlassFamily
+      ? accent
+      : accentSoft;
 
-  Color get chipSelectedFill => isMidnightFamily
+  Color get chipSelectedFill => isNightFamily
+      ? accent.withValues(alpha: 0.24)
+      : isMidnightFamily
       ? accent.withValues(alpha: 0.18)
       : isNoorGlassFamily
       ? accent.withValues(alpha: 0.15)
       : accent.withValues(alpha: isDark ? 0.22 : 0.16);
 
   Color get chipSelectedText =>
-      isMidnightFamily || isNoorGlassFamily ? quranArabicEmphasis : onSurface;
+      isNightFamily || isMidnightFamily || isNoorGlassFamily
+      ? quranArabicEmphasis
+      : onSurface;
 
-  Color get chipUnselectedFill => isMidnightFamily
+  Color get chipUnselectedFill => isNightFamily
+      ? onSurface.withValues(alpha: 0.07)
+      : isMidnightFamily
       ? inputSurface.withValues(alpha: 0.90)
       : isNoorGlassFamily
       ? inputSurface.withValues(alpha: 0.76)
       : inputSurface;
 
-  Color get outlinedButtonFill => isMidnightFamily
+  Color get outlinedButtonFill => isNightFamily
+      ? onSurface.withValues(alpha: 0.10)
+      : isMidnightFamily
       ? surfaceSoft.withValues(alpha: 0.62)
       : isNoorGlassFamily
       ? surface.withValues(alpha: 0.34)
       : surface.withValues(alpha: isDark ? 0.38 : 0.18);
 
-  Color get filledButtonFill => isMidnightFamily
+  Color get filledButtonFill => isNightFamily
+      ? Color.alphaBlend(accent.withValues(alpha: 0.26), surfaceSoft)
+      : isMidnightFamily
       ? Color.alphaBlend(accent.withValues(alpha: 0.20), surfaceSoft)
       : isNoorGlassFamily
       ? Color.alphaBlend(accent.withValues(alpha: 0.18), surfaceSoft)
@@ -557,6 +592,207 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           disableColoredGlass: disableColoredGlass,
           disableBackground: disableBackground,
         );
+      case AppThemeMode.midnight:
+        // Deep Glass over the starry indigo sky.
+        return AppAppearanceTheme(
+          mode: mode,
+          background: const Color(0xFF121423),
+          backgroundAlt: const Color(0xFF1A1F33),
+          surface: const Color(0xFF262C46),
+          surfaceSoft: const Color(0xFF1F2540),
+          frostedGlassTone: const Color(0xFFE9DFC2),
+          sanctuarySurfaceTone: const Color(0xFFEFE5C9),
+          sanctuaryEdgeLight: const Color(0xFFE2C177),
+          inputSurface: const Color(0xFF2A3050),
+          onSurface: const Color(0xFFEFE8D7),
+          onSurfaceSubtle: const Color(0xFFC9C0AA),
+          onSurfaceMuted: const Color(0xFF8E8874),
+          accent: const Color(0xFFE2C177),
+          accentSoft: const Color(0xFFB99752),
+          border: const Color(0xFF3E4460),
+          divider: const Color(0xFF343A58),
+          success: const Color(0xFFA9C79B),
+          quranArabicEmphasis: const Color(0xFFF0E4C0),
+          makkiFill: const Color(0x2EE2C177),
+          makkiBorder: const Color(0xFFE2C177),
+          madaniFill: const Color(0x2A85BCAA),
+          madaniBorder: const Color(0xFF85BCAA),
+          glassSurfaceAlpha: disableGlassTransparency
+              ? 0.985
+              : glassSurfaceAlpha.clamp(0.80, 0.90),
+          glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.30,
+          disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
+          disableBackground: disableBackground,
+        );
+      case AppThemeMode.jummah:
+        // Masjid Emerald: Deep Glass over dome-green, crowned by the golden
+        // mihrab arch. The Jumu'ah occasion theme.
+        return AppAppearanceTheme(
+          mode: mode,
+          background: const Color(0xFF0D271E),
+          backgroundAlt: const Color(0xFF16382C),
+          surface: const Color(0xFF24443A),
+          surfaceSoft: const Color(0xFF1D3A2F),
+          frostedGlassTone: const Color(0xFFE9EFDC),
+          sanctuarySurfaceTone: const Color(0xFFEFEFD6),
+          sanctuaryEdgeLight: const Color(0xFFDCC07A),
+          inputSurface: const Color(0xFF27473A),
+          onSurface: const Color(0xFFEAF2E6),
+          onSurfaceSubtle: const Color(0xFFB8C9B4),
+          onSurfaceMuted: const Color(0xFF7E907C),
+          accent: const Color(0xFFDCC07A),
+          accentSoft: const Color(0xFFB49A55),
+          border: const Color(0xFF35543F),
+          divider: const Color(0xFF2C4837),
+          success: const Color(0xFF8FCBAA),
+          quranArabicEmphasis: const Color(0xFFEFE3B8),
+          makkiFill: const Color(0x2EDCC07A),
+          makkiBorder: const Color(0xFFDCC07A),
+          madaniFill: const Color(0x2A8FCBAA),
+          madaniBorder: const Color(0xFF8FCBAA),
+          glassSurfaceAlpha: disableGlassTransparency
+              ? 0.985
+              : glassSurfaceAlpha.clamp(0.80, 0.90),
+          glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.30,
+          disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
+          disableBackground: disableBackground,
+        );
+      case AppThemeMode.laylatAlQadr:
+        // Night of Power: the deepest sky in the app — near-black violet,
+        // dense stars, and a soft light descending from above. Pale
+        // luminous gold for wayfinding.
+        return AppAppearanceTheme(
+          mode: mode,
+          background: const Color(0xFF0E0A1D),
+          backgroundAlt: const Color(0xFF191330),
+          surface: const Color(0xFF241C40),
+          surfaceSoft: const Color(0xFF1E1737),
+          frostedGlassTone: const Color(0xFFEDE6D2),
+          sanctuarySurfaceTone: const Color(0xFFEFE9D6),
+          sanctuaryEdgeLight: const Color(0xFFE9CD8F),
+          inputSurface: const Color(0xFF2A2148),
+          onSurface: const Color(0xFFF2EDE0),
+          onSurfaceSubtle: const Color(0xFFC9C1AE),
+          onSurfaceMuted: const Color(0xFF8E8677),
+          accent: const Color(0xFFE9CD8F),
+          accentSoft: const Color(0xFFC2A45F),
+          border: const Color(0xFF3F3563),
+          divider: const Color(0xFF362D57),
+          success: const Color(0xFF9FC7A6),
+          quranArabicEmphasis: const Color(0xFFF4E9C9),
+          makkiFill: const Color(0x2EE9CD8F),
+          makkiBorder: const Color(0xFFE9CD8F),
+          madaniFill: const Color(0x2A93BDA8),
+          madaniBorder: const Color(0xFF93BDA8),
+          glassSurfaceAlpha: disableGlassTransparency
+              ? 0.985
+              : glassSurfaceAlpha.clamp(0.80, 0.90),
+          glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.30,
+          disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
+          disableBackground: disableBackground,
+        );
+      case AppThemeMode.eid:
+        // Eid: the Noor cream dressed for the festival — warmer golden
+        // ground, celebration-gold accents, painted bunting overhead.
+        return AppAppearanceTheme(
+          mode: mode,
+          background: const Color(0xFFF8F1E2),
+          backgroundAlt: const Color(0xFFF0E3C8),
+          surface: const Color(0xFFFDF8ED),
+          surfaceSoft: const Color(0xFFF5EBD6),
+          frostedGlassTone: const Color(0xFFFBF0D5),
+          sanctuarySurfaceTone: const Color(0xFFFAEFD8),
+          sanctuaryEdgeLight: const Color(0xFFEFD292),
+          inputSurface: const Color(0xFFF8F0DE),
+          onSurface: const Color(0xFF3A2E22),
+          onSurfaceSubtle: const Color(0xFF655444),
+          onSurfaceMuted: const Color(0xFF85715E),
+          accent: const Color(0xFFC99A3C),
+          accentSoft: const Color(0xFFA5772E),
+          border: const Color(0xFFD9C193),
+          divider: const Color(0xFFE6D7B8),
+          success: const Color(0xFF7FB89A),
+          quranArabicEmphasis: const Color(0xFF413429),
+          makkiFill: const Color(0x24B48B43),
+          makkiBorder: const Color(0xFFBC9750),
+          madaniFill: const Color(0x2279B2A4),
+          madaniBorder: const Color(0xFF6EA798),
+          glassSurfaceAlpha: 0.985,
+          glassBorderAlpha: 0.42,
+          disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
+          disableBackground: disableBackground,
+        );
+      case AppThemeMode.ramadan:
+        // Layali: Deep Glass over the violet Ramadan night, lit by the
+        // fanoos lantern and the month's growing crescent.
+        return AppAppearanceTheme(
+          mode: mode,
+          background: const Color(0xFF151024),
+          backgroundAlt: const Color(0xFF211A38),
+          surface: const Color(0xFF2E2749),
+          surfaceSoft: const Color(0xFF272040),
+          frostedGlassTone: const Color(0xFFEDE4CE),
+          sanctuarySurfaceTone: const Color(0xFFF0E7CF),
+          sanctuaryEdgeLight: const Color(0xFFE9BE7B),
+          inputSurface: const Color(0xFF322A50),
+          onSurface: const Color(0xFFF0E9DA),
+          onSurfaceSubtle: const Color(0xFFC6BDAB),
+          onSurfaceMuted: const Color(0xFF8D8577),
+          accent: const Color(0xFFE9BE7B),
+          accentSoft: const Color(0xFFC29A58),
+          border: const Color(0xFF443B66),
+          divider: const Color(0xFF3A325C),
+          success: const Color(0xFFA3C79E),
+          quranArabicEmphasis: const Color(0xFFF2E5C2),
+          makkiFill: const Color(0x2EE9BE7B),
+          makkiBorder: const Color(0xFFE9BE7B),
+          madaniFill: const Color(0x2A93BDA8),
+          madaniBorder: const Color(0xFF93BDA8),
+          glassSurfaceAlpha: disableGlassTransparency
+              ? 0.985
+              : glassSurfaceAlpha.clamp(0.80, 0.90),
+          glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.30,
+          disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
+          disableBackground: disableBackground,
+        );
+      case AppThemeMode.candlelight:
+        // Deep Glass over the warm ember ground with the candle-glow crown.
+        return AppAppearanceTheme(
+          mode: mode,
+          background: const Color(0xFF15100B),
+          backgroundAlt: const Color(0xFF1D1610),
+          surface: const Color(0xFF2B2318),
+          surfaceSoft: const Color(0xFF241D12),
+          frostedGlassTone: const Color(0xFFEEDDBB),
+          sanctuarySurfaceTone: const Color(0xFFF2E3C2),
+          sanctuaryEdgeLight: const Color(0xFFDDBA75),
+          inputSurface: const Color(0xFF30271A),
+          onSurface: const Color(0xFFEFE2C8),
+          onSurfaceSubtle: const Color(0xFFC4B394),
+          onSurfaceMuted: const Color(0xFF8F8268),
+          accent: const Color(0xFFDDBA75),
+          accentSoft: const Color(0xFFB6924E),
+          border: const Color(0xFF463A26),
+          divider: const Color(0xFF3A3020),
+          success: const Color(0xFFBCC79B),
+          quranArabicEmphasis: const Color(0xFFEFDCAC),
+          makkiFill: const Color(0x2EDDBA75),
+          makkiBorder: const Color(0xFFDDBA75),
+          madaniFill: const Color(0x2A9DBA8E),
+          madaniBorder: const Color(0xFF9DBA8E),
+          glassSurfaceAlpha: disableGlassTransparency
+              ? 0.985
+              : glassSurfaceAlpha.clamp(0.80, 0.90),
+          glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.30,
+          disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
+          disableBackground: disableBackground,
+        );
     }
   }
 
@@ -713,7 +949,19 @@ class AppTheme {
     final brightness = appearance.isDark ? Brightness.dark : Brightness.light;
     final localeUiFont = AppFonts.uiFontFamilyForLocale(locale);
     final localeUsesRtlUiFont = AppFonts.usesRtlUiFont(locale);
-    final serifOrLocaleUi = localeUsesRtlUiFont ? localeUiFont : 'serif';
+    final serifOrLocaleUi = localeUsesRtlUiFont
+        ? localeUiFont
+        : AppFonts.latinSerif;
+    final sansOrLocaleUi = localeUsesRtlUiFont
+        ? localeUiFont
+        : AppFonts.latinSans;
+    // The kids theme reads bigger and rounder: headings in the kids display
+    // face (which carries Arabic script too), every slot a step larger, and
+    // more line height for early readers. Body copy keeps the reading face.
+    final kids = mode == AppThemeMode.noorKids;
+    final headingFamily = kids ? AppFonts.kidsDisplay : serifOrLocaleUi;
+    double sz(double base, double kidsSize) => kids ? kidsSize : base;
+    final bodyHeight = kids ? 1.55 : 1.45;
 
     final themeData = ThemeData(
       useMaterial3: true,
@@ -738,56 +986,57 @@ class AppTheme {
       textTheme: TextTheme(
         displayLarge: TextStyle(
           color: onSurface,
-          fontSize: 34,
+          fontSize: sz(34, 38),
           fontWeight: FontWeight.w700,
+          fontFamily: headingFamily,
         ),
         titleLarge: TextStyle(
           color: onSurface,
-          fontSize: 25,
+          fontSize: sz(25, 28),
           fontWeight: FontWeight.w700,
           letterSpacing: 0.2,
-          fontFamily: serifOrLocaleUi,
+          fontFamily: headingFamily,
         ),
         titleMedium: TextStyle(
           color: onSurface,
-          fontSize: 19,
+          fontSize: sz(19, 22),
           fontWeight: FontWeight.w600,
-          fontFamily: serifOrLocaleUi,
+          fontFamily: headingFamily,
         ),
         titleSmall: TextStyle(
           color: onSurface,
-          fontSize: 17,
+          fontSize: sz(17, 19),
           fontWeight: FontWeight.w600,
-          fontFamily: serifOrLocaleUi,
+          fontFamily: headingFamily,
         ),
         bodyLarge: TextStyle(
           color: onSurface,
-          fontSize: 15,
+          fontSize: sz(15, 18),
           fontWeight: FontWeight.w500,
-          height: 1.45,
-          fontFamily: serifOrLocaleUi,
+          height: bodyHeight,
+          fontFamily: sansOrLocaleUi,
         ),
         bodyMedium: TextStyle(
           color: onSurfaceSubtle,
-          fontSize: 14,
-          height: 1.45,
-          fontFamily: serifOrLocaleUi,
+          fontSize: sz(14, 16),
+          height: bodyHeight,
+          fontFamily: sansOrLocaleUi,
         ),
         bodySmall: TextStyle(
           color: onSurfaceSubtle,
-          fontSize: 13,
-          fontFamily: serifOrLocaleUi,
+          fontSize: sz(13, 14),
+          fontFamily: sansOrLocaleUi,
         ),
         labelLarge: TextStyle(
           color: onSurface,
           fontWeight: FontWeight.w700,
-          fontSize: 14,
-          fontFamily: localeUiFont,
+          fontSize: sz(14, 16),
+          fontFamily: sansOrLocaleUi,
         ),
         labelMedium: TextStyle(
           color: onSurface,
-          fontSize: 12,
-          fontFamily: localeUiFont,
+          fontSize: sz(12, 13),
+          fontFamily: sansOrLocaleUi,
         ),
       ),
       appBarTheme: AppBarTheme(
@@ -873,8 +1122,13 @@ class AppTheme {
             if (states.contains(WidgetState.selected)) {
               return appearance.chipSelectedFill;
             }
-            return appearance.chipUnselectedFill.withValues(
-              alpha: appearance.isDark ? 0.76 : 0.88,
+            // Scale the fill's own alpha rather than replacing it: the night
+            // family's chipUnselectedFill is onSurface at 0.07, and forcing
+            // it to 0.76 painted an unselected segment as near-solid cream
+            // with cream label text on top of it.
+            final unselected = appearance.chipUnselectedFill;
+            return unselected.withValues(
+              alpha: unselected.a * (appearance.isDark ? 0.76 : 0.88),
             );
           }),
           side: WidgetStateProperty.resolveWith((states) {

@@ -28,7 +28,6 @@ class BedtimeStoryFamilyModePage extends ConsumerWidget {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.family_restroom_rounded,
       title: l10n.bedtimeFamilyModeTitle,
       subtitle: l10n.bedtimeFamilyModeSubtitle,
       children: [
@@ -293,7 +292,7 @@ class _LearnerCard extends ConsumerWidget {
                     builder: (context) =>
                         _LearnerEditorSheet.forExisting(learner: learner),
                   ),
-                  icon: const Icon(Icons.edit_outlined),
+                  icon: const Icon(Icons.edit_rounded),
                   label: Text(l10n.bedtimeFamilyModeEditAction),
                 ),
               if (canManage && !learner.isFallbackLearner)
@@ -301,7 +300,7 @@ class _LearnerCard extends ConsumerWidget {
                   onPressed: () => ref
                       .read(bedtimeFamilyModeProvider.notifier)
                       .archiveLearner(learner.learnerId),
-                  icon: const Icon(Icons.archive_outlined),
+                  icon: const Icon(Icons.archive_rounded),
                   label: Text(l10n.bedtimeFamilyModeArchiveAction),
                 ),
             ],

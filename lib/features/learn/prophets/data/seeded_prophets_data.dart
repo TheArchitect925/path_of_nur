@@ -297,7 +297,7 @@ const List<ProphetEntry> seededProphets = [
     shortSummary:
         'Called his people to worship Allah and uphold honesty in trade and public dealings.',
     overview:
-        'Shu\'ayb warned against corruption in commerce, social injustice, and ethical decline.',
+        'Shu’ayb warned against corruption in commerce, social injustice, and ethical decline.',
     storySummary:
         'He called Madyan to fair measure, justice, and tawhid. Persistent denial after warning led to severe consequence.',
     keyLessons: [
@@ -500,7 +500,7 @@ const List<ProphetEntry> seededProphets = [
     shortSummary:
         'Remembered for deep patience in hardship and unwavering return to Allah.',
     overview:
-        'Ayyub\'s story is a timeless model of endurance, supplication, and trust in Allah through severe trial.',
+        'Ayyub’s story is a timeless model of endurance, supplication, and trust in Allah through severe trial.',
     storySummary:
         'In prolonged hardship, he remained devoted and called upon Allah with humility. Relief came through divine mercy.',
     keyLessons: [
@@ -526,7 +526,7 @@ const List<ProphetEntry> seededProphets = [
     shortSummary:
         'Mentioned among the patient and righteous, remembered for steadfast goodness.',
     overview:
-        'Dhul-Kifl is honored in brief Qur\'anic mention among righteous servants marked by patience and devotion.',
+        'Dhul-Kifl is honored in brief Qur’anic mention among righteous servants marked by patience and devotion.',
     storySummary:
         'Though narrative details are concise, his inclusion highlights the nobility of constancy and sincere worship.',
     keyLessons: [
@@ -634,7 +634,7 @@ const List<ProphetEntry> seededProphets = [
     storySummary:
         'From Makkah to Madinah, his seerah unites worship, justice, family care, service, and mercy for all creation.',
     keyLessons: [
-      'The Sunnah is a lived map of Qur’anic guidance.',
+      'The sunnah is a lived map of Qur’anic guidance.',
       'Mercy, justice, and sincerity can coexist.',
       'Steadfastness with gentleness transforms communities.',
     ],

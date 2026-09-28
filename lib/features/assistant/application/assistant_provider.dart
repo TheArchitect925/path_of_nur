@@ -113,7 +113,7 @@ class AssistantState {
       'Help me find a section',
       'What should I focus on today?',
       'Give me a reflection prompt',
-      'Suggest a Quran topic',
+      'Suggest a Qur’an topic',
       'Help me continue learning',
       'Suggest a journal prompt',
     ];
@@ -213,7 +213,7 @@ class AssistantNotifier extends StateNotifier<AssistantState> {
     }
     if (q.contains('quran') || q.contains('surah')) {
       return (
-        'Try continuing your current surah, then open Life Through the Quran for one topic.',
+        'Try continuing your current surah, then open Life Through the Qur’an for one topic.',
         AssistantIntent.quranSuggestion,
       );
     }

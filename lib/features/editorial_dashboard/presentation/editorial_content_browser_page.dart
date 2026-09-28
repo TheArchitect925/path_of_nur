@@ -40,7 +40,6 @@ class _EditorialContentBrowserPageState
         .toList(growable: false);
 
     return AppPageScaffold(
-      headerIcon: Icons.edit_note_rounded,
       title: _contentTypeLabel(l10n, widget.contentType),
       subtitle: l10n.editorialDashboardContentBrowserSubtitle,
       children: [
@@ -54,7 +53,7 @@ class _EditorialContentBrowserPageState
                   controller: _searchController,
                   onChanged: (_) => setState(() {}),
                   decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.search),
+                    prefixIcon: const Icon(Icons.search_rounded),
                     hintText: l10n.editorialDashboardSearchHint,
                   ),
                 ),
@@ -111,7 +110,6 @@ class _EditorialContentBrowserPageState
                       ],
                     ],
                   ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => context.pushNamed(
                     'editorialContentEditor',
                     pathParameters: {

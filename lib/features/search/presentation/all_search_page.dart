@@ -100,7 +100,6 @@ class _AllSearchPageState extends ConsumerState<AllSearchPage> {
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.manage_search_rounded,
       title: l10n.allSearchTitle,
       subtitle: l10n.allSearchSubtitle,
       children: [

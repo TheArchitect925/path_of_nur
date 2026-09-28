@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct WatchPrayerRow: View {
+  @Environment(\.watchPalette) private var palette
   let prayer: WatchPrayerPayload
   var isFocused: Bool = false
 
@@ -8,16 +9,16 @@ struct WatchPrayerRow: View {
     HStack(spacing: 10) {
       VStack(alignment: .leading, spacing: 2) {
         Text(prayer.displayName)
-          .font(.system(size: 15, weight: .semibold, design: .rounded))
-          .foregroundStyle(.white)
+          .font(.system(size: 15, weight: .semibold, design: .serif))
+          .foregroundStyle(palette.onSurface)
         Text(prayer.scheduledTime, style: .time)
-          .font(.caption2)
-          .foregroundStyle(WatchTheme.secondaryText)
+          .font(WatchType.caption)
+          .foregroundStyle(palette.onSurfaceSubtle)
       }
       Spacer()
       VStack(alignment: .trailing, spacing: 3) {
         Text(statusLabel)
-          .font(.caption2.weight(.semibold))
+          .font(WatchType.captionEmphasis)
           .foregroundStyle(statusColor)
         Image(systemName: statusSymbol)
           .font(.system(size: 18, weight: .semibold))
@@ -28,12 +29,12 @@ struct WatchPrayerRow: View {
     .padding(.horizontal, 4)
     .background(
       RoundedRectangle(cornerRadius: 18, style: .continuous)
-        .fill(isFocused ? WatchTheme.cardHighlight : Color.clear)
+        .fill(isFocused ? palette.accent.opacity(0.16) : Color.clear)
     )
     .overlay(
       RoundedRectangle(cornerRadius: 18, style: .continuous)
-        .stroke(
-          isFocused ? WatchTheme.accent.opacity(0.8) : Color.clear,
+        .strokeBorder(
+          isFocused ? palette.accent.opacity(0.8) : Color.clear,
           lineWidth: 1
         )
     )
@@ -55,11 +56,11 @@ struct WatchPrayerRow: View {
   private var statusColor: Color {
     switch prayer.status {
     case .pending:
-      return WatchTheme.secondaryText
+      return palette.onSurfaceSubtle
     case .completed:
-      return WatchTheme.success
+      return palette.success
     case .missed:
-      return WatchTheme.warning
+      return palette.warning
     }
   }
 

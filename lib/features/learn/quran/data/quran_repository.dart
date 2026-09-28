@@ -314,7 +314,7 @@ class QuranRepository {
       final bundle = _importedBundles[translationCode];
       if (bundle == null || !bundle.hasAnyVerses) {
         throw StateError(
-          'No imported Qur\'an translation bundle is available for '
+          'No imported Qur’an translation bundle is available for '
           '$translationCode.',
         );
       }
@@ -322,7 +322,7 @@ class QuranRepository {
       final translated = bundle.translationForVerseKey(verseKey);
       if (translated == null || translated.trim().isEmpty) {
         throw StateError(
-          'Imported Qur\'an translation bundle $translationCode is missing '
+          'Imported Qur’an translation bundle $translationCode is missing '
           'verse $verseKey.',
         );
       }

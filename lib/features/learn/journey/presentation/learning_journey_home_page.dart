@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../../../accounts_sync/application/accounts_sync_controller.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learn_together_provider.dart';
@@ -19,6 +19,7 @@ import '../domain/family_learning_models.dart';
 import '../domain/learning_journey_models.dart';
 import '../domain/learning_path_models.dart';
 import 'widgets/learning_journey_widgets.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearningJourneyHomePage extends ConsumerWidget {
   const LearningJourneyHomePage({super.key});
@@ -128,10 +129,9 @@ class LearningJourneyHomePage extends ConsumerWidget {
         ? l10n.learningPathTodayLightBadge
         : _localizedTodayLightBadge(todayLight.kind, l10n);
     return LearnHubPageScaffold(
-      headerIcon: Icons.hub_rounded,
+      headerIcon: AppIcons.journeys,
       title: l10n.learningJourneyHomeTitle,
       subtitle: l10n.learningJourneyHomeSubtitle,
-      quote: buildLearningCompactQuote(),
       children: [
         if (switcherProfiles.length > 1 || guardianChildren.isNotEmpty)
           Padding(
@@ -276,9 +276,9 @@ class LearningJourneyHomePage extends ConsumerWidget {
               children: [
                 Text(
                   l10n.learningCommunitySummaryTitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF2E261F),
+                    color: context.palette.onSurface,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -297,8 +297,8 @@ class LearningJourneyHomePage extends ConsumerWidget {
                                 learningCommunity.weekDrops,
                               ))
                       : l10n.learningCommunitySummaryEmpty,
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -308,8 +308,8 @@ class LearningJourneyHomePage extends ConsumerWidget {
                     l10n.learningCommunitySummaryTogetherNote(
                       learningCommunity.learnTogetherDrops,
                     ),
-                    style: const TextStyle(
-                      color: Color(0xFF7A6650),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                       fontWeight: FontWeight.w600,
                     ),
@@ -402,8 +402,8 @@ class LearningJourneyHomePage extends ConsumerWidget {
                     l10n,
                     pathState.currentPhase,
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -413,8 +413,8 @@ class LearningJourneyHomePage extends ConsumerWidget {
                     l10n,
                     pathState.path,
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF7A6A57),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                     fontSize: 12.8,
                   ),
@@ -422,8 +422,8 @@ class LearningJourneyHomePage extends ConsumerWidget {
                 const SizedBox(height: 8),
                 Text(
                   _localizedAgeGroupHint(pathState.ageGroup, l10n),
-                  style: const TextStyle(
-                    color: Color(0xFF7A6A57),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                     fontSize: 12.6,
                     fontWeight: FontWeight.w600,
@@ -504,41 +504,54 @@ class LearningJourneyHomePage extends ConsumerWidget {
               subtitle: l10n.learningPathAlsoExploringSubtitle,
             ),
             const SizedBox(height: 12),
-            SizedBox(
-              height: 168,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: secondaryJourneys.length,
-                separatorBuilder: (_, _) => const SizedBox(width: 10),
-                itemBuilder: (context, index) {
-                  final journey = secondaryJourneys[index];
-                  final stageCount = LearningJourneyRegistry.stagesForJourney(
-                    journey.id,
-                  ).length;
-                  final completedCount = progress.completedStageIds
-                      .where((id) => journey.stageIds.contains(id))
-                      .length;
-                  return SizedBox(
-                    width: 268,
-                    child: LearningJourneyCard(
-                      journey: journey,
-                      stageCount: stageCount,
-                      progress: _journeyProgressValue(
-                        stageCount,
-                        completedCount,
+            // Height follows the tallest card rather than a fixed number,
+            // which overflowed once the cards gained their island art and
+            // would drift again with longer titles or a larger text scale.
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    for (final journey in secondaryJourneys) ...[
+                      if (journey != secondaryJourneys.first)
+                        const SizedBox(width: 10),
+                      SizedBox(
+                        width: 268,
+                        child: Builder(
+                          builder: (context) {
+                            final stageCount =
+                                LearningJourneyRegistry.stagesForJourney(
+                                  journey.id,
+                                ).length;
+                            final completedCount = progress.completedStageIds
+                                .where((id) => journey.stageIds.contains(id))
+                                .length;
+                            return LearningJourneyCard(
+                              journey: journey,
+                              stageCount: stageCount,
+                              progress: _journeyProgressValue(
+                                stageCount,
+                                completedCount,
+                              ),
+                              onTap: () {
+                                ref
+                                    .read(
+                                      learningPathSelectionProvider.notifier,
+                                    )
+                                    .recordJourneyInteraction(journey.id);
+                                context.pushNamed(
+                                  'learnJourneyDetail',
+                                  pathParameters: {'journeyId': journey.id},
+                                );
+                              },
+                            );
+                          },
+                        ),
                       ),
-                      onTap: () {
-                        ref
-                            .read(learningPathSelectionProvider.notifier)
-                            .recordJourneyInteraction(journey.id);
-                        context.pushNamed(
-                          'learnJourneyDetail',
-                          pathParameters: {'journeyId': journey.id},
-                        );
-                      },
-                    ),
-                  );
-                },
+                    ],
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 18),
@@ -627,38 +640,51 @@ class LearningJourneyHomePage extends ConsumerWidget {
                 : l10n.learningPathHomeNextSubtitle,
           ),
           const SizedBox(height: 12),
-          SizedBox(
-            height: 186,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: displayRecommendations.length,
-              separatorBuilder: (_, _) => const SizedBox(width: 10),
-              itemBuilder: (context, index) {
-                final journey = displayRecommendations[index];
-                final stageCount = LearningJourneyRegistry.stagesForJourney(
-                  journey.id,
-                ).length;
-                final completedCount = progress.completedStageIds
-                    .where((id) => journey.stageIds.contains(id))
-                    .length;
-                return SizedBox(
-                  width: 280,
-                  child: LearningJourneyCard(
-                    journey: journey,
-                    stageCount: stageCount,
-                    progress: _journeyProgressValue(stageCount, completedCount),
-                    onTap: () {
-                      ref
-                          .read(learningPathSelectionProvider.notifier)
-                          .recordJourneyInteraction(journey.id);
-                      context.pushNamed(
-                        'learnJourneyDetail',
-                        pathParameters: {'journeyId': journey.id},
-                      );
-                    },
-                  ),
-                );
-              },
+          // Same as the "Also exploring" strip: the row takes the height of
+          // its tallest card instead of a number that has to be maintained.
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  for (final journey in displayRecommendations) ...[
+                    if (journey != displayRecommendations.first)
+                      const SizedBox(width: 10),
+                    SizedBox(
+                      width: 280,
+                      child: Builder(
+                        builder: (context) {
+                          final stageCount =
+                              LearningJourneyRegistry.stagesForJourney(
+                                journey.id,
+                              ).length;
+                          final completedCount = progress.completedStageIds
+                              .where((id) => journey.stageIds.contains(id))
+                              .length;
+                          return LearningJourneyCard(
+                            journey: journey,
+                            stageCount: stageCount,
+                            progress: _journeyProgressValue(
+                              stageCount,
+                              completedCount,
+                            ),
+                            onTap: () {
+                              ref
+                                  .read(learningPathSelectionProvider.notifier)
+                                  .recordJourneyInteraction(journey.id);
+                              context.pushNamed(
+                                'learnJourneyDetail',
+                                pathParameters: {'journeyId': journey.id},
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 8),
@@ -698,25 +724,38 @@ class LearningJourneyHomePage extends ConsumerWidget {
             subtitle: l10n.learningJourneyHomeIslandsSubtitle,
           ),
           const SizedBox(height: 14),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: islands
-                .map((island) {
-                  return SizedBox(
-                    width: (MediaQuery.of(context).size.width - 42) / 2,
-                    child: LearningJourneyIslandCard(
-                      island: island,
-                      title: localizedIslandTitle(context, island),
-                      subtitle: localizedIslandSubtitle(context, island),
-                      onTap: () => context.pushNamed(
-                        'learnJourneyIsland',
-                        pathParameters: {'islandId': island.id},
-                      ),
-                    ),
-                  );
-                })
-                .toList(growable: false),
+          // Two columns sized from this Wrap's own constraints. Deriving the
+          // width from MediaQuery.size instead made the card wrong in any
+          // container narrower than the window, and went negative wherever
+          // the media query reports no size at all.
+          LayoutBuilder(
+            builder: (context, constraints) {
+              const spacing = 10.0;
+              final columnWidth = ((constraints.maxWidth - spacing) / 2).clamp(
+                0.0,
+                constraints.maxWidth,
+              );
+              return Wrap(
+                spacing: spacing,
+                runSpacing: spacing,
+                children: islands
+                    .map((island) {
+                      return SizedBox(
+                        width: columnWidth,
+                        child: LearningJourneyIslandCard(
+                          island: island,
+                          title: localizedIslandTitle(context, island),
+                          subtitle: localizedIslandSubtitle(context, island),
+                          onTap: () => context.pushNamed(
+                            'learnJourneyIsland',
+                            pathParameters: {'islandId': island.id},
+                          ),
+                        ),
+                      );
+                    })
+                    .toList(growable: false),
+              );
+            },
           ),
           const SizedBox(height: 6),
         ],
@@ -898,7 +937,7 @@ class _LearningProfileSwitcherCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7F1E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
         border: Border.all(color: const Color(0xFFE0CEB4)),
       ),
@@ -914,13 +953,16 @@ class _LearningProfileSwitcherCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             subtitle,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           const SizedBox(height: 10),
           Text(
             currentProfileName,
-            style: const TextStyle(
-              color: Color(0xFF866A49),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -980,7 +1022,7 @@ class _ContinueJourneyCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7F1E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
         border: Border.all(color: const Color(0xFFE0CEB4)),
       ),
@@ -990,10 +1032,10 @@ class _ContinueJourneyCard extends StatelessWidget {
           if (progressLabel != null) ...[
             Text(
               progressLabel!,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 12.4,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF866A49),
+                color: context.palette.onSurfaceSubtle,
               ),
             ),
             const SizedBox(height: 6),
@@ -1007,7 +1049,10 @@ class _ContinueJourneyCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             stageTitle,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           if (progress != null) ...[
             const SizedBox(height: 12),
@@ -1044,9 +1089,9 @@ class _TodayLightCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7F1E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE3D6C4)),
+        border: Border.all(color: context.palette.border),
       ),
       child: Row(
         children: [
@@ -1069,18 +1114,18 @@ class _TodayLightCard extends StatelessWidget {
               children: [
                 Text(
                   badge,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 12.2,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF866A49),
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF30281F),
+                    color: context.palette.onSurface,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -1088,8 +1133,8 @@ class _TodayLightCard extends StatelessWidget {
                   subtitle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -1176,62 +1221,14 @@ Future<void> _showPathSwitcher(
   await _showPathSelector(context, ref, pathState.path.level);
 }
 
+// The dedicated picker page owns level selection (and the honest switch
+// confirmation) since calm-navigation Phase 5.
 Future<void> _showPathSelector(
   BuildContext context,
   WidgetRef ref,
   LearningPathLevel? selectedLevel,
 ) async {
-  final l10n = AppLocalizations.of(context);
-  final level = await showModalBottomSheet<LearningPathLevel>(
-    context: context,
-    showDragHandle: true,
-    builder: (context) {
-      return SafeArea(
-        child: ListView(
-          shrinkWrap: true,
-          children: LearningPathRegistry.paths
-              .map((path) {
-                final selected = path.level == selectedLevel;
-                return ListTile(
-                  leading: Icon(
-                    selected ? Icons.check_circle_rounded : Icons.route_rounded,
-                  ),
-                  title: Text(
-                    LearningPathRegistry.localizedPathTitle(l10n, path),
-                  ),
-                  subtitle: Text(
-                    LearningPathRegistry.localizedPathDescription(l10n, path),
-                  ),
-                  onTap: () => Navigator.of(context).pop(path.level),
-                );
-              })
-              .toList(growable: false),
-        ),
-      );
-    },
-  );
-  if (level == null || level == selectedLevel || !context.mounted) return;
-  final confirmed = await showDialog<bool>(
-    context: context,
-    builder: (dialogContext) {
-      return AlertDialog(
-        title: Text(l10n.learningPathSwitchConfirmTitle),
-        content: Text(l10n.learningPathSwitchConfirmBody),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: Text(l10n.learningPathSwitchCancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.of(dialogContext).pop(true),
-            child: Text(l10n.learningPathSwitchConfirm),
-          ),
-        ],
-      );
-    },
-  );
-  if (confirmed != true || !context.mounted) return;
-  ref.read(learningPathSelectionProvider.notifier).setLevel(level);
+  context.pushNamed('learnLearningPath');
 }
 
 String _localizedTodayLightBadge(TodayLightKind kind, AppLocalizations l10n) {

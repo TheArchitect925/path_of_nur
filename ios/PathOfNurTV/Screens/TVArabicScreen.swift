@@ -41,14 +41,15 @@ struct TVArabicScreen: View {
                           isSelected: viewModel.selectedItem?.id == item.id
                         )
                       }
-                      .buttonStyle(.plain)
+                      .buttonStyle(TVCardButtonStyle())
                       .focused($focusedSection, equals: focusID)
                     }
                   }
                 }
               }
-              .padding(.vertical, 8)
+              .padding(TVTheme.railBleed)
             }
+            .tvRail()
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -82,37 +83,20 @@ struct TVArabicScreen: View {
                           isSelected: viewModel.selectedLetterGroup?.id == group.id
                         )
                       }
-                      .buttonStyle(.plain)
+                      .buttonStyle(TVCardButtonStyle())
                       .focused($focusedSection, equals: focusID)
                     }
                   }
                 }
               }
-              .padding(.vertical, 8)
+              .padding(TVTheme.railBleed)
             }
+            .tvRail()
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
           letterRail
             .frame(width: 460, alignment: .top)
-        }
-
-        TVSectionHeader(
-          title: viewModel.supportTitle,
-          subtitle: viewModel.supportSubtitle
-        )
-
-        ScrollView(.horizontal, showsIndicators: false) {
-          HStack(spacing: TVTheme.railSpacing) {
-            ForEach(Array(viewModel.supportCards.enumerated()), id: \.element.id) { index, item in
-              TVArabicSupportCardView(item: item)
-                .focused(
-                  $focusedSection,
-                  equals: index == 0 ? TVFocusSectionId.arabicSupport : "arabic.support.\(item.id)"
-                )
-            }
-          }
-          .padding(.vertical, 8)
         }
       }
       .padding(TVTheme.outerPadding)
@@ -129,8 +113,6 @@ struct TVArabicScreen: View {
         appViewModel.markContentSectionFocused(TVFocusSectionId.arabicPrimary, for: .arabic)
       } else if section.hasPrefix("arabic.letters") {
         appViewModel.markContentSectionFocused(TVFocusSectionId.arabicLetters, for: .arabic)
-      } else if section.hasPrefix("arabic.support") {
-        appViewModel.markContentSectionFocused(TVFocusSectionId.arabicSupport, for: .arabic)
       }
     }
     .onMoveCommand { direction in
@@ -157,31 +139,6 @@ struct TVArabicScreen: View {
         Text(selectedItem.supportingLine)
           .font(TVTypography.detail)
           .foregroundColor(TVTheme.textMuted)
-
-        VStack(alignment: .leading, spacing: 12) {
-          ForEach(selectedItem.detailPoints, id: \.self) { point in
-            HStack(alignment: .top, spacing: 10) {
-              Circle()
-                .fill(TVTheme.focus)
-                .frame(width: 8, height: 8)
-                .padding(.top, 7)
-
-              Text(point)
-                .font(TVTypography.detail)
-                .foregroundColor(TVTheme.textSecondary)
-            }
-          }
-        }
-        Divider()
-          .overlay(TVTheme.surfaceStroke)
-
-        Text(viewModel.detailRailNoteTitle)
-          .font(TVTypography.summaryTitle)
-          .foregroundColor(TVTheme.textPrimary)
-
-        Text(viewModel.detailRailNoteSubtitle)
-          .font(TVTypography.detail)
-          .foregroundColor(TVTheme.textSecondary)
       } else {
         emptyRailCard()
       }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
@@ -22,6 +23,8 @@ import '../../core/theme/app_theme.dart';
 import '../state/shell_state.dart';
 import 'app_hero_glass_shell.dart';
 import 'global_background.dart';
+import 'quick_actions_sheet.dart';
+import 'web_layout.dart';
 
 class AppShellScaffold extends ConsumerWidget {
   static const double _mainTabSwipeMinDistance = 72;
@@ -58,38 +61,74 @@ class AppShellScaffold extends ConsumerWidget {
     }
 
     final isRootTabPage = currentLocation == activeTab.path;
+    final hideNavigation = focusRecitationOpen || isQuranFocusRoute;
+    // A wide browser window swaps the tab bar for a sidebar. Pages learn about
+    // it through their safe-area padding, so their backgrounds stay
+    // full-bleed while their content moves clear of it. The MediaQuery is
+    // always here so the navigator below keeps its state across the switch.
+    final useSidebar = WebLayout.usesSidebar(context);
+    final media = MediaQuery.of(context);
+    final pageMedia = useSidebar && !hideNavigation
+        ? media.copyWith(
+            padding: media.padding.copyWith(
+              left: media.padding.left + WebLayout.sidebarWidth,
+            ),
+            viewPadding: media.viewPadding.copyWith(
+              left: media.viewPadding.left + WebLayout.sidebarWidth,
+            ),
+          )
+        : media;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
       extendBody: true,
       body: Stack(
         children: [
-          const GlobalBackground(),
-          _MainTabSwipeWrapper(
-            enabled: isRootTabPage,
-            activeTab: activeTab,
-            child: AppSwipeBackWrapper(
-              enabled: AppNavigationGestureConfig.isEnabledForLocation(
-                currentLocation,
+          // Only Home's own page centres its greeting; everywhere else,
+          // including pages pushed inside the Home tab, keeps the moon on
+          // the right where it clears left-aligned titles.
+          GlobalBackground(
+            moonFraction: activeTab == NavTab.home && isRootTabPage
+                ? kMoonFractionHome
+                : kMoonFractionDefault,
+          ),
+          MediaQuery(
+            data: pageMedia,
+            child: _MainTabSwipeWrapper(
+              enabled: isRootTabPage,
+              activeTab: activeTab,
+              child: AppSwipeBackWrapper(
+                enabled: AppNavigationGestureConfig.isEnabledForLocation(
+                  currentLocation,
+                ),
+                child: child,
               ),
-              child: child,
             ),
           ),
           _QuranPhoneLiveActivityBridge(currentLocation: currentLocation),
           Positioned(
-            left: 16,
+            left: useSidebar ? WebLayout.sidebarWidth + 16 : 16,
             right: 16,
-            bottom: 82,
+            bottom: useSidebar ? 16 : 82,
             child: _buildGlobalQuranMiniPlayer(context: context, ref: ref),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 6,
-            child: focusRecitationOpen || isQuranFocusRoute
-                ? const SizedBox.shrink()
-                : _buildBottomBar(context, activeTab),
-          ),
+          if (hideNavigation)
+            const SizedBox.shrink()
+          else if (useSidebar)
+            Positioned(
+              left: 0,
+              top: 0,
+              bottom: 0,
+              width: WebLayout.sidebarWidth,
+              child: _buildSidebar(context, activeTab),
+            )
+          else
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 6,
+              child: _buildBottomBar(context, activeTab),
+            ),
         ],
       ),
     );
@@ -171,6 +210,10 @@ class AppShellScaffold extends ConsumerWidget {
           );
         },
         openTooltip: l10n.quranPlaybackOpenPlayerAction,
+        // Stop and clear the live session so the pill goes away; the reading
+        // position is persisted first so the reader still resumes here.
+        onDismiss: () => unawaited(controller.stop()),
+        dismissTooltip: l10n.quranPlaybackDismissPlayerAction,
       ),
     );
   }
@@ -193,21 +236,23 @@ class AppShellScaffold extends ConsumerWidget {
                 right: 0,
                 bottom: 0,
                 child: IgnorePointer(
-                  child: AppHeroGlassShell(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 28,
-                      vertical: 30,
+                  child: _withWebBarBlur(
+                    AppHeroGlassShell(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 28,
+                        vertical: 30,
+                      ),
+                      tintColor: const Color(0xFFE7C98C),
+                      surfaceAlphaOverride: 0.2,
+                      radius: 36,
+                      borderColor: const Color(0x42FFFFFF),
+                      highlightGradientColors: const [
+                        Color(0x24FFFFFF),
+                        Colors.transparent,
+                        Color(0x16E8C98F),
+                      ],
+                      child: const SizedBox(height: 0),
                     ),
-                    tintColor: const Color(0xFFE7C98C),
-                    surfaceAlphaOverride: 0.2,
-                    radius: 36,
-                    borderColor: const Color(0x42FFFFFF),
-                    highlightGradientColors: const [
-                      Color(0x24FFFFFF),
-                      Colors.transparent,
-                      Color(0x16E8C98F),
-                    ],
-                    child: const SizedBox(height: 0),
                   ),
                 ),
               ),
@@ -225,6 +270,126 @@ class AppShellScaffold extends ConsumerWidget {
                           ),
                         )
                         .toList(),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // The web draws glass without a live blur (NoorLiquidGlassCapability), but
+  // pages scroll under the tab bar, so on the web the bar blurs its own
+  // backdrop. The sidebar sits over the sky alone and needs none.
+  Widget _withWebBarBlur(Widget glass) {
+    if (!WebLayout.isWeb) return glass;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(36),
+      child: BackdropFilter(
+        filter: ui.ImageFilter.blur(sigmaX: 14, sigmaY: 14),
+        child: glass,
+      ),
+    );
+  }
+
+  Widget _buildSidebar(BuildContext context, NavTab activeTab) {
+    // Home leads the list; the rest keep the tab bar's order.
+    final tabs = [
+      NavTab.home,
+      ...NavTab.values.where((tab) => tab != NavTab.home),
+    ];
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    return SafeArea(
+      right: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: IgnorePointer(
+                child: AppHeroGlassShell(
+                  padding: EdgeInsets.zero,
+                  tintColor: const Color(0xFFE7C98C),
+                  surfaceAlphaOverride: 0.2,
+                  radius: 28,
+                  borderColor: const Color(0x42FFFFFF),
+                  highlightGradientColors: const [
+                    Color(0x24FFFFFF),
+                    Colors.transparent,
+                    Color(0x16E8C98F),
+                  ],
+                  child: const SizedBox.expand(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 22, 10, 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 18),
+                    child: Text(
+                      AppLocalizations.of(context).appTitle,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontFamily: AppFonts.latinSerif,
+                        fontWeight: FontWeight.w600,
+                        color: appearance?.backgroundForeground,
+                      ),
+                    ),
+                  ),
+                  for (final tab in tabs)
+                    _sidebarButton(context, tab, activeTab == tab),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _sidebarButton(BuildContext context, NavTab tab, bool active) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final iconColor = appearance?.navLabelActive ?? const Color(0xFF1A1A1A);
+    final subtle = appearance?.navLabelInactive ?? const Color(0xFF4A4A4A);
+    final label = _tabLabel(context, tab);
+    return Semantics(
+      button: true,
+      selected: active,
+      label: label,
+      excludeSemantics: true,
+      child: InkWell(
+        onTap: () => context.go(tab.path),
+        onLongPress: tab == NavTab.home
+            ? () => showQuickActionsSheet(context)
+            : null,
+        borderRadius: BorderRadius.circular(20),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 2),
+          child: Row(
+            children: [
+              _navIcon(
+                context,
+                tab.icon,
+                isHome: false,
+                active: active,
+                iconColor: active ? iconColor : subtle,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: active ? iconColor : subtle,
+                    fontWeight: active ? FontWeight.w800 : FontWeight.w600,
+                    fontFamily: AppFonts.uiFontFamilyForLocale(
+                      Localizations.localeOf(context),
+                    ),
                   ),
                 ),
               ),
@@ -270,6 +435,11 @@ class AppShellScaffold extends ConsumerWidget {
         label: label,
         child: InkWell(
           onTap: () => context.go(tab.path),
+          // Holding the Home tab opens the global quick-actions sheet — the
+          // one shortcut affordance that replaced the per-tab floating docks.
+          onLongPress: tab == NavTab.home
+              ? () => showQuickActionsSheet(context)
+              : null,
           borderRadius: BorderRadius.circular(20),
           child: SizedBox(
             height: 74,
@@ -414,16 +584,31 @@ class _MainTabSwipeWrapperState extends State<_MainTabSwipeWrapper> {
   bool _tracking = false;
   bool _verticalRejected = false;
   bool _tabCommitted = false;
+  bool _horizontalScrollConsumed = false;
 
   @override
   Widget build(BuildContext context) {
-    return Listener(
-      behavior: HitTestBehavior.translucent,
-      onPointerDown: _handlePointerDown,
-      onPointerMove: _handlePointerMove,
-      onPointerUp: _handlePointerUp,
-      onPointerCancel: _reset,
-      child: widget.child,
+    // This detector reads raw pointer events, so it never enters the gesture
+    // arena and cannot lose to a nested scrollable on its own. Watch for a
+    // horizontal scroll inside the page (the "right now" dua row, chip rows,
+    // carousels) and stand down when one is driving, otherwise swiping such a
+    // row would also flip to the next tab.
+    return NotificationListener<ScrollNotification>(
+      onNotification: (notification) {
+        if (notification.metrics.axis == Axis.horizontal &&
+            notification is ScrollUpdateNotification) {
+          _horizontalScrollConsumed = true;
+        }
+        return false;
+      },
+      child: Listener(
+        behavior: HitTestBehavior.translucent,
+        onPointerDown: _handlePointerDown,
+        onPointerMove: _handlePointerMove,
+        onPointerUp: _handlePointerUp,
+        onPointerCancel: _reset,
+        child: widget.child,
+      ),
     );
   }
 
@@ -441,6 +626,7 @@ class _MainTabSwipeWrapperState extends State<_MainTabSwipeWrapper> {
     _tracking = true;
     _verticalRejected = false;
     _tabCommitted = false;
+    _horizontalScrollConsumed = false;
     _velocityTracker = VelocityTracker.withKind(event.kind)
       ..addPosition(event.timeStamp, event.position);
   }
@@ -466,7 +652,7 @@ class _MainTabSwipeWrapperState extends State<_MainTabSwipeWrapper> {
       return;
     }
     _velocityTracker?.addPosition(event.timeStamp, event.position);
-    if (!_verticalRejected) {
+    if (!_verticalRejected && !_horizontalScrollConsumed) {
       final start = _startGlobal;
       final velocity = _velocityTracker?.getVelocity();
       final dx = start == null ? 0.0 : event.position.dx - start.dx;
@@ -499,6 +685,7 @@ class _MainTabSwipeWrapperState extends State<_MainTabSwipeWrapper> {
     _tracking = false;
     _verticalRejected = false;
     _tabCommitted = false;
+    _horizontalScrollConsumed = false;
     _velocityTracker = null;
   }
 }
@@ -630,6 +817,8 @@ class QuranPlayerLauncherPill extends StatelessWidget {
     required this.onTogglePlayback,
     required this.onOpenPlayer,
     required this.openTooltip,
+    required this.onDismiss,
+    required this.dismissTooltip,
   });
 
   final String? label;
@@ -639,6 +828,8 @@ class QuranPlayerLauncherPill extends StatelessWidget {
   final VoidCallback? onTogglePlayback;
   final VoidCallback onOpenPlayer;
   final String openTooltip;
+  final VoidCallback onDismiss;
+  final String dismissTooltip;
 
   @override
   Widget build(BuildContext context) {
@@ -758,6 +949,21 @@ class QuranPlayerLauncherPill extends StatelessWidget {
                 ),
                 color: appearance?.navLabelActive ?? contentColors.foreground,
                 icon: const Icon(Icons.open_in_full_rounded),
+              ),
+            ),
+            Tooltip(
+              message: dismissTooltip,
+              child: IconButton(
+                key: const ValueKey('quran-shell-player-dismiss'),
+                onPressed: onDismiss,
+                iconSize: 20,
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints.tightFor(
+                  width: 32,
+                  height: 36,
+                ),
+                color: contentColors.subtleForeground,
+                icon: const Icon(Icons.close_rounded),
               ),
             ),
           ],

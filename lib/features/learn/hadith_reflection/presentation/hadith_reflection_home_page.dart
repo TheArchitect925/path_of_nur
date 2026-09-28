@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../journey/drops/application/journey_drops_providers.dart';
@@ -14,6 +14,8 @@ import '../application/hadith_reflection_progress_provider.dart';
 import '../application/hadith_reflection_repository.dart';
 import '../domain/hadith_reflection_models.dart';
 import 'hadith_reflection_ui_helpers.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/display/app_skeleton.dart';
 
 class HadithReflectionHomePage extends ConsumerWidget {
   const HadithReflectionHomePage({super.key});
@@ -33,14 +35,12 @@ class HadithReflectionHomePage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
+      headerIcon: AppIcons.hadith,
       title: l10n.hadithReflectionHomeTitle,
       subtitle: l10n.hadithReflectionHomeSubtitle,
       children: [
         catalogAsync.when(
-          loading: () => const PremiumCard(
-            child: Center(child: CircularProgressIndicator()),
-          ),
+          loading: () => const SkeletonCard(),
           error: (_, _) => PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +50,7 @@ class HadithReflectionHomePage extends ConsumerWidget {
                 Text(
                   l10n.hadithReflectionLoadErrorSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -138,7 +138,7 @@ class HadithReflectionHomePage extends ConsumerWidget {
                         _chip(
                           context,
                           l10n.hadithReflectionDailyStreakLabel(
-                            dailyStreak.currentStreak.toString(),
+                            dailyStreak.currentStreak,
                           ),
                         ),
                     ],

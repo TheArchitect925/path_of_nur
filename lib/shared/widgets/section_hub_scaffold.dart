@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_surfaces.dart';
+import '../../core/theme/app_theme.dart';
 import 'app_page_scaffold.dart';
 import 'quran_quote_block.dart';
 import 'shortcut_dock.dart';
@@ -53,12 +54,9 @@ class SectionHubScaffold extends StatefulWidget {
   const SectionHubScaffold({
     super.key,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
     required this.children,
     this.headerIcon,
-    this.headerIconSize = 24,
-    this.headerIconSpacing = 12,
-    this.headerAlignment = AppPageHeaderAlignment.start,
     this.quote,
     this.quoteHeader,
     this.quoteUseOuterChrome = true,
@@ -75,11 +73,8 @@ class SectionHubScaffold extends StatefulWidget {
   });
 
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final IconData? headerIcon;
-  final double headerIconSize;
-  final double headerIconSpacing;
-  final AppPageHeaderAlignment headerAlignment;
   final QuranQuote? quote;
   final Widget? quoteHeader;
   final bool quoteUseOuterChrome;
@@ -106,9 +101,6 @@ class _SectionHubScaffoldState extends State<SectionHubScaffold> {
   Widget build(BuildContext context) {
     return AppPageScaffold(
       headerIcon: widget.headerIcon,
-      headerIconSize: widget.headerIconSize,
-      headerIconSpacing: widget.headerIconSpacing,
-      headerAlignment: widget.headerAlignment,
       title: widget.title,
       subtitle: widget.subtitle,
       quote: widget.quote,
@@ -197,6 +189,16 @@ class SectionHubActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    // Night themes drop the per-category pastel identity: standard glass,
+    // gold icon, ivory title.
+    final isNight = appearance?.isNightFamily ?? false;
+    final iconColor = isNight
+        ? (appearance?.accent ?? action.accentColor)
+        : action.accentColor;
+    final titleColor = isNight
+        ? (appearance?.onSurface ?? action.accentColor)
+        : action.accentColor;
     final contentColors = AppSurfaceTheme.contentColors(context);
     final surfaceStyle = AppSurfaceTheme.resolve(
       context,
@@ -220,14 +222,16 @@ class SectionHubActionCard extends StatelessWidget {
                 width: 46,
                 height: 46,
                 decoration: BoxDecoration(
-                  color: Color.alphaBlend(
-                    action.color.withValues(alpha: 0.22),
-                    surfaceStyle.iconBackgroundColor,
-                  ),
+                  color: isNight
+                      ? surfaceStyle.iconBackgroundColor
+                      : Color.alphaBlend(
+                          action.color.withValues(alpha: 0.22),
+                          surfaceStyle.iconBackgroundColor,
+                        ),
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(color: surfaceStyle.borderColor),
                 ),
-                child: Icon(action.icon, color: action.accentColor),
+                child: Icon(action.icon, color: iconColor),
               ),
               const SizedBox(height: 14),
               Text(
@@ -236,7 +240,7 @@ class SectionHubActionCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  color: action.accentColor,
+                  color: titleColor,
                   fontSize: 16,
                 ),
               ),

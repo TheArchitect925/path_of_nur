@@ -86,7 +86,7 @@ const List<LearnContentPageData> _lifeTopics = [
     subtitle: 'Steadiness through ease and trial.',
     overview:
         'A staged reflection on patience in worship, hardship, and relationships.',
-    keyThemes: ['Steadfast worship', 'Emotional restraint', 'Hope in الله'],
+    keyThemes: ['Steadfast worship', 'Emotional restraint', 'Hope in Allah'],
     referencePlaceholders: ['Qur’an reference placeholder'],
     reflectionPrompt:
         'Where do you need sabr today: action, speech, or expectation?',
@@ -173,7 +173,7 @@ const List<LearnContentPageData> _lifeTopics = [
       'Consistent salah learning',
       'Healthy community ties',
     ],
-    referencePlaceholders: ['Qur’an and Sunnah foundations'],
+    referencePlaceholders: ['Qur’an and sunnah foundations'],
     reflectionPrompt:
         'What is the one next step that feels realistic this week?',
     relatedTopics: [
@@ -213,7 +213,7 @@ const List<LearnContentPageData> _lifeTopics = [
     id: 'hajj-full-journey',
     category: LearnTopicCategory.life,
     title: 'Hajj: Booking to Returning Home',
-    subtitle: 'A staged roadmap from planning to post-Hajj habits.',
+    subtitle: 'From planning to the habits you keep after Hajj.',
     overview:
         'A practical flow covering intentions, planning, documents, physical preparation, rites, and post-return consistency.',
     keyThemes: [
@@ -284,7 +284,7 @@ const List<LearnContentPageData> _lifeTopics = [
     title: 'I\'tikaf Basics',
     subtitle: 'Purpose, preparation, and balanced worship focus.',
     overview:
-        'I\'tikaf is spiritual retreat in the mosque with focused worship, reduced distractions, and sincere intention.',
+        'I’tikaf is spiritual retreat in the mosque with focused worship, reduced distractions, and sincere intention.',
     keyThemes: [
       'Retreat with intention',
       'Simple worship plan',
@@ -292,7 +292,7 @@ const List<LearnContentPageData> _lifeTopics = [
     ],
     referencePlaceholders: ['I\'tikaf practice themes'],
     reflectionPrompt:
-        'If you were to do i\'tikaf, what would your simple daily worship plan be?',
+        'If you were to do i’tikaf, what would your simple daily worship plan be?',
     relatedTopics: [
       RelatedTopic(
         topicId: 'itikaaf-dos-donts',
@@ -426,7 +426,7 @@ const List<LearnContentPageData> _lifeTopics = [
     title: 'Stay Away from Jealousy',
     subtitle: 'Purify the heart from envy and harmful comparison.',
     overview:
-        'The source lesson emphasizes avoiding envy and selfish comparison. Spiritual growth increases when you ask الله for good without resenting others.',
+        'The source lesson emphasizes avoiding envy and selfish comparison. Spiritual growth increases when you ask Allah for good without resenting others.',
     keyThemes: [
       'Heart purification',
       'Contentment and gratitude',
@@ -539,7 +539,7 @@ const List<LearnContentPageData> _lifeTopics = [
     id: 'health-body-mind-trust',
     category: LearnTopicCategory.life,
     title: 'Health as a Trust',
-    subtitle: 'Protect physical and mental wellness with intention.',
+    subtitle: 'Protect your physical and mental wellness.',
     overview:
         'One source lesson highlights preserving physical and mental health. The body and mind are trusts that support worship, work, and service.',
     keyThemes: ['Body as amanah', 'Mental steadiness', 'Balanced routines'],
@@ -598,7 +598,7 @@ const List<LearnContentPageData> _worldTopics = [
     title: 'Bees',
     subtitle: 'Discipline and benefit in creation.',
     overview:
-        'A staged page on order, contribution, and benefit in الله’s creation.',
+        'A staged page on order, contribution, and benefit in Allah’s creation.',
     keyThemes: ['Purposeful effort', 'Service', 'Order'],
     referencePlaceholders: ['Qur’an reference placeholder'],
     reflectionPrompt:

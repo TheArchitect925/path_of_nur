@@ -1,212 +1,252 @@
 import SwiftUI
 
+/// The player: one ayah, full screen, while it is recited. The Arabic, its
+/// reading and its meaning take the screen and are set as large as it
+/// allows, so they can be read from across a room on a small television.
+/// The controls keep to one slim bar at the bottom, which fades while the
+/// recitation plays and comes back at a touch of the remote. Everything
+/// else (repeat, what is shown, the translation, the reciter) is in the
+/// options at the side.
 struct TVQuranListeningModeScreen: View {
   @ObservedObject var viewModel: TVQuranViewModel
   @Environment(\.dismiss) private var dismiss
   @FocusState private var focusedControl: String?
+  @State private var focusSeeker = TVFocusSeeker()
+  /// The bar is faded back while nothing has been touched for a while.
+  @State private var isBarResting = false
+  @State private var restTimer: Timer?
+
+  static let playPauseID = "listening.playPause"
+  static let optionsID = "listening.options"
+  static let repeatID = "listening.repeat"
+  private static let partPrefix = "listening.part."
+  private static let barHeight: CGFloat = 92
+  /// How long the bar stays bright after the remote is last used.
+  private static let restAfter: TimeInterval = 6
 
   var body: some View {
-    ZStack {
-      LinearGradient(
-        colors: [
-          TVTheme.backgroundTop,
-          TVTheme.surfaceSoft,
-          TVTheme.backgroundBottom,
-        ],
-        startPoint: .topLeading,
-        endPoint: .bottomTrailing
-      )
-      .ignoresSafeArea()
+    ZStack(alignment: .trailing) {
+      // The same sky as the page beneath, and nothing of the page itself: a
+      // cover drawn in the card colours is see-through, because they are.
+      TVCoverBackground()
 
-      VStack(spacing: 28) {
+      VStack(spacing: 18) {
         _header
 
-        Spacer(minLength: 0)
+        GeometryReader { geometry in
+          _ayahStage(in: geometry.size)
+        }
 
-        _ayahStage
-
-        Spacer(minLength: 0)
-
-        _settingsRow
-
-        _transportCard
+        _controls
       }
-      .padding(.horizontal, 72)
-      .padding(.vertical, 42)
+      .padding(.horizontal, 64)
+      .padding(.top, 34)
+      .padding(.bottom, 30)
+      // While the options are open, they alone take the focus.
+      .disabled(viewModel.isPlayerOptionsPresented)
+
+      if viewModel.isPlayerOptionsPresented {
+        Color.black.opacity(0.28)
+          .ignoresSafeArea()
+          .allowsHitTesting(false)
+
+        TVQuranPlayerOptionsPanel(viewModel: viewModel) {
+          closeOptions()
+        }
+        .padding(.vertical, 30)
+        .padding(.trailing, 44)
+        .transition(.move(edge: .trailing).combined(with: .opacity))
+      }
     }
+    .animation(.easeOut(duration: 0.22), value: viewModel.isPlayerOptionsPresented)
     .onAppear {
       if !viewModel.isPlaying {
         viewModel.playSelectedAyah()
       }
-      DispatchQueue.main.async {
-        focusedControl = "listening.playPause"
+      viewModel.setScreenKeptAwake(true)
+      focusSeeker.seek(Self.playPauseID, with: $focusedControl)
+      wake()
+    }
+    .onDisappear {
+      restTimer?.invalidate()
+      viewModel.isPlayerOptionsPresented = false
+      viewModel.setScreenKeptAwake(false)
+    }
+    .onChange(of: viewModel.selectedAyah?.id) { _ in
+      // The part in focus went with its ayah; the focus goes back to the
+      // control every ayah has.
+      if focusedControl?.hasPrefix(Self.partPrefix) == true {
+        focusSeeker.seek(Self.playPauseID, with: $focusedControl)
       }
     }
-  }
-
-  private var _header: some View {
-    HStack(alignment: .top, spacing: 20) {
-      VStack(alignment: .leading, spacing: 10) {
-        Text(tvLocalized("Listening mode"))
-          .font(TVTypography.summaryTitle)
-          .foregroundColor(TVTheme.textPrimary)
-          .tvReadableTitle()
-
-        Text(viewModel.listeningModeHeaderLine)
-          .font(TVTypography.sectionSubtitle)
-          .foregroundColor(TVTheme.textSecondary)
-          .tvReadableBody()
-
-        Text(viewModel.listeningModeStatusLine)
-          .font(TVTypography.detail)
-          .foregroundColor(TVTheme.accentStrong)
-          .tvReadableBody()
-      }
-
-      Spacer()
-
-      Button {
+    .onChange(of: focusedControl) { _ in
+      wake()
+    }
+    .onChange(of: viewModel.isPlaying) { _ in
+      wake()
+    }
+    .onPlayPauseCommand {
+      viewModel.togglePlayback()
+      wake()
+    }
+    // Menu puts the options away first, and only then leaves the player.
+    .onExitCommand {
+      if viewModel.isPlayerOptionsPresented {
+        closeOptions()
+      } else {
         viewModel.closeListeningMode()
         dismiss()
-      } label: {
-        Label(
-          tvLocalized("Exit listening mode"),
-          systemImage: "xmark.circle.fill"
-        )
-        .font(TVTypography.chip)
-        .foregroundColor(TVTheme.textPrimary)
-        .padding(.horizontal, 20)
-        .padding(.vertical, 14)
-        .background(TVTheme.surfaceSoft, in: Capsule())
       }
-      .buttonStyle(.plain)
-      .tvFocusableCard()
-      .focused($focusedControl, equals: "listening.exit")
-      .accessibilityLabel(tvLocalized("Exit listening mode"))
     }
   }
 
-  private var _ayahStage: some View {
-    VStack(spacing: 22) {
-      Text(viewModel.listeningModeArabicText)
-        .font(.system(size: 52, weight: .semibold, design: .rounded))
+  // MARK: - The heading
+
+  /// A single quiet line: where the recitation is, and who recites it.
+  private var _header: some View {
+    HStack(alignment: .firstTextBaseline, spacing: 20) {
+      Text(viewModel.listeningModeHeaderLine)
+        .font(TVTypography.sectionTitle)
         .foregroundColor(TVTheme.textPrimary)
-        .multilineTextAlignment(.trailing)
-        .frame(maxWidth: 1180, alignment: .trailing)
-        .tvReadableArabic()
+        .lineLimit(1)
 
-      if viewModel.showListeningTransliteration {
-        Text(viewModel.listeningModeTransliterationText)
-          .font(TVTypography.featureSubtitle.italic())
-          .italic()
-          .foregroundColor(TVTheme.textMuted)
-          .multilineTextAlignment(.center)
-          .frame(maxWidth: 980)
-          .tvReadableBody()
-      }
+      Text(viewModel.selectedSurah.arabicName)
+        .font(TVTypography.amiriQuran(30))
+        .foregroundColor(TVTheme.textSecondary)
+        .lineLimit(1)
 
-      if viewModel.showListeningTranslation {
-        Text(viewModel.listeningModeTranslationText)
-          .font(TVTypography.body)
-          .foregroundColor(TVTheme.textSecondary)
-          .multilineTextAlignment(.center)
-          .frame(maxWidth: 980)
-          .tvReadableBody()
+      Spacer(minLength: 20)
+
+      if let errorMessage = viewModel.playbackErrorMessage {
+        Text(errorMessage)
+          .font(TVTypography.figtreeMedium(22))
+          .foregroundColor(TVTheme.cautionText)
+          .lineLimit(1)
+      } else {
+        // Read again every half minute, so a sleep timer counts down.
+        TimelineView(.periodic(from: .now, by: 30)) { _ in
+          Text(viewModel.listeningModeStatusLine)
+            .font(TVTypography.figtreeMedium(22))
+            .foregroundColor(TVTheme.textSecondary)
+            .lineLimit(1)
+        }
       }
     }
-    .frame(maxWidth: .infinity)
-    .padding(.horizontal, 36)
-    .padding(.vertical, 28)
-    .tvSurfaceCard(elevated: true, emphasized: true)
-    .tvCombinedAccessibility(
-      label: viewModel.listeningModeHeaderLine,
-      hint: viewModel.listeningModeTransportLine,
-      value: viewModel.listeningModeStatusLine
+    .opacity(isBarResting ? 0.55 : 1)
+    .animation(.easeInOut(duration: 0.6), value: isBarResting)
+  }
+
+  // MARK: - The ayah
+
+  /// The ayah as the viewer has asked to see it.
+  private var _shownAyah: TVQuranAyah? {
+    guard let ayah = viewModel.selectedAyah else { return nil }
+    return TVQuranAyah(
+      id: ayah.id,
+      surahNumber: ayah.surahNumber,
+      ayahNumber: ayah.ayahNumber,
+      arabic: ayah.arabic,
+      transliteration: viewModel.showListeningTransliteration ? ayah.transliteration : "",
+      translation: viewModel.showListeningTranslation ? ayah.translation : ""
     )
   }
 
-  private var _settingsRow: some View {
-    HStack(spacing: 18) {
-      _toggleChip(
-        label: viewModel.repeatCurrentAyah
-            ? tvLocalized("Repeat ayah on")
-            : tvLocalized("Repeat ayah off"),
-        focusID: "listening.repeat"
-      ) {
-        viewModel.toggleRepeatCurrentAyah()
-      }
+  @ViewBuilder
+  private func _ayahStage(in size: CGSize) -> some View {
+    if let ayah = _shownAyah {
+      let plan = TVQuranAyahPlanner.listeningPlan(
+        for: ayah,
+        stage: size,
+        inset: TVTheme.railBleed - TVTheme.railFeather,
+        focusScale: TVTheme.focusScale,
+        language: Locale.current.languageCode ?? "en"
+      )
 
-      _toggleChip(
-        label: viewModel.showListeningTranslation
-            ? tvLocalized("Translation on")
-            : tvLocalized("Translation off"),
-        focusID: "listening.translation"
-      ) {
-        viewModel.toggleListeningTranslation()
+      if plan.isWhole, let part = plan.parts.first {
+        TVQuranAyahText(part: part, metrics: plan.metrics, isCentered: true)
+          .padding(TVQuranAyahPlanner.listeningStagePadding)
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+          .background(
+            RoundedRectangle(cornerRadius: TVTheme.heroRadius, style: .continuous)
+              .fill(TVTheme.surface)
+          )
+          .tvCombinedAccessibility(
+            label: viewModel.listeningModeHeaderLine,
+            hint: part.translation,
+            value: viewModel.listeningModeStatusLine
+          )
+          .id(ayah.id)
+          .transition(.opacity)
+      } else {
+        // Too long for the stage at any size: in parts, read by moving
+        // through them.
+        ScrollView(.vertical, showsIndicators: false) {
+          VStack(spacing: 12) {
+            ForEach(plan.parts) { part in
+              Button {
+                viewModel.togglePlayback()
+              } label: {
+                // Every part here is of the ayah being recited, so none
+                // is marked as playing: the only ring is the focus.
+                TVQuranAyahCard(
+                  part: part,
+                  isSelected: false,
+                  isPlaying: false,
+                  metrics: plan.metrics,
+                  isCentered: true
+                )
+              }
+              .buttonStyle(TVCardButtonStyle())
+              .tvFocusID($focusedControl, "\(Self.partPrefix)\(part.index)")
+            }
+          }
+          .padding(TVTheme.railBleed)
+        }
+        .focusSection()
+        // Read from its beginning, whichever part is nearest the controls.
+        .tvPreferredFocus($focusedControl, "\(Self.partPrefix)0")
+        .tvPane()
+        .id(ayah.id)
       }
-
-      _toggleChip(
-        label: viewModel.showListeningTransliteration
-            ? tvLocalized("Transliteration on")
-            : tvLocalized("Transliteration off"),
-        focusID: "listening.transliteration"
-      ) {
-        viewModel.toggleListeningTransliteration()
-      }
+    } else {
+      Text(tvLocalized("No ayah selected"))
+        .font(TVTypography.summaryTitle)
+        .foregroundColor(TVTheme.textSecondary)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
   }
 
-  private var _transportCard: some View {
-    VStack(alignment: .leading, spacing: 18) {
-      HStack(alignment: .top) {
-        VStack(alignment: .leading, spacing: 8) {
-          Text(tvLocalized("Audio controls"))
-            .font(TVTypography.summaryTitle)
-            .foregroundColor(TVTheme.textPrimary)
-            .tvReadableTitle()
+  // MARK: - The bar
 
-          Text(viewModel.listeningModeTransportLine)
-            .font(TVTypography.sectionSubtitle)
-            .foregroundColor(TVTheme.textSecondary)
-            .tvReadableBody()
+  private var _controls: some View {
+    HStack(alignment: .center, spacing: 16) {
+      // Where in the surah, and what it is waiting on.
+      HStack(spacing: 12) {
+        if viewModel.isBuffering {
+          ProgressView()
+            .scaleEffect(0.8)
         }
-
-        Spacer()
-
-        Text(viewModel.selectedReciter.displayName)
-          .font(TVTypography.featureSubtitle)
+        Text(viewModel.ayahProgressLine)
+          .font(TVTypography.figtreeMedium(24))
           .foregroundColor(TVTheme.textSecondary)
-          .tvReadableBody()
+          .lineLimit(1)
       }
+      .frame(minWidth: 260, alignment: .leading)
+
+      Spacer(minLength: 12)
+
+      _barChip(
+        label: viewModel.repeatMode.shortTitle,
+        systemImage: viewModel.repeatMode.systemImage,
+        isOn: viewModel.repeatMode != .off,
+        focusID: Self.repeatID
+      ) {
+        viewModel.cycleRepeat()
+      }
+      .accessibilityLabel(tvLocalized("Repeat"))
+      .accessibilityValue(viewModel.repeatMode.title)
 
       HStack(spacing: 16) {
-        ForEach(TVQuranReciter.allCases, id: \.self) { reciter in
-          Button {
-            viewModel.selectReciter(reciter)
-          } label: {
-            Text(reciter.shortLabel)
-              .font(TVTypography.chip)
-              .foregroundColor(
-                viewModel.selectedReciter == reciter
-                    ? TVTheme.prayerCurrentText
-                    : TVTheme.textPrimary
-              )
-              .padding(.horizontal, 18)
-              .padding(.vertical, 12)
-              .background(
-                viewModel.selectedReciter == reciter
-                    ? TVTheme.prayerCurrent
-                    : TVTheme.surfaceSoft,
-                in: Capsule()
-              )
-          }
-          .buttonStyle(.plain)
-          .tvFocusableCard()
-          .accessibilityLabel(tvLocalized("Switch reciter to %@.", reciter.displayName))
-        }
-      }
-
-      HStack(spacing: 20) {
         _transportButton(
           systemName: "backward.fill",
           focusID: "listening.previous"
@@ -217,7 +257,7 @@ struct TVQuranListeningModeScreen: View {
         _transportButton(
           systemName: viewModel.isPlaying ? "pause.fill" : "play.fill",
           large: true,
-          focusID: "listening.playPause"
+          focusID: Self.playPauseID
         ) {
           viewModel.togglePlayback()
         }
@@ -229,36 +269,81 @@ struct TVQuranListeningModeScreen: View {
           viewModel.playNextAyah()
         }
       }
+      // Drawn in playing order in every language.
+      .environment(\.layoutDirection, .leftToRight)
 
-      if let errorMessage = viewModel.playbackErrorMessage {
-        Text(errorMessage)
-          .font(TVTypography.detail)
-          .foregroundColor(TVTheme.cautionText)
-          .tvReadableBody()
+      _barChip(
+        label: tvLocalized("Options"),
+        systemImage: "slider.horizontal.3",
+        isOn: false,
+        focusID: Self.optionsID
+      ) {
+        openOptions()
       }
+      .accessibilityLabel(tvLocalized("Listening options"))
+      .accessibilityHint(tvLocalized("Reciter, translation, transliteration and repeat."))
+
+      if let ayah = viewModel.selectedAyah {
+        let isBookmarked = viewModel.isBookmarked(ayah)
+        Button {
+          viewModel.toggleBookmark(ayah)
+          wake()
+        } label: {
+          Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
+            .font(.system(size: 22, weight: .semibold))
+            .foregroundColor(isBookmarked ? TVTheme.accentStrong : TVTheme.textPrimary)
+            .frame(width: 62, height: 62)
+            .background(Circle().fill(TVTheme.surface))
+        }
+        .buttonStyle(TVCardButtonStyle(shape: .capsule))
+        .tvFocusID($focusedControl, "listening.bookmark")
+        .accessibilityLabel(isBookmarked ? tvLocalized("Remove bookmark") : tvLocalized("Bookmark this ayah"))
+        .accessibilityValue(isBookmarked ? tvLocalized("Bookmarked") : "")
+      }
+
+      Spacer(minLength: 12)
+
+      Text(viewModel.selectedReciter.name)
+        .font(TVTypography.figtreeMedium(24))
+        .foregroundColor(TVTheme.textSecondary)
+        .lineLimit(1)
+        .frame(minWidth: 260, alignment: .trailing)
     }
-    .frame(maxWidth: .infinity, alignment: .leading)
-    .padding(TVTheme.cardPadding)
-    .tvSurfaceCard(elevated: true)
+    .frame(height: Self.barHeight)
+    .frame(maxWidth: .infinity)
+    .padding(.horizontal, 28)
+    .background(
+      Capsule(style: .continuous)
+        .fill(TVTheme.surfaceSoft)
+    )
+    .opacity(isBarResting ? 0.4 : 1)
+    .animation(.easeInOut(duration: 0.6), value: isBarResting)
+    .focusSection()
+    // Play and pause is what the bar is entered at, from wherever above.
+    .tvPreferredFocus($focusedControl, Self.playPauseID)
   }
 
-  private func _toggleChip(
+  private func _barChip(
     label: String,
+    systemImage: String,
+    isOn: Bool,
     focusID: String,
     action: @escaping () -> Void
   ) -> some View {
     Button(action: action) {
-      Text(label)
-        .font(TVTypography.chip)
-        .foregroundColor(TVTheme.textPrimary)
-        .padding(.horizontal, 18)
+      Label(label, systemImage: systemImage)
+        .font(TVTypography.figtreeMedium(24))
+        .lineLimit(1)
+        .foregroundColor(isOn ? TVTheme.prayerCurrentText : TVTheme.textPrimary)
+        .padding(.horizontal, 20)
         .padding(.vertical, 12)
-        .background(TVTheme.surfaceSoft, in: Capsule())
+        .background(
+          isOn ? TVTheme.prayerCurrent : TVTheme.surface,
+          in: Capsule()
+        )
     }
-    .buttonStyle(.plain)
-    .tvFocusableCard()
-    .focused($focusedControl, equals: focusID)
-    .accessibilityLabel(label)
+    .buttonStyle(TVCardButtonStyle(shape: .capsule))
+    .tvFocusID($focusedControl, focusID)
   }
 
   private func _transportButton(
@@ -269,17 +354,16 @@ struct TVQuranListeningModeScreen: View {
   ) -> some View {
     Button(action: action) {
       Image(systemName: systemName)
-        .font(.system(size: large ? 34 : 24, weight: .bold))
+        .font(.system(size: large ? 28 : 20, weight: .bold))
         .foregroundColor(TVTheme.textPrimary)
-        .frame(width: large ? 98 : 80, height: large ? 98 : 80)
+        .frame(width: large ? 76 : 62, height: large ? 76 : 62)
         .background(
-          RoundedRectangle(cornerRadius: 28, style: .continuous)
-            .fill(large ? TVTheme.accentSoft : TVTheme.surfaceSoft)
+          Circle()
+            .fill(large ? TVTheme.accentSoft : TVTheme.surface)
         )
     }
-    .buttonStyle(.plain)
-    .tvFocusableCard()
-    .focused($focusedControl, equals: focusID)
+    .buttonStyle(TVCardButtonStyle(shape: .capsule))
+    .tvFocusID($focusedControl, focusID)
     .accessibilityLabel(_transportAccessibilityLabel(systemName: systemName))
   }
 
@@ -291,6 +375,33 @@ struct TVQuranListeningModeScreen: View {
       return tvLocalized("Next ayah")
     default:
       return viewModel.isPlaying ? tvLocalized("Pause audio") : tvLocalized("Play audio")
+    }
+  }
+
+  // MARK: - Options and rest
+
+  private func openOptions() {
+    viewModel.isPlayerOptionsPresented = true
+    wake()
+  }
+
+  private func closeOptions() {
+    viewModel.isPlayerOptionsPresented = false
+    focusSeeker.seek(Self.optionsID, with: $focusedControl)
+    wake()
+  }
+
+  /// The bar is bright again, and rests once more if nothing follows while
+  /// the recitation plays.
+  private func wake() {
+    isBarResting = false
+    restTimer?.invalidate()
+    restTimer = Timer.scheduledTimer(withTimeInterval: Self.restAfter, repeats: false) { _ in
+      DispatchQueue.main.async {
+        if viewModel.isPlaying && !viewModel.isPlayerOptionsPresented {
+          isBarResting = true
+        }
+      }
     }
   }
 }

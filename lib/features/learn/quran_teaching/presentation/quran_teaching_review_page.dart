@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -10,6 +10,7 @@ import '../application/quran_teaching_controller.dart';
 import '../application/quran_teaching_smart_review_controller.dart';
 import '../domain/quran_teaching_models.dart';
 import 'widgets/quran_teaching_asset_widgets.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 enum _ReviewSessionFilter { all, quick, recent, hardest }
 
@@ -141,7 +142,7 @@ class _QuranTeachingReviewPageState
                     sessionItems.length,
                   ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -159,7 +160,7 @@ class _QuranTeachingReviewPageState
                     textDirection: TextDirection.rtl,
                     style: const TextStyle(
                       fontSize: 34,
-                      fontFamily: 'AmiriQuran',
+                      fontFamily: AppFonts.quranArabic,
                     ),
                   ),
                 ],
@@ -349,7 +350,7 @@ class _QuranTeachingReviewPageState
                   border: Border.all(
                     color: _selectedOptionId == option.id
                         ? Theme.of(context).colorScheme.primary
-                        : AppColors.surfaceSoft,
+                        : context.palette.surfaceSoft,
                   ),
                 ),
                 child: Column(
@@ -361,7 +362,7 @@ class _QuranTeachingReviewPageState
                         textDirection: TextDirection.rtl,
                         style: const TextStyle(
                           fontSize: 26,
-                          fontFamily: 'AmiriQuran',
+                          fontFamily: AppFonts.quranArabic,
                         ),
                       ),
                     Text(option.label),

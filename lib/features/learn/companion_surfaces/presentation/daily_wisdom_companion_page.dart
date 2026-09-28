@@ -9,6 +9,8 @@ import '../application/companion_surfaces_ui_state.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../data/learn_companion_content.dart';
 import '../domain/learn_companion_models.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/section_title.dart';
 
 class DailyWisdomCompanionPage extends ConsumerStatefulWidget {
   const DailyWisdomCompanionPage({super.key, this.initialFocus});
@@ -102,7 +104,7 @@ class _DailyWisdomCompanionPageState
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.wb_sunny_outlined,
+      headerIcon: AppIcons.daily,
       title: l10n.learningJourneyDailyWisdomTitle,
       subtitle: l10n.learningJourneyDailyWisdomSubtitle,
       children: [
@@ -133,7 +135,7 @@ class _DailyWisdomCompanionPageState
           ),
         ],
         const SizedBox(height: 20),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnDailyWisdomTodayTitle,
           subtitle: l10n.learnDailyWisdomTodaySubtitle,
         ),
@@ -231,7 +233,7 @@ class _DailyWisdomCompanionPageState
         ),
         if (savedEntries.isNotEmpty) ...[
           const SizedBox(height: 20),
-          _SectionHeader(
+          SectionTitle(
             title: l10n.learnDailyWisdomSavedTitle,
             subtitle: l10n.learnDailyWisdomSavedSubtitle,
           ),
@@ -251,7 +253,7 @@ class _DailyWisdomCompanionPageState
           ),
         ],
         const SizedBox(height: 16),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnCompanionSourcesTitle,
           subtitle: l10n.learnDailyWisdomSourceSectionSubtitle,
         ),
@@ -277,7 +279,6 @@ class _DailyWisdomCompanionPageState
               padding: const EdgeInsets.only(top: 4),
               child: Text(featuredEntry.sourceSubtitle, style: bodyStyle),
             ),
-            trailing: const Icon(Icons.chevron_right_rounded),
             onTap: () => context.pushNamed(
               featuredEntry.sourceRouteTarget.routeName,
               pathParameters: featuredEntry.sourceRouteTarget.pathParameters,
@@ -286,7 +287,7 @@ class _DailyWisdomCompanionPageState
           ),
         ),
         const SizedBox(height: 20),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnDailyWisdomRecentTitle,
           subtitle: l10n.learnDailyWisdomRecentSubtitle,
         ),
@@ -378,38 +379,6 @@ class _DailyWisdomCompanionPageState
   }
 }
 
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w700,
-            height: 1.2,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          subtitle,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            height: 1.45,
-            color: theme.colorScheme.onSurfaceVariant,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class _SourceChip extends StatelessWidget {
   const _SourceChip({required this.label});
 
@@ -470,7 +439,6 @@ class _WisdomEntryCard extends StatelessWidget {
               color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
-          trailing: const Icon(Icons.chevron_right_rounded),
           onTap: onTap,
         ),
       ),

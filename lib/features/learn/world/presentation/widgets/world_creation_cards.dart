@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_reference_block.dart';
 import '../../domain/world_creation_models.dart';
+import '../../../../../core/theme/app_palette.dart';
 
 class WorldCategoryHeroCard extends StatelessWidget {
   const WorldCategoryHeroCard({
@@ -47,10 +49,7 @@ class WorldCategoryHeroCard extends StatelessWidget {
               '$lessonCount lessons • ${(progress * 100).round()}% complete',
             ),
             const SizedBox(height: 8),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(999),
-              child: LinearProgressIndicator(value: progress, minHeight: 7),
-            ),
+            ProgressBar(value: progress, height: 7),
           ],
         ),
       ),
@@ -106,9 +105,9 @@ class ScienceLensCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: const Color(0xFFFAF3E8),
+              color: context.palette.surface,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: const Color(0xFFCEB07D)),
+              border: Border.all(color: context.palette.caution),
             ),
             child: Text('Care note: ${content.cautionNote}'),
           ),
@@ -222,7 +221,7 @@ class ChallengeCard extends StatelessWidget {
               if (onCapture != null)
                 OutlinedButton.icon(
                   onPressed: onCapture,
-                  icon: const Icon(Icons.add_a_photo_outlined),
+                  icon: const Icon(Icons.add_a_photo_rounded),
                   label: const Text('Capture sign'),
                 ),
             ],
@@ -263,7 +262,7 @@ class GalleryTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 color: const Color(0xFFF1E4CC),
               ),
-              child: const Icon(Icons.image_outlined),
+              child: const Icon(Icons.image_rounded),
             ),
             const SizedBox(width: 10),
             Expanded(
@@ -313,7 +312,11 @@ class _TimelineBlock extends StatelessWidget {
               children: [
                 const Padding(
                   padding: EdgeInsets.only(top: 4),
-                  child: Icon(Icons.circle, size: 8, color: Color(0xFF9B7A47)),
+                  child: Icon(
+                    Icons.circle_rounded,
+                    size: 8,
+                    color: Color(0xFF9B7A47),
+                  ),
                 ),
                 const SizedBox(width: 8),
                 Expanded(

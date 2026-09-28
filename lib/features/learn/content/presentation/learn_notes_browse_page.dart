@@ -34,7 +34,6 @@ class _LearnNotesBrowsePageState extends ConsumerState<LearnNotesBrowsePage> {
     final filtered = items.where(_matchesCurrentFilter).toList(growable: false);
 
     return AppPageScaffold(
-      headerIcon: Icons.library_books_outlined,
       title: l10n.learnNotesBrowseAllTitleText,
       subtitle: l10n.learnNotesBrowseAllSubtitleText,
       children: [

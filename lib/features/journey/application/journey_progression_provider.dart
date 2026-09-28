@@ -1065,7 +1065,7 @@ List<JourneyMonthlyBadge> _buildMonthlyBadges(
     buildBadge(
       id: 'quran_returner',
       title: 'Qur\'an Returner',
-      description: 'Return to Qur\'an reading throughout the month.',
+      description: 'Return to Qur’an reading throughout the month.',
       current: quran,
       target: quranTarget,
     ),
@@ -1148,7 +1148,7 @@ List<JourneyDailyBadge> _buildDailyBadges(
     JourneyDailyBadge(
       id: 'quran_return',
       title: 'Qur\'an Return',
-      description: 'Returned to Qur\'an at least once today.',
+      description: 'Returned to Qur’an at least once today.',
       earnedToday: today.quranEngagements >= 1,
       earnedCount: achievedDays((metrics) => metrics.quranEngagements >= 1),
     ),
@@ -1162,7 +1162,7 @@ List<JourneyDailyBadge> _buildDailyBadges(
     JourneyDailyBadge(
       id: 'perfect_day',
       title: 'Perfect Day',
-      description: 'Salah, dhikr, Qur\'an, and reflection all completed.',
+      description: 'Salah, dhikr, Qur’an, and reflection all completed.',
       earnedToday:
           today.prayerCompleted >= 5 &&
           today.dhikrCount >= dailyDhikrGoal &&

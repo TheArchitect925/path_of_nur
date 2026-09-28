@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../garden/application/garden_service.dart';
+import '../../garden/presentation/widgets/garden_vista/garden_element_strings.dart';
 import '../application/growth_garden.dart';
 import '../application/growth_models.dart';
 import '../application/growth_providers.dart';
@@ -23,6 +25,7 @@ class GrowthJourneyPage extends ConsumerWidget {
     final activity = ref.watch(growthRecentActivityProvider);
     final privateMode = ref.watch(growthControllerProvider).privateMode;
     final growthVisual = ref.watch(growthGardenProgressProvider);
+    final canonicalGarden = ref.watch(activeGardenStateProvider);
     final unlockedRewards = ref.watch(growthUnlockedRewardsProvider);
     final recentUnlocks = ref.watch(growthRecentUnlocksProvider);
     final nextUnlock = ref.watch(growthNextUnlockPreviewProvider);
@@ -54,14 +57,17 @@ class GrowthJourneyPage extends ConsumerWidget {
                 style: const TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
+              // Canonical stage + maturity from GardenService, so this card
+              // and the Garden itself always name the same stage.
               Text(
-                '${growthVisual.currentStageLabel} · ${growthVisual.stageSubtitle}',
+                '${GardenElementStrings.stageTitle(l10n, canonicalGarden.currentVisualStage.stageId)} · '
+                '${l10n.gardenPageMaturityValue('${canonicalGarden.maturityPercent}')}',
               ),
               const SizedBox(height: 8),
               ClipRRect(
                 borderRadius: BorderRadius.circular(999),
                 child: LinearProgressIndicator(
-                  value: growthVisual.stageProgress,
+                  value: canonicalGarden.progressToNextStage,
                 ),
               ),
               const SizedBox(height: 8),
@@ -479,7 +485,6 @@ class GrowthJourneyPage extends ConsumerWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  trailing: const Icon(Icons.chevron_right),
                   onTap: () => context.pushNamed(
                     'growthPathDetail',
                     pathParameters: {'pathId': path.path.id},
@@ -538,7 +543,9 @@ class GrowthJourneyPage extends ConsumerWidget {
                   dense: true,
                   contentPadding: EdgeInsets.zero,
                   leading: Icon(
-                    item.isReflection ? Icons.menu_book : Icons.check,
+                    item.isReflection
+                        ? Icons.menu_book_rounded
+                        : Icons.check_rounded,
                   ),
                   title: Text(item.title),
                   subtitle: Text(

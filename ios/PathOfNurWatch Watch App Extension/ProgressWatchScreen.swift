@@ -2,15 +2,12 @@ import SwiftUI
 
 struct ProgressWatchScreen: View {
   @EnvironmentObject private var model: WatchAppModel
+  @Environment(\.watchPalette) private var palette
 
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 12) {
-        HStack {
-          Text(WatchStrings.progressTitle)
-            .font(.system(size: 18, weight: .bold, design: .rounded))
-            .foregroundStyle(.white)
-          Spacer()
+        WatchScreenHeader(WatchStrings.progressTitle) {
           WatchSyncStatusBadge(state: model.syncBadgeState)
         }
         if let progress = model.progressState {
@@ -24,20 +21,20 @@ struct ProgressWatchScreen: View {
               )
               VStack(alignment: .leading, spacing: 4) {
                 Text(WatchStrings.progress)
-                  .font(.caption2)
-                  .foregroundStyle(WatchTheme.secondaryText)
+                  .font(WatchType.caption)
+                  .foregroundStyle(palette.onSurfaceSubtle)
                 Text("\(WatchStrings.growthPrefix): \(progress.growthStageKey.capitalized)")
-                  .font(.caption2)
-                  .foregroundStyle(WatchTheme.accentSoft)
+                  .font(WatchType.caption)
+                  .foregroundStyle(palette.accentSoft)
                 Text("\(WatchStrings.level) \(progress.currentLevel)")
-                  .font(.headline.weight(.semibold))
-                  .foregroundStyle(.white)
+                  .font(.system(size: 16, weight: .semibold, design: .serif))
+                  .foregroundStyle(palette.onSurface)
               }
             }
             if let dashboard = model.dashboardState, dashboard.isStale {
               Text(WatchStrings.freshnessNeedsSync)
-                .font(.caption2.weight(.semibold))
-                .foregroundStyle(WatchTheme.warning)
+                .font(WatchType.captionEmphasis)
+                .foregroundStyle(palette.warning)
                 .padding(.top, 4)
             }
           }
@@ -53,17 +50,17 @@ struct ProgressWatchScreen: View {
         } else {
           WatchHeroCard {
             Text(WatchStrings.noSnapshotTitle)
-              .font(.headline)
-              .foregroundStyle(.white)
+              .font(WatchType.heroTitle)
+              .foregroundStyle(palette.onSurface)
             Text(WatchStrings.noSnapshotBody)
-              .font(.caption2)
-              .foregroundStyle(WatchTheme.secondaryText)
+              .font(WatchType.caption)
+              .foregroundStyle(palette.onSurfaceSubtle)
           }
         }
       }
       .padding(.horizontal, 12)
       .padding(.vertical, 10)
     }
-    .containerBackground(WatchTheme.backgroundGradient, for: .navigation)
+    .containerBackground(palette.backgroundGradient, for: .tabView)
   }
 }

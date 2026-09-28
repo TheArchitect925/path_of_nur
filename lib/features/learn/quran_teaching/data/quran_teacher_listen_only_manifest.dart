@@ -41,7 +41,7 @@ const quranTeacherListenOnlyManifest =
           'pack_noon',
         ],
         coverImageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/alif_apple.png',
+            'assets/images/quran_teacher/visual_mode/letters/alif_apple.webp',
         estimatedDurationMs: 45000,
       ),
       'harakat_practice': QuranTeacherListenOnlyPackManifestEntry(

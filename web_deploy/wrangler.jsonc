@@ -1,0 +1,27 @@
+// Cloudflare Worker for the web build at mcsnow.ca/pathofnur/.
+// Deploy: scripts/deploy_web.sh (builds, stages build/web_deploy/, deploys).
+//
+// The route claims /pathofnur* on the mcsnow.ca zone; it is more specific than
+// the MCSnow site's mcsnow.ca/* route, so it wins and that site never changes
+// (the same arrangement as METEOR's /meteor*).
+//
+// Everything is static assets, served without running the script, except
+// main.dart.js: at ~70 MB it is over the 25 MiB per-file asset limit, so only
+// its Brotli and gzip copies are uploaded and worker.js serves whichever the
+// browser accepts. noindex comes from _headers while the web app is a trial.
+{
+  "name": "pathofnur-web",
+  "main": "./worker.js",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "../build/web_deploy",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none",
+    "run_worker_first": ["/pathofnur/main.dart.js"]
+  },
+  "observability": { "enabled": true },
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [{ "pattern": "mcsnow.ca/pathofnur*", "zone_name": "mcsnow.ca" }]
+}

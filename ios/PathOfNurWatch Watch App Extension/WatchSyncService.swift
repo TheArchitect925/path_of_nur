@@ -9,6 +9,8 @@ final class WatchSyncService: NSObject, WCSessionDelegate {
     static let fetchSnapshot = "fetch_snapshot"
     static let watchAction = "watch_action"
     static let syncNow = "sync_now"
+    static let quranPlayback = "quran_playback"
+    static let quranCommand = "quran_command"
   }
 
   private enum ContextKey {
@@ -94,6 +96,23 @@ final class WatchSyncService: NSObject, WCSessionDelegate {
     cacheStore.saveSnapshot(response.snapshot)
     removePendingAction(id: action.actionId)
     return response
+  }
+
+  /// Live-only: Qur'an playback is a remote-control feature, so there is no
+  /// cached fallback — callers show a hand-off card when this returns nil.
+  func fetchQuranPlayback() async -> WatchQuranPlaybackPayload? {
+    guard isReachable else { return nil }
+    let reply = await sendMessage([ "type": MessageType.quranPlayback ])
+    return decode(WatchQuranPlaybackPayload.self, from: reply?["quranPlayback"])
+  }
+
+  func sendQuranCommand(_ command: String) async -> WatchQuranPlaybackPayload? {
+    guard isReachable else { return nil }
+    let reply = await sendMessage([
+      "type": MessageType.quranCommand,
+      "command": command,
+    ])
+    return decode(WatchQuranPlaybackPayload.self, from: reply?["quranPlayback"])
   }
 
   func flushPendingActions() async -> (WatchDailySnapshotPayload, WatchSettingsPayload?)? {

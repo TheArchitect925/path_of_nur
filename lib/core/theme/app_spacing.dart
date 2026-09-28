@@ -11,5 +11,6 @@ class AppSpacing {
   static const double sectionGap = 18;
   static const double pagePadding = 18;
   static const double cardGap = 14;
+  static const double gridGutter = 12;
   static const double navHeight = 74;
 }

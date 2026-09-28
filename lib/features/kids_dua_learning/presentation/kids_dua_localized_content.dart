@@ -1,13 +1,5 @@
 import '../../../l10n/app_localizations.dart';
 
-String localizedKidsDuaCategoryTitle(String value) => value;
-String localizedKidsDuaCategorySubtitle(String value) => value;
-String localizedKidsDuaLessonTitle(String value) => value;
-String localizedKidsDuaMeaning(String value) => value;
-String localizedKidsDuaWhen(String value) => value;
-String localizedKidsDuaMiniLesson(String value) => value;
-String localizedKidsDuaSituation(String value) => value;
-
 String localizedKidsDuaRewardTitle(AppLocalizations l10n, String key) {
   switch (key) {
     case 'kidsDuaRewardFirstDuaTitle':

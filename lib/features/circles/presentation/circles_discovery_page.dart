@@ -6,6 +6,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/circles_provider.dart';
+import '../../../core/theme/app_icons.dart';
 
 class CirclesDiscoveryPage extends ConsumerWidget {
   const CirclesDiscoveryPage({super.key});
@@ -20,7 +21,7 @@ class CirclesDiscoveryPage extends ConsumerWidget {
     final recommended = ref.watch(recommendedCirclesProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.groups_rounded,
+      headerIcon: AppIcons.community,
       title: l10n.circlesTitle,
       subtitle: l10n.circlesSubtitle,
       children: [
@@ -115,7 +116,6 @@ class CirclesDiscoveryPage extends ConsumerWidget {
                         '${circle.description}\n${circle.city} • ${circle.focus}',
                       ),
                       isThreeLine: true,
-                      trailing: const Icon(Icons.chevron_right),
                       onTap: () => context.pushNamed(
                         'circleDetail',
                         pathParameters: {'circleId': circle.id},
@@ -141,7 +141,6 @@ class CirclesDiscoveryPage extends ConsumerWidget {
                     '${circle.description}\n${circle.city} • ${circle.focus}',
                   ),
                   isThreeLine: true,
-                  trailing: const Icon(Icons.chevron_right),
                   onTap: () => context.pushNamed(
                     'circleDetail',
                     pathParameters: {'circleId': circle.id},

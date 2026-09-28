@@ -18,7 +18,6 @@ class NearbyMosquesPage extends ConsumerWidget {
     final notifier = ref.read(circlesProvider.notifier);
 
     return AppPageScaffold(
-      headerIcon: Icons.location_city_outlined,
       title: l10n.circlesNearbyMosquesTitle,
       subtitle: l10n.circlesNearbyMosquesSubtitle,
       children: [

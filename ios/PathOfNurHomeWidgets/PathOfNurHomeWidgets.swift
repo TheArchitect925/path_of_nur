@@ -293,9 +293,9 @@ private struct PathOfNurWidgetProvider: TimelineProvider {
         totalXp: 1280,
         todayXp: 45,
         xpProgressPercent: 62,
-        streakLabel: "Streak",
+        streakLabel: "Days in a row",
         levelLabel: "Level",
-        todayXpLabel: "Today XP",
+        todayXpLabel: "Light today",
         deepLinkUrl: "pathofnur://journey/progress"
       ),
       dua: SpiritualPayload(
@@ -616,8 +616,8 @@ private struct NextPrayerWidgetView: View {
       .widgetURL(URL(string: payload.deepLinkUrl))
     } else {
       WidgetFallbackView(
-        title: "Next Prayer",
-        message: "Open Path of Nūr to load your prayer snapshot."
+        title: widgetString("widget_next_prayer_display_name"),
+        message: widgetString("widget_next_prayer_fallback_body")
       )
     }
   }
@@ -653,8 +653,8 @@ private struct PrayerOverviewWidgetView: View {
       .widgetURL(URL(string: payload.deepLinkUrl))
     } else {
       WidgetFallbackView(
-        title: "Prayer Overview",
-        message: "Open Path of Nūr to refresh today’s prayer schedule."
+        title: widgetString("widget_prayer_overview_display_name"),
+        message: widgetString("widget_prayer_overview_fallback_body")
       )
     }
   }
@@ -774,8 +774,8 @@ private struct DhikrWidgetView: View {
       .widgetURL(URL(string: payload.deepLinkUrl))
     } else {
       WidgetFallbackView(
-        title: "Daily Dhikr",
-        message: "Open Path of Nūr to load your dhikr progress."
+        title: widgetString("widget_dhikr_display_name"),
+        message: widgetString("widget_dhikr_fallback_body")
       )
     }
   }
@@ -809,7 +809,7 @@ private struct JourneyWidgetView: View {
           }
           ProgressView(value: Double(payload.xpProgressPercent), total: 100)
             .tint(PathOfNurWidgetPalette.accent)
-          Text("\(payload.totalXp) XP")
+          Text(String(format: widgetString("widget_journey_total_light_format"), payload.totalXp))
             .font(.system(size: 12, weight: .semibold, design: .rounded))
             .foregroundStyle(.secondary)
         }
@@ -817,8 +817,8 @@ private struct JourneyWidgetView: View {
       .widgetURL(URL(string: payload.deepLinkUrl))
     } else {
       WidgetFallbackView(
-        title: "Journey Progress",
-        message: "Open Path of Nūr to refresh your progress snapshot."
+        title: widgetString("widget_journey_display_name"),
+        message: widgetString("widget_journey_fallback_body")
       )
     }
   }
@@ -1108,7 +1108,7 @@ private struct DhikrInlineAccessoryView: View {
   let payload: DhikrPayload
 
   var body: some View {
-    Text("Dhikr \(payload.todayCount)/\(max(payload.targetCount, 1))")
+    Text(String(format: widgetString("widget_dhikr_inline_format"), payload.todayCount, max(payload.targetCount, 1)))
   }
 }
 

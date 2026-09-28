@@ -12,6 +12,10 @@ import '../data/games_island_catalog.dart';
 import '../models/game_discovery_models.dart';
 import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/section_title.dart';
 
 class GamesIslandPage extends ConsumerStatefulWidget {
   const GamesIslandPage({super.key, this.initialSectionId});
@@ -24,6 +28,7 @@ class GamesIslandPage extends ConsumerStatefulWidget {
 
 class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
   late final TextEditingController _searchController;
+  bool _searchOpen = false;
 
   @override
   void initState() {
@@ -63,29 +68,46 @@ class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
     final searchMatches = _searchMatches(sections, _searchController.text);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.sports_esports_rounded,
+      headerIcon: AppIcons.games,
       title: l10n.learnGamesHubTitleText,
       subtitle: l10n.learnGamesHubSubtitleText,
+      headerActions: [
+        if (!visibilityPolicy.isChildProfile)
+          IconButton(
+            key: const ValueKey('games-header-search'),
+            tooltip: l10n.learningJourneyToolSearchTitle,
+            onPressed: () => setState(() {
+              _searchOpen = !_searchOpen;
+              if (!_searchOpen) _searchController.clear();
+            }),
+            icon: Icon(
+              _searchOpen ? Icons.search_off_rounded : Icons.search_rounded,
+            ),
+          ),
+      ],
       children: [
         if (visibilityPolicy.isChildProfile)
           const _KidsRedirectCard()
         else ...[
           const _DailyHeroCard(),
           const SizedBox(height: 18),
-          LearnDiscoverySearchField(
-            controller: _searchController,
-            hintText: l10n.learnGamesSearchHintText,
-            onChanged: (_) => setState(() {}),
-            onClear: () {
-              _searchController.clear();
-              setState(() {});
-            },
-          ),
-          const SizedBox(height: 10),
+          if (_searchOpen) ...[
+            LearnDiscoverySearchField(
+              controller: _searchController,
+              hintText: l10n.learnGamesSearchHintText,
+              autofocus: true,
+              onChanged: (_) => setState(() {}),
+              onClear: () {
+                _searchController.clear();
+                setState(() {});
+              },
+            ),
+            const SizedBox(height: 10),
+          ],
           _BrowseAllCard(resultCount: searchMatches.length),
           if (_searchController.text.trim().isNotEmpty) ...[
             const SizedBox(height: 18),
-            _SectionHeader(
+            SectionTitle(
               title: l10n.learnGamesSearchResultsTitleText,
               subtitle: l10n.learnGamesSearchResultsCountText(
                 searchMatches.length,
@@ -114,7 +136,7 @@ class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
           ],
           for (final section in visibleSections) ...[
             const SizedBox(height: 18),
-            _SectionHeader(title: section.title, subtitle: section.subtitle),
+            SectionTitle(title: section.title, subtitle: section.subtitle),
             const SizedBox(height: 10),
             SectionHubActionGrid(
               actions: [
@@ -137,7 +159,7 @@ class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
             ),
           ],
           const SizedBox(height: 18),
-          _SectionHeader(
+          SectionTitle(
             title: l10n.learnGamesIslandKidsEntryTitle,
             subtitle: l10n.learnGamesIslandKidsEntrySubtitle,
           ),
@@ -149,7 +171,7 @@ class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
                 subtitle: l10n.learnGamesIslandKidsEntryActionSubtitle,
                 icon: Icons.child_care_rounded,
                 color: const Color(0xFFF8E7D7),
-                accentColor: const Color(0xFFBF6F1F),
+                accentColor: context.palette.cautionInk,
                 onTap: () => context.pushNamed('learnKidsGames'),
               ),
             ],
@@ -234,38 +256,13 @@ class _BrowseAllCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      surfaceVariant: AppSurfaceVariant.panel,
-      child: Row(
-        children: [
-          const Icon(Icons.travel_explore_rounded),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.learnGamesBrowseAllTitleText,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  resultCount > 0
-                      ? l10n.learnGamesSearchResultsCountText(resultCount)
-                      : l10n.learnGamesBrowseAllSubtitleText,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 12),
-          FilledButton.tonal(
-            onPressed: () => context.pushNamed('learnGamesBrowseAll'),
-            child: Text(l10n.learnGamesBrowseAllActionText),
-          ),
-        ],
-      ),
+    return CompactListTile(
+      title: l10n.learnGamesBrowseAllTitleText,
+      subtitle: resultCount > 0
+          ? l10n.learnGamesSearchResultsCountText(resultCount)
+          : l10n.learnGamesBrowseAllSubtitleText,
+      leading: const Icon(Icons.travel_explore_rounded),
+      onTap: () => context.pushNamed('learnGamesBrowseAll'),
     );
   }
 }
@@ -439,30 +436,6 @@ class _KidsRedirectCard extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 4),
-        Text(subtitle),
-      ],
     );
   }
 }

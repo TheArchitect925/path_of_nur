@@ -197,7 +197,7 @@ class AdhanRegistry {
     AdhanOption(
       id: 'fajr_default',
       title: 'Fajr Default',
-      subtitle: 'Temporary bundled fallback for Fajr-specific routing.',
+      subtitle: 'The adhan for Fajr.',
       category: AdhanOptionCategory.fajr,
       assetPath: 'assets/audio/adhan/fajr/fajr_default.oga',
       androidRawResourceName: 'adhan_fajr_default',
@@ -208,7 +208,7 @@ class AdhanRegistry {
     AdhanOption(
       id: 'fajr_soft',
       title: 'Fajr Soft',
-      subtitle: 'Temporary bundled fallback with a gentler Fajr label.',
+      subtitle: 'Same recording as the default Fajr adhan.',
       category: AdhanOptionCategory.fajr,
       assetPath: 'assets/audio/adhan/fajr/fajr_soft.oga',
       androidRawResourceName: 'adhan_fajr_soft',

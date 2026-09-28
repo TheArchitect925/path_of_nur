@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_surfaces.dart';
-import '../../features/profile/application/profile_settings_provider.dart';
+import '../motion/settle_in.dart';
 import 'noor_liquid_glass.dart';
 
+/// Legacy glass surface. New card-style surfaces should use [PremiumCard]
+/// (which offers density variants, tap handling, and header slots); the
+/// remaining NoorGlassCard call sites are pill/panel variants that rely on
+/// its [NoorLiquidGlassMode] and custom radius parameters.
 class NoorGlassCard extends ConsumerStatefulWidget {
   const NoorGlassCard({
     super.key,
@@ -78,7 +82,6 @@ class _NoorGlassCardState extends ConsumerState<NoorGlassCard> {
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(profileSettingsProvider.select((value) => value.reduceMotion));
     final contentColors = AppSurfaceTheme.contentColors(
       context,
       treatment: widget.surfaceTreatment,
@@ -100,15 +103,18 @@ class _NoorGlassCardState extends ConsumerState<NoorGlassCard> {
           style:
               surfaceTextTheme.bodyMedium ??
               TextStyle(color: contentColors.subtleForeground),
-          child: widget.child,
+          // The glass never fades; the content inside it does.
+          child: SettleFade(child: widget.child),
         ),
       ),
     );
-    return Listener(
-      child: NoorLiquidGlassContainer(
-        spec: _spec(),
-        width: widget.width,
-        child: themedChild,
+    return SettleIn(
+      child: Listener(
+        child: NoorLiquidGlassContainer(
+          spec: _spec(),
+          width: widget.width,
+          child: themedChild,
+        ),
       ),
     );
   }

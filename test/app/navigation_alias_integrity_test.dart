@@ -4,9 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/learn/presentation/data/learn_category_catalog.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
-import 'package:path_of_nur/features/learn/presentation/pages/learn_quran_hub_page.dart';
+import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_salah_hub_page.dart';
-import 'package:path_of_nur/features/learn/presentation/pages/learn_self_learning_hub_page.dart';
 import 'package:path_of_nur/features/learn/prophets/presentation/prophets_page.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 
@@ -78,9 +77,9 @@ void main() {
       router.go('/learn/hub/quran/learning?tab=reflect');
       await pumpRouteFrames(tester);
 
-      expect(find.byType(LearnQuranHubPage), findsOneWidget);
-      expect(router.state.uri.path, '/quran/learning');
-      expect(router.state.uri.queryParameters['tab'], 'reflect');
+      // Phase 7a: the learning hub folded into the reader-first Qur'an tab.
+      expect(find.byType(QuranAppHubPage), findsOneWidget);
+      expect(router.state.uri.path, '/quran');
     },
   );
 
@@ -127,22 +126,21 @@ void main() {
     );
   });
 
-  testWidgets(
-    'learn legacy route remains active in the pre-restructure router',
-    (tester) async {
-      final container = await makeRoutingTestContainer();
-      final router = container.read(appRouterProvider);
+  testWidgets('learn legacy route redirects to the Explore All browser', (
+    tester,
+  ) async {
+    final container = await makeRoutingTestContainer();
+    final router = container.read(appRouterProvider);
 
-      await tester.pumpWidget(buildRouterTestApp(container));
-      await pumpRouteFrames(tester);
+    await tester.pumpWidget(buildRouterTestApp(container));
+    await pumpRouteFrames(tester);
 
-      router.go('/learn/legacy');
-      await pumpRouteFrames(tester);
+    router.go('/learn/legacy');
+    await pumpRouteFrames(tester);
 
-      expect(find.byType(LearnSelfLearningHubPage), findsOneWidget);
-      expect(find.textContaining('/learn/legacy'), findsNothing);
-    },
-  );
+    expect(find.byType(LearnExploreAllKnowledgePage), findsOneWidget);
+    expect(find.textContaining('/learn/legacy'), findsNothing);
+  });
 
   test('active learn catalog items avoid compatibility-only route targets', () {
     const disallowedRouteNames = <String>{

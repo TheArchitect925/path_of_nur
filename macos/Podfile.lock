@@ -179,7 +179,7 @@ SPEC CHECKSUMS:
   flutter_local_notifications: 7e5a17a1dbc00d83dc10d43c2c4c05f2ceed233c
   flutter_timezone: d59eea86178cbd7943cd2431cc2eaa9850f935d8
   flutter_tts: ae915565cc6948444b513acc8ee021993281e027
-  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
+  FlutterMacOS: c232990155153907050900a2e175c7773903ba4e
   geolocator_apple: ab36aa0e8b7d7a2d7639b3b4e48308394e8cef5e
   google_sign_in_ios: b48bb9af78576358a168361173155596c845f0b9
   GoogleSignIn: ce8c89bb9b37fb624b92e7514cc67335d1e277e4
@@ -198,6 +198,6 @@ SPEC CHECKSUMS:
   sqlite3_flutter_libs: b3e120efe9a82017e5552a620f696589ed4f62ab
   wakelock_plus: 917609be14d812ddd9e9528876538b2263aaa03b
 
-PODFILE CHECKSUM: 3602072aa6310d63233deaf2f4c90c0b0374fe2d
+PODFILE CHECKSUM: 83cddb686981dde59f7a4db5794db158102d2743
 
 COCOAPODS: 1.16.2

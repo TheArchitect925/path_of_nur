@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class DuaCategoryThemeData {
   const DuaCategoryThemeData({
@@ -78,7 +79,7 @@ class DuaCategoryTheme {
       case 'daily_life':
         return Icons.wb_sunny_rounded;
       case 'prayer_and_worship':
-        return Icons.mosque_rounded;
+        return AppIcons.mosque;
       case 'home_and_family':
         return Icons.home_rounded;
       case 'travel_and_movement':
@@ -88,7 +89,7 @@ class DuaCategoryTheme {
       case 'special_days':
         return Icons.calendar_month_rounded;
       case 'forgiveness_and_growth':
-        return Icons.self_improvement_rounded;
+        return AppIcons.reflection;
       default:
         return Icons.menu_book_rounded;
     }

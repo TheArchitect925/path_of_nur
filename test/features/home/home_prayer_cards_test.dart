@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:path_of_nur/features/home/presentation/home_page.dart';
+import 'package:path_of_nur/features/worship/presentation/worship_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:path_of_nur/shared/persistence/app_database.dart';
@@ -28,9 +29,10 @@ void main() {
     );
   }
 
-  Future<void> pumpHome(
+  Future<void> pumpPage(
     WidgetTester tester,
     ProviderContainer container,
+    Widget child,
   ) async {
     await tester.pumpWidget(
       UncontrolledProviderScope(
@@ -43,7 +45,7 @@ void main() {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
-          home: const Scaffold(body: HomePage()),
+          home: Scaffold(body: child),
         ),
       ),
     );
@@ -89,9 +91,11 @@ void main() {
       );
       addTearDown(container.dispose);
 
-      await pumpHome(tester, container);
+      // The daily timings tracker moved from Home to the Ibadah landing
+      // in the calm-navigation redesign.
+      await pumpPage(tester, container, const WorshipPage());
 
-      expect(find.byType(HomePage), findsOneWidget);
+      expect(find.byType(WorshipPage), findsOneWidget);
       expect(find.text('Post-salah dhikr logged'), findsOneWidget);
 
       final prayerDetailsCallToAction = find
@@ -130,10 +134,16 @@ void main() {
     );
     addTearDown(container.dispose);
 
-    await pumpHome(tester, container);
+    await pumpPage(tester, container, const WorshipPage());
 
     expect(find.text('Tahajjud'), findsOneWidget);
     expect(find.text('التهجد'), findsOneWidget);
-    expect(find.textContaining('5+1'), findsWidgets);
+
+    // Home's tracker counts the five obligatory prayers only: a Tahajjud
+    // window on the schedule no longer inflates the denominator, because
+    // offering it never incremented the numerator either.
+    await pumpPage(tester, container, const HomePage());
+    expect(find.textContaining('5+1'), findsNothing);
+    expect(find.textContaining('/ 5'), findsWidgets);
   });
 }

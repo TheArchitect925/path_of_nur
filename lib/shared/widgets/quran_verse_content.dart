@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../features/learn/quran/application/quran_providers.dart';
 import '../../features/learn/quran/domain/quran_content_refs.dart';
+import '../motion/ink_reveal.dart';
 import 'arabic_text_utils.dart';
+import 'display/app_skeleton.dart';
 import 'quran_presentation_style.dart';
 import 'quran_text_span.dart';
 
@@ -59,6 +61,7 @@ class QuranVerseContent extends ConsumerWidget {
     this.arabicTextAlign,
     this.supportTextAlign,
     this.referenceTextAlign,
+    this.revealOnArrival = false,
   });
 
   final QuranVerseSource source;
@@ -75,6 +78,11 @@ class QuranVerseContent extends ConsumerWidget {
   final Color? transliterationColor;
   final Color? translationColor;
   final TextAlign? arabicTextAlign;
+
+  /// Ink the verse in on first build: the Arabic is revealed in reading
+  /// direction, the lines under it follow a beat later. For a verse that is
+  /// the moment of a page (the day's ayah), never for reading views.
+  final bool revealOnArrival;
   final TextAlign? supportTextAlign;
   final TextAlign? referenceTextAlign;
 
@@ -130,7 +138,8 @@ class QuranVerseContent extends ConsumerWidget {
                   letterSpacing: 0.3,
                 ),
               );
-              return Text.rich(
+              final direction = textDirectionForContent(arabic);
+              final line = Text.rich(
                 buildQuranTextWithColoredHarakat(
                   arabic,
                   verseStyle,
@@ -139,7 +148,7 @@ class QuranVerseContent extends ConsumerWidget {
                   ),
                 ),
                 textAlign: resolvedArabicTextAlign,
-                textDirection: textDirectionForContent(arabic),
+                textDirection: direction,
                 strutStyle: StrutStyle(
                   fontFamily: verseStyle.fontFamily,
                   fontSize: verseStyle.fontSize,
@@ -147,57 +156,64 @@ class QuranVerseContent extends ConsumerWidget {
                   forceStrutHeight: true,
                 ),
               );
+              if (!revealOnArrival) return line;
+              return InkReveal(textDirection: direction, child: line);
             },
           )
         else if (resolvedContent == null &&
             effectiveRef != null &&
             (contentAsync?.isLoading ?? false))
+          // The shape of the line that is coming.
           SizedBox(
             height: dense ? 40 : 56,
             child: const Center(
-              child: SizedBox(
-                width: 18,
-                height: 18,
-                child: CircularProgressIndicator(strokeWidth: 1.8),
+              child: SkeletonBlock(
+                widthFactor: 0.78,
+                height: 22,
+                alignment: AlignmentDirectional.centerEnd,
               ),
             ),
           ),
         if (settings.showTransliteration && transliteration.isNotEmpty) ...[
           SizedBox(height: dense ? 8 : 10),
-          Text(
-            transliteration,
-            textAlign: resolvedSupportTextAlign,
-            style: QuranPresentationStyle.quranSupportTextStyle(
-              context,
-              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontStyle: FontStyle.italic,
-                    fontSize: transliterationBaseSize * transliterationScale,
-                  ) ??
-                  TextStyle(
-                    fontStyle: FontStyle.italic,
-                    fontSize: transliterationBaseSize * transliterationScale,
-                  ),
-              italic: true,
-              colorOverride: transliterationColor,
+          _follow(
+            Text(
+              transliteration,
+              textAlign: resolvedSupportTextAlign,
+              style: QuranPresentationStyle.quranSupportTextStyle(
+                context,
+                Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontStyle: FontStyle.italic,
+                      fontSize: transliterationBaseSize * transliterationScale,
+                    ) ??
+                    TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: transliterationBaseSize * transliterationScale,
+                    ),
+                italic: true,
+                colorOverride: transliterationColor,
+              ),
             ),
           ),
         ],
         if (settings.showTranslation && translation.isNotEmpty) ...[
           SizedBox(height: dense ? 6 : 8),
-          Text(
-            translation,
-            textAlign: resolvedSupportTextAlign,
-            style: QuranPresentationStyle.quranSupportTextStyle(
-              context,
-              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontSize: translationBaseSize * translationScale,
-                    height: 1.35,
-                  ) ??
-                  TextStyle(
-                    fontSize: translationBaseSize * translationScale,
-                    height: 1.35,
-                  ),
-              colorOverride: translationColor,
+          _follow(
+            Text(
+              translation,
+              textAlign: resolvedSupportTextAlign,
+              style: QuranPresentationStyle.quranSupportTextStyle(
+                context,
+                Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontSize: translationBaseSize * translationScale,
+                      height: 1.35,
+                    ) ??
+                    TextStyle(
+                      fontSize: translationBaseSize * translationScale,
+                      height: 1.35,
+                    ),
+                colorOverride: translationColor,
+              ),
             ),
           ),
         ],
@@ -223,6 +239,9 @@ class QuranVerseContent extends ConsumerWidget {
     }
     return transliterationTransform!(value).trim();
   }
+
+  /// The lines under the Arabic follow its reveal a beat later.
+  Widget _follow(Widget line) => revealOnArrival ? FadeRise(child: line) : line;
 
   String _resolveArabic(String value) {
     if (value.isEmpty || arabicTransform == null) {

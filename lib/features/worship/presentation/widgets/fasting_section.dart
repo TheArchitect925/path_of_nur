@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_radii.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
+import '../../../../core/prayer/prayer_preferences.dart';
 import '../../application/fasting_controller.dart';
+import '../../application/fasting_insights_provider.dart';
 import '../../domain/fasting_status.dart';
 import '../../domain/fasting_type.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class FastingSection extends ConsumerWidget {
   const FastingSection({super.key});
@@ -27,6 +30,8 @@ class FastingSection extends ConsumerWidget {
           title: l10n.fastingSectionTitle,
           subtitle: l10n.fastingSectionSubtitle,
         ),
+        const _FastingRhythmCard(),
+        const SizedBox(height: 12),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,24 +42,18 @@ class FastingSection extends ConsumerWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                l10n.fastingStatusValue(
-                  fasting.todayStatus.label,
-                  fasting.todayStatus.label,
-                ),
+                l10n.fastingStatusValue(fasting.todayStatus.label),
                 style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 4),
               Text(
-                l10n.fastingTypeValue(
-                  fasting.selectedType.label,
-                  fasting.selectedType.label,
-                ),
-                style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                l10n.fastingTypeValue(fasting.selectedType.label),
+                style: TextStyle(color: context.palette.onSurfaceSubtle),
               ),
               const SizedBox(height: 12),
               LinearProgressIndicator(
                 value: _statusProgress(fasting.todayStatus),
-                backgroundColor: AppColors.surfaceSoft,
+                backgroundColor: context.palette.surfaceSoft,
                 minHeight: 8,
               ),
             ],
@@ -111,11 +110,11 @@ class FastingSection extends ConsumerWidget {
                 children: [
                   CircleAvatar(
                     radius: 17,
-                    backgroundColor: AppColors.success,
-                    child: const Icon(
-                      Icons.spa_outlined,
+                    backgroundColor: context.palette.success,
+                    child: Icon(
+                      AppIcons.reflection,
                       size: 18,
-                      color: AppColors.onSurface,
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -132,10 +131,9 @@ class FastingSection extends ConsumerWidget {
                           l10n.fastingHistoryEntry(
                             entry.type.label,
                             entry.status.label,
-                            entry.dateLabel,
                           ),
-                          style: const TextStyle(
-                            color: AppColors.onSurfaceSubtle,
+                          style: TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                           ),
                         ),
                       ],
@@ -159,7 +157,7 @@ class FastingSection extends ConsumerWidget {
               Text(
                 l10n.fastingGentleReminderBody,
                 style: TextStyle(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                   height: 1.45,
                 ),
               ),
@@ -200,7 +198,7 @@ class _FastingChoicePill extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return InkWell(
       onTap: onTap,
@@ -213,7 +211,7 @@ class _FastingChoicePill extends StatelessWidget {
               color: isSelected
                   ? AppSurfaceTheme.adaptiveColor(
                       context,
-                      AppColors.accentGold,
+                      context.palette.accent,
                       alpha: 0.18,
                       solidAlphaWhenDisabled: 0.28,
                     )
@@ -221,10 +219,10 @@ class _FastingChoicePill extends StatelessWidget {
               gradient: isSelected ? null : style.gradient,
               border: Border.all(
                 color: isSelected
-                    ? AppColors.accentGold
+                    ? context.palette.accent
                     : AppSurfaceTheme.adaptiveColor(
                         context,
-                        AppColors.accentGoldSoft,
+                        context.palette.accentSoft,
                         alpha: 0.45,
                         solidAlphaWhenDisabled: 0.55,
                       ),
@@ -233,10 +231,111 @@ class _FastingChoicePill extends StatelessWidget {
         child: Text(
           label,
           style: TextStyle(
-            color: AppColors.onSurface,
+            color: context.palette.onSurface,
             fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Sunnah-aware rhythm: today's suggestion, suhoor/iftar times from the
+/// prayer schedule, and simple momentum numbers (calm, not gamified).
+class _FastingRhythmCard extends ConsumerWidget {
+  const _FastingRhythmCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final suggestion = ref.watch(fastingSuggestionProvider);
+    final insights = ref.watch(fastingInsightsProvider);
+    final scheduleContext = ref.watch(prayerScheduleContextProvider);
+    final fajr = scheduleContext.items
+        .where((item) => item.id == 'fajr')
+        .firstOrNull;
+    final maghrib = scheduleContext.items
+        .where((item) => item.id == 'maghrib')
+        .firstOrNull;
+
+    final rows = <Widget>[];
+    if (suggestion != null) {
+      rows.add(
+        Row(
+          children: [
+            Icon(
+              Icons.tips_and_updates_rounded,
+              size: 18,
+              color: context.palette.accentSoft,
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                suggestion.label(l10n),
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+    if (fajr != null || maghrib != null) {
+      rows.add(
+        Wrap(
+          spacing: 12,
+          runSpacing: 6,
+          children: [
+            if (fajr != null)
+              Text(
+                l10n.fastingSuhoorEndsAt(fajr.offerTime),
+                style: const TextStyle(fontSize: 13),
+              ),
+            if (maghrib != null)
+              Text(
+                l10n.fastingIftarAt(maghrib.offerTime),
+                style: const TextStyle(fontSize: 13),
+              ),
+          ],
+        ),
+      );
+    }
+    if (insights.completedThisMonth > 0 || insights.streakDays > 0) {
+      rows.add(
+        Wrap(
+          spacing: 12,
+          runSpacing: 6,
+          children: [
+            if (insights.completedThisMonth > 0)
+              Text(
+                l10n.fastingCompletedThisMonth(insights.completedThisMonth),
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            if (insights.streakDays > 1)
+              Text(
+                l10n.fastingStreakDays(insights.streakDays),
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+          ],
+        ),
+      );
+    }
+    if (rows.isEmpty) return const SizedBox.shrink();
+
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (var i = 0; i < rows.length; i++) ...[
+            rows[i],
+            if (i < rows.length - 1) const SizedBox(height: 8),
+          ],
+        ],
       ),
     );
   }

@@ -6,6 +6,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/circles_provider.dart';
+import '../../../core/theme/app_icons.dart';
 
 class CircleDetailPage extends ConsumerWidget {
   const CircleDetailPage({super.key, required this.circleId});
@@ -28,9 +29,7 @@ class CircleDetailPage extends ConsumerWidget {
 
     if (circle == null) {
       return AppPageScaffold(
-        headerIcon: Icons.groups,
         title: l10n.circlesTitle,
-        subtitle: l10n.circlesNotFound,
         children: [PremiumCard(child: Text(l10n.circlesNotFound))],
       );
     }
@@ -41,7 +40,6 @@ class CircleDetailPage extends ConsumerWidget {
     final saved = state.savedIds.contains(resolvedCircle.id);
 
     return AppPageScaffold(
-      headerIcon: Icons.group,
       title: resolvedCircle.title,
       subtitle: resolvedCircle.category,
       children: [
@@ -78,12 +76,18 @@ class CircleDetailPage extends ConsumerWidget {
                   IconButton(
                     onPressed: () => notifier.toggleFavorite(resolvedCircle.id),
                     icon: Icon(
-                      favorited ? Icons.favorite : Icons.favorite_border,
+                      favorited
+                          ? Icons.favorite_rounded
+                          : Icons.favorite_border_rounded,
                     ),
                   ),
                   IconButton(
                     onPressed: () => notifier.toggleSaved(resolvedCircle.id),
-                    icon: Icon(saved ? Icons.bookmark : Icons.bookmark_border),
+                    icon: Icon(
+                      saved
+                          ? Icons.bookmark_rounded
+                          : Icons.bookmark_border_rounded,
+                    ),
                   ),
                 ],
               ),
@@ -91,7 +95,7 @@ class CircleDetailPage extends ConsumerWidget {
               if (resolvedCircle.mosqueBuddyFriendly)
                 FilledButton.tonalIcon(
                   onPressed: () => notifier.toggleJoin(resolvedCircle.id),
-                  icon: const Icon(Icons.mosque_outlined),
+                  icon: const Icon(AppIcons.mosque),
                   label: Text(
                     joined
                         ? l10n.circlesMosqueBuddyActive
@@ -102,7 +106,7 @@ class CircleDetailPage extends ConsumerWidget {
               if (resolvedCircle.mosqueBuddyFriendly)
                 FilledButton.tonalIcon(
                   onPressed: () => context.pushNamed('mosqueBuddyPrefs'),
-                  icon: const Icon(Icons.tune),
+                  icon: const Icon(Icons.tune_rounded),
                   label: Text(l10n.circlesMosqueBuddyPrefsTitle),
                 ),
               if (resolvedCircle.mosqueBuddyFriendly) const SizedBox(height: 8),
@@ -122,7 +126,7 @@ class CircleDetailPage extends ConsumerWidget {
                     SnackBar(content: Text(l10n.circlesReportSubmitted)),
                   );
                 },
-                icon: const Icon(Icons.flag_outlined),
+                icon: const Icon(Icons.outlined_flag_rounded),
                 label: Text(l10n.circlesReport),
               ),
             ],

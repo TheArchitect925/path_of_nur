@@ -12,7 +12,6 @@ class StoriesPathBridgePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return LearnHubPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
       title: l10n.learnStoriesPathBridgeTitle,
       subtitle: l10n.learnStoriesPathBridgeSubtitle,
       showDefaultQuote: false,

@@ -8,6 +8,7 @@ import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/assistant_provider.dart';
+import '../../../core/theme/app_icons.dart';
 
 class AssistantPage extends ConsumerStatefulWidget {
   const AssistantPage({super.key});
@@ -37,7 +38,7 @@ class _AssistantPageState extends ConsumerState<AssistantPage> {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.smart_toy_outlined,
+      headerIcon: AppIcons.assistant,
       title: l10n.assistantTitle,
       subtitle: localizedAppPageDescription(
         context,
@@ -186,7 +187,7 @@ class _AssistantPageState extends ConsumerState<AssistantPage> {
               ),
               IconButton(
                 onPressed: notifier.clear,
-                icon: const Icon(Icons.delete_outline),
+                icon: const Icon(Icons.delete_outline_rounded),
               ),
             ],
           ),

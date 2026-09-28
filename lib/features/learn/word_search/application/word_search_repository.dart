@@ -456,24 +456,35 @@ class WordSearchRepository {
     WordSearchPuzzleSeed seed,
     List<String> words,
   ) {
-    final pool = words
-        .join()
-        .split('')
-        .where((item) => item.trim().isNotEmpty)
-        .toList();
-    final fallback = seed.mode == WordSearchMode.kids
-        ? 'NOORSALAHDUA'
-        : 'RAHMAHNOORHUDA';
-    var cursor = 0;
+    // Filler used to be the answers' own letters laid out in order, which
+    // painted decoy fragments of every target word across the board. This is
+    // a deterministic draw from a pool weighted to the letters transliterated
+    // Islamic vocabulary actually uses, seeded from the puzzle id so a board
+    // looks the same every time it is opened.
+    var state = _fillerSeed(seed.id);
     for (var row = 0; row < grid.length; row += 1) {
       for (var col = 0; col < grid[row].length; col += 1) {
         if (grid[row][col].isNotEmpty) continue;
-        final source = pool.isNotEmpty ? pool : fallback.split('');
-        grid[row][col] = source[cursor % source.length];
-        cursor += 1;
+        state = _nextFillerState(state);
+        grid[row][col] =
+            _fillerAlphabet[(state >> 16) % _fillerAlphabet.length];
       }
     }
   }
+
+  static const String _fillerAlphabet =
+      'AAAAAEEEIIIOUUHHLLRRSSNNMMTTKDBQYWFJGZ';
+
+  /// FNV-1a over the id, so the seed does not depend on `String.hashCode`.
+  int _fillerSeed(String id) {
+    var hash = 0x811C9DC5;
+    for (final unit in id.codeUnits) {
+      hash = ((hash ^ unit) * 0x01000193) & 0x7FFFFFFF;
+    }
+    return hash == 0 ? 1 : hash;
+  }
+
+  int _nextFillerState(int state) => (state * 1103515245 + 12345) & 0x7FFFFFFF;
 
   int _rowDelta(WordSearchDirection direction) {
     switch (direction) {

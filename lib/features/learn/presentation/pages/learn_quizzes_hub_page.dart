@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -14,6 +14,7 @@ import '../../prophets/domain/prophet_quiz.dart';
 import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 import '../widgets/learn_section_header.dart';
+import '../../../../core/theme/app_icons.dart';
 
 enum LearnQuizFilter {
   all,
@@ -100,7 +101,7 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.quiz_rounded,
+      headerIcon: AppIcons.quiz,
       title: l10n.learnCategoryQuizzesTitle,
       subtitle: l10n.learnQuizzesHubSubtitle,
       children: [
@@ -165,7 +166,7 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
                 Text(
                   l10n.learnQuizzesNoMatchSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -343,7 +344,7 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
             Text(
               item.subtitle,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.onSurfaceSubtle,
+                color: context.palette.onSurfaceSubtle,
               ),
             ),
             const SizedBox(height: 10),

@@ -6,7 +6,7 @@ extension GrowthStatisticsLocalizations on AppLocalizations {
   String get growthStatisticsTitleText => 'Statistics';
 
   String get growthStatisticsSubtitleText =>
-      'Review your recent worship, learning, and reward progress in one place.';
+      'Review your recent worship, learning, and reward progress.';
 
   String get growthStatisticsOpenJourneyActionText => 'Open journey';
 

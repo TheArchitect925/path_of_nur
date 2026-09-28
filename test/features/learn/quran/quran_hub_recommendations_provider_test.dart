@@ -54,6 +54,10 @@ void main() {
       );
       addTearDown(container.dispose);
 
+      // Let the seeded clock stream deliver before the provider computes —
+      // otherwise its `?? DateTime.now()` fallback reads the real clock and
+      // these tests change behaviour on Fridays.
+      await container.read(dailyNowProvider.future);
       final recommendations = container.read(quranHubRecommendationsProvider);
       final recommendationTypes = recommendations
           .map((item) => item.type)
@@ -99,6 +103,10 @@ void main() {
       );
       addTearDown(container.dispose);
 
+      // Let the seeded clock stream deliver before the provider computes —
+      // otherwise its `?? DateTime.now()` fallback reads the real clock and
+      // these tests change behaviour on Fridays.
+      await container.read(dailyNowProvider.future);
       final recommendations = container.read(quranHubRecommendationsProvider);
       final recommendationTypes = recommendations
           .map((item) => item.type)

@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
 
 import '../../shared/persistence/local_store.dart';
 
@@ -147,6 +149,10 @@ class PrayerLocationSearchService {
   }
 
   Future<List<dynamic>> _getJsonList(Uri uri) async {
+    if (kIsWeb) {
+      final decoded = await _getJsonOnWeb(uri, 'Location search');
+      return decoded is List<dynamic> ? decoded : const [];
+    }
     final client = HttpClient();
     try {
       final request = await client.getUrl(uri);
@@ -169,6 +175,11 @@ class PrayerLocationSearchService {
   }
 
   Future<Map<String, dynamic>> _getJsonMap(Uri uri) async {
+    if (kIsWeb) {
+      final decoded = await _getJsonOnWeb(uri, 'Reverse geocoding');
+      if (decoded is! Map) return const {};
+      return decoded.map((key, value) => MapEntry('$key', value));
+    }
     final client = HttpClient();
     try {
       final request = await client.getUrl(uri);
@@ -191,6 +202,22 @@ class PrayerLocationSearchService {
     } finally {
       client.close(force: true);
     }
+  }
+
+  // dart:io has no HttpClient on the web, and the browser sets its own
+  // User-Agent, so the web build asks through package:http instead.
+  Future<Object?> _getJsonOnWeb(Uri uri, String what) async {
+    final response = await http.get(
+      uri,
+      headers: const {'Accept': 'application/json'},
+    );
+    if (response.statusCode != 200) {
+      throw http.ClientException(
+        '$what failed with ${response.statusCode}',
+        uri,
+      );
+    }
+    return jsonDecode(utf8.decode(response.bodyBytes));
   }
 }
 

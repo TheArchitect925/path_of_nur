@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../application/growth_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 String growthCategoryLabel(GrowthHabitCategory category) {
   final l10n = _growthL10n();
@@ -73,9 +74,9 @@ IconData growthPathIcon(String icon) {
     case 'book':
       return Icons.menu_book_rounded;
     case 'leaf':
-      return Icons.spa_rounded;
+      return AppIcons.reflection;
     case 'crescent':
-      return Icons.nightlight_round;
+      return Icons.nightlight_round_rounded;
     case 'family':
       return Icons.family_restroom_rounded;
     default:
@@ -201,7 +202,7 @@ BoxDecoration growthNoorPanelDecoration(
 }
 
 Color growthNoorSubtleTextColor(BuildContext context) {
-  return AppColors.onSurfaceSubtle;
+  return context.palette.onSurfaceSubtle;
 }
 
 AppLocalizations _growthL10n() {

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../shared/widgets/quran_presentation_style.dart';
 import '../models/salah_trainer_models.dart';
+
+/// How a segment sits relative to the playhead.
+enum SyncedTextEmphasis { active, done, upcoming }
 
 class SyncedAyahText extends StatelessWidget {
   const SyncedAyahText({
@@ -15,6 +19,8 @@ class SyncedAyahText extends StatelessWidget {
     this.showTransliteration = true,
     this.showTranslation = true,
     this.highlightEntireAyah = false,
+    this.emphasis = SyncedTextEmphasis.active,
+    this.arabicSize = 30,
   });
 
   final String arabicText;
@@ -25,33 +31,41 @@ class SyncedAyahText extends StatelessWidget {
   final bool showTransliteration;
   final bool showTranslation;
   final bool highlightEntireAyah;
+  final SyncedTextEmphasis emphasis;
+  final double arabicSize;
 
   @override
   Widget build(BuildContext context) {
-    final words = arabicText
-        .trim()
-        .split(RegExp(r'\s+'))
-        .where((item) => item.isNotEmpty)
-        .toList(growable: false);
-    final activeColor = Theme.of(
-      context,
-    ).colorScheme.primary.withValues(alpha: 0.28);
-    final doneColor = Theme.of(
-      context,
-    ).colorScheme.primary.withValues(alpha: 0.14);
+    final words = RecitationTimingModel.splitWords(arabicText);
+    final accent = context.palette.accent;
+    final activeColor = accent.withValues(alpha: 0.28);
+    final doneColor = accent.withValues(alpha: 0.14);
+    final dim = switch (emphasis) {
+      SyncedTextEmphasis.active => 1.0,
+      SyncedTextEmphasis.done => 0.62,
+      SyncedTextEmphasis.upcoming => 0.78,
+    };
+
+    TextStyle arabicStyle({Color background = Colors.transparent}) {
+      final base = QuranPresentationStyle.translucentTextStyle(
+        context,
+        AppTextStyles.quranVerse(size: arabicSize),
+      );
+      return base.copyWith(
+        color: base.color?.withValues(alpha: (base.color!.a * dim)),
+        backgroundColor: background,
+      );
+    }
 
     InlineSpan arabicSpan;
     if (timing.wordTimings.isEmpty ||
         words.length != timing.wordTimings.length) {
       arabicSpan = TextSpan(
         text: arabicText,
-        style: QuranPresentationStyle.translucentTextStyle(
-          context,
-          AppTextStyles.quranVerse(size: 30).copyWith(
-            backgroundColor: highlightEntireAyah && activeWordIndex >= 0
-                ? activeColor
-                : Colors.transparent,
-          ),
+        style: arabicStyle(
+          background: highlightEntireAyah && activeWordIndex >= 0
+              ? activeColor
+              : Colors.transparent,
         ),
       );
     } else {
@@ -66,42 +80,46 @@ class SyncedAyahText extends StatelessWidget {
         spans.add(
           TextSpan(
             text: '${words[i]} ',
-            style: QuranPresentationStyle.translucentTextStyle(
-              context,
-              AppTextStyles.quranVerse(
-                size: 30,
-              ).copyWith(backgroundColor: background),
-            ),
+            style: arabicStyle(background: background),
           ),
         );
       }
       arabicSpan = TextSpan(children: spans);
     }
 
+    final textTheme = Theme.of(context).textTheme;
+    final captionBase = textTheme.bodyLarge ?? const TextStyle();
+    final translationBase = textTheme.bodyMedium ?? const TextStyle();
+    Color? faded(Color? color) => color?.withValues(alpha: color.a * dim);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text.rich(arabicSpan, textAlign: TextAlign.right),
+        Text.rich(
+          arabicSpan,
+          textAlign: TextAlign.right,
+          textDirection: TextDirection.rtl,
+        ),
         if (showTransliteration && transliteration.trim().isNotEmpty) ...[
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           Text(
             transliteration,
             style: QuranPresentationStyle.translucentTextStyle(
               context,
-              Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontStyle: FontStyle.italic,
-                  ) ??
-                  const TextStyle(fontStyle: FontStyle.italic),
+              captionBase.copyWith(
+                fontStyle: FontStyle.italic,
+                color: faded(captionBase.color),
+              ),
             ),
           ),
         ],
         if (showTranslation && translation.trim().isNotEmpty) ...[
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           Text(
             translation,
             style: QuranPresentationStyle.translucentTextStyle(
               context,
-              Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
+              translationBase.copyWith(color: faded(translationBase.color)),
             ),
           ),
         ],

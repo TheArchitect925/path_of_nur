@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
@@ -21,6 +22,9 @@ import '../../shared/application/learn_system_engine_provider.dart';
 import '../../shared/domain/learn_system_models.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 import '../widgets/learn_personalized_next_step_card.dart';
+import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/section_title.dart';
 
 class LearningJourneyIslandHubPage extends ConsumerWidget {
   const LearningJourneyIslandHubPage({super.key});
@@ -73,12 +77,13 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.route_rounded,
+      headerIcon: AppIcons.path,
       title: l10n.learnHubMainIslandLearningPathTitle,
       subtitle: l10n.learnHubMainIslandLearningPathSubtitle,
       quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
+      showDefaultQuote: true,
       children: [
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnPersonalizationSectionTitle,
           subtitle: l10n.learnPersonalizationSectionSubtitle,
         ),
@@ -86,7 +91,7 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
         LearnPersonalizedNextStepCard(summary: personalizedNextStep),
         if (pendingMilestone != null || learningMemories.isNotEmpty) ...[
           const SizedBox(height: 18),
-          _SectionHeader(
+          SectionTitle(
             title: l10n.learnEnrichmentSectionTitle,
             subtitle: l10n.learnEnrichmentSectionSubtitle,
           ),
@@ -102,7 +107,7 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
             ),
         ],
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnHubContinueJourneyTitle,
           subtitle: l10n.learnHubContinueJourneySubtitle,
         ),
@@ -135,14 +140,14 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
             ),
           ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnHubDailyLearningTitle,
           subtitle: l10n.learnHubDailyLearningLandingSubtitle,
         ),
         const SizedBox(height: 10),
         _DailyLearningCard(summary: summary),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnHubStartJourneyTitle,
           subtitle: visibilityPolicy.isChildProfile
               ? l10n.guidedLearningPathsSectionKidsSubtitle
@@ -153,30 +158,6 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
           paths: visiblePaths,
           activePathId: pathResume.activePath?.id,
         ),
-      ],
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 4),
-        Text(subtitle),
       ],
     );
   }
@@ -260,7 +241,7 @@ class _BrowseJourneysCard extends StatelessWidget {
     return _LearnLandingNoorCard(
       child: Row(
         children: [
-          const Icon(Icons.route_rounded),
+          const Icon(AppIcons.path),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -433,15 +414,12 @@ class _ContinueGuidedPathCard extends ConsumerWidget {
             ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 6),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              value: progressValue.clamp(0, 1),
-              minHeight: 8,
-              backgroundColor: Theme.of(
-                context,
-              ).colorScheme.surfaceContainerHighest,
-            ),
+          ProgressBar(
+            value: progressValue.clamp(0, 1),
+            height: 8,
+            backgroundColor: Theme.of(
+              context,
+            ).colorScheme.surfaceContainerHighest,
           ),
           const SizedBox(height: 6),
           Text(
@@ -540,7 +518,7 @@ class _GuidedLearningPathCard extends ConsumerWidget {
     final accent = switch (localizedPath.path.bucketId) {
       'quran' => const Color(0xFF2C6E5B),
       'worship' => const Color(0xFF2A7A78),
-      'character' => const Color(0xFF8A5A44),
+      'character' => context.palette.error,
       'kids' => const Color(0xFF7A61D1),
       _ => const Color(0xFF8B6B44),
     };
@@ -683,14 +661,11 @@ class _GuidedLearningPathCard extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(999),
-                    child: LinearProgressIndicator(
-                      value: progressValue.clamp(0, 1),
-                      minHeight: 7,
-                      backgroundColor: surfaceStyle.iconBackgroundColor,
-                      valueColor: AlwaysStoppedAnimation<Color>(accent),
-                    ),
+                  ProgressBar(
+                    value: progressValue.clamp(0, 1),
+                    height: 7,
+                    color: accent,
+                    backgroundColor: surfaceStyle.iconBackgroundColor,
                   ),
                   Text(
                     l10n.guidedLearningPathProgressValue(

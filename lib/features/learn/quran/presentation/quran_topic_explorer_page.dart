@@ -16,6 +16,7 @@ import 'quran_summary_theme.dart';
 import 'widgets/quran_feature_components.dart';
 import 'widgets/quran_feature_header.dart';
 import 'widgets/quran_reflection_capture.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class QuranTopicExplorerPage extends ConsumerStatefulWidget {
   const QuranTopicExplorerPage({super.key, this.topicId});
@@ -54,7 +55,7 @@ class _QuranTopicExplorerPageState
         quranResolvedThemeByIdProvider(widget.topicId!),
       );
       return AppPageScaffold(
-        headerIcon: Icons.account_tree_outlined,
+        headerIcon: AppIcons.topics,
         title: l10n.quranThemeDiscoveryPageTitle,
         subtitle: l10n.quranThemeDiscoveryPageSubtitle,
         backgroundOverlayColor: palette.pageOverlay,
@@ -99,7 +100,7 @@ class _QuranTopicExplorerPageState
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.account_tree_outlined,
+      headerIcon: AppIcons.topics,
       title: l10n.quranThemeDiscoveryPageTitle,
       subtitle: l10n.quranThemeDiscoveryPageSubtitle,
       backgroundOverlayColor: palette.pageOverlay,

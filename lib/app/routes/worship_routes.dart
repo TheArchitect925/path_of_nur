@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/learn/dua/presentation/dua_hub_page.dart';
+import '../../features/worship/presentation/dhikr/dhikr_counter_page.dart';
+import '../../features/worship/presentation/dhikr/dhikr_insights_page.dart';
+import '../../features/worship/presentation/dhikr/dhikr_routine_builder_page.dart';
+import '../../features/worship/presentation/dhikr/dhikr_routine_page.dart';
 import '../../features/worship/presentation/worship_section_pages.dart';
 
 List<RouteBase> buildWorshipRoutes() {
@@ -19,22 +23,54 @@ List<RouteBase> buildWorshipRoutes() {
           const MaterialPage(child: WorshipDhikrPage()),
     ),
     GoRoute(
+      path: '/worship/dhikr/count',
+      name: 'worshipDhikrCounter',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: DhikrCounterPage()),
+    ),
+    GoRoute(
+      path: '/worship/dhikr/routine/:routineId',
+      name: 'worshipDhikrRoutine',
+      pageBuilder: (context, state) => MaterialPage(
+        child: DhikrRoutinePage(
+          routineId: state.pathParameters['routineId'] ?? '',
+          prayerId: state.uri.queryParameters['prayer'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/worship/dhikr/routine-builder',
+      name: 'worshipDhikrRoutineBuilder',
+      pageBuilder: (context, state) => MaterialPage(
+        child: DhikrRoutineBuilderPage(
+          routineId: state.uri.queryParameters['id'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/worship/dhikr/insights',
+      name: 'worshipDhikrInsights',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: DhikrInsightsPage()),
+    ),
+    GoRoute(
       path: '/worship/fasting',
       name: 'worshipFastingPage',
       pageBuilder: (context, state) =>
           const MaterialPage(child: WorshipFastingPage()),
     ),
+    // The Tracking and Reminders router pages retired with the Prayer Room
+    // (calm-navigation Phase 3b); their routes redirect to the surfaces that
+    // hold the content now.
     GoRoute(
       path: '/worship/tracking',
       name: 'worshipTrackingPage',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: WorshipTrackingPage()),
+      redirect: (context, state) => '/worship/prayer',
     ),
     GoRoute(
       path: '/worship/reminders',
       name: 'worshipRemindersPage',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: WorshipRemindersPage()),
+      redirect: (context, state) => '/settings/notifications-reminders',
     ),
     GoRoute(
       path: '/worship/duas',

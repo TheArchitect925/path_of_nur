@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +21,7 @@ import '../../creation_challenges/domain/creation_challenge_models.dart';
 import '../application/creation_explorer_services.dart';
 import '../data/creation_explorer_catalog.dart';
 import '../domain/creation_explorer_models.dart';
+import '../../../core/theme/app_icons.dart';
 
 enum _CreationExplorerTab { camera, discover, journal }
 
@@ -132,7 +134,7 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
   }
 
   ImageFormatGroup _preferredImageFormatGroup() {
-    if (Platform.isIOS) {
+    if (!kIsWeb && Platform.isIOS) {
       return ImageFormatGroup.bgra8888;
     }
     return ImageFormatGroup.nv21;
@@ -424,7 +426,7 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
     );
     final theme = Theme.of(context);
     return AppPageScaffold(
-      headerIcon: Icons.travel_explore_rounded,
+      headerIcon: AppIcons.explore,
       title: AppLocalizations.of(context).creationExplorerTitle,
       subtitle: localizedAppPageDescription(
         context,
@@ -582,7 +584,7 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                 ),
                 OutlinedButton.icon(
                   onPressed: openAppSettings,
-                  icon: const Icon(Icons.settings_outlined),
+                  icon: const Icon(Icons.settings_rounded),
                   label: Text(
                     AppLocalizations.of(
                       context,
@@ -1113,7 +1115,7 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                       alignment: Alignment.centerRight,
                       child: OutlinedButton.icon(
                         onPressed: () => _editReflection(observation),
-                        icon: const Icon(Icons.edit_outlined),
+                        icon: const Icon(Icons.edit_rounded),
                         label: Text(
                           AppLocalizations.of(
                             context,

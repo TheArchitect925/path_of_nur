@@ -517,7 +517,7 @@ const stagedCircles = <CircleItem>[
     events: [
       CircleEventPreview(
         id: 'buddy-1',
-        title: 'Jumu\'ah buddy check-in',
+        title: 'Jumu’ah buddy check-in',
         dateHint: 'Friday',
       ),
       CircleEventPreview(
@@ -565,7 +565,8 @@ final stagedCircleCalendarEvents = <CircleCalendarEvent>[
     dateIso: DateTime.now()
         .add(const Duration(days: 2, hours: 19))
         .toIso8601String(),
-    location: 'Islamic Learning Hub, Room B',
+    location:
+        'Islamic Learning Hub, Room B', // copy-lint: allow prose-studio-vocabulary
     capacity: 40,
     description:
         'Structured one-hour tafsir reading with partner reflection prompts.',
@@ -680,7 +681,7 @@ const stagedAccountabilityGroups = <AccountabilityGroup>[
     id: 'group-habits',
     title: 'Habit Builder Group',
     description:
-        'Track Qur\'an, dhikr, and reflections with trust-based reporting.',
+        'Track Qur’an, dhikr, and reflections with trust-based reporting.',
     privateGroup: true,
     focus: 'Habits',
     memberCount: 31,

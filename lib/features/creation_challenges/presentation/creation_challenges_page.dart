@@ -13,6 +13,7 @@ import '../../creation_explorer/data/creation_explorer_catalog.dart';
 import '../application/creation_challenge_services.dart';
 import '../data/creation_challenge_catalog.dart';
 import '../domain/creation_challenge_models.dart';
+import '../../../core/theme/app_icons.dart';
 
 enum _CreationChallengeTab { today, history }
 
@@ -46,7 +47,7 @@ class _CreationChallengesPageState
     final streak = ref.watch(creationChallengeStreakProvider);
     final state = ref.watch(creationChallengeServiceProvider);
     return AppPageScaffold(
-      headerIcon: Icons.flag_circle_rounded,
+      headerIcon: AppIcons.challenge,
       title: l10n.creationChallengesPageTitle,
       subtitle: localizedAppPageDescription(
         context,

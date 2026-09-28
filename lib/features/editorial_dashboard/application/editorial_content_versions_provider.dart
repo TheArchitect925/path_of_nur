@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared/persistence/local_store.dart';
 import '../../kids/bedtime_stories/data/bedtime_story_seed.dart';
+import '../../kids/bedtime_stories/data/books/kids_picture_books.dart';
 import '../../kids/bedtime_stories/data/kids_islamic_story_seed.dart';
 import '../../kids/bedtime_stories/domain/bedtime_story_models.dart';
 import '../../kids/seerah/data/companion_story_seed.dart';
@@ -209,6 +210,7 @@ final editorialBedtimeStorySeedsProvider = Provider<List<BedtimeStorySeed>>((
     ...kBedtimeProphetStories,
     ...kKidsIslamicStories,
     ...kKidsSeerahCompanionStories,
+    ...kKidsPictureBooks,
   ];
   final byId = <String, BedtimeStorySeed>{
     for (final story in baseStories) story.id: story,
