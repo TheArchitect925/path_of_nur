@@ -240,7 +240,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           highContrastText: false,
           ramadanModeEnabled: false,
           lossModeEnabled: false,
-          gentleModeEnabled: true,
+          gentleModeEnabled: false,
           unwellModeEnabled: false,
           kidsModeEnabled: false,
           privateTrackingMode: false,
@@ -276,6 +276,12 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
   }
 
   final LocalStore _store;
+
+  // Gentle mode was on by default until 2026-09-27, so a `true` saved before
+  // then can't be told apart from that default. Settings saved without this
+  // marker (older installs and older backups) load with gentle mode off once;
+  // _save writes the marker, so a later choice sticks.
+  static const _gentleModeDefaultOffKey = 'gentleModeDefaultOff';
 
   void setThemePreference(ProfileThemePreference value) {
     state = state.copyWith(themePreference: value);
@@ -551,6 +557,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
   void _load() {
     final data = _store.getJsonMap('settings.profile');
     if (data == null) return;
+    final resetGentleMode = data[_gentleModeDefaultOffKey] != true;
 
     ProfileThemePreference theme = state.themePreference;
     final themeName = data['themePreference'] as String?;
@@ -625,8 +632,9 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           data['ramadanModeEnabled'] as bool? ?? state.ramadanModeEnabled,
       lossModeEnabled:
           data['lossModeEnabled'] as bool? ?? state.lossModeEnabled,
-      gentleModeEnabled:
-          data['gentleModeEnabled'] as bool? ?? state.gentleModeEnabled,
+      gentleModeEnabled: resetGentleMode
+          ? false
+          : data['gentleModeEnabled'] as bool? ?? state.gentleModeEnabled,
       unwellModeEnabled:
           data['unwellModeEnabled'] as bool? ?? state.unwellModeEnabled,
       kidsModeEnabled: resolvedKidsMode,
@@ -691,10 +699,12 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       ramadanEndDateIso:
           data['ramadanEndDateIso'] as String? ?? state.ramadanEndDateIso,
     );
+    if (resetGentleMode) _save();
   }
 
   void _save() {
     _store.setJsonMap('settings.profile', {
+      _gentleModeDefaultOffKey: true,
       'themePreference': state.themePreference.name,
       'ageRange': state.ageRange.name,
       'kidsUiThemeMode': state.kidsUiThemeMode.name,

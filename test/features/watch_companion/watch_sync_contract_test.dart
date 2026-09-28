@@ -115,7 +115,7 @@ void main() {
     expect(settings.enabledPrayerIds, isEmpty);
     expect(settings.followUpReminderEnabled, isFalse);
     expect(settings.dhikrReminderEnabled, isTrue);
-    expect(settings.quietModeEnabled, isTrue);
+    expect(settings.quietModeEnabled, isFalse);
     expect(settings.watchThemeMode, AppThemeMode.noorGlass.name);
     expect(settings.followUpDelayMinutes, 20);
     expect(settings.snoozeDurationMinutes, 10);
@@ -146,7 +146,7 @@ void main() {
       container.read(profileSettingsProvider.notifier).setDhikrReminders(false);
       container
           .read(profileSettingsProvider.notifier)
-          .setGentleModeEnabled(false);
+          .setGentleModeEnabled(true);
       container
           .read(profileSettingsProvider.notifier)
           .setAppThemeMode(AppThemeMode.dark);
@@ -161,7 +161,7 @@ void main() {
       expect(settings.followUpDelayMinutes, 35);
       expect(settings.snoozeDurationMinutes, 12);
       expect(settings.dhikrReminderEnabled, isFalse);
-      expect(settings.quietModeEnabled, isFalse);
+      expect(settings.quietModeEnabled, isTrue);
       expect(settings.watchThemeMode, AppThemeMode.dark.name);
       expect(validateSettingsSnapshot(settings), isEmpty);
     },
