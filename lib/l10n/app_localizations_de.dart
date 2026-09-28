@@ -8282,14 +8282,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicColoringViewerHint =>
-      'Nutzen Sie den kopierten Asset-Pfad zum Drucken oder Exportieren in Ihrem Release-Ablauf.';
+      'Für Ihr Kind zum Ausmalen ausdrucken oder an die Familie schicken.';
 
   @override
-  String get kidsArabicColoringOpenAssetAction => 'Asset-Pfad kopieren';
+  String get kidsArabicColoringShareAction => 'Drucken oder teilen';
 
   @override
-  String get kidsArabicColoringAssetCopiedMessage =>
-      'Der Asset-Pfad der Ausmalseite wurde kopiert.';
+  String get kidsArabicColoringShareFailedMessage =>
+      'Die Seite konnte nicht vorbereitet werden. Versuchen Sie es erneut.';
 
   @override
   String get kidsArabicColoringMissingBody =>

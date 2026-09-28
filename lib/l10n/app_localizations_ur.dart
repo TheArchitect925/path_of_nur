@@ -8110,14 +8110,14 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get kidsArabicColoringViewerHint =>
-      'Use the copied asset path to print or export from your release workflow.';
+      'اپنے بچے کے رنگ بھرنے کے لیے ایک کاپی پرنٹ کریں، یا اسے گھر والوں کو بھیجیں۔';
 
   @override
-  String get kidsArabicColoringOpenAssetAction => 'Copy asset path';
+  String get kidsArabicColoringShareAction => 'پرنٹ یا شیئر کریں';
 
   @override
-  String get kidsArabicColoringAssetCopiedMessage =>
-      'Coloring page asset path copied.';
+  String get kidsArabicColoringShareFailedMessage =>
+      'یہ صفحہ تیار نہیں ہو سکا۔ دوبارہ کوشش کریں۔';
 
   @override
   String get kidsArabicColoringMissingBody =>

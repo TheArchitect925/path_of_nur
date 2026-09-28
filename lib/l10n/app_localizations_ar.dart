@@ -8088,14 +8088,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get kidsArabicColoringViewerHint =>
-      'استخدم مسار الأصل المنسوخ للطباعة أو التصدير ضمن سير عمل الإصدار.';
+      'اطبع نسخة ليلوّنها طفلك، أو أرسلها إلى العائلة.';
 
   @override
-  String get kidsArabicColoringOpenAssetAction => 'انسخ مسار الأصل';
+  String get kidsArabicColoringShareAction => 'اطبع أو شارك';
 
   @override
-  String get kidsArabicColoringAssetCopiedMessage =>
-      'تم نسخ مسار أصل صفحة التلوين.';
+  String get kidsArabicColoringShareFailedMessage =>
+      'تعذّر تجهيز هذه الصفحة. حاول مرة أخرى.';
 
   @override
   String get kidsArabicColoringMissingBody =>

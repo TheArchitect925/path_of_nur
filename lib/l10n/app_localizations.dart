@@ -14026,20 +14026,20 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicColoringViewerHint.
   ///
   /// In en, this message translates to:
-  /// **'Use the copied asset path to print or export from your release workflow.'**
+  /// **'Print a copy for your child to color, or send it to family.'**
   String get kidsArabicColoringViewerHint;
 
-  /// No description provided for @kidsArabicColoringOpenAssetAction.
+  /// No description provided for @kidsArabicColoringShareAction.
   ///
   /// In en, this message translates to:
-  /// **'Copy asset path'**
-  String get kidsArabicColoringOpenAssetAction;
+  /// **'Print or share'**
+  String get kidsArabicColoringShareAction;
 
-  /// No description provided for @kidsArabicColoringAssetCopiedMessage.
+  /// No description provided for @kidsArabicColoringShareFailedMessage.
   ///
   /// In en, this message translates to:
-  /// **'Coloring page asset path copied.'**
-  String get kidsArabicColoringAssetCopiedMessage;
+  /// **'Couldn’t get this page ready. Try again.'**
+  String get kidsArabicColoringShareFailedMessage;
 
   /// No description provided for @kidsArabicColoringMissingBody.
   ///

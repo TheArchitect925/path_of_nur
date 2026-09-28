@@ -8164,15 +8164,14 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get kidsArabicColoringViewerHint =>
-      'अपने रिलीज़ वर्कफ़्लो से प्रिंट या निर्यात करने के लिए कॉपी किए गए एसेट पथ का उपयोग करें।';
+      'Print a copy for your child to color, or send it to family.';
 
   @override
-  String get kidsArabicColoringOpenAssetAction =>
-      'संपत्ति पथ की प्रतिलिपि बनाएँ';
+  String get kidsArabicColoringShareAction => 'Print or share';
 
   @override
-  String get kidsArabicColoringAssetCopiedMessage =>
-      'रंग पेज संपत्ति पथ की प्रतिलिपि बनाई गई।';
+  String get kidsArabicColoringShareFailedMessage =>
+      'Couldn’t get this page ready. Try again.';
 
   @override
   String get kidsArabicColoringMissingBody =>

@@ -8139,14 +8139,14 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get kidsArabicColoringViewerHint =>
-      'Use the copied asset path to print or export from your release workflow.';
+      'Print a copy for your child to color, or send it to family.';
 
   @override
-  String get kidsArabicColoringOpenAssetAction => 'Copy asset path';
+  String get kidsArabicColoringShareAction => 'Print or share';
 
   @override
-  String get kidsArabicColoringAssetCopiedMessage =>
-      'Coloring page asset path copied.';
+  String get kidsArabicColoringShareFailedMessage =>
+      'Couldn’t get this page ready. Try again.';
 
   @override
   String get kidsArabicColoringMissingBody =>
