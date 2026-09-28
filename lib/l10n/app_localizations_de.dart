@@ -2689,7 +2689,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Lektionen für das göttliche Leben';
 
   @override
-  String get learnCategoryWorldCreationTitle => 'Welt und Schopfung';
+  String get learnCategoryWorldCreationTitle => 'Welt und Schöpfung';
 
   @override
   String get learnCategoryStoriesOfProphetsTitle => 'Geschichten der Propheten';

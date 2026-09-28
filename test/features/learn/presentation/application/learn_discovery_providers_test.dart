@@ -35,6 +35,17 @@ void main() {
     };
   }
 
+  List<String> topIds(
+    List<LearnDiscoveryIndexEntry> entries,
+    String query, {
+    int count = 1,
+  }) {
+    return searchLearnDiscoveryEntries(
+      entries: entries,
+      query: query,
+    ).take(count).map((result) => result.entry.id).toList(growable: false);
+  }
+
   test(
     'guided paths are first-class discovery results for beginner queries',
     () async {
@@ -188,5 +199,67 @@ void main() {
     };
 
     expect(flagged.difference(ids), isEmpty);
+  });
+
+  test('an Arabic query finds the Arabic-titled entry first', () async {
+    final container = await makeContainer(locale: const Locale('ar'));
+    final entries = container.read(learnDiscoveryIndexProvider);
+
+    // Title: العالم والخلق
+    expect(topIds(entries, 'العالم والخلق'), <String>[
+      'subcategory:world-creation',
+    ]);
+    // Title: تعلم القرآن, typed without the madda.
+    expect(topIds(entries, 'قران'), <String>['subcategory:quran-learning']);
+    // Title: مدرّب الصلاة (with shadda), typed without it.
+    expect(topIds(entries, 'مدرب الصلاة'), <String>[
+      'subcategory:salah-trainer',
+    ]);
+  });
+
+  test('an Urdu query finds the Urdu-titled entry first', () async {
+    final container = await makeContainer(locale: const Locale('ur'));
+    final entries = container.read(learnDiscoveryIndexProvider);
+
+    // Title: نماز رہنمائی
+    expect(topIds(entries, 'نماز'), <String>['subcategory:salah-trainer']);
+    // Title: تخلیق اور دنیا, typed with an Arabic-keyboard yeh.
+    expect(topIds(entries, 'تخليق'), <String>['subcategory:world-creation']);
+  });
+
+  test('a query that matches nothing returns nothing', () async {
+    final container = await makeContainer(locale: const Locale('ar'));
+    final entries = container.read(learnDiscoveryIndexProvider);
+
+    for (final query in <String>['غغظظضض', 'xyzzyqq', '?!']) {
+      expect(
+        searchLearnDiscoveryEntries(entries: entries, query: query),
+        isEmpty,
+        reason: query,
+      );
+    }
+  });
+
+  test('German finds World & Creation with or without the umlaut', () async {
+    final container = await makeContainer(locale: const Locale('de'));
+    final entries = container.read(learnDiscoveryIndexProvider);
+
+    for (final query in <String>['Schöpfung', 'schopfung']) {
+      expect(topIds(entries, query), <String>[
+        'subcategory:world-creation',
+      ], reason: query);
+    }
+  });
+
+  test('matched terms keep the typed form for highlighting', () async {
+    final container = await makeContainer(locale: const Locale('ar'));
+    final entries = container.read(learnDiscoveryIndexProvider);
+
+    final results = searchLearnDiscoveryEntries(
+      entries: entries,
+      query: 'صلاة',
+    );
+
+    expect(results.first.matchedTerms, contains('صلاة'));
   });
 }
