@@ -10445,13 +10445,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranExplanationTitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle explanation'**
+  /// **'What it means'**
   String get kidsQuranExplanationTitle;
 
   /// No description provided for @kidsQuranExplanationTakeawayTitle.
   ///
   /// In en, this message translates to:
-  /// **'One gentle takeaway'**
+  /// **'One thing to remember'**
   String get kidsQuranExplanationTakeawayTitle;
 
   /// No description provided for @kidsQuranExplanationReflectionTitle.
@@ -10931,13 +10931,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsHomeHint.
   ///
   /// In en, this message translates to:
-  /// **'Kids mode is active with simpler guidance and gentle next steps.'**
+  /// **'Kids mode is on: simpler words, one step at a time.'**
   String get kidsHomeHint;
 
   /// No description provided for @kidsDhikrTargetReachedMessage.
   ///
   /// In en, this message translates to:
-  /// **'Amazing work! You reached your dhikr goal.'**
+  /// **'Masha’Allah! You reached your dhikr goal.'**
   String get kidsDhikrTargetReachedMessage;
 
   /// No description provided for @kidsDhikrUndoOneTooltip.
@@ -10973,13 +10973,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDhikrDailyGoalSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Every remembrance counts. Keep going with a calm heart.'**
+  /// **'Every remembrance counts. Keep going!'**
   String get kidsDhikrDailyGoalSubtitle;
 
   /// No description provided for @kidsJourneyHomeCompletedBadge.
   ///
   /// In en, this message translates to:
-  /// **'Great job'**
+  /// **'All done'**
   String get kidsJourneyHomeCompletedBadge;
 
   /// No description provided for @kidsJourneyHomeContinueBadge.
@@ -11051,7 +11051,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsJourneyLessonActionCompleted.
   ///
   /// In en, this message translates to:
-  /// **'Great job'**
+  /// **'All done!'**
   String get kidsJourneyLessonActionCompleted;
 
   /// No description provided for @kidsJourneyLessonActionNextLesson.
@@ -11081,7 +11081,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsJourneyPlaceholderActionCompleted.
   ///
   /// In en, this message translates to:
-  /// **'Great job'**
+  /// **'All done!'**
   String get kidsJourneyPlaceholderActionCompleted;
 
   /// No description provided for @kidsJourneyPlaceholderActionMarkComplete.
@@ -13402,7 +13402,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicHomeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm place for children to see, hear, trace, and review Arabic letters.'**
+  /// **'Let’s learn the Arabic letters!'**
   String get kidsArabicHomeSubtitle;
 
   /// No description provided for @kidsArabicLettersCompletedValue.
@@ -13432,7 +13432,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicRewardsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Warm little rewards from steady letter learning.'**
+  /// **'Stickers you earned by learning letters.'**
   String get kidsArabicRewardsSubtitle;
 
   /// No description provided for @kidsArabicParentDashboardTitle.
@@ -13444,7 +13444,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicParentDashboardSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm overview of recent Arabic learning, milestones, and the next gentle step.'**
+  /// **'Your child’s Arabic, and what comes next.'**
   String get kidsArabicParentDashboardSubtitle;
 
   /// No description provided for @kidsArabicDailyMissionNewLetterTitle.
@@ -13516,7 +13516,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicLockedStatus.
   ///
   /// In en, this message translates to:
-  /// **'Locked for now'**
+  /// **'Not open yet'**
   String get kidsArabicLockedStatus;
 
   /// No description provided for @kidsArabicLessonSubtitle.
@@ -13552,7 +13552,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicTraceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =1{Try one gentle stroke.} other{Try {count} gentle strokes.}}'**
+  /// **'{count, plural, =1{Try one slow stroke.} other{Try {count} slow strokes.}}'**
   String kidsArabicTraceSubtitle(int count);
 
   /// No description provided for @kidsArabicTraceStrokeProgress.
@@ -13576,7 +13576,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicTraceEncouragementGreat.
   ///
   /// In en, this message translates to:
-  /// **'Great job.'**
+  /// **'Masha’Allah!'**
   String get kidsArabicTraceEncouragementGreat;
 
   /// No description provided for @kidsArabicTraceEncouragementBeautiful.
@@ -13672,7 +13672,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicTraceResultGood.
   ///
   /// In en, this message translates to:
-  /// **'Great job'**
+  /// **'Masha’Allah'**
   String get kidsArabicTraceResultGood;
 
   /// No description provided for @kidsArabicTraceResultExcellent.
@@ -13840,7 +13840,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicStickerFirstLetterSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'The first gentle step is done.'**
+  /// **'You finished your first letter!'**
   String get kidsArabicStickerFirstLetterSubtitle;
 
   /// No description provided for @kidsArabicStickerFirstFiveTitle.
@@ -13858,7 +13858,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicStickerTenLettersTitle.
   ///
   /// In en, this message translates to:
-  /// **'Steady Ten'**
+  /// **'Ten Letters'**
   String get kidsArabicStickerTenLettersTitle;
 
   /// No description provided for @kidsArabicStickerTenLettersSubtitle.
@@ -13894,7 +13894,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicParentOverviewStartTitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with one calm step'**
+  /// **'Start with one letter'**
   String get kidsArabicParentOverviewStartTitle;
 
   /// No description provided for @kidsArabicParentOverviewStartBody.
@@ -13906,7 +13906,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicParentOverviewProgressTitle.
   ///
   /// In en, this message translates to:
-  /// **'Arabic learning is moving gently'**
+  /// **'Arabic is under way'**
   String get kidsArabicParentOverviewProgressTitle;
 
   /// No description provided for @kidsArabicParentOverviewProgressBody.
@@ -13918,7 +13918,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicParentOverviewProgressFallback.
   ///
   /// In en, this message translates to:
-  /// **'Arabic learning has started and the next gentle step is ready to open.'**
+  /// **'Arabic has started. The next step is ready.'**
   String get kidsArabicParentOverviewProgressFallback;
 
   /// No description provided for @kidsArabicParentOverviewCompletedTitle.
@@ -13966,7 +13966,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicParentReviewAction.
   ///
   /// In en, this message translates to:
-  /// **'Review gently'**
+  /// **'Review'**
   String get kidsArabicParentReviewAction;
 
   /// No description provided for @kidsArabicParentLettersValue.
@@ -14086,7 +14086,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicParentSettingsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle tools to guide letters, review, and support at home.'**
+  /// **'Guide your child’s letters at home.'**
   String get kidsArabicParentSettingsSubtitle;
 
   /// No description provided for @kidsArabicParentGuidedProgressionTitle.
@@ -14098,7 +14098,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicParentGuidedProgressionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep the home page focused on the next calm step.'**
+  /// **'Show only the next step on the home page.'**
   String get kidsArabicParentGuidedProgressionSubtitle;
 
   /// No description provided for @kidsArabicParentPrioritizeReviewTitle.
@@ -14134,7 +14134,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicParentAudioAutoplaySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Play the letter sound gently when the lesson opens.'**
+  /// **'Play the letter’s sound when the lesson opens.'**
   String get kidsArabicParentAudioAutoplaySubtitle;
 
   /// No description provided for @kidsArabicParentAllowAssignedFocusTitle.
@@ -14146,7 +14146,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicParentAllowAssignedFocusSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Let one chosen letter become today’s gentle focus.'**
+  /// **'Choose one letter as today’s focus.'**
   String get kidsArabicParentAllowAssignedFocusSubtitle;
 
   /// No description provided for @kidsArabicParentSupportLevelTitle.
@@ -14164,7 +14164,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicParentSupportLevelGentle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle'**
+  /// **'Light'**
   String get kidsArabicParentSupportLevelGentle;
 
   /// No description provided for @kidsArabicParentSupportLevelStandard.
@@ -14236,7 +14236,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicParentTodayFocusSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A parent chose {letterName} as the next gentle step.'**
+  /// **'Today, a grown-up chose {letterName} for you.'**
   String kidsArabicParentTodayFocusSubtitle(Object letterName);
 
   /// No description provided for @kidsArabicParentReviewNextTitle.
@@ -14290,7 +14290,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicParentReviewNotNeeded.
   ///
   /// In en, this message translates to:
-  /// **'No review needed right now'**
+  /// **'Nothing to review'**
   String get kidsArabicParentReviewNotNeeded;
 
   /// No description provided for @kidsArabicParentWeeklyConsistencyTitle.
@@ -25570,7 +25570,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsUiThemeSettingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use age range and a simple override to keep learning easier to scan for children.'**
+  /// **'Simpler screens for your child’s age.'**
   String get kidsUiThemeSettingSubtitle;
 
   /// No description provided for @kidsUiThemeSettingModeTitle.
@@ -36511,7 +36511,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaLandingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Learn small duas with calm steps, kind repetition, and gentle rewards.'**
+  /// **'Little duas for every day.'**
   String get kidsDuaLandingSubtitle;
 
   /// No description provided for @kidsDuaContinueTitle.
@@ -36733,7 +36733,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaRewardMealSmileSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Learn the duas around food time.'**
+  /// **'Learn the duas for mealtimes.'**
   String get kidsDuaRewardMealSmileSubtitle;
 
   /// No description provided for @kidsDuaRewardNightStarTitle.
@@ -36829,7 +36829,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaHeroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Learn small duas for meals, sleep, home, feelings, and family life.'**
+  /// **'Duas for mealtimes, bedtime and every day.'**
   String get kidsDuaHeroSubtitle;
 
   /// No description provided for @kidsDuaCompletionCelebrateTitle.
@@ -36883,7 +36883,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaStickerCollectionEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Learn a full category to unlock your first sticker.'**
+  /// **'Learn a whole group of duas to earn your first sticker.'**
   String get kidsDuaStickerCollectionEmpty;
 
   /// No description provided for @kidsDuaStickerLockedLabel.
@@ -37081,7 +37081,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaMyDayJourneySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'See what fits now, what comes next, and how your day is going.'**
+  /// **'Your day, one moment at a time.'**
   String get kidsDuaMyDayJourneySubtitle;
 
   /// No description provided for @kidsDuaMyDayQuestionTitle.
@@ -37147,13 +37147,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaMyDayRecapCompleteBody.
   ///
   /// In en, this message translates to:
-  /// **'You answered {correct} of {total} recap questions and kept your day moving with Allah.'**
+  /// **'You answered {correct} of {total} questions. Masha’Allah!'**
   String kidsDuaMyDayRecapCompleteBody(Object correct, Object total);
 
   /// No description provided for @kidsDuaMyDayRightNowMorningReason.
   ///
   /// In en, this message translates to:
-  /// **'A gentle morning start with Allah.'**
+  /// **'Start your morning with Allah.'**
   String get kidsDuaMyDayRightNowMorningReason;
 
   /// No description provided for @kidsDuaMyDayRightNowMealsReason.
@@ -37171,7 +37171,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaMyDayRightNowNightReason.
   ///
   /// In en, this message translates to:
-  /// **'A calm evening and night reminder with Allah.'**
+  /// **'End your day with Allah.'**
   String get kidsDuaMyDayRightNowNightReason;
 
   /// No description provided for @kidsDuaMyDayLandingDetail.
@@ -37213,13 +37213,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaLightSeedLabel.
   ///
   /// In en, this message translates to:
-  /// **'Gentle seed'**
+  /// **'Little seed'**
   String get kidsDuaLightSeedLabel;
 
   /// No description provided for @kidsDuaLightGlowLabel.
   ///
   /// In en, this message translates to:
-  /// **'Soft glow'**
+  /// **'First glow'**
   String get kidsDuaLightGlowLabel;
 
   /// No description provided for @kidsDuaLightLanternLabel.
@@ -37231,13 +37231,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaLightMoonLabel.
   ///
   /// In en, this message translates to:
-  /// **'Calm moon'**
+  /// **'Full moon'**
   String get kidsDuaLightMoonLabel;
 
   /// No description provided for @kidsDuaLightStarLabel.
   ///
   /// In en, this message translates to:
-  /// **'Steady star'**
+  /// **'Shining star'**
   String get kidsDuaLightStarLabel;
 
   /// No description provided for @kidsDuaLightRadiantLabel.
@@ -37279,7 +37279,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaLightCompleteTodayMessage.
   ///
   /// In en, this message translates to:
-  /// **'You kept your light shining today.'**
+  /// **'Today, your light is shining!'**
   String get kidsDuaLightCompleteTodayMessage;
 
   /// No description provided for @kidsDuaMyDayLightContinue.
@@ -37291,7 +37291,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaMyDayLightComplete.
   ///
   /// In en, this message translates to:
-  /// **'You kept your light shining today.'**
+  /// **'Today, your light is shining!'**
   String get kidsDuaMyDayLightComplete;
 
   /// No description provided for @kidsDuaReminderMorningTitle.
@@ -37573,7 +37573,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaStoriesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Short calm stories that help a child feel a dua in real life.'**
+  /// **'Short stories about duas in real life.'**
   String get kidsDuaStoriesSubtitle;
 
   /// No description provided for @kidsDuaStoriesAction.
@@ -37585,8 +37585,8 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaStoriesLandingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'{count} gentle stories'**
-  String kidsDuaStoriesLandingSubtitle(Object count);
+  /// **'{count, plural, =1{1 story} other{{count} stories}}'**
+  String kidsDuaStoriesLandingSubtitle(int count);
 
   /// No description provided for @kidsDuaStoriesDurationValue.
   ///
@@ -37687,7 +37687,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaStoriesCompleteTitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle story ending'**
+  /// **'The end'**
   String get kidsDuaStoriesCompleteTitle;
 
   /// No description provided for @kidsDuaStoriesSayDuaAction.
@@ -44339,7 +44339,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoriesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Calm prophet stories for winding down and remembering Allah before sleep.'**
+  /// **'Stories of the prophets, for bedtime.'**
   String get bedtimeStoriesSubtitle;
 
   /// No description provided for @bedtimeStoriesCountLabel.
@@ -44417,7 +44417,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoriesQuranTapSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Tap to open the verse in the Qur’an reader.'**
+  /// **'Opens the ayah in the Qur’an reader.'**
   String get bedtimeStoriesQuranTapSubtitle;
 
   /// No description provided for @bedtimeStoriesAudioCheckingLabel.
@@ -44435,7 +44435,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoriesAudioUnavailableSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Audio is not bundled yet for this story. You can still read along and complete it gently.'**
+  /// **'This story has no audio yet. You can still read it.'**
   String get bedtimeStoriesAudioUnavailableSubtitle;
 
   /// No description provided for @bedtimeStoriesAudioReadyBadge.
@@ -44453,7 +44453,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoriesArtComingSoonBadge.
   ///
   /// In en, this message translates to:
-  /// **'Art coming soon'**
+  /// **'Words only'**
   String get bedtimeStoriesArtComingSoonBadge;
 
   /// No description provided for @bedtimeStoriesMediaLoadingLabel.
@@ -44519,7 +44519,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoriesStoryCompleteSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm finish for tonight. You can replay the story or rest here.'**
+  /// **'That’s the end of tonight’s story. Hear it again, or rest.'**
   String get bedtimeStoriesStoryCompleteSubtitle;
 
   /// No description provided for @bedtimeStoriesStoryCompleteWithNextSubtitle.
@@ -44603,7 +44603,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoriesMiniPlayerTapToExpand.
   ///
   /// In en, this message translates to:
-  /// **'Tap to expand player'**
+  /// **'Expand the player'**
   String get bedtimeStoriesMiniPlayerTapToExpand;
 
   /// No description provided for @bedtimeStoriesSeriesProgressTitle.
@@ -44675,7 +44675,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoryLearningLoopSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'After listening or reading, try one gentle activity to remember the story and its lesson.'**
+  /// **'After the story, try one activity to remember it.'**
   String get bedtimeStoryLearningLoopSubtitle;
 
   /// No description provided for @bedtimeStoryLearningNotStarted.
@@ -44711,7 +44711,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoryLearningUnavailableTitle.
   ///
   /// In en, this message translates to:
-  /// **'Learning activity coming soon'**
+  /// **'No activity for this story yet'**
   String get bedtimeStoryLearningUnavailableTitle;
 
   /// No description provided for @bedtimeStoryContinueLearningTitle.
@@ -44735,7 +44735,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoryQuizUnavailableSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This story does not have quiz questions ready yet, but you can still enjoy the story and read along.'**
+  /// **'This story has no quiz yet. You can still read along.'**
   String get bedtimeStoryQuizUnavailableSubtitle;
 
   /// No description provided for @bedtimeStoryQuizProgressLabel.
@@ -44789,7 +44789,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoryQuizCompleteWithNextSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You remembered the story well. Memory cards are ready if you want one more calm activity.'**
+  /// **'You remembered the story well! Try the memory cards next.'**
   String get bedtimeStoryQuizCompleteWithNextSubtitle;
 
   /// No description provided for @bedtimeStoryQuizStartAction.
@@ -44813,7 +44813,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoryMemoryUnavailableSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This story does not have memory cards ready yet, but the story itself is still fully available.'**
+  /// **'This story has no memory cards yet. The story is all here.'**
   String get bedtimeStoryMemoryUnavailableSubtitle;
 
   /// No description provided for @bedtimeStoryMemoryProgressLabel.
@@ -44855,7 +44855,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoryMemoryCompleteSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You matched the story clues well. The bedtime story is always here when you want to revisit it.'**
+  /// **'You matched the story clues! Come back to the story any night.'**
   String get bedtimeStoryMemoryCompleteSubtitle;
 
   /// No description provided for @bedtimeStoryMemoryStartAction.
@@ -45005,7 +45005,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsStoryCollectionQuranStoriesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'The sleepers, the elephant, Luqman’s advice, and more, told for children.'**
+  /// **'Stories from the Qur’an, told for children.'**
   String get kidsStoryCollectionQuranStoriesSubtitle;
 
   /// No description provided for @kidsStoryBedtimeEligibleTitle.
@@ -45017,7 +45017,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsStoryBedtimeEligibleSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Quiet stories that can also fit gently into bedtime.'**
+  /// **'Good for bedtime too.'**
   String get kidsStoryBedtimeEligibleSubtitle;
 
   /// No description provided for @kidsStoryFeaturedStoriesTitle.
@@ -45047,7 +45047,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsStoryAudioUnavailableSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Audio is not bundled yet for this story, but you can still read it calmly and continue learning.'**
+  /// **'This story has no audio yet. You can still read it.'**
   String get kidsStoryAudioUnavailableSubtitle;
 
   /// No description provided for @kidsStoryReadStoryAction.
@@ -45071,7 +45071,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsSeerahJourneysSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm, child-friendly path through the life of Prophet Muhammad ﷺ and his companions.'**
+  /// **'The life of the Prophet ﷺ and his companions, for children.'**
   String get kidsSeerahJourneysSubtitle;
 
   /// No description provided for @kidsSeerahJourneysHeroTitle.
@@ -45083,19 +45083,19 @@ abstract class AppLocalizations {
   /// No description provided for @kidsSeerahJourneysHeroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move through key moments with simple stages, story nodes, companion stories, and gentle reflection.'**
+  /// **'Walk through the Prophet’s ﷺ life, one story at a time.'**
   String get kidsSeerahJourneysHeroSubtitle;
 
   /// No description provided for @kidsSeerahContinueJourneyTitle.
   ///
   /// In en, this message translates to:
-  /// **'Continue Seerah Journey'**
+  /// **'Continue the Seerah journey'**
   String get kidsSeerahContinueJourneyTitle;
 
   /// No description provided for @kidsSeerahContinueJourneySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Pick up from the last open stage and keep the learning path moving gently.'**
+  /// **'Pick up where you left off.'**
   String get kidsSeerahContinueJourneySubtitle;
 
   /// No description provided for @kidsSeerahFeaturedJourneyTitle.
@@ -45107,7 +45107,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsSeerahFeaturedJourneySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start a structured story path through the Seerah with calm stages and clear next steps.'**
+  /// **'A story path through the Seerah, step by step.'**
   String get kidsSeerahFeaturedJourneySubtitle;
 
   /// No description provided for @kidsSeerahStagesPreviewTitle.
@@ -45119,7 +45119,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsSeerahStagesPreviewSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, one {The journey currently follows # main story part.} other {The journey currently follows # main story parts.}}'**
+  /// **'{count, plural, =1{1 story part} other{{count} story parts}}'**
   String kidsSeerahStagesPreviewSubtitle(int count);
 
   /// No description provided for @kidsSeerahCompanionStoriesTitle.
@@ -45131,7 +45131,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsSeerahCompanionStoriesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Meet a few companions whose loyalty, patience, and support helped light the Seerah.'**
+  /// **'Meet some of the Prophet’s ﷺ companions.'**
   String get kidsSeerahCompanionStoriesSubtitle;
 
   /// No description provided for @kidsSeerahJourneysAllTitle.
@@ -45143,7 +45143,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsSeerahJourneysAllSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin with one polished journey now, with room to grow later.'**
+  /// **'Start with the first journey.'**
   String get kidsSeerahJourneysAllSubtitle;
 
   /// No description provided for @kidsSeerahJourneyUnavailableSubtitle.
@@ -45191,7 +45191,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsSeerahJourneyCompleteSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You reached the end of this Seerah path with stories, reflection, and a gentle review.'**
+  /// **'You reached the end of this Seerah path. Masha’Allah!'**
   String get kidsSeerahJourneyCompleteSubtitle;
 
   /// No description provided for @kidsSeerahStageCompletedBadge.
@@ -45287,7 +45287,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeFamilyModeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep bedtime stories, quizzes, and rewards safely separated for each child learner.'**
+  /// **'Keep each child’s bedtime progress separate.'**
   String get bedtimeFamilyModeSubtitle;
 
   /// No description provided for @bedtimeFamilyModeActiveLearnerTitle.
@@ -45305,7 +45305,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeFamilyModeFallbackSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Create a child profile when you are ready, and bedtime stories will stay separate for each learner from that point on.'**
+  /// **'Create a child profile to keep each child’s stories separate.'**
   String get bedtimeFamilyModeFallbackSubtitle;
 
   /// No description provided for @bedtimeFamilyModeAddChildAction.
@@ -45431,25 +45431,25 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeParentDashboardSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm summary across stories, Seerah, duas, Arabic learning, and bedtime rhythm.'**
+  /// **'What your child has learned lately.'**
   String get bedtimeParentDashboardSubtitle;
 
   /// No description provided for @bedtimeParentWelcomeTitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm view of bedtime learning'**
+  /// **'Bedtime learning'**
   String get bedtimeParentWelcomeTitle;
 
   /// No description provided for @bedtimeParentWelcomeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A lovely rhythm can grow one story, one lesson, and one gentle activity at a time.'**
+  /// **'One story, one lesson, one activity at a time.'**
   String get bedtimeParentWelcomeSubtitle;
 
   /// No description provided for @bedtimeParentWelcomeSubtitleWithName.
   ///
   /// In en, this message translates to:
-  /// **'A lovely rhythm can grow for {name} one story, one lesson, and one gentle activity at a time.'**
+  /// **'For {name}: one story, one lesson, one activity at a time.'**
   String bedtimeParentWelcomeSubtitleWithName(String name);
 
   /// No description provided for @bedtimeParentStreakBadge.
@@ -45479,7 +45479,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeParentContinueLearningEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Learning suggestions will appear here after the first story, dua, Seerah step, or Arabic lesson.'**
+  /// **'Suggestions start after the first story or lesson.'**
   String get bedtimeParentContinueLearningEmpty;
 
   /// No description provided for @bedtimeParentContinueStoryAction.
@@ -45671,13 +45671,13 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeParentHabitEncouragingCopy.
   ///
   /// In en, this message translates to:
-  /// **'A lovely rhythm is forming. Gentle bedtime learning is building over time.'**
+  /// **'A bedtime habit is forming, masha’Allah.'**
   String get bedtimeParentHabitEncouragingCopy;
 
   /// No description provided for @bedtimeParentHabitGentleRestartCopy.
   ///
   /// In en, this message translates to:
-  /// **'The next quiet story can begin tonight whenever you are ready.'**
+  /// **'Tonight is a good night for the next story.'**
   String get bedtimeParentHabitGentleRestartCopy;
 
   /// No description provided for @bedtimeParentLastSessionLabel.
@@ -45767,7 +45767,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeParentLearningRecentActivityEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Recent learning across stories, duas, Seerah, and Arabic will appear here.'**
+  /// **'No learning yet.'**
   String get bedtimeParentLearningRecentActivityEmpty;
 
   /// No description provided for @bedtimeParentBedtimeActivitySectionTitle.
@@ -45779,7 +45779,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeParentRecentActivityEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Recent bedtime activity will appear here once stories and learning activities begin.'**
+  /// **'No bedtime activity yet.'**
   String get bedtimeParentRecentActivityEmpty;
 
   /// No description provided for @bedtimeParentRecentStoryTitle.
@@ -46007,19 +46007,19 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaModeReadAlong.
   ///
   /// In en, this message translates to:
-  /// **'Read Along'**
+  /// **'Read along'**
   String get kidsDuaModeReadAlong;
 
   /// No description provided for @kidsDuaModeTapRepeat.
   ///
   /// In en, this message translates to:
-  /// **'Tap to Repeat'**
+  /// **'Repeat after me'**
   String get kidsDuaModeTapRepeat;
 
   /// No description provided for @kidsDuaModeGentlePractice.
   ///
   /// In en, this message translates to:
-  /// **'Gentle Practice'**
+  /// **'Practice'**
   String get kidsDuaModeGentlePractice;
 
   /// No description provided for @kidsDuaPracticeSavedSnack.
@@ -46031,13 +46031,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaGentlePracticeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle practice'**
+  /// **'Practice'**
   String get kidsDuaGentlePracticeTitle;
 
   /// No description provided for @kidsDuaGentlePracticeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Listen, read, and repeat at a calm pace. There is no rush.'**
+  /// **'Listen, then say it with me. There’s no rush.'**
   String get kidsDuaGentlePracticeSubtitle;
 
   /// No description provided for @kidsDuaListenThenReadAction.
@@ -46067,7 +46067,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaLessonHeroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'{learnerName} is learning a {category} dua gently tonight.'**
+  /// **'{learnerName} is learning a {category} du’a.'**
   String kidsDuaLessonHeroSubtitle(String learnerName, String category);
 
   /// No description provided for @kidsDuaAudioUnavailableTitle.
@@ -46079,7 +46079,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaAudioUnavailableSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Audio is not available for this dua yet, but the Arabic, transliteration, and meaning are all ready to learn with.'**
+  /// **'This du’a has no audio yet. You can still read and learn it.'**
   String get kidsDuaAudioUnavailableSubtitle;
 
   /// No description provided for @kidsDuaAudioSectionTitle.
@@ -46091,7 +46091,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaAudioSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Hear the dua calmly, then read or repeat it together.'**
+  /// **'Hear the du’a, then say it together.'**
   String get kidsDuaAudioSectionSubtitle;
 
   /// No description provided for @kidsDuaPauseAction.
@@ -46181,13 +46181,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaTapRepeatFallbackWholeAudio.
   ///
   /// In en, this message translates to:
-  /// **'Tap any line to focus it. Full-dua audio will replay until segment audio is ready.'**
+  /// **'Tap a line to focus on it. You’ll hear the whole du’a.'**
   String get kidsDuaTapRepeatFallbackWholeAudio;
 
   /// No description provided for @kidsDuaTapRepeatNoAudioBody.
   ///
   /// In en, this message translates to:
-  /// **'Tap any line to focus on reading it slowly. Audio is not ready for this dua yet.'**
+  /// **'Tap a line to read it slowly. This du’a has no audio yet.'**
   String get kidsDuaTapRepeatNoAudioBody;
 
   /// No description provided for @kidsDuaBedtimeLinkTitle.
@@ -46199,7 +46199,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaBedtimeLinkSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This dua is already part of the bedtime companion flow, so you can revisit it there tonight.'**
+  /// **'This du’a is part of bedtime too.'**
   String get kidsDuaBedtimeLinkSubtitle;
 
   /// No description provided for @kidsDuaBedtimeLinkAction.
@@ -46235,7 +46235,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaSourceTapSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Tap to open in the Qur’an reader'**
+  /// **'Opens in the Qur’an reader'**
   String get kidsDuaSourceTapSubtitle;
 
   /// No description provided for @bedtimeCompanionTitle.
@@ -46247,7 +46247,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeCompanionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle bedtime rhythm with duas, stories, and a quiet close.'**
+  /// **'Duas and a story before sleep.'**
   String get bedtimeCompanionSubtitle;
 
   /// No description provided for @bedtimeCompanionHeroTitle.
@@ -46259,7 +46259,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeCompanionHeroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Take one calm step at a time, remember Allah, and end the night gently.'**
+  /// **'One step at a time, remembering Allah before sleep.'**
   String get bedtimeCompanionHeroSubtitle;
 
   /// No description provided for @bedtimeCompanionRoutineTitle.
@@ -46283,7 +46283,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeCompanionTonightDuaSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A short bedtime remembrance to help the night feel calm and blessed.'**
+  /// **'A short du’a before sleep.'**
   String get bedtimeCompanionTonightDuaSubtitle;
 
   /// No description provided for @bedtimeCompanionTonightStoryTitle.
@@ -46295,19 +46295,19 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeCompanionTonightStorySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Listen or read gently, then return whenever you are ready for the next bedtime step.'**
+  /// **'Listen or read, then come back for the next step.'**
   String get bedtimeCompanionTonightStorySubtitle;
 
   /// No description provided for @bedtimeCompanionReflectionTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quiet reflection'**
+  /// **'A moment to think'**
   String get bedtimeCompanionReflectionTitle;
 
   /// No description provided for @bedtimeCompanionReflectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose one soft thought to carry into the night.'**
+  /// **'Choose one good thought to take to bed.'**
   String get bedtimeCompanionReflectionSubtitle;
 
   /// No description provided for @bedtimeCompanionReflectionPrompt.
@@ -46343,7 +46343,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeCompanionSleepReadySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You can close the night gently now. Allah hears every quiet remembrance.'**
+  /// **'Time to rest now. Allah hears every remembrance.'**
   String get bedtimeCompanionSleepReadySubtitle;
 
   /// No description provided for @bedtimeCompanionSleepReadyDoneTitle.
@@ -46355,7 +46355,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeCompanionSleepReadyDoneSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Tonight’s bedtime rhythm is complete. Good night, and may your rest be peaceful.'**
+  /// **'All done for tonight. Good night, and may Allah keep you safe.'**
   String get bedtimeCompanionSleepReadyDoneSubtitle;
 
   /// No description provided for @bedtimeCompanionRecommendationResumeTitle.
@@ -46379,7 +46379,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeCompanionRecommendationReflectionTitle.
   ///
   /// In en, this message translates to:
-  /// **'Take a quiet reflection moment'**
+  /// **'Take a moment to think'**
   String get bedtimeCompanionRecommendationReflectionTitle;
 
   /// No description provided for @bedtimeCompanionPlayStoryAction.
@@ -46409,7 +46409,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeCompanionExtraDhikrTitle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle extra dhikr'**
+  /// **'A little more dhikr'**
   String get bedtimeCompanionExtraDhikrTitle;
 
   /// No description provided for @bedtimeCompanionDuaDoneAction.
@@ -46493,7 +46493,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeRoutineStepGetReadySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Settle in, get comfortable, and prepare for a calm night.'**
+  /// **'Get comfortable and ready for bed.'**
   String get bedtimeRoutineStepGetReadySubtitle;
 
   /// No description provided for @bedtimeRoutineStepDuaTitle.
@@ -46523,7 +46523,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeRoutineStepReflectionTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quiet reflection'**
+  /// **'A moment to think'**
   String get bedtimeRoutineStepReflectionTitle;
 
   /// No description provided for @bedtimeRoutineStepReflectionSubtitle.
@@ -46541,7 +46541,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeRoutineStepSleepReadySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'End gently and rest peacefully.'**
+  /// **'Rest well.'**
   String get bedtimeRoutineStepSleepReadySubtitle;
 
   /// No description provided for @progressionPageTitle.
@@ -46913,13 +46913,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicRepeatAfterMeLetterSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Hear the letter, pause, and say it gently after the audio.'**
+  /// **'Hear the letter, then say it.'**
   String get kidsArabicRepeatAfterMeLetterSubtitle;
 
   /// No description provided for @kidsArabicRepeatAfterMeWordSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Hear the word, pause, and say it gently after the audio.'**
+  /// **'Hear the word, then say it.'**
   String get kidsArabicRepeatAfterMeWordSubtitle;
 
   /// No description provided for @kidsArabicRepeatAfterMePrompt.
@@ -46937,7 +46937,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicAchievementsHomeEmptySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Finish a letter or word lesson, then your latest achievement will show here for children and parents to celebrate together.'**
+  /// **'Finish a letter or word lesson to earn your first sticker.'**
   String get kidsArabicAchievementsHomeEmptySubtitle;
 
   /// No description provided for @kidsArabicLatestAchievementTitle.
@@ -46955,7 +46955,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicMilestonesSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Calm milestone moments celebrate new parts of the journey without turning practice into pressure.'**
+  /// **'Big moments in learning Arabic.'**
   String get kidsArabicMilestonesSectionSubtitle;
 
   /// No description provided for @kidsArabicBadgesSectionTitle.
@@ -47009,7 +47009,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicMilestoneFirstReviewSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm review round helped one familiar letter feel stronger.'**
+  /// **'You reviewed a letter you know.'**
   String get kidsArabicMilestoneFirstReviewSubtitle;
 
   /// No description provided for @kidsArabicMilestoneBeginnerSetTitle.
@@ -47021,7 +47021,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicMilestoneBeginnerSetSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'The first short word set is complete and ready for gentle review.'**
+  /// **'You finished the first set of words!'**
   String get kidsArabicMilestoneBeginnerSetSubtitle;
 
   /// No description provided for @kidsArabicBadgesUnlockedValue.
@@ -48763,7 +48763,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicMiniPhrasesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Hear, repeat, and grow confident with very short everyday Arabic phrases.'**
+  /// **'Short Arabic phrases for every day.'**
   String get kidsArabicMiniPhrasesSubtitle;
 
   /// No description provided for @kidsArabicMiniPhrasesHomeTitle.
@@ -48829,7 +48829,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicMiniPhrasesRepeatSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Listen closely, then repeat the short phrase with a calm voice.'**
+  /// **'Listen closely, then say the phrase.'**
   String get kidsArabicMiniPhrasesRepeatSubtitle;
 
   /// No description provided for @kidsArabicMiniPhrasesPreviousAction.
@@ -48859,13 +48859,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicReadingModeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Read through unlocked words in a calm, focused flow.'**
+  /// **'Read the words you’ve learned, one by one.'**
   String get kidsArabicReadingModeSubtitle;
 
   /// No description provided for @kidsArabicReadingModeHomeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open a simple reading flow to hear, repeat, and move word by word.'**
+  /// **'Hear and read, word by word.'**
   String get kidsArabicReadingModeHomeSubtitle;
 
   /// No description provided for @kidsArabicReadingModeOpenAction.
@@ -48943,7 +48943,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicMasteryProgressMapSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm view of current mastery across the alphabet path.'**
+  /// **'Your way through the alphabet.'**
   String get kidsArabicMasteryProgressMapSectionSubtitle;
 
   /// No description provided for @kidsArabicMasteryCompletedSectionTitle.
@@ -49015,7 +49015,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicPracticeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A short daily routine for review, reading, and tracing.'**
+  /// **'A little practice every day.'**
   String get kidsArabicPracticeSubtitle;
 
   /// No description provided for @kidsArabicPracticePrimaryTitle.
@@ -49129,7 +49129,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Short Qur’an lessons with simple meanings and gentle questions.'**
+  /// **'Short lessons from the Qur’an.'**
   String get kidsQuranAyahInsightsSubtitle;
 
   /// No description provided for @kidsQuranAyahInsightsIntroTitle.
@@ -49141,7 +49141,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightsIntroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'These cards help children notice Allah’s signs, remember Him, and build kind character through Qur’anic lessons.'**
+  /// **'Lessons that help you notice Allah’s signs and be kind.'**
   String get kidsQuranAyahInsightsIntroSubtitle;
 
   /// No description provided for @kidsQuranAyahInsightsEmptyTitle.
@@ -49153,7 +49153,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightsEmptySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'The current set is ready, and more child-friendly ayah lessons can be added safely in later passes.'**
+  /// **'No lessons here yet.'**
   String get kidsQuranAyahInsightsEmptySubtitle;
 
   /// No description provided for @kidsQuranAyahInsightsCategorySignsInCreation.
@@ -49165,7 +49165,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightsCategorySignsInCreationSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Notice the sun, moon, animals, and the world Allah made.'**
+  /// **'The world Allah made.'**
   String get kidsQuranAyahInsightsCategorySignsInCreationSubtitle;
 
   /// No description provided for @kidsQuranAyahInsightsCategoryPrayerRemembrance.
@@ -49189,7 +49189,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightsCategoryGratitudeTrustSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Practice thankfulness and rely on Allah with a calm heart.'**
+  /// **'Thanking Allah and trusting Him.'**
   String get kidsQuranAyahInsightsCategoryGratitudeTrustSubtitle;
 
   /// No description provided for @kidsQuranAyahInsightsCategoryKindnessManners.
@@ -49201,7 +49201,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightsCategoryKindnessMannersSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Grow in respect, mercy, and beautiful adab.'**
+  /// **'Being kind, and good manners.'**
   String get kidsQuranAyahInsightsCategoryKindnessMannersSubtitle;
 
   /// No description provided for @kidsQuranAyahInsightsCategoryProphetLessons.
@@ -49213,7 +49213,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightsCategoryProphetLessonsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Remember patience, trust, and courage from prophet stories.'**
+  /// **'What the prophets teach us.'**
   String get kidsQuranAyahInsightsCategoryProphetLessonsSubtitle;
 
   /// No description provided for @kidsQuranAyahInsightsLittleLessonTitle.
@@ -49225,7 +49225,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightsGentleQuestionTitle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle question'**
+  /// **'Think about it'**
   String get kidsQuranAyahInsightsGentleQuestionTitle;
 
   /// No description provided for @kidsQuranAyahInsightsOpenAyahHint.
@@ -49273,7 +49273,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightPromptSunMoon.
   ///
   /// In en, this message translates to:
-  /// **'What sign in the sky helps you remember Allah today?'**
+  /// **'What in the sky helps you remember Allah?'**
   String get kidsQuranAyahInsightPromptSunMoon;
 
   /// No description provided for @kidsQuranAyahInsightTitleAnimals.
@@ -49285,13 +49285,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightSummaryAnimals.
   ///
   /// In en, this message translates to:
-  /// **'Animals show Allah’s creativity, mercy, and balance in creation.'**
+  /// **'Animals show how wonderful Allah’s creation is.'**
   String get kidsQuranAyahInsightSummaryAnimals;
 
   /// No description provided for @kidsQuranAyahInsightLessonAnimals.
   ///
   /// In en, this message translates to:
-  /// **'Caring for animals kindly is part of having a soft and thankful heart.'**
+  /// **'Being kind to animals is part of a thankful heart.'**
   String get kidsQuranAyahInsightLessonAnimals;
 
   /// No description provided for @kidsQuranAyahInsightPromptAnimals.
@@ -49321,7 +49321,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightPromptPrayer.
   ///
   /// In en, this message translates to:
-  /// **'How can you prepare calmly for your next prayer?'**
+  /// **'How can you get ready for your next prayer?'**
   String get kidsQuranAyahInsightPromptPrayer;
 
   /// No description provided for @kidsQuranAyahInsightTitleRememberAllah.
@@ -49363,13 +49363,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightLessonGratitude.
   ///
   /// In en, this message translates to:
-  /// **'A grateful believer thanks Allah in words, actions, and manners.'**
+  /// **'A thankful believer thanks Allah with words and with deeds.'**
   String get kidsQuranAyahInsightLessonGratitude;
 
   /// No description provided for @kidsQuranAyahInsightPromptGratitude.
   ///
   /// In en, this message translates to:
-  /// **'What blessing do you want to thank Allah for today?'**
+  /// **'What blessing do you want to thank Allah for?'**
   String get kidsQuranAyahInsightPromptGratitude;
 
   /// No description provided for @kidsQuranAyahInsightTitleTrustAllah.
@@ -49405,7 +49405,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightSummaryKindToParents.
   ///
   /// In en, this message translates to:
-  /// **'The Qur’an teaches respect, gentleness, and gratitude toward parents.'**
+  /// **'The Qur’an teaches us to be kind to our parents.'**
   String get kidsQuranAyahInsightSummaryKindToParents;
 
   /// No description provided for @kidsQuranAyahInsightLessonKindToParents.
@@ -49417,7 +49417,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightPromptKindToParents.
   ///
   /// In en, this message translates to:
-  /// **'What kind thing can you do for your parents today?'**
+  /// **'What kind thing can you do for your parents?'**
   String get kidsQuranAyahInsightPromptKindToParents;
 
   /// No description provided for @kidsQuranAyahInsightTitleGoodManners.
@@ -49429,13 +49429,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightSummaryGoodManners.
   ///
   /// In en, this message translates to:
-  /// **'Good manners show faith through patience, honesty, and kindness.'**
+  /// **'Good manners show the faith in your heart.'**
   String get kidsQuranAyahInsightSummaryGoodManners;
 
   /// No description provided for @kidsQuranAyahInsightLessonGoodManners.
   ///
   /// In en, this message translates to:
-  /// **'A calm voice, truthful words, and respect for others all matter.'**
+  /// **'Use a kind voice and truthful words.'**
   String get kidsQuranAyahInsightLessonGoodManners;
 
   /// No description provided for @kidsQuranAyahInsightPromptGoodManners.
@@ -49483,7 +49483,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightLessonAyyubPatience.
   ///
   /// In en, this message translates to:
-  /// **'Patience means staying hopeful, making dua, and not giving up on Allah’s mercy.'**
+  /// **'Patience means making du’a and never giving up on Allah’s mercy.'**
   String get kidsQuranAyahInsightLessonAyyubPatience;
 
   /// No description provided for @kidsQuranAyahInsightPromptAyyubPatience.
@@ -49849,7 +49849,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicWordsStartSetSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open each word, hear it, trace it, and read it with confidence.'**
+  /// **'Hear each word, trace it, then read it.'**
   String get kidsArabicWordsStartSetSubtitle;
 
   /// No description provided for @kidsArabicWordsNextTitle.
@@ -50041,7 +50041,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicWordLessonSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Listen to {word}, trace it, and read it with care.'**
+  /// **'Listen to {word}, trace it, then read it.'**
   String kidsArabicWordLessonSubtitle(Object word);
 
   /// No description provided for @kidsArabicWordListenAction.
@@ -50089,7 +50089,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicWordCompleteSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You finished this word lesson. Keep the sound and shape fresh with one more read.'**
+  /// **'You finished this word! Read it once more to remember it.'**
   String get kidsArabicWordCompleteSubtitle;
 
   /// No description provided for @kidsArabicWordNextAction.
@@ -53222,7 +53222,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicMiniAssessmentPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A short, calm check to help letters, words, and phrases feel more familiar.'**
+  /// **'A short check on letters and words.'**
   String get kidsArabicMiniAssessmentPageSubtitle;
 
   /// No description provided for @quranTeachingMiniAssessmentCardTitle.
@@ -64795,7 +64795,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsCelebrationDismissAction.
   ///
   /// In en, this message translates to:
-  /// **'Yay!'**
+  /// **'Alhamdulillah!'**
   String get kidsCelebrationDismissAction;
 
   /// No description provided for @kidsInvitationFirstStoryTitle.
@@ -64867,7 +64867,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsParentsLettersDashboardSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Letters traced, review due, and what to assign next.'**
+  /// **'Letters traced, and what to review next.'**
   String get kidsParentsLettersDashboardSubtitle;
 
   /// No description provided for @kidsParentsLettersSettingsSubtitle.
@@ -64879,7 +64879,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsParentsDuasDashboardSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Duʿās learned, drawings, and the parent view switch.'**
+  /// **'Duas learned, and your child’s drawings.'**
   String get kidsParentsDuasDashboardSubtitle;
 
   /// No description provided for @learnHubSubcategoryKidsQuranTitleText.
@@ -64927,7 +64927,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranPageSubtitleText.
   ///
   /// In en, this message translates to:
-  /// **'A calm way to browse every surah with Arabic and translation.'**
+  /// **'Every surah, with its meaning.'**
   String get kidsQuranPageSubtitleText;
 
   /// No description provided for @kidsQuranIntroTitleText.
@@ -64939,7 +64939,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranIntroSubtitleText.
   ///
   /// In en, this message translates to:
-  /// **'Choose a surah, read gently, and open any ayah in the full reader when you need more detail.'**
+  /// **'Choose a surah to read. Any ayah opens in the full reader.'**
   String get kidsQuranIntroSubtitleText;
 
   /// No description provided for @kidsQuranOpenSurahActionText.
@@ -64993,7 +64993,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsHadithPageSubtitleText.
   ///
   /// In en, this message translates to:
-  /// **'Short hadith with gentle meanings, simple lessons, and child-friendly reminders.'**
+  /// **'Short hadith for children.'**
   String get kidsHadithPageSubtitleText;
 
   /// No description provided for @kidsHadithIntroTitleText.
@@ -65005,7 +65005,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsHadithIntroSubtitleText.
   ///
   /// In en, this message translates to:
-  /// **'These hadith are kept short and easy to revisit, so children can grow in kindness, honesty, mercy, and love of learning.'**
+  /// **'Short hadith that help you grow in kindness and honesty.'**
   String get kidsHadithIntroSubtitleText;
 
   /// No description provided for @kidsHadithStoriesCardTitleText.
@@ -65047,7 +65047,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsHadithStoriesPageSubtitleText.
   ///
   /// In en, this message translates to:
-  /// **'Stories shaped by authentic hadith and everyday moments of kindness, adab, and mercy.'**
+  /// **'Stories about kindness, from the hadith.'**
   String get kidsHadithStoriesPageSubtitleText;
 
   /// No description provided for @kidsHadithStoriesHeroTitleText.
@@ -65059,7 +65059,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsHadithStoriesHeroSubtitleText.
   ///
   /// In en, this message translates to:
-  /// **'Each story keeps the meaning gentle while staying tied to an authentic hadith reference.'**
+  /// **'Each story is tied to an authentic hadith.'**
   String get kidsHadithStoriesHeroSubtitleText;
 
   /// No description provided for @kidsHadithStoriesSourceLabelText.
@@ -65101,7 +65101,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsHadithStoriesEmptySubtitleText.
   ///
   /// In en, this message translates to:
-  /// **'The existing kids story library is ready, and more hadith-based stories can be added safely in later passes.'**
+  /// **'No hadith stories here yet.'**
   String get kidsHadithStoriesEmptySubtitleText;
 
   /// No description provided for @kidsAgeBandLabel.

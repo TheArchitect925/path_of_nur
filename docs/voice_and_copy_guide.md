@@ -220,7 +220,9 @@ rewritten keys are translated by hand for every shipping locale (de, fr, ar,
 ur) in the same commit, as V2a did. Read the locale's existing strings for the
 same screen first and keep its terms: German writes *Koran*, *Jumu’ah* and
 formal *Sie* (including page descriptions for children, which the gate checks);
-French writes *Coran* and *vous*; Urdu writes *فقہی مسلک* for madhab, because
+where the child is spoken to (`kids…` and `bedtime…` keys) German says *du* and
+French *tu*, and any key naming `Parent` (or the bedtime family-mode setting)
+keeps *Sie* / *vous*; French otherwise writes *Coran* and *vous*; Urdu writes *فقہی مسلک* for madhab, because
 *مذہب* means religion.
 
 German, Arabic and Urdu ship, and `tools/localization_gate.py` allows at most
@@ -248,7 +250,8 @@ Then `flutter gen-l10n`, then `python3 tools/localization_gate.py
 | V2b-1 · Qur’an (done 2026-09-27) | the Qur’an tab, reader, pathways, first-phrases and short-surah steps, Qur’anic Arabic lessons; *Ayah Insights* renamed *Ayah Lessons*; playback errors say what to do |
 | V2b-2 · Learn (done 2026-09-27) | the Learn landing, hubs, learning journeys and areas, the games area, the Seerah companion; *Learning Hub* is *Learn*, *islands* are *learning areas*, *Salah Hub* / *Dua Hub* / *Hadith Hub* take their plain names |
 | V2b-3 · Growth and worship (done 2026-09-27) | hadith, du’a, salah, qibla, fasting, wudu, dhikr and khushu, Growth and spiritual growth, garden and ocean, prophets, Arabic learning, guided paths; *gentle return days* are *grace days*; encouragement says the fact, or alhamdulillah |
-| V2 · Chrome by exposure | (c) Kids · (d) games, circles, baby names, history, world, accounts |
+| V2c · Kids (done 2026-09-27) | Kids home and journeys, kids Qur’an, hadith, Seerah, du’a and Arabic, the bedtime companion and stories, the parent views; cheering becomes *masha’Allah* / *alhamdulillah*; the du’a light stages are *Little seed … Shining star*; German speaks to the child as *du* |
+| V2 · Chrome by exposure | (d) games, circles, baby names, history, world, accounts |
 | V3 · Prose | the content keys and the Dart content files: (a) mechanics, (b) studio vocabulary and roadmap and (c) tails, done 2026-09-27 · (d) lists in cards and summaries |
 | V4 · Native | Apple TV, Watch, complications, widgets |
 | V5 · Lock | baselines to zero, lint blocks CI on its own step |

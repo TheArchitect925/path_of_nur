@@ -92,10 +92,11 @@ REGISTER = {
     },
 }
 # Keys whose second person addresses Allah, not the reader — plus the kids
-# area, whose copy addresses the child and is correctly informal in every
-# register language. Kids keys naming Parent stay held to the formal register.
+# area and the bedtime companion, whose copy addresses the child and is
+# correctly informal in every register language. Keys naming Parent (and the
+# bedtime family-mode setting, which a parent reads) stay formal.
 REGISTER_EXEMPT = re.compile(
-    r"(^kids(?!\w*Parent)"
+    r"(^kids(?!\w*Parent)|^bedtime(?!\w*(?:Parent|FamilyMode))"
     r"|Invocation|InvocationMeaning|DuaMeaning|VerseTranslation|GreetingMorningTranslation"
     r"|salahTrainerStep\w*Translation"
     r"|GreetingEveningTranslation|RecitationSection1Body|LeavingWashroomMeaning"

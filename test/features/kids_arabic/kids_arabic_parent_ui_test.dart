@@ -75,6 +75,6 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
 
-    expect(find.text('Arabic learning is moving gently'), findsOneWidget);
+    expect(find.text('Arabic is under way'), findsOneWidget);
   });
 }

@@ -203,9 +203,9 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 600));
     // The first completion of a letter earns a sticker (K4): the celebration
-    // shows before the completion sheet and "Yay!" dismisses it.
+    // shows before the completion sheet and "Alhamdulillah!" dismisses it.
     expect(find.text('You earned a sticker!'), findsOneWidget);
-    await tester.tap(find.text('Yay!'));
+    await tester.tap(find.text('Alhamdulillah!'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 600));
 

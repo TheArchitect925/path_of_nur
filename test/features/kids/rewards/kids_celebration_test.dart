@@ -9,7 +9,7 @@ import 'package:path_of_nur/l10n/app_localizations.dart';
 import '../../../test_helpers/app_test_harness.dart';
 
 /// K4: the moment a child finishes something. The overlay names the sticker,
-/// plays the chime once, and goes away on "Yay!" or by itself.
+/// plays the chime once, and goes away on "Alhamdulillah!" or by itself.
 void main() {
   const sticker = KidsSticker(
     id: 'letter:alif',
