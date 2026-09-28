@@ -44,6 +44,13 @@ class AppLocalizationsPs extends AppLocalizations {
       'له قضا مخکې د لمانځه د یادونې خبرتیاوې';
 
   @override
+  String get notificationsPrayerGentleChannelName => 'Salah reminders (silent)';
+
+  @override
+  String get notificationsPrayerGentleChannelDescription =>
+      'Salah reminders without sound or vibration while Gentle mode is on';
+
+  @override
   String get notificationsDailyRemindersChannelName => 'ورځنۍ يادونې';
 
   @override

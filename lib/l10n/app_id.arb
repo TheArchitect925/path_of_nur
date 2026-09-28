@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "Notifikasi pengingat salat dengan audio azan",
   "notificationsPrayerBeforeQazaChannelName": "Pengingat Salah (Sebelum Qadha)",
   "notificationsPrayerBeforeQazaChannelDescription": "Notifikasi pengingat salah sebelum menjadi qadha",
+  "notificationsPrayerGentleChannelName": "Salah reminders (silent)",
+  "notificationsPrayerGentleChannelDescription": "Salah reminders without sound or vibration while Gentle mode is on",
   "notificationsDailyRemindersChannelName": "Pengingat harian",
   "notificationsDailyRemindersChannelDescription": "Pengingat lembut untuk ibadah harian.",
   "notificationsGrowthRemindersChannelName": "Pengingat pertumbuhan",

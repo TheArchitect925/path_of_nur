@@ -44,6 +44,13 @@ class AppLocalizationsHa extends AppLocalizations {
       'Sanarwar tunatar da sallah kafin ta zama qada';
 
   @override
+  String get notificationsPrayerGentleChannelName => 'Salah reminders (silent)';
+
+  @override
+  String get notificationsPrayerGentleChannelDescription =>
+      'Salah reminders without sound or vibration while Gentle mode is on';
+
+  @override
   String get notificationsDailyRemindersChannelName =>
       'Tunatarwar yau da kullum';
 

@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "د اذان له غږ سره د لمانځه د یادونې خبرتیاوې",
   "notificationsPrayerBeforeQazaChannelName": "د لمانځه یادونې (له قضا مخکې)",
   "notificationsPrayerBeforeQazaChannelDescription": "له قضا مخکې د لمانځه د یادونې خبرتیاوې",
+  "notificationsPrayerGentleChannelName": "Salah reminders (silent)",
+  "notificationsPrayerGentleChannelDescription": "Salah reminders without sound or vibration while Gentle mode is on",
   "notificationsDailyRemindersChannelName": "ورځنۍ يادونې",
   "notificationsDailyRemindersChannelDescription": "د ذکر، قرآن، او تامل يادونې",
   "notificationsGrowthRemindersChannelName": "د ودې يادونې",

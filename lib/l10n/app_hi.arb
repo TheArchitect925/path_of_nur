@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "अज़ान ऑडियो के साथ सलाह रिमाइंडर सूचनाएं",
   "notificationsPrayerBeforeQazaChannelName": "सलाह रिमाइंडर (क़ज़ा से पहले)",
   "notificationsPrayerBeforeQazaChannelDescription": "नमाज़ क़ज़ा होने से पहले की सलाह रिमाइंडर सूचनाएं",
+  "notificationsPrayerGentleChannelName": "Salah reminders (silent)",
+  "notificationsPrayerGentleChannelDescription": "Salah reminders without sound or vibration while Gentle mode is on",
   "notificationsDailyRemindersChannelName": "रोज़ाना रिमाइंडर",
   "notificationsDailyRemindersChannelDescription": "ज़िक्र, क़ुरआन और चिंतन रिमाइंडर",
   "notificationsGrowthRemindersChannelName": "ग्रोथ रिमाइंडर",

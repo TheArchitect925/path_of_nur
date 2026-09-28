@@ -44,6 +44,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'Un rappel avant la fin du temps de chaque prière';
 
   @override
+  String get notificationsPrayerGentleChannelName =>
+      'Rappels de prière (silencieux)';
+
+  @override
+  String get notificationsPrayerGentleChannelDescription =>
+      'Rappels de prière sans son ni vibration en mode Douceur';
+
+  @override
   String get notificationsDailyRemindersChannelName => 'Rappels quotidiens';
 
   @override

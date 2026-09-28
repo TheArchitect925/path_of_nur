@@ -44,6 +44,13 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਕਜ਼ਾ ਤੋਂ ਪਹਿਲਾਂ ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਣੀ ਨੋਟੀਫਿਕੇਸ਼ਨ';
 
   @override
+  String get notificationsPrayerGentleChannelName => 'Salah reminders (silent)';
+
+  @override
+  String get notificationsPrayerGentleChannelDescription =>
+      'Salah reminders without sound or vibration while Gentle mode is on';
+
+  @override
   String get notificationsDailyRemindersChannelName => 'ਰੋਜ਼ਾਨਾ ਯਾਦ ਦਿਹਾਨੀਆਂ';
 
   @override

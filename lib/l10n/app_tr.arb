@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "Ezan sesiyle birlikte namaz hatırlatma bildirimleri",
   "notificationsPrayerBeforeQazaChannelName": "Salah Hatırlatmaları (Kazadan Önce)",
   "notificationsPrayerBeforeQazaChannelDescription": "Kaza olmadan önce salah hatırlatma bildirimleri",
+  "notificationsPrayerGentleChannelName": "Salah reminders (silent)",
+  "notificationsPrayerGentleChannelDescription": "Salah reminders without sound or vibration while Gentle mode is on",
   "notificationsDailyRemindersChannelName": "Günlük Hatırlatmalar",
   "notificationsDailyRemindersChannelDescription": "Zikir, Kur’an ve tefekkür hatırlatmaları",
   "notificationsGrowthRemindersChannelName": "Gelişim Hatırlatmaları",

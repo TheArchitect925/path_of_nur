@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "Salah reminders that play the adhan",
   "notificationsPrayerBeforeQazaChannelName": "Salah reminders (before qada)",
   "notificationsPrayerBeforeQazaChannelDescription": "A reminder before each salah’s time ends",
+  "notificationsPrayerGentleChannelName": "Salah reminders (silent)",
+  "notificationsPrayerGentleChannelDescription": "Salah reminders without sound or vibration while Gentle mode is on",
   "notificationsDailyRemindersChannelName": "Daily reminders",
   "notificationsDailyRemindersChannelDescription": "Dhikr, Qur’an and reflection reminders",
   "notificationsGrowthRemindersChannelName": "Growth reminders",

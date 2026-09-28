@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "اذان کے ساتھ نماز کی یاددہانیاں",
   "notificationsPrayerBeforeQazaChannelName": "نماز یاد دہانیاں (قضا سے پہلے)",
   "notificationsPrayerBeforeQazaChannelDescription": "ہر نماز کا وقت ختم ہونے سے پہلے ایک یاددہانی",
+  "notificationsPrayerGentleChannelName": "نماز کی یاددہانیاں (خاموش)",
+  "notificationsPrayerGentleChannelDescription": "نرم موڈ میں آواز اور وائبریشن کے بغیر نماز کی یاددہانیاں",
   "notificationsDailyRemindersChannelName": "روزانہ یاددہانیاں",
   "notificationsDailyRemindersChannelDescription": "ذکر، قرآن اور غور و فکر کی یاددہانیاں",
   "notificationsGrowthRemindersChannelName": "نمو کی یاددہانیاں",

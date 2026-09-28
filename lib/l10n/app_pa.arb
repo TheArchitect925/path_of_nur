@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "ਅਜ਼ਾਨ ਆਡੀਓ ਨਾਲ ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਣੀ ਨੋਟੀਫਿਕੇਸ਼ਨ",
   "notificationsPrayerBeforeQazaChannelName": "ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਣੀਆਂ (ਕਜ਼ਾ ਤੋਂ ਪਹਿਲਾਂ)",
   "notificationsPrayerBeforeQazaChannelDescription": "ਕਜ਼ਾ ਤੋਂ ਪਹਿਲਾਂ ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਣੀ ਨੋਟੀਫਿਕੇਸ਼ਨ",
+  "notificationsPrayerGentleChannelName": "Salah reminders (silent)",
+  "notificationsPrayerGentleChannelDescription": "Salah reminders without sound or vibration while Gentle mode is on",
   "notificationsDailyRemindersChannelName": "ਰੋਜ਼ਾਨਾ ਯਾਦ ਦਿਹਾਨੀਆਂ",
   "notificationsDailyRemindersChannelDescription": "ਜ਼ਿਕਰ, ਕੁਰਆਨ ਅਤੇ ਚਿੰਤਨ ਯਾਦ ਦਿਹਾਨੀਆਂ",
   "notificationsGrowthRemindersChannelName": "ਵਿਕਾਸ ਯਾਦ ਦਿਹਾਨੀਆਂ",

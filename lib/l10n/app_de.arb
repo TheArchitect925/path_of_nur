@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "Gebetserinnerungen mit Adhan",
   "notificationsPrayerBeforeQazaChannelName": "Salah-Erinnerungen (vor Qada)",
   "notificationsPrayerBeforeQazaChannelDescription": "Eine Erinnerung, bevor die Zeit eines Gebets endet",
+  "notificationsPrayerGentleChannelName": "Gebetserinnerungen (lautlos)",
+  "notificationsPrayerGentleChannelDescription": "Gebetserinnerungen ohne Ton und Vibration im sanften Modus",
   "notificationsDailyRemindersChannelName": "Tägliche Erinnerungen",
   "notificationsDailyRemindersChannelDescription": "Erinnerungen für Dhikr, Koran und Reflexion",
   "notificationsGrowthRemindersChannelName": "Wachstums-Erinnerungen",

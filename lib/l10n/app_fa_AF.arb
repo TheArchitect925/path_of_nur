@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "اعلان‌های یادآوری نماز همراه با صدای اذان",
   "notificationsPrayerBeforeQazaChannelName": "یادآوری نماز (پیش از قضا)",
   "notificationsPrayerBeforeQazaChannelDescription": "اعلان‌های یادآوری نماز پیش از قضا شدن",
+  "notificationsPrayerGentleChannelName": "Salah reminders (silent)",
+  "notificationsPrayerGentleChannelDescription": "Salah reminders without sound or vibration while Gentle mode is on",
   "notificationsDailyRemindersChannelName": "یادآوری‌های روزانه",
   "notificationsDailyRemindersChannelDescription": "یادآوری‌های عمومی برای عبادت و تأمل روزانه.",
   "notificationsGrowthRemindersChannelName": "یادآوری‌های رشد",

@@ -44,6 +44,13 @@ class AppLocalizationsHi extends AppLocalizations {
       'नमाज़ क़ज़ा होने से पहले की सलाह रिमाइंडर सूचनाएं';
 
   @override
+  String get notificationsPrayerGentleChannelName => 'Salah reminders (silent)';
+
+  @override
+  String get notificationsPrayerGentleChannelDescription =>
+      'Salah reminders without sound or vibration while Gentle mode is on';
+
+  @override
   String get notificationsDailyRemindersChannelName => 'रोज़ाना रिमाइंडर';
 
   @override

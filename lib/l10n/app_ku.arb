@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "Agahdariyên bîranîna nivêjê bi dengê ezanê",
   "notificationsPrayerBeforeQazaChannelName": "Bîranînên nivêjê (Berî qezayê)",
   "notificationsPrayerBeforeQazaChannelDescription": "Agahdariyên bîranîna nivêjê berî qezayê",
+  "notificationsPrayerGentleChannelName": "Salah reminders (silent)",
+  "notificationsPrayerGentleChannelDescription": "Salah reminders without sound or vibration while Gentle mode is on",
   "notificationsDailyRemindersChannelName": "Bîranînên rojane",
   "notificationsDailyRemindersChannelDescription": "Bîranînên dhikr, Qur’an û tafakkurê",
   "notificationsGrowthRemindersChannelName": "Bîranînên mezinbûnê",

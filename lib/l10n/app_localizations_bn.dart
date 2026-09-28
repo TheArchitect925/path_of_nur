@@ -44,6 +44,13 @@ class AppLocalizationsBn extends AppLocalizations {
       'কাযা হওয়ার আগে সালাহ অনুস্মারক নোটিফিকেশন';
 
   @override
+  String get notificationsPrayerGentleChannelName => 'Salah reminders (silent)';
+
+  @override
+  String get notificationsPrayerGentleChannelDescription =>
+      'Salah reminders without sound or vibration while Gentle mode is on';
+
+  @override
   String get notificationsDailyRemindersChannelName => 'দৈনিক স্মরণিকা';
 
   @override

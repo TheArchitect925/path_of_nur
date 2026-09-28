@@ -44,6 +44,13 @@ class AppLocalizationsFa extends AppLocalizations {
       'اعلان‌های یادآوری نماز پیش از قضا شدن';
 
   @override
+  String get notificationsPrayerGentleChannelName => 'Salah reminders (silent)';
+
+  @override
+  String get notificationsPrayerGentleChannelDescription =>
+      'Salah reminders without sound or vibration while Gentle mode is on';
+
+  @override
   String get notificationsDailyRemindersChannelName => 'یادآوری‌های روزانه';
 
   @override
@@ -39163,6 +39170,13 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   @override
   String get notificationsPrayerBeforeQazaChannelDescription =>
       'اعلان‌های یادآوری نماز پیش از قضا شدن';
+
+  @override
+  String get notificationsPrayerGentleChannelName => 'Salah reminders (silent)';
+
+  @override
+  String get notificationsPrayerGentleChannelDescription =>
+      'Salah reminders without sound or vibration while Gentle mode is on';
 
   @override
   String get notificationsDailyRemindersChannelName => 'یادآوری‌های روزانه';

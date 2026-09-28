@@ -44,6 +44,14 @@ class AppLocalizationsUr extends AppLocalizations {
       'ہر نماز کا وقت ختم ہونے سے پہلے ایک یاددہانی';
 
   @override
+  String get notificationsPrayerGentleChannelName =>
+      'نماز کی یاددہانیاں (خاموش)';
+
+  @override
+  String get notificationsPrayerGentleChannelDescription =>
+      'نرم موڈ میں آواز اور وائبریشن کے بغیر نماز کی یاددہانیاں';
+
+  @override
   String get notificationsDailyRemindersChannelName => 'روزانہ یاددہانیاں';
 
   @override

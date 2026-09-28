@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "আজান অডিওসহ সালাতের স্মরণ করিয়ে দেওয়া বিজ্ঞপ্তি",
   "notificationsPrayerBeforeQazaChannelName": "সালাহ অনুস্মারক (কাযার আগে)",
   "notificationsPrayerBeforeQazaChannelDescription": "কাযা হওয়ার আগে সালাহ অনুস্মারক নোটিফিকেশন",
+  "notificationsPrayerGentleChannelName": "Salah reminders (silent)",
+  "notificationsPrayerGentleChannelDescription": "Salah reminders without sound or vibration while Gentle mode is on",
   "notificationsDailyRemindersChannelName": "দৈনিক স্মরণিকা",
   "notificationsDailyRemindersChannelDescription": "দৈনিক ইবাদতের জন্য কোমল স্মরণিকা।",
   "notificationsGrowthRemindersChannelName": "উন্নতির স্মরণিকা",

@@ -44,6 +44,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'A reminder before each salah’s time ends';
 
   @override
+  String get notificationsPrayerGentleChannelName => 'Salah reminders (silent)';
+
+  @override
+  String get notificationsPrayerGentleChannelDescription =>
+      'Salah reminders without sound or vibration while Gentle mode is on';
+
+  @override
   String get notificationsDailyRemindersChannelName => 'Daily reminders';
 
   @override

@@ -44,6 +44,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'تذكير قبل انتهاء وقت كل صلاة';
 
   @override
+  String get notificationsPrayerGentleChannelName => 'تذكيرات الصلاة (صامتة)';
+
+  @override
+  String get notificationsPrayerGentleChannelDescription =>
+      'تذكيرات الصلاة دون صوت أو اهتزاز في الوضع اللطيف';
+
+  @override
   String get notificationsDailyRemindersChannelName => 'التذكيرات اليومية';
 
   @override

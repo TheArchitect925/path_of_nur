@@ -44,6 +44,14 @@ class AppLocalizationsDe extends AppLocalizations {
       'Eine Erinnerung, bevor die Zeit eines Gebets endet';
 
   @override
+  String get notificationsPrayerGentleChannelName =>
+      'Gebetserinnerungen (lautlos)';
+
+  @override
+  String get notificationsPrayerGentleChannelDescription =>
+      'Gebetserinnerungen ohne Ton und Vibration im sanften Modus';
+
+  @override
   String get notificationsDailyRemindersChannelName => 'Tägliche Erinnerungen';
 
   @override

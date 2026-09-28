@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "Огоҳиҳои ёдовари намоз бо садои азон",
   "notificationsPrayerBeforeQazaChannelName": "Ёдовариҳои намоз (пеш аз қазо)",
   "notificationsPrayerBeforeQazaChannelDescription": "Огоҳиҳои ёдовари намоз пеш аз қазо",
+  "notificationsPrayerGentleChannelName": "Salah reminders (silent)",
+  "notificationsPrayerGentleChannelDescription": "Salah reminders without sound or vibration while Gentle mode is on",
   "notificationsDailyRemindersChannelName": "Ёдовариҳои рӯзона",
   "notificationsDailyRemindersChannelDescription": "Ёдовариҳои зикр, Қуръон ва тафаккур",
   "notificationsGrowthRemindersChannelName": "Ёдовариҳои рушд",

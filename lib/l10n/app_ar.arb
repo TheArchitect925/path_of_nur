@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "تذكيرات الصلاة مع الأذان",
   "notificationsPrayerBeforeQazaChannelName": "تذكيرات الصلاة (قبل القضاء)",
   "notificationsPrayerBeforeQazaChannelDescription": "تذكير قبل انتهاء وقت كل صلاة",
+  "notificationsPrayerGentleChannelName": "تذكيرات الصلاة (صامتة)",
+  "notificationsPrayerGentleChannelDescription": "تذكيرات الصلاة دون صوت أو اهتزاز في الوضع اللطيف",
   "notificationsDailyRemindersChannelName": "التذكيرات اليومية",
   "notificationsDailyRemindersChannelDescription": "تذكيرات الذكر والقرآن والتأمل",
   "notificationsGrowthRemindersChannelName": "تذكيرات النمو",

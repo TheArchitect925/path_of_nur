@@ -16,6 +16,8 @@
   "notificationsPrayerAdhanChannelDescription": "Sanarwar tunatar da sallah tare da sautin azan",
   "notificationsPrayerBeforeQazaChannelName": "Tunatar da Sallah (Kafin Qada)",
   "notificationsPrayerBeforeQazaChannelDescription": "Sanarwar tunatar da sallah kafin ta zama qada",
+  "notificationsPrayerGentleChannelName": "Salah reminders (silent)",
+  "notificationsPrayerGentleChannelDescription": "Salah reminders without sound or vibration while Gentle mode is on",
   "notificationsDailyRemindersChannelName": "Tunatarwar yau da kullum",
   "notificationsDailyRemindersChannelDescription": "Tunatarwar dhikr, Al-Qur’ani da tunani",
   "notificationsGrowthRemindersChannelName": "Tunatarwar girma",

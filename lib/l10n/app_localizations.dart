@@ -181,6 +181,18 @@ abstract class AppLocalizations {
   /// **'A reminder before each salah’s time ends'**
   String get notificationsPrayerBeforeQazaChannelDescription;
 
+  /// No description provided for @notificationsPrayerGentleChannelName.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah reminders (silent)'**
+  String get notificationsPrayerGentleChannelName;
+
+  /// No description provided for @notificationsPrayerGentleChannelDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah reminders without sound or vibration while Gentle mode is on'**
+  String get notificationsPrayerGentleChannelDescription;
+
   /// No description provided for @notificationsDailyRemindersChannelName.
   ///
   /// In en, this message translates to:

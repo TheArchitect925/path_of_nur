@@ -9,6 +9,8 @@
   "notificationsPrayerAdhanChannelDescription": "Rappels de prière avec l’adhan",
   "notificationsPrayerBeforeQazaChannelName": "Rappels de prière (avant le qadā)",
   "notificationsPrayerBeforeQazaChannelDescription": "Un rappel avant la fin du temps de chaque prière",
+  "notificationsPrayerGentleChannelName": "Rappels de prière (silencieux)",
+  "notificationsPrayerGentleChannelDescription": "Rappels de prière sans son ni vibration en mode Douceur",
   "notificationsDailyRemindersChannelName": "Rappels quotidiens",
   "notificationsDailyRemindersChannelDescription": "Rappels de dhikr, de Coran et de réflexion",
   "notificationsGrowthRemindersChannelName": "Rappels Croissance",
