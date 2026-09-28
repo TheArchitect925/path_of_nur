@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -9,7 +11,9 @@ import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../quran/application/quran_khatm_provider.dart';
+import '../../quran/application/quran_player_controller.dart';
 import '../../quran/application/quran_providers.dart';
+import '../../quran/application/quran_reader_playback_controller.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 import '../../../../core/theme/app_icons.dart';
 
@@ -145,6 +149,32 @@ class _ContinueReadingHero extends ConsumerWidget {
       queryParameters: {'ayah': '${summary.ayahNumber}'},
     );
 
+    // Listen recites from the reading mark. A recitation of this surah that
+    // is already under way is left alone rather than jumped back.
+    void listen() {
+      final playback = ref.read(quranGlobalPlaybackStateProvider);
+      final alreadyReciting =
+          playback.isPlaying &&
+          playback.activeSurahNumber == summary.surahNumber;
+      if (!alreadyReciting) {
+        unawaited(
+          ref
+              .read(quranPlayerControllerProvider)
+              .playAyah(
+                surahNumber: summary.surahNumber,
+                ayahNumber: summary.ayahNumber,
+              ),
+        );
+      }
+      context.pushNamed(
+        'quranFocusRecitation',
+        queryParameters: {
+          'surah': '${summary.surahNumber}',
+          'ayah': '${summary.ayahNumber}',
+        },
+      );
+    }
+
     return AppHeroGlassShell(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,13 +236,7 @@ class _ContinueReadingHero extends ConsumerWidget {
               const SizedBox(width: 10),
               Expanded(
                 child: OutlinedButton.icon(
-                  onPressed: () => context.pushNamed(
-                    'quranFocusRecitation',
-                    queryParameters: {
-                      'surah': '${summary.surahNumber}',
-                      'ayah': '${summary.ayahNumber}',
-                    },
-                  ),
+                  onPressed: listen,
                   icon: const Icon(AppIcons.listen, size: 18),
                   label: Text(l10n.quranTabListenAction),
                 ),

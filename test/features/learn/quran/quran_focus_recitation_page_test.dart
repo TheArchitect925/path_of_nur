@@ -7,7 +7,9 @@ import 'package:path_of_nur/features/learn/quran/application/quran_focus_recitat
 import 'package:path_of_nur/features/learn/quran/application/quran_player_controller.dart';
 import 'package:path_of_nur/features/learn/quran/application/quran_providers.dart';
 import 'package:path_of_nur/features/learn/quran/application/quran_reader_playback_controller.dart';
+import 'package:path_of_nur/features/learn/quran/domain/quran_audio_resilience_models.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_ayah.dart';
+import 'package:path_of_nur/features/learn/quran/domain/quran_playback_request.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_reader_atmosphere.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_focus_recitation_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
@@ -20,12 +22,33 @@ class _FakeFocusRecitationController extends QuranPlayerController {
 
   bool paused = false;
   bool resumed = false;
+  bool retried = false;
   final List<int> relativeAyahOffsets = <int>[];
   final List<bool> repeatCurrentAyahStates = <bool>[];
+  final List<(int, int)> playedAyahs = <(int, int)>[];
 
   @override
   Future<void> pause() async {
     paused = true;
+  }
+
+  @override
+  Future<bool> playAyah({
+    required int surahNumber,
+    required int ayahNumber,
+    Duration resumePosition = Duration.zero,
+    QuranPlaybackReason playbackReason = QuranPlaybackReason.freshPlay,
+    List<int>? ayahNumbers,
+    bool pauseAfterStart = false,
+  }) async {
+    playedAyahs.add((surahNumber, ayahNumber));
+    return true;
+  }
+
+  @override
+  Future<bool> retryCurrentPlayback() async {
+    retried = true;
+    return true;
   }
 
   @override
@@ -102,6 +125,7 @@ void main() {
     required SharedPreferences prefs,
     required ProviderBase<QuranReaderPlaybackState> playbackOverride,
     _FakeFocusRecitationController? controller,
+    ProviderBase<_FakeFocusRecitationController>? controllerProvider,
     _FakeFocusWakeLock? wakeLock,
     List<QuranAyah> overrideAyahs = ayahs,
   }) async {
@@ -116,9 +140,10 @@ void main() {
             return ref.watch(playbackOverride);
           }),
           quranPlayerControllerProvider.overrideWith(
-            (ref) =>
-                controller ??
-                _FakeFocusRecitationController(ref, AudioPlayer()),
+            (ref) => controllerProvider != null
+                ? ref.watch(controllerProvider)
+                : controller ??
+                      _FakeFocusRecitationController(ref, AudioPlayer()),
           ),
           quranFocusRecitationWakeLockProvider.overrideWithValue(
             wakeLock ?? _FakeFocusWakeLock(),
@@ -791,6 +816,109 @@ void main() {
         QuranReaderAtmosphere.candlelight,
       );
       expect(tester.takeException(), isNull);
+    },
+  );
+
+  // Listen from the Qur'an tab opens this page on the reading mark before
+  // any session exists; Play must start it rather than sit disabled.
+  testWidgets(
+    'with nothing loaded, play recites the ayah the page was opened on',
+    (tester) async {
+      SharedPreferences.setMockInitialValues(const <String, Object>{});
+      final prefs = await SharedPreferences.getInstance();
+      final controllerProvider = Provider<_FakeFocusRecitationController>(
+        (ref) => _FakeFocusRecitationController(ref, AudioPlayer()),
+      );
+      // A listen remembered from another surah must not replace the ayah
+      // the page was opened on.
+      final playbackStateProvider = StateProvider<QuranReaderPlaybackState>(
+        (ref) => const QuranReaderPlaybackState(
+          pageSurahNumber: 2,
+          reciterId: 'husary',
+          reciterName: 'Husary',
+          storedSession: QuranRecitationSession(
+            surahNumber: 2,
+            ayahNumber: 255,
+            positionSeconds: 12,
+            updatedAtIso: '2026-08-27T21:00:00.000',
+          ),
+        ),
+      );
+
+      await pumpFocusPage(
+        tester,
+        prefs: prefs,
+        playbackOverride: playbackStateProvider,
+        controllerProvider: controllerProvider,
+      );
+
+      expect(find.text(ayahs[1].arabic), findsOneWidget);
+      final playButton = find.byKey(const ValueKey('quran-focus-play-pause'));
+      expect(tester.widget<IconButton>(playButton).onPressed, isNotNull);
+
+      await tester.tap(playButton);
+      await tester.pump();
+
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(QuranFocusRecitationPage)),
+      );
+      final controller = container.read(controllerProvider);
+      expect(controller.playedAyahs, <(int, int)>[(1, 2)]);
+      expect(controller.resumed, isFalse);
+
+      // While that start is being prepared, a second tap must not start it
+      // again.
+      container
+          .read(playbackStateProvider.notifier)
+          .state = const QuranReaderPlaybackState(
+        pageSurahNumber: 2,
+        reciterId: 'husary',
+        reciterName: 'Husary',
+        sourceResolutionState:
+            QuranPlaybackSourceResolutionState.preparingTransition,
+      );
+      await tester.pump();
+      expect(tester.widget<IconButton>(playButton).onPressed, isNull);
+    },
+  );
+
+  testWidgets(
+    'a first start that failed before any session existed retries the ayah on screen',
+    (tester) async {
+      SharedPreferences.setMockInitialValues(const <String, Object>{});
+      final prefs = await SharedPreferences.getInstance();
+      final controllerProvider = Provider<_FakeFocusRecitationController>(
+        (ref) => _FakeFocusRecitationController(ref, AudioPlayer()),
+      );
+      final playbackStateProvider = Provider<QuranReaderPlaybackState>(
+        (ref) => const QuranReaderPlaybackState(
+          pageSurahNumber: 1,
+          reciterId: 'husary',
+          reciterName: 'Husary',
+          hasPlayback: true,
+          failureType: QuranPlaybackFailureType.networkUnavailable,
+          canRetryFromFailure: true,
+        ),
+      );
+
+      await pumpFocusPage(
+        tester,
+        prefs: prefs,
+        playbackOverride: playbackStateProvider,
+        controllerProvider: controllerProvider,
+      );
+
+      expect(find.byIcon(Icons.refresh_rounded), findsOneWidget);
+      await tester.tap(find.byKey(const ValueKey('quran-focus-play-pause')));
+      await tester.pump();
+
+      final controller = ProviderScope.containerOf(
+        tester.element(find.byType(QuranFocusRecitationPage)),
+      ).read(controllerProvider);
+      // Retrying the stored session would play whatever was heard last,
+      // not the ayah on screen.
+      expect(controller.playedAyahs, <(int, int)>[(1, 2)]);
+      expect(controller.retried, isFalse);
     },
   );
 }

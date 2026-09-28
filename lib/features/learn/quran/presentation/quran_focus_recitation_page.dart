@@ -420,14 +420,23 @@ class _QuranFocusRecitationPageState
     final focusSession = ref.watch(quranFocusRecitationSessionProvider);
     final sleepTimer = ref.watch(quranFocusRecitationSleepTimerProvider);
     final controller = ref.read(quranPlayerControllerProvider);
+    // What is playing wins; then the ayah this page was opened on; then the
+    // last listen; and for someone who has never listened, where they are
+    // reading, so the page always has an ayah to recite.
+    final hasInitialAyah =
+        widget.initialSurahNumber != null && widget.initialAyahNumber != null;
+    final storedSession = playbackState.storedSession;
+    final readingMark = ref.watch(quranContinueReadingSummaryProvider);
     final surahNumber =
         playbackState.activeSurahNumber ??
-        playbackState.storedSession?.surahNumber ??
-        widget.initialSurahNumber;
+        (hasInitialAyah
+            ? widget.initialSurahNumber
+            : storedSession?.surahNumber ?? readingMark.surahNumber);
     final ayahNumber =
         playbackState.activeAyahNumber ??
-        playbackState.storedSession?.ayahNumber ??
-        widget.initialAyahNumber;
+        (hasInitialAyah
+            ? widget.initialAyahNumber
+            : storedSession?.ayahNumber ?? readingMark.ayahNumber);
     final surah = surahNumber == null
         ? null
         : ref.watch(quranSurahMapProvider)[surahNumber];
@@ -444,6 +453,13 @@ class _QuranFocusRecitationPageState
         playbackState.isBuffering ||
         playbackState.sourceResolutionState ==
             QuranPlaybackSourceResolutionState.preparingTransition;
+    // With no session to resume (a fresh install, a cold start, or a first
+    // start that failed before a session existed), Play recites the ayah on
+    // screen instead of sitting disabled.
+    final startsShownAyah =
+        playbackState.activeSession == null &&
+        (!playbackState.hasPlayback || playbackState.hasRecoverableFailure) &&
+        !isPreparing;
 
     final atmosphere = resolveQuranReaderAtmosphere(
       settings.readerAtmosphere,
@@ -541,7 +557,7 @@ class _QuranFocusRecitationPageState
                         sourceStatusLabel: sourceStatusLabel,
                         isPreparing: isPreparing,
                         isPlaying: playbackState.isPlaying,
-                        canPlay: playbackState.canPlay,
+                        canPlay: playbackState.canPlay || startsShownAyah,
                         canPause: playbackState.canPause,
                         canGoPreviousAyah: playbackState.canGoPreviousAyah,
                         canGoNextAyah: playbackState.canGoNextAyah,
@@ -550,7 +566,14 @@ class _QuranFocusRecitationPageState
                             ? () => unawaited(controller.playRelativeAyah(-1))
                             : null,
                         onTogglePlayback: () {
-                          if (playbackState.hasRecoverableFailure) {
+                          if (startsShownAyah) {
+                            unawaited(
+                              controller.playAyah(
+                                surahNumber: surah.number,
+                                ayahNumber: ayah.ayahNumber,
+                              ),
+                            );
+                          } else if (playbackState.hasRecoverableFailure) {
                             unawaited(controller.retryCurrentPlayback());
                           } else if (playbackState.canPause) {
                             unawaited(controller.pause());
