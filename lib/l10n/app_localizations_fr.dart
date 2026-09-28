@@ -142,10 +142,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'Si vos jours d’excuse sont terminés, les rappels de prière peuvent reprendre.';
 
   @override
-  String get notificationsMoonriseBody => 'La lune se lève en ce moment.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · éclairée à $percent %. La lune se lève en ce moment.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'La lune se couche en ce moment.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · éclairée à $percent %. La lune se couche en ce moment.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

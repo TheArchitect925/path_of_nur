@@ -140,10 +140,14 @@ class AppLocalizationsKu extends AppLocalizations {
       'Rewşa xwe binêre û dema amade bûyî bîranînên namazê ji nû ve bidomîne.';
 
   @override
-  String get notificationsMoonriseBody => 'Heyv niha derdikeve.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · $percent% ronî. Heyv niha derdikeve.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'Heyv niha ava dibe.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · $percent% ronî. Heyv niha ava dibe.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

@@ -141,10 +141,14 @@ class AppLocalizationsUr extends AppLocalizations {
       'اگر آپ کے عذر کے دن ختم ہو گئے ہیں تو نماز کی یاددہانیاں دوبارہ شروع ہو سکتی ہیں۔';
 
   @override
-  String get notificationsMoonriseBody => 'چاند اب طلوع ہو رہا ہے۔';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · $percent% روشن۔ چاند اب طلوع ہو رہا ہے۔';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'اب چاند غروب ہو رہا ہے۔';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · $percent% روشن۔ اب چاند غروب ہو رہا ہے۔';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

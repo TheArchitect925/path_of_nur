@@ -77,8 +77,8 @@
   "notificationsFastingBody": "নিয়তের কথা মনে রাখুন এবং আজকের রোজা সংরক্ষণ করুন।",
   "notificationsOnThisDayBody": "আজকের ঐতিহাসিক প্রতিফলন খুলে ইসলামের ইতিহাসের একটি অর্থবহ মুহূর্তে আবার ফিরে যাও।",
   "notificationsCycleCheckBody": "প্রয়োজন হলে আপনার সাইকেলের অবস্থা পরীক্ষা করে আপডেট করুন।",
-  "notificationsMoonriseBody": "চাঁদ এখন উদিত হচ্ছে।",
-  "notificationsMoonsetBody": "চাঁদ এখন অস্ত যাচ্ছে।",
+  "notificationsMoonriseBody": "{phase} · {percent}% আলোকিত। চাঁদ এখন উদিত হচ্ছে।",
+  "notificationsMoonsetBody": "{phase} · {percent}% আলোকিত। চাঁদ এখন অস্ত যাচ্ছে।",
   "notificationsRecoveredReminderBody": "From earlier: {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

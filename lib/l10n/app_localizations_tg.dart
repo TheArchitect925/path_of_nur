@@ -140,10 +140,14 @@ class AppLocalizationsTg extends AppLocalizations {
       'Ҳолати худро бозбинӣ кунед ва ҳангоми омода будан ёдовариҳои намозро аз сар гиред.';
 
   @override
-  String get notificationsMoonriseBody => 'Моҳ ҳоло баромада истодааст.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · $percent% равшан. Моҳ ҳоло баромада истодааст.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'Моҳ ҳоло фурӯ меравад.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · $percent% равшан. Моҳ ҳоло фурӯ меравад.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

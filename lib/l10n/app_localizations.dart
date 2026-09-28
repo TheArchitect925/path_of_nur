@@ -340,14 +340,14 @@ abstract class AppLocalizations {
   /// No description provided for @notificationsMoonriseBody.
   ///
   /// In en, this message translates to:
-  /// **'The moon is rising now.'**
-  String get notificationsMoonriseBody;
+  /// **'{phase} · {percent}% lit. The moon is rising now.'**
+  String notificationsMoonriseBody(String phase, int percent);
 
   /// No description provided for @notificationsMoonsetBody.
   ///
   /// In en, this message translates to:
-  /// **'The moon is setting now.'**
-  String get notificationsMoonsetBody;
+  /// **'{phase} · {percent}% lit. The moon is setting now.'**
+  String notificationsMoonsetBody(String phase, int percent);
 
   /// No description provided for @notificationsRecoveredReminderBody.
   ///

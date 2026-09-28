@@ -141,10 +141,14 @@ class AppLocalizationsHi extends AppLocalizations {
       'अपनी स्थिति देखें और तैयार होने पर नमाज़ रिमाइंडर फिर शुरू करें।';
 
   @override
-  String get notificationsMoonriseBody => 'चंद्रमा अब उग रहा है.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · $percent% प्रकाशित. चंद्रमा अब उग रहा है.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'चंद्रमा अब अस्त हो रहा है.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · $percent% प्रकाशित. चंद्रमा अब अस्त हो रहा है.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

@@ -77,8 +77,8 @@
   "notificationsFastingBody": "Shirya niyyarka ta azumin yau.",
   "notificationsOnThisDayBody": "Bude tunanin tarihi na yau kuma ka sake duba wani muhimmin lamari daga tarihin Musulunci.",
   "notificationsCycleCheckBody": "Duba matsayinki kuma ci gaba da tunatarwar sallah idan kin shirya.",
-  "notificationsMoonriseBody": "Wata na fitowa yanzu.",
-  "notificationsMoonsetBody": "Wata na faduwa yanzu.",
+  "notificationsMoonriseBody": "{phase} · haske {percent}%. Wata na fitowa yanzu.",
+  "notificationsMoonsetBody": "{phase} · haske {percent}%. Wata na faduwa yanzu.",
   "notificationsRecoveredReminderBody": "Kin rasa wannan tunatarwar a baya. {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

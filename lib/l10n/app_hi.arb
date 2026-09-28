@@ -77,8 +77,8 @@
   "notificationsFastingBody": "आज के रोज़े के लिए अपनी नीयत तैयार करें।",
   "notificationsOnThisDayBody": "आज की ऐतिहासिक झलक खोलें और इस्लामी इतिहास के एक अर्थपूर्ण क्षण को फिर से याद करें।",
   "notificationsCycleCheckBody": "अपनी स्थिति देखें और तैयार होने पर नमाज़ रिमाइंडर फिर शुरू करें।",
-  "notificationsMoonriseBody": "चंद्रमा अब उग रहा है.",
-  "notificationsMoonsetBody": "चंद्रमा अब अस्त हो रहा है.",
+  "notificationsMoonriseBody": "{phase} · {percent}% प्रकाशित. चंद्रमा अब उग रहा है.",
+  "notificationsMoonsetBody": "{phase} · {percent}% प्रकाशित. चंद्रमा अब अस्त हो रहा है.",
   "notificationsRecoveredReminderBody": "आप यह रिमाइंडर पहले चूक गए थे। {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

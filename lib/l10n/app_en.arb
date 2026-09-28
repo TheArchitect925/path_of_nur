@@ -77,8 +77,28 @@
   "notificationsFastingBody": "Set your intention for today’s fast.",
   "notificationsOnThisDayBody": "A moment from Islamic history that fell on this day.",
   "notificationsCycleCheckBody": "If your excused days have ended, salah reminders can start again.",
-  "notificationsMoonriseBody": "The moon is rising now.",
-  "notificationsMoonsetBody": "The moon is setting now.",
+  "notificationsMoonriseBody": "{phase} · {percent}% lit. The moon is rising now.",
+  "@notificationsMoonriseBody": {
+    "placeholders": {
+      "phase": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationsMoonsetBody": "{phase} · {percent}% lit. The moon is setting now.",
+  "@notificationsMoonsetBody": {
+    "placeholders": {
+      "phase": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
   "notificationsRecoveredReminderBody": "From earlier: {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

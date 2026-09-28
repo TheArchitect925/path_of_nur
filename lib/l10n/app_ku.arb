@@ -77,8 +77,8 @@
   "notificationsFastingBody": "Niyeta xwe ji bo rojîya îro amade bike.",
   "notificationsOnThisDayBody": "Tefekkura dîrokî ya îro veke û careke din bûyerekî watedar ji dîroka Îslamî bibîne.",
   "notificationsCycleCheckBody": "Rewşa xwe binêre û dema amade bûyî bîranînên namazê ji nû ve bidomîne.",
-  "notificationsMoonriseBody": "Heyv niha derdikeve.",
-  "notificationsMoonsetBody": "Heyv niha ava dibe.",
+  "notificationsMoonriseBody": "{phase} · {percent}% ronî. Heyv niha derdikeve.",
+  "notificationsMoonsetBody": "{phase} · {percent}% ronî. Heyv niha ava dibe.",
   "notificationsRecoveredReminderBody": "Te vê bîranînê berê winda kir. {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

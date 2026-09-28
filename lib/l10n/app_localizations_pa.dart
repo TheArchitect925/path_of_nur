@@ -139,10 +139,14 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਆਪਣੀ ਹਾਲਤ ਵੇਖੋ ਅਤੇ ਤਿਆਰ ਹੋਣ ਤੇ ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਨੀਆਂ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ।';
 
   @override
-  String get notificationsMoonriseBody => 'ਚੰਦ ਹੁਣ ਚੜ੍ਹ ਰਿਹਾ ਹੈ।';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · $percent% ਰੌਸ਼ਨ। ਚੰਦ ਹੁਣ ਚੜ੍ਹ ਰਿਹਾ ਹੈ।';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'ਚੰਦ ਹੁਣ ਡੁੱਬ ਰਿਹਾ ਹੈ।';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · $percent% ਰੌਸ਼ਨ। ਚੰਦ ਹੁਣ ਡੁੱਬ ਰਿਹਾ ਹੈ।';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

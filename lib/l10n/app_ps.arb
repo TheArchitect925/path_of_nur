@@ -77,8 +77,8 @@
   "notificationsFastingBody": "د نن ورځې روژې لپاره خپل نيت چمتو کړئ.",
   "notificationsOnThisDayBody": "د نن ورځې تاریخي تامل پرانیزئ او د اسلامي تاریخ یوه ماناداره شېبه بیا وګورئ.",
   "notificationsCycleCheckBody": "خپل حالت وګورئ او کله چې چمتو ياست د لمانځه يادونې بېرته پيل کړئ.",
-  "notificationsMoonriseBody": "سپوږمۍ اوس راخېژي.",
-  "notificationsMoonsetBody": "سپوږمۍ اوس لوېږي.",
+  "notificationsMoonriseBody": "{phase} · {percent}٪ روښانه. سپوږمۍ اوس راخېژي.",
+  "notificationsMoonsetBody": "{phase} · {percent}٪ روښانه. سپوږمۍ اوس لوېږي.",
   "notificationsRecoveredReminderBody": "تاسې دا يادونه مخکې له لاسه ورکړې وه. {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

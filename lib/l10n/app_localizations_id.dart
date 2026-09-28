@@ -141,10 +141,14 @@ class AppLocalizationsId extends AppLocalizations {
       'Jika perlu, periksa dan perbarui status siklus Anda.';
 
   @override
-  String get notificationsMoonriseBody => 'Bulan sedang terbit sekarang.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · $percent% tersinari. Bulan sedang terbit sekarang.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'Bulan sedang terbenam sekarang.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · $percent% tersinari. Bulan sedang terbenam sekarang.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

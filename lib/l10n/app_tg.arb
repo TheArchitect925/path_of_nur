@@ -77,8 +77,8 @@
   "notificationsFastingBody": "Нияти рӯзаи имрӯзро омода кунед.",
   "notificationsOnThisDayBody": "Тафаккури таърихии имрӯзаро боз кунед ва лаҳзаи пурмаънӣ аз таърихи исломиро дубора бинед.",
   "notificationsCycleCheckBody": "Ҳолати худро бозбинӣ кунед ва ҳангоми омода будан ёдовариҳои намозро аз сар гиред.",
-  "notificationsMoonriseBody": "Моҳ ҳоло баромада истодааст.",
-  "notificationsMoonsetBody": "Моҳ ҳоло фурӯ меравад.",
+  "notificationsMoonriseBody": "{phase} · {percent}% равшан. Моҳ ҳоло баромада истодааст.",
+  "notificationsMoonsetBody": "{phase} · {percent}% равшан. Моҳ ҳоло фурӯ меравад.",
   "notificationsRecoveredReminderBody": "Шумо ин ёдовариро пештар аз даст додед. {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

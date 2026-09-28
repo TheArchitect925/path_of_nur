@@ -77,8 +77,8 @@
   "notificationsFastingBody": "آج کے روزے کی نیت کر لیں۔",
   "notificationsOnThisDayBody": "اسلامی تاریخ کا ایک لمحہ جو اسی دن پیش آیا۔",
   "notificationsCycleCheckBody": "اگر آپ کے عذر کے دن ختم ہو گئے ہیں تو نماز کی یاددہانیاں دوبارہ شروع ہو سکتی ہیں۔",
-  "notificationsMoonriseBody": "چاند اب طلوع ہو رہا ہے۔",
-  "notificationsMoonsetBody": "اب چاند غروب ہو رہا ہے۔",
+  "notificationsMoonriseBody": "{phase} · {percent}% روشن۔ چاند اب طلوع ہو رہا ہے۔",
+  "notificationsMoonsetBody": "{phase} · {percent}% روشن۔ اب چاند غروب ہو رہا ہے۔",
   "notificationsRecoveredReminderBody": "پہلے سے: {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

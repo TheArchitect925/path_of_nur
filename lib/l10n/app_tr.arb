@@ -77,8 +77,8 @@
   "notificationsFastingBody": "Bugünkü oruç niyetini hazırla.",
   "notificationsOnThisDayBody": "Bugünün tarihî tefekkürünü aç ve İslam tarihinden anlamlı bir ana yeniden dön.",
   "notificationsCycleCheckBody": "Durumunu gözden geçir ve hazır olduğunda namaz hatırlatmalarını yeniden başlat.",
-  "notificationsMoonriseBody": "Ay şimdi doğuyor.",
-  "notificationsMoonsetBody": "Ay şimdi batıyor.",
+  "notificationsMoonriseBody": "{phase} · %{percent} aydınlık. Ay şimdi doğuyor.",
+  "notificationsMoonsetBody": "{phase} · %{percent} aydınlık. Ay şimdi batıyor.",
   "notificationsRecoveredReminderBody": "Bu hatırlatmayı daha önce kaçırdın. {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

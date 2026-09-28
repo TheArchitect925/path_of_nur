@@ -141,10 +141,14 @@ class AppLocalizationsHa extends AppLocalizations {
       'Duba matsayinki kuma ci gaba da tunatarwar sallah idan kin shirya.';
 
   @override
-  String get notificationsMoonriseBody => 'Wata na fitowa yanzu.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · haske $percent%. Wata na fitowa yanzu.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'Wata na faduwa yanzu.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · haske $percent%. Wata na faduwa yanzu.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

@@ -143,10 +143,14 @@ class AppLocalizationsDe extends AppLocalizations {
       'Wenn Ihre entschuldigten Tage vorbei sind, können die Gebetserinnerungen wieder beginnen.';
 
   @override
-  String get notificationsMoonriseBody => 'Der Mond geht jetzt auf.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · $percent % beleuchtet. Der Mond geht jetzt auf.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'Der Mond geht jetzt unter.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · $percent % beleuchtet. Der Mond geht jetzt unter.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {
@@ -1661,25 +1665,27 @@ class AppLocalizationsDe extends AppLocalizations {
   String get worshipPrayerMoonPhaseNewMoon => 'Neumond';
 
   @override
-  String get worshipPrayerMoonPhaseWaxingCrescent => 'Wachsender Halbmond';
+  String get worshipPrayerMoonPhaseWaxingCrescent => 'Zunehmende Sichel';
 
   @override
   String get worshipPrayerMoonPhaseFirstQuarter => 'Erstes Viertel';
 
   @override
-  String get worshipPrayerMoonPhaseWaxingGibbous => 'Wachsender Gibbous';
+  String get worshipPrayerMoonPhaseWaxingGibbous =>
+      'Zunehmender Dreiviertelmond';
 
   @override
   String get worshipPrayerMoonPhaseFullMoon => 'Vollmond';
 
   @override
-  String get worshipPrayerMoonPhaseWaningGibbous => 'Abnehmender Gibbous';
+  String get worshipPrayerMoonPhaseWaningGibbous =>
+      'Abnehmender Dreiviertelmond';
 
   @override
   String get worshipPrayerMoonPhaseLastQuarter => 'Letztes Viertel';
 
   @override
-  String get worshipPrayerMoonPhaseWaningCrescent => 'Abnehmender Halbmond';
+  String get worshipPrayerMoonPhaseWaningCrescent => 'Abnehmende Sichel';
 
   @override
   String get worshipPrayerQadaPlannerTitle => 'Qada-Planer';

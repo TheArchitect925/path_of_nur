@@ -77,8 +77,8 @@
   "notificationsFastingBody": "نیت، سحری، یا زمان افطار خود را مرور کنید.",
   "notificationsOnThisDayBody": "بازتاب تاریخی امروز را باز کن و لحظه‌ای معنادار از تاریخ اسلام را دوباره مرور کن.",
   "notificationsCycleCheckBody": "اگر لازم است وضعیت فعلی خود را به‌روزرسانی کنید.",
-  "notificationsMoonriseBody": "اکنون ماه در حال طلوع است.",
-  "notificationsMoonsetBody": "اکنون ماه در حال غروب است.",
+  "notificationsMoonriseBody": "{phase} · {percent}٪ روشن. اکنون ماه در حال طلوع است.",
+  "notificationsMoonsetBody": "{phase} · {percent}٪ روشن. اکنون ماه در حال غروب است.",
   "notificationsRecoveredReminderBody": "From earlier: {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

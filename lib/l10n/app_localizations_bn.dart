@@ -140,10 +140,14 @@ class AppLocalizationsBn extends AppLocalizations {
       'প্রয়োজন হলে আপনার সাইকেলের অবস্থা পরীক্ষা করে আপডেট করুন।';
 
   @override
-  String get notificationsMoonriseBody => 'চাঁদ এখন উদিত হচ্ছে।';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · $percent% আলোকিত। চাঁদ এখন উদিত হচ্ছে।';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'চাঁদ এখন অস্ত যাচ্ছে।';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · $percent% আলোকিত। চাঁদ এখন অস্ত যাচ্ছে।';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

@@ -139,10 +139,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'If your excused days have ended, salah reminders can start again.';
 
   @override
-  String get notificationsMoonriseBody => 'The moon is rising now.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · $percent% lit. The moon is rising now.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'The moon is setting now.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · $percent% lit. The moon is setting now.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

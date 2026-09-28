@@ -77,8 +77,8 @@
   "notificationsFastingBody": "ਅੱਜ ਦੇ ਰੋਜ਼ੇ ਲਈ ਆਪਣੀ ਨਿਯਤ ਤਿਆਰ ਕਰੋ।",
   "notificationsOnThisDayBody": "ਅੱਜ ਦੀ ਇਤਿਹਾਸਕ ਚਿੰਤਨ ਝਲਕ ਖੋਲ੍ਹੋ ਅਤੇ ਇਸਲਾਮੀ ਇਤਿਹਾਸ ਦੇ ਕਿਸੇ ਅਰਥਪੂਰਨ ਪਲ ਨੂੰ ਫਿਰ ਵੇਖੋ।",
   "notificationsCycleCheckBody": "ਆਪਣੀ ਹਾਲਤ ਵੇਖੋ ਅਤੇ ਤਿਆਰ ਹੋਣ ਤੇ ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਨੀਆਂ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ।",
-  "notificationsMoonriseBody": "ਚੰਦ ਹੁਣ ਚੜ੍ਹ ਰਿਹਾ ਹੈ।",
-  "notificationsMoonsetBody": "ਚੰਦ ਹੁਣ ਡੁੱਬ ਰਿਹਾ ਹੈ।",
+  "notificationsMoonriseBody": "{phase} · {percent}% ਰੌਸ਼ਨ। ਚੰਦ ਹੁਣ ਚੜ੍ਹ ਰਿਹਾ ਹੈ।",
+  "notificationsMoonsetBody": "{phase} · {percent}% ਰੌਸ਼ਨ। ਚੰਦ ਹੁਣ ਡੁੱਬ ਰਿਹਾ ਹੈ।",
   "notificationsRecoveredReminderBody": "ਤੁਸੀਂ ਇਹ ਯਾਦ ਦਿਹਾਨੀ ਪਹਿਲਾਂ ਗੁਆ ਲਈ ਸੀ। {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

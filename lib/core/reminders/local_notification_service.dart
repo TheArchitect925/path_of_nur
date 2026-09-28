@@ -12,6 +12,7 @@ import 'package:timezone/timezone.dart' as tz;
 import '../navigation/platform_route_dispatcher.dart';
 import '../../core/localization/locale_provider.dart';
 import '../../l10n/app_localizations.dart';
+import '../../features/celestial/domain/moon_ephemeris.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
 import '../../features/watch_companion/application/watch_sync_contract.dart';
 import '../../features/worship/application/prayer_controller.dart';
@@ -126,6 +127,29 @@ class ReminderNotificationPayload {
     }
     return null;
   }
+}
+
+/// The moon notification's text: its phase and how much of it is lit at
+/// [when], then the rise or the set.
+String moonReminderBody(
+  AppLocalizations l10n, {
+  required DateTime when,
+  required bool rising,
+}) {
+  final moon = const MoonEphemeris().phaseAt(when);
+  final phase = switch (moon.phase) {
+    MoonPhase.newMoon => l10n.worshipPrayerMoonPhaseNewMoon,
+    MoonPhase.waxingCrescent => l10n.worshipPrayerMoonPhaseWaxingCrescent,
+    MoonPhase.firstQuarter => l10n.worshipPrayerMoonPhaseFirstQuarter,
+    MoonPhase.waxingGibbous => l10n.worshipPrayerMoonPhaseWaxingGibbous,
+    MoonPhase.fullMoon => l10n.worshipPrayerMoonPhaseFullMoon,
+    MoonPhase.waningGibbous => l10n.worshipPrayerMoonPhaseWaningGibbous,
+    MoonPhase.lastQuarter => l10n.worshipPrayerMoonPhaseLastQuarter,
+    MoonPhase.waningCrescent => l10n.worshipPrayerMoonPhaseWaningCrescent,
+  };
+  return rising
+      ? l10n.notificationsMoonriseBody(phase, moon.illuminationPercent)
+      : l10n.notificationsMoonsetBody(phase, moon.illuminationPercent);
 }
 
 class LocalNotificationService {
@@ -554,9 +578,9 @@ class LocalNotificationService {
       case ReminderKind.cycleCheck:
         return l10n.notificationsCycleCheckBody;
       case ReminderKind.moonrise:
-        return l10n.notificationsMoonriseBody;
+        return moonReminderBody(l10n, when: item.when, rising: true);
       case ReminderKind.moonset:
-        return l10n.notificationsMoonsetBody;
+        return moonReminderBody(l10n, when: item.when, rising: false);
       case ReminderKind.jumuahLeave:
         return l10n.notificationsJumuahLeaveBody;
     }

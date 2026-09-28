@@ -140,10 +140,14 @@ class AppLocalizationsTr extends AppLocalizations {
       'Durumunu gözden geçir ve hazır olduğunda namaz hatırlatmalarını yeniden başlat.';
 
   @override
-  String get notificationsMoonriseBody => 'Ay şimdi doğuyor.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · %$percent aydınlık. Ay şimdi doğuyor.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'Ay şimdi batıyor.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · %$percent aydınlık. Ay şimdi batıyor.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

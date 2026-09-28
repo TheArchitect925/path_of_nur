@@ -77,8 +77,8 @@
   "notificationsFastingBody": "Fassen Sie die Absicht für das heutige Fasten.",
   "notificationsOnThisDayBody": "Ein Moment der islamischen Geschichte, der auf diesen Tag fiel.",
   "notificationsCycleCheckBody": "Wenn Ihre entschuldigten Tage vorbei sind, können die Gebetserinnerungen wieder beginnen.",
-  "notificationsMoonriseBody": "Der Mond geht jetzt auf.",
-  "notificationsMoonsetBody": "Der Mond geht jetzt unter.",
+  "notificationsMoonriseBody": "{phase} · {percent} % beleuchtet. Der Mond geht jetzt auf.",
+  "notificationsMoonsetBody": "{phase} · {percent} % beleuchtet. Der Mond geht jetzt unter.",
   "notificationsRecoveredReminderBody": "Von vorhin: {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {
@@ -888,13 +888,13 @@
   "worshipPrayerMonthlyTrendTitle": "Trend der monatlichen Bestandigkeit",
   "worshipPrayerMonthlyTrendSubtitle": "Abschluss über die letzten 6 Monate.",
   "worshipPrayerMoonPhaseNewMoon": "Neumond",
-  "worshipPrayerMoonPhaseWaxingCrescent": "Wachsender Halbmond",
+  "worshipPrayerMoonPhaseWaxingCrescent": "Zunehmende Sichel",
   "worshipPrayerMoonPhaseFirstQuarter": "Erstes Viertel",
-  "worshipPrayerMoonPhaseWaxingGibbous": "Wachsender Gibbous",
+  "worshipPrayerMoonPhaseWaxingGibbous": "Zunehmender Dreiviertelmond",
   "worshipPrayerMoonPhaseFullMoon": "Vollmond",
-  "worshipPrayerMoonPhaseWaningGibbous": "Abnehmender Gibbous",
+  "worshipPrayerMoonPhaseWaningGibbous": "Abnehmender Dreiviertelmond",
   "worshipPrayerMoonPhaseLastQuarter": "Letztes Viertel",
-  "worshipPrayerMoonPhaseWaningCrescent": "Abnehmender Halbmond",
+  "worshipPrayerMoonPhaseWaningCrescent": "Abnehmende Sichel",
   "worshipPrayerQadaPlannerTitle": "Qada-Planer",
   "worshipPrayerCadenceValue": "Trittfrequenz: {value}",
   "@worshipPrayerCadenceValue": {

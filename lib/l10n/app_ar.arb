@@ -77,8 +77,8 @@
   "notificationsFastingBody": "انوِ صيام اليوم.",
   "notificationsOnThisDayBody": "لحظة من التاريخ الإسلامي وقعت في مثل هذا اليوم.",
   "notificationsCycleCheckBody": "إذا انتهت أيام عذرك، يمكن أن تعود تذكيرات الصلاة.",
-  "notificationsMoonriseBody": "القمر يطلع الآن.",
-  "notificationsMoonsetBody": "القمر يغرب الآن.",
+  "notificationsMoonriseBody": "{phase} · مضاء بنسبة {percent}٪. القمر يطلع الآن.",
+  "notificationsMoonsetBody": "{phase} · مضاء بنسبة {percent}٪. القمر يغرب الآن.",
   "notificationsRecoveredReminderBody": "من قبل: {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

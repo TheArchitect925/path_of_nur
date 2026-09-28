@@ -139,10 +139,14 @@ class AppLocalizationsAr extends AppLocalizations {
       'إذا انتهت أيام عذرك، يمكن أن تعود تذكيرات الصلاة.';
 
   @override
-  String get notificationsMoonriseBody => 'القمر يطلع الآن.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · مضاء بنسبة $percent٪. القمر يطلع الآن.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'القمر يغرب الآن.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · مضاء بنسبة $percent٪. القمر يغرب الآن.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

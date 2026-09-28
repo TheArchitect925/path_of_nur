@@ -141,10 +141,14 @@ class AppLocalizationsPs extends AppLocalizations {
       'خپل حالت وګورئ او کله چې چمتو ياست د لمانځه يادونې بېرته پيل کړئ.';
 
   @override
-  String get notificationsMoonriseBody => 'سپوږمۍ اوس راخېژي.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · $percent٪ روښانه. سپوږمۍ اوس راخېژي.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'سپوږمۍ اوس لوېږي.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · $percent٪ روښانه. سپوږمۍ اوس لوېږي.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {

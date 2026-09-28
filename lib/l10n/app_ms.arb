@@ -77,8 +77,8 @@
   "notificationsFastingBody": "Jangan lupa niat dan jaga puasa hari ini.",
   "notificationsOnThisDayBody": "Buka renungan sejarah hari ini dan imbau kembali detik bermakna dari sejarah Islam.",
   "notificationsCycleCheckBody": "Jika perlu, semak dan kemas kini status kitaran anda.",
-  "notificationsMoonriseBody": "Bulan sedang terbit sekarang.",
-  "notificationsMoonsetBody": "Bulan sedang terbenam sekarang.",
+  "notificationsMoonriseBody": "{phase} · {percent}% disinari. Bulan sedang terbit sekarang.",
+  "notificationsMoonsetBody": "{phase} · {percent}% disinari. Bulan sedang terbenam sekarang.",
   "notificationsRecoveredReminderBody": "From earlier: {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {

@@ -140,10 +140,14 @@ class AppLocalizationsFa extends AppLocalizations {
       'اگر لازم است وضعیت فعلی خود را به‌روزرسانی کنید.';
 
   @override
-  String get notificationsMoonriseBody => 'اکنون ماه در حال طلوع است.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · $percent٪ روشن. اکنون ماه در حال طلوع است.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'اکنون ماه در حال غروب است.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · $percent٪ روشن. اکنون ماه در حال غروب است.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {
@@ -39268,10 +39272,14 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'اگر لازم است وضعیت فعلی خود را به‌روزرسانی کنید.';
 
   @override
-  String get notificationsMoonriseBody => 'اکنون ماه در حال طلوع است.';
+  String notificationsMoonriseBody(String phase, int percent) {
+    return '$phase · $percent٪ روشن. اکنون ماه در حال طلوع است.';
+  }
 
   @override
-  String get notificationsMoonsetBody => 'اکنون ماه در حال غروب است.';
+  String notificationsMoonsetBody(String phase, int percent) {
+    return '$phase · $percent٪ روشن. اکنون ماه در حال غروب است.';
+  }
 
   @override
   String notificationsRecoveredReminderBody(String body) {
