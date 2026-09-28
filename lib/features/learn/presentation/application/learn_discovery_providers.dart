@@ -5,6 +5,7 @@ import '../../../../core/localization/locale_provider.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../guided_paths/application/guided_learning_paths_provider.dart';
 import '../../guided_paths/domain/guided_learning_path_models.dart';
+import '../data/learn_discovery_flags.dart';
 import '../data/learn_hub_taxonomy.dart';
 import '../models/learn_discovery_models.dart';
 import '../models/learn_hub_models.dart';
@@ -522,7 +523,8 @@ LearnDiscoveryIndexEntry _mapKnowledgeItem(
     LearnHubContentType.story => LearnDiscoveryContentType.story,
     LearnHubContentType.quiz => LearnDiscoveryContentType.quiz,
     LearnHubContentType.challenge => LearnDiscoveryContentType.quiz,
-    LearnHubContentType.tool => _toolLikeContentType(item),
+    LearnHubContentType.tool =>
+      learnDiscoveryToolContentTypes[item.id] ?? LearnDiscoveryContentType.tool,
     LearnHubContentType.note => LearnDiscoveryContentType.note,
     LearnHubContentType.faq => LearnDiscoveryContentType.faq,
     LearnHubContentType.journey => LearnDiscoveryContentType.journey,
@@ -530,13 +532,23 @@ LearnDiscoveryIndexEntry _mapKnowledgeItem(
     LearnHubContentType.category => LearnDiscoveryContentType.hub,
   };
 
+  final startHere = learnDiscoveryStartHereIds.contains(item.id);
+  final beginnerSafe =
+      item.categoryId == LearnHubCategoryId.foundations ||
+      item.categoryId == LearnHubCategoryId.kidsLearning ||
+      learnDiscoveryBeginnerIds.contains(item.id);
+
   final audience = item.categoryId == LearnHubCategoryId.kidsLearning
       ? LearnDiscoveryAudience.kids
-      : _isBeginnerKnowledgeItem(item)
+      : beginnerSafe
       ? LearnDiscoveryAudience.beginner
       : LearnDiscoveryAudience.general;
 
-  final difficulty = _difficultyForKnowledgeItem(item);
+  final difficulty = startHere
+      ? LearnDiscoveryDifficulty.startHere
+      : learnDiscoveryDeeperIds.contains(item.id)
+      ? LearnDiscoveryDifficulty.deeper
+      : LearnDiscoveryDifficulty.growing;
 
   return LearnDiscoveryIndexEntry(
     id: item.id,
@@ -558,103 +570,10 @@ LearnDiscoveryIndexEntry _mapKnowledgeItem(
       ..._categoryKeywords(item.categoryId),
     ],
     relatedPathIds: _relatedPathsForCategory(item.categoryId),
-    startHere: _isStartHereKnowledgeItem(item),
-    beginnerSafe: _isBeginnerKnowledgeItem(item),
+    startHere: startHere,
+    beginnerSafe: beginnerSafe,
     badgeLabel: item.badgeLabel,
   );
-}
-
-LearnDiscoveryContentType _toolLikeContentType(LearnHubKnowledgeItem item) {
-  final keywords = item.searchKeywords.join(' ').toLowerCase();
-  if (keywords.contains('reflection')) {
-    return LearnDiscoveryContentType.reflection;
-  }
-  if (keywords.contains('practice') ||
-      keywords.contains('trainer') ||
-      keywords.contains('guided prayer') ||
-      keywords.contains('review')) {
-    return LearnDiscoveryContentType.practice;
-  }
-  return LearnDiscoveryContentType.tool;
-}
-
-LearnDiscoveryDifficulty _difficultyForKnowledgeItem(
-  LearnHubKnowledgeItem item,
-) {
-  if (_isStartHereKnowledgeItem(item)) {
-    return LearnDiscoveryDifficulty.startHere;
-  }
-  final text = _normalizeSearchText(
-    <String>[
-      item.title,
-      item.subtitle,
-      item.summary,
-      ...item.searchKeywords,
-    ].join(' '),
-  );
-  if (text.contains('deeper') ||
-      text.contains('memorization') ||
-      text.contains('timeline') ||
-      text.contains('advanced')) {
-    return LearnDiscoveryDifficulty.deeper;
-  }
-  return LearnDiscoveryDifficulty.growing;
-}
-
-// Copy is not a switch. These flags were inferred from words in the copy
-// ("basics", "gentle", "start"); the voice rewrite (2026-09-27) took out the
-// words, not the facts, so the entries that held a flag keep it by id, and
-// rewording a subtitle never moves an entry in or out of Start here.
-const Set<String> _startHereEntryIds = <String>{'subcategory:arabic-learning'};
-const Set<String> _beginnerEntryIds = <String>{
-  'subcategory:arabic-learning',
-  'subcategory:islamic-trivia',
-  'subcategory:search-tools',
-  'hadith_reflection:home',
-  'history:archive',
-};
-
-bool _isStartHereKnowledgeItem(LearnHubKnowledgeItem item) {
-  if (_startHereEntryIds.contains(item.id)) {
-    return true;
-  }
-  final text = _normalizeSearchText(
-    <String>[
-      item.title,
-      item.subtitle,
-      item.summary,
-      ...item.searchKeywords,
-    ].join(' '),
-  );
-  return text.contains('start') ||
-      text.contains('beginner') ||
-      text.contains('basics') ||
-      text.contains('foundations') ||
-      text.contains('what is islam') ||
-      text.contains('who is allah');
-}
-
-bool _isBeginnerKnowledgeItem(LearnHubKnowledgeItem item) {
-  if (_beginnerEntryIds.contains(item.id)) {
-    return true;
-  }
-  if (item.categoryId == LearnHubCategoryId.foundations ||
-      item.categoryId == LearnHubCategoryId.kidsLearning) {
-    return true;
-  }
-  final text = _normalizeSearchText(
-    <String>[
-      item.title,
-      item.subtitle,
-      item.summary,
-      ...item.searchKeywords,
-    ].join(' '),
-  );
-  return text.contains('beginner') ||
-      text.contains('start') ||
-      text.contains('basics') ||
-      text.contains('first') ||
-      text.contains('gentle');
 }
 
 List<String> _categoryKeywords(LearnHubCategoryId categoryId) {
