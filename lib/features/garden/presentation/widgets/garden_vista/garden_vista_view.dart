@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -203,9 +204,13 @@ class _GardenVistaViewState extends ConsumerState<GardenVistaView>
 
   @override
   Widget build(BuildContext context) {
-    final reduceMotion = ref.watch(
-      profileSettingsProvider.select((value) => value.reduceMotion),
-    );
+    // The web holds the scene still, as it does all looping motion
+    // (continuousMotionProvider): each frame would repaint the whole window.
+    final reduceMotion =
+        kIsWeb ||
+        ref.watch(
+          profileSettingsProvider.select((value) => value.reduceMotion),
+        );
     _syncMotion(reduceMotion);
     final motionActive = _wantsMotion && !reduceMotion;
     final brightness = Theme.of(context).brightness;

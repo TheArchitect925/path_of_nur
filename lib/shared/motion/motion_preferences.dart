@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -88,6 +89,9 @@ class AppForegroundNotifier extends StateNotifier<bool>
 /// Motion. One-shot motion (arrivals, moments) does not read this; it reads
 /// [effectiveReduceMotionProvider] alone.
 final continuousMotionProvider = Provider<bool>((ref) {
+  // In a browser every ambient frame repaints the whole window (the web
+  // renderer keeps no raster cache), so the web build holds the resting frame.
+  if (kIsWeb) return false;
   if (ref.watch(effectiveReduceMotionProvider)) return false;
   return ref.watch(appForegroundProvider);
 });

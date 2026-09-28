@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
@@ -235,21 +236,23 @@ class AppShellScaffold extends ConsumerWidget {
                 right: 0,
                 bottom: 0,
                 child: IgnorePointer(
-                  child: AppHeroGlassShell(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 28,
-                      vertical: 30,
+                  child: _withWebBarBlur(
+                    AppHeroGlassShell(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 28,
+                        vertical: 30,
+                      ),
+                      tintColor: const Color(0xFFE7C98C),
+                      surfaceAlphaOverride: 0.2,
+                      radius: 36,
+                      borderColor: const Color(0x42FFFFFF),
+                      highlightGradientColors: const [
+                        Color(0x24FFFFFF),
+                        Colors.transparent,
+                        Color(0x16E8C98F),
+                      ],
+                      child: const SizedBox(height: 0),
                     ),
-                    tintColor: const Color(0xFFE7C98C),
-                    surfaceAlphaOverride: 0.2,
-                    radius: 36,
-                    borderColor: const Color(0x42FFFFFF),
-                    highlightGradientColors: const [
-                      Color(0x24FFFFFF),
-                      Colors.transparent,
-                      Color(0x16E8C98F),
-                    ],
-                    child: const SizedBox(height: 0),
                   ),
                 ),
               ),
@@ -273,6 +276,20 @@ class AppShellScaffold extends ConsumerWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  // The web draws glass without a live blur (NoorLiquidGlassCapability), but
+  // pages scroll under the tab bar, so on the web the bar blurs its own
+  // backdrop. The sidebar sits over the sky alone and needs none.
+  Widget _withWebBarBlur(Widget glass) {
+    if (!WebLayout.isWeb) return glass;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(36),
+      child: BackdropFilter(
+        filter: ui.ImageFilter.blur(sigmaX: 14, sigmaY: 14),
+        child: glass,
       ),
     );
   }
